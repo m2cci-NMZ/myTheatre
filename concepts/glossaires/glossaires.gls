@@ -1,0 +1,8 @@
+//=========================================================================
+//                      Modèle de glossaire
+//-------------------------------------------------------------------------
+// Ce modèle de glossaire est exprimé en GlossaryScript
+// voir https://modelscript.readthedocs.io/en/latest/languages/glossaries/index.html
+//=========================================================================
+
+glossary model MyTheatre

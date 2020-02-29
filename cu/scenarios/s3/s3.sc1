@@ -1,0 +1,29 @@
+-- Scenario 3
+-- ----------
+-- Gerant:Planification
+
+-- (C1) Bernard est le gérant de MyTheatre.
+-- Parmis les tâches qu’il accomplit, c’est lui qui gère le planning des représentations.
+-- (C2) Pour la saison Hiver 2018-2019, il a reçu cette semaine 3 demandes de réservation de la salle.
+-- (C3) Cela correspond à 3 groupes d’artistes qui souhaitent se produire dans son théâtre.
+-- (C4) Il se connecte à son mailer pour voir les propositions.
+
+-- (C5) Deux des trois artistes proposent des pièces dramatiques.
+-- (C6) Bernard souhaite proposer une programmation variée.
+-- (C7) Il va planifier ces 2 artistes avec un intervalle de temps d’au moins 1 mois.
+-- (C8) Dans les périodes proposées une seule planification est possible.
+-- (C9) Il programme donc "La musique et moi" sur les deux premières semaines d’avril.
+-- (C10) Ce sera les jeudis, vendredis et samedis soirs (21h) et le dimanche après midi (18h).
+-- (C11) Pour et "Perdu" ce sera début mai pour des représentations 3 samedis soirs successifs.
+-- (C12) Le troisième spectacle est proposé par une association locale qui se produit chaque année dans son théâtre.
+-- (C13) Le tarif demandé est le même que celui de l’année passé.
+-- (C14) Bernard le considère satisfaisant.
+-- (C15) Il regarde des propositions faites par Gérald - le président de l’association - comme le troisième samedi de mai Perdu est programmé.
+-- (C16) Il choisit de ne pas planifier leurs représentations ce week end là.
+-- (C17) Il est en effet plus confortable pour eux de faire l’ensemble de leurs représentation le même week end.
+-- (C18) Rien n’est planifié le week end du 30 mai.
+-- (C19) Bernard choisit donc de retenir ces propositions.
+-- (C20) Ils joueront le vendredi 29 et le samedi 30 mai.
+-- (C21) Il constate que le dimanche 31 mai à 15h aucun spectacle n’est prévu.
+-- (C22) Il va proposer à Gérald cette date supplémentaire au même tarif que pour les deux autres représentations.
+-- (C23) Il envoie des mails aux trois organismes pour les informer des dates retenues.

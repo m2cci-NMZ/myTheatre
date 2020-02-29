@@ -1,0 +1,9 @@
+//=========================================================================
+//                      Modele de cas d'utilisation
+//-------------------------------------------------------------------------
+// This usecase model is expressed in UsecaseScript
+// See https://modelscript.rtfd.io/en/latest/languages/usecases/index.html
+//=========================================================================
+
+usecase model MyTheatre
+import glossary model from "../../concepts/glossaires/glossaires.gls"

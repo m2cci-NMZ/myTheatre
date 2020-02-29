@@ -1,0 +1,13 @@
+//=========================================================================
+//                      Modèle de permissions
+//-------------------------------------------------------------------------
+// Ce modèle de permissions est écrit en PermissionScript
+// Voir https://modelscript.rtfd.io/en/latest/languages/permissions/index.html
+//=========================================================================
+
+permission model MyTheatre
+import glossary model from "../../concepts/glossaires/glossaires.gls"
+import class model from "../../concepts/classes/classes.cl1"
+import usecase model "../cu/cu.uss"
+// import relation model "../relations/relations.res"
+

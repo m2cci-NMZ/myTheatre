@@ -1,0 +1,11 @@
+//=========================================================================
+//                      Model de suivi
+//-------------------------------------------------------------------------
+// Ce modèle de suivis est exprimé en TrackScript.
+// https://modelscript.readthedocs.io/en/latest/languages/tracks/index.html
+//=========================================================================
+
+track model MyTheatre
+
+
+
