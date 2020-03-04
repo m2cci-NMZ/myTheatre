@@ -6,3 +6,72 @@
 //=========================================================================
 
 glossary model MyTheatre
+
+MyTheatre
+    | 
+
+Programmation
+    | Ensemble des `Representation`s proposées par le theatre (ou MyTheatre)
+
+Representation
+    | Programmation d'un `Spectacle` à une `Horaire` donnée
+    
+Spectacle
+    | Spectacle se déroulant au théatre
+    | Un spectacle peut être `Humoristique`, `Musical`, de l'`Opera`, un `Drame` ou du `Cirque`
+    
+Opera
+    | Type de `Spectacle` pouvant avoir ou non un orchestre
+    
+Drame
+    | Type de `Spectacle`
+    
+Cirque
+    | Type de `Spectacle`
+    
+Humoristique
+    | Type de `Spectacle` pouvant être OneWomen(Men)Show
+    
+Musical
+    | Type de `Spectacle`
+    
+Horaire
+    | Date et heure à laquelle a lieu une `Representation`
+    
+Place
+    | Place disponible dans la salle du théatre.
+    | On peut faire une `Reservation` d'une `Place` pour une `Representation` donnee.
+    | Une place est contenu dans une `Zone` 
+
+Zone
+    | Regroupement d'un ensemble de `Place` dans la salle de théatre.
+    | Une `Zone` est associée a une `Categorie Tarifaire`
+
+Categorie Tarifaire
+    | Categorie associée a une ou plusieurs `Zone`.
+    | Peut être orchestre, balcon, poulailler, ...
+    | En fonction de la `Categorie Tarifaire`, un taux est appliqué au prix des `Place`s
+
+Ticket
+    | Achat d'une `Place` pour une `Representation`
+    | Un `Ticket` fait parti d'un `Dossier Achat`
+
+Dossier Achat
+    | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps
+    | Il permet de connaitre le prix global des `Place`s
+
+Reduction
+    | Promotion associee a une `Representation`, dont les `Place`s font l'objet 
+    | Un taux est associé à la `Reduction`
+    
+Personne
+    | Personne achetant des `Place`s pouvant être un spectateur ordinaire ou un `Adherent`
+    | Une personne, si elle est étudiante, scolaires, militaires ou séniors, beneficie 
+    | d'une `Reduction`
+    
+Adherent
+    | Personne bene
+
+Reservation
+
+

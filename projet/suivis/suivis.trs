@@ -7,5 +7,9 @@
 
 track model MyTheatre
 
-
+question Q1: Glossaire MyTheatre
+    | Est ce que MyTheatre correspond au théatre ou au logiciel
+    status: open
+    date: 2020-03-04
+    who: RML CKE
 

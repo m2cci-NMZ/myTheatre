@@ -7,22 +7,22 @@
 -- (A3) Il se dit que c’est l’occasion de sortir.
 -- (A4) Il demandera à sa belle-mère de garder les enfants.
 -- (A5) Sa soeur a toujours aimé le théâtre.
--- (A6) Il va donc regarder la programmation proposée par MyTheatre.
+-- (A6) Il va donc regarder la `Programmation` proposée par MyTheatre.
 -- (A7) Il va sur le site internet.
 -- (A8) Il indique la date du vendredi (arrivée de ses visiteurs).
 -- (A9) Il choisi aussi samedi et dimanche car il ne sait pas quand sa soeur a prévu de repartir.
--- (A10) Dans la programmation pour ces dates, trois spectacles sont proposés.
+-- (A10) Dans la `Programmation` pour ces dates, trois `Spectacle`s sont proposés.
 -- (A11) L’un d’eux n’a lieu qu’à 18h.
 -- (A12) A cette heure là, il y a beaucoup à faire avec les enfants.
 -- (A13) Il choisit donc de ne pas le considérer.
--- (A14) Pour les deux autres, les horaires conviennent.
+-- (A14) Pour les deux autres, les `Horaire`s conviennent.
 -- (A15) Il ne sait ce que sa soeur préférerait et aucun n’est complet.
 
 -- Scénario 1bis
 -- -------------
 -- Client:PréRéservation
 
--- (A20) Paul préfère le spectacle Le malade imaginaire de Molière.
+-- (A20) Paul préfère le `Spectacle` Le malade imaginaire de Molière.
 -- (A21) Il ne reste plus beaucoup de places.
 -- (A22) L’”option réservation sans payer pendant 24h” est possible pour cette représentation.
 -- (A23) Il donc choisit de réserver 4 places au centre du second rang.
