@@ -75,15 +75,15 @@ Reduction
     | Une `Reduction` réduit le prix des `Place`s d'un certains taux
     | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent
     
-Personne
-    | Personne achetant des `Place`s
-    | Une `Personne` peut avoir un ou plusieurs `Status`, elle peut déjà être spectateur ordinaire
+Spectateur
+    | Personne achetant des `Place`s pour regarder un `Spectacle`
+    | Un `Spectateur` peut avoir un ou plusieurs `Status`, elle peut déjà être spectateur ordinaire
     | ou `Adherent` et elle peut aussi être étudiante, scolaires, militaires ou séniors
     
 Status
-    | Status caractérisant une `Personne` et lui permettant de profiter de `Reduction`s   
+    | Status caractérisant un `Spectateur` et lui permettant de profiter de `Reduction`s   
     
 Adherent
-    | `Status` d'une `Personne` faisant partie des adhérents du théatre
+    | `Status` d'une `Spectateur` faisant partie des adhérents du théatre
 
 
