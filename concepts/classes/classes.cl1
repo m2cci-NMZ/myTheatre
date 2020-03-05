@@ -41,7 +41,7 @@ enum Type {
 
 class Spectacle
 attributes
-    numero : Integer
+    numero_ : Integer
     nom : String
     prixDeBase : Real
     cible : Cible
@@ -64,7 +64,7 @@ end
 
 class Representation
 attributes
-    date : String
+    date_ : String
     placesDispo_d : Integer
     tauxReduc : Real
 end

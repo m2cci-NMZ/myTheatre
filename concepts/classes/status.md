@@ -4,17 +4,11 @@ Status actuel
 Fait
 ----
 
-
-A compléter/améliorer
----------------------
-
-
-A faire
--------
+Diagramme de classe terminé pour le scénario 1.
 
 
 Synthèse
 --------
 
-
+Diagramme est validé pour le scénario 1. Il faudra le compléter en rajoutant des classes avec les nouveaux scénarios.
 
