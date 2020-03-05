@@ -18,16 +18,16 @@ model MyTheatre
 -- enumerations
 ---------------------------------------------------------------------------
 
-enum cible {
-    1-5ans,
+enum Cible {
+    unCinqAns,
     jeunePublic,
     toutPublic,
     adulte
   
 }
 
-enum type {
-    opéra,
+enum Type {
+    opera,
     drame,
     humoristique,
     musical,
@@ -43,7 +43,7 @@ class Spectacle
 attributes
     numero : Integer
     nom : String
-    prixDeBase : Float
+    prixDeBase : Real
     cible : Cible
     type : Type
     
@@ -62,11 +62,11 @@ attributes
 end
 
 
-class Représentation
+class Representation
 attributes
     date : String
-    placeDispo : Integer
-    tauxReduc : Double
+    placesDispo_d : Integer
+    tauxReduc : Real
 end
 
 ---------------------------------------------------------------------------

@@ -26,16 +26,16 @@
     ! lesAnimaux.numero := 46
     ! lesAnimaux.nom := 'Les Animaux'
     ! lesAnimaux.prixDeBase := 8.0
-    ! lesAnimaux.cible :: 1-5ans
+    ! lesAnimaux.cible :: unCinqAns
     ! lesAnimaux.type :: cirque
 
 --| (3) Le spectacle de numero 47 et de nom SonoriteEtranges avec un prix de base de 10 euros destiné a un jeune public et de type musical
-    ! create SonoritesEtranges : Spectacle
-    ! SonoritesEtranges.numero := 47
-    ! SonoritesEtranges.nom := 'Sonorites Etranges'
-    ! SonoritesEtranges.prixDeBase := 10.0
-    ! SonoritesEtranges.cible :: jeunePublic
-    ! SonoritesEtranges.type :: musical
+    ! create sonoritesEtranges : Spectacle
+    ! sonoritesEtranges.numero := 47
+    ! sonoritesEtranges.nom := 'Sonorites Etranges'
+    ! sonoritesEtranges.prixDeBase := 10.0
+    ! sonoritesEtranges.cible :: jeunePublic
+    ! sonoritesEtranges.type :: musical
 
 
 --| (4) Le spectacle de numero 20 et de nom l'avare avec un prix de base de 10 euros destiné a tout public et de type drame
@@ -44,8 +44,8 @@
     ! avare.nom := 'L'avare'
     ! avare.prixDeBase := 10.0
     ! avare.cible :: toutPublic
-    ! cyrano.type :: humoristique
-    ! cyrano.estUnOneWomanManShow := 0
+    ! avare.type :: humoristique
+    ! avare.estUnOneWomanManShow := 0
 
 
 --| (5) Le spectacle de numero 25 et de nom Don Juan avec un prix de base de 10 euros destiné a un public adulte et de type opera
@@ -77,10 +77,10 @@
     ! representationDu140318h.tauxReduc := 10.0
 
 --| (9) La representation du 14/03 a 15h a 20 places disponibles et donne une reduction de 10%
-    ! create representationDu140318h : Representation
-    ! representationDu140318h.date := '14/03/2020 15h'
-    ! representationDu140318h.placesDispo_d := 20
-    ! representationDu140318h.tauxReduc := 10.0
+    ! create representationDu140315h : Representation
+    ! representationDu140315h.date := '14/03/2020 15h'
+    ! representationDu140315h.placesDispo_d := 20
+    ! representationDu140315h.tauxReduc := 10.0
 
 --| (10) La representation du 15/03 a 18h a 30 places disponibles et donne un reduction de 0%
     ! create representationDu150318h : Representation
@@ -91,14 +91,14 @@
 --| (11) Le 13/03 a 18h, Les Animaux est à l'affiche
     ! insert(lesAnimaux, representationDu130318h) into APourRepresentation
 
---| (12) Le 13/03 a 20h, l'avare est à l'affiche
+--| (12) Le 13/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu130320h) into APourRepresentation
 
 --| (13) Le 14/03 a 18h, Cyrano est à l'affiche
     ! insert(cyrano, representationDu140318h) into APourRepresentation
 
 --| (14) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
-    ! insert(SonoriteEtranges, representationDu140318h) into APourRepresentation
+    ! insert(sonoritesEtranges, representationDu140315h) into APourRepresentation
 
 --| (15) Le 15/03 a 18h, Don Juan est à l'affiche
     ! insert(donJuan, representationDu150318h) into APourRepresentation
