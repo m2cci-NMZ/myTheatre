@@ -43,9 +43,9 @@ de la seconde).
 
 (X22) Ainsi, à chaque `Representation` est associé un taux de promotion (1 : pas de promotion, 0,5 : promotion de 50, etc.).
 
-(X23) Les `Personne`s qui achètent des `Place`s peuvent être des spectateurs ordinaires ou des `Adherent`s et bénéficier d’une `Reduction`.
+(X23) Les `Spectateur`s qui achètent des `Place`s peuvent être des spectateurs ordinaires ou des `Adherent`s et bénéficier d’une `Reduction`.
 
-(X24) Certaines `Personne`s (étudiants, scolaires, militaires et séniors) bénéficient aussi d’une `Reduction`.
+(X24) Certains `Spectateur`s (étudiants, scolaires, militaires et séniors) bénéficient aussi d’une `Reduction`.
 
 (X25) Ainsi le prix d’une `Place` fait éventuellement l’objet d’une `Reduction` qui dépend de son `Status` (adhérent, sénior, étudiant et militaire).
 

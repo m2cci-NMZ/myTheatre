@@ -72,21 +72,19 @@ Dossier Achat
     | Il permet de connaitre le prix global
 
 Reduction
-    | Promotion associee a une `Representation` ou a un `Status`
+    | Promotion associee a une `Representation` ou a un `Statut`
     | Une `Reduction` réduit le prix des `Place`s d'un certain taux
     | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent
     
-Personne
-    | Personne achetant des `Place`s
-    | Une `Personne` peut avoir un, plusieurs ou aucun `Status`
-    | Elle peut avoir le `Status` `Adherent` ou être un spectateur ordinaire (pas de `Status` associé)
+Spectateur
+    | Personne achetant des `Place`s pour regarder un `Spectacle`
+    | Une `Spectateur` peut avoir un, plusieurs ou aucun `Statut`
+    | Elle peut avoir le `Statut` `Adherent` ou être un spectateur ordinaire (pas de `Statut` associé)
     | Elle peut aussi être étudiante, scolaires, militaires et/ou séniors
     
-Status
-    | Status caractérisant une `Personne` et lui permettant de profiter de `Reduction`s
+Statut
+    | Statut caractérisant un `Spectateur` et lui permettant de profiter de `Reduction`s   
     
 Adherent
-    | `Status` d'une `Personne` faisant partie des adhérents du théatre
+    | `Statut` d'une `Personne` faisant partie des adhérents du théatre
     | Une `Personne` peut être soit un `Adherent soit un spectateur ordinaire
-
-

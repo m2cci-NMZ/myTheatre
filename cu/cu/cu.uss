@@ -7,3 +7,19 @@
 
 usecase model MyTheatre
 import glossary model from "../../concepts/glossaires/glossaires.gls"
+
+usecase ConsulterTouteLaProgrammation
+      actor Spectateur
+      | Le `Spectateur` souhaite consulter toute la `Programmation` de `MyTheatre` pour choisir 
+      | un `Spectacle` à aller voir
+      | Il ne définira pas de critère sur les `Spectacle`
+      
+usecase ConsulterUnePartieDeLaProgrammation
+      actor Spectateur
+      | Le `Spectateur` souhaite consulter une partie de la `Programmation` de `MyTheatre` selon
+      | plusieurs critères correspondant à des contraintes personnelles
+      | Il va définir ses critères puis il verra les résultats
+      
+interactions
+    a Spectateur can ConsulterTouteLaProgrammation
+    a Spectateur can ConsulterUnePartieDeLaProgrammation

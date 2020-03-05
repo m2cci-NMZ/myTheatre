@@ -18,7 +18,7 @@
 -- (B15) Parmis celles-ci il y a un `Spectacle` `Humoristique`.
 -- (B16) Le thème est la vie en milieu hospitalier.
 -- (B17) Voilà un `Spectacle` qui parlera à tous.
--- (B18) En tarif plein, le coût est de 15€ par personne.
+-- (B18) En tarif plein, le coût est de 15€ par `Spectateur`.
 -- (B19) Ce tarif est pour un placement dans la `Categorie Tarifaire` poulailler.
 -- (B20) Le tarif est de 20€ par `Personne` pour un placement dans la `Categorie Tarifaire` balcon.
 -- (B21) Et il est de 25€ par personne pour un placement dans la `Categorie Tarifaire` orchestre.
