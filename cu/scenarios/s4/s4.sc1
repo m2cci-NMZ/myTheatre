@@ -2,14 +2,14 @@
 -------------
 -- Gerant:Configuration
 
--- (D1) Avant de mettre en ligne la programmation du mois d’avril, Bernard doit définir le nombre de place en vente pour chaque spectacle.
--- (D2) Pour cela, pour chaque représentation, il regarde la configuration de la salle.
--- (D3) Il identifie aussi les sièges qui ne peuvent être vendus.
+-- (D1) Avant de mettre en ligne la `Programmation` du mois d’avril, Bernard doit définir le nombre de `Place` en vente pour chaque `Spectacle`.
+-- (D2) Pour cela, pour chaque `Representation`, il regarde la configuration de la salle.
+-- (D3) Il identifie aussi les `Place`s qui ne peuvent être vendus.
 -- (D4) Pour "Perdu" les trois premiers rangs sont ainsi invendables.
--- (D5) Automatiquement le nombre de sièges en vente pour chaque représentation et chaque catégorie de siège est mis à jour.
--- (D6) Il précise également la possibilité et la durée de l’option réservation sans payer.
--- (D7) Au début de la saison, aucune réduction “exceptionnelle” (en dehors des tarifs étudiants, famille nombreuse, adhérents) n’est appliquée.
--- (D8) En fonction du taux de remplissage de la salle, Bernard appliquera des réductions sur certaines représentations. 
+-- (D5) Automatiquement le nombre de `Place` en vente pour chaque `Representation` et chaque `Categorie Tarifaire` de `Place` est mis à jour.
+-- (D6) Il précise également la possibilité et la durée de l’option `Reservation` sans payer.
+-- (D7) Au début de la saison, aucune `Reduction` “exceptionnelle” (en dehors des tarifs étudiants, famille nombreuse, `Adherent`) n’est appliquée.
+-- (D8) En fonction du taux de remplissage de la salle, Bernard appliquera des `Reduction`s sur certaines `Representation`s. 
 
 -- Extension
 ---------

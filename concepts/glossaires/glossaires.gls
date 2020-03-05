@@ -8,16 +8,18 @@
 glossary model MyTheatre
 
 MyTheatre
-    | 
+    | Theatre utilisant le logiciel pour son système de réservation de `Place`s pour 
+    | les `Spectacle`s au cours d’une même saison
+    | C'est aussi le nom du logiciel
 
 Programmation
-    | Ensemble des `Representation`s proposées par le theatre (ou MyTheatre)
+    | Ensemble des `Representation`s proposées par le `Theatre`
 
 Representation
     | Programmation d'un `Spectacle` à une `Horaire` donnée
     
 Spectacle
-    | Spectacle se déroulant au théatre
+    | Spectacle se déroulant au `Theatre`
     | Un spectacle peut être `Humoristique`, `Musical`, de l'`Opera`, un `Drame` ou du `Cirque`
     
 Opera
@@ -39,9 +41,10 @@ Horaire
     | Date et heure à laquelle a lieu une `Representation`
     
 Place
-    | Place disponible dans la salle du théatre.
-    | On peut faire une `Reservation` d'une `Place` pour une `Representation` donnee.
-    | Une place est contenu dans une `Zone` 
+    | Place disponible dans la salle du `Theatre`.
+    | On peut acheter un `Ticket` pour une `Place` d'une `Representation` donnee.
+    | Une `Place` est contenu dans une `Zone` 
+    synonyms: Siege
 
 Zone
     | Regroupement d'un ensemble de `Place` dans la salle de théatre.
@@ -52,26 +55,35 @@ Categorie Tarifaire
     | Peut être orchestre, balcon, poulailler, ...
     | En fonction de la `Categorie Tarifaire`, un taux est appliqué au prix des `Place`s
 
+Reservation
+    | Option permettant de réserver une `Place` pour une `Representation` sans la payer
+    | Cette option n'est pas forcément disponible pour toutes les `Representation`s
+    | Dès que la `Reservation` est confirmée, le `Ticket` correspondant est acheté
+    | Au bout de 24h, si la `Reservation` n'a pas été confirmée, elle est annulée et la 
+    | `Place` est de nouveau disponible à l'achat
+
 Ticket
     | Achat d'une `Place` pour une `Representation`
     | Un `Ticket` fait parti d'un `Dossier Achat`
 
 Dossier Achat
     | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps
-    | Il permet de connaitre le prix global des `Place`s
+    | Il permet de connaitre le prix global
 
 Reduction
-    | Promotion associee a une `Representation`, dont les `Place`s font l'objet 
-    | Un taux est associé à la `Reduction`
+    | Promotion associee a une `Representation` ou a un `Status`
+    | Une `Reduction` réduit le prix des `Place`s d'un certains taux
+    | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent
     
 Personne
-    | Personne achetant des `Place`s pouvant être un spectateur ordinaire ou un `Adherent`
-    | Une personne, si elle est étudiante, scolaires, militaires ou séniors, beneficie 
-    | d'une `Reduction`
+    | Personne achetant des `Place`s
+    | Une `Personne` peut avoir un ou plusieurs `Status`, elle peut déjà être spectateur ordinaire
+    | ou `Adherent` et elle peut aussi être étudiante, scolaires, militaires ou séniors
+    
+Status
+    | Status caractérisant une `Personne` et lui permettant de profiter de `Reduction`s   
     
 Adherent
-    | Personne bene
-
-Reservation
+    | `Status` d'une `Personne` faisant partie des adhérents du théatre
 
 
