@@ -12,7 +12,7 @@ import class model from "../classes/classes.cl1"
 relation model MyTheatre 
 
 
-relation LesSpectacle 
+relation LesSpectacles 
     transformation 
       from R_Class(Spectacle)
      
@@ -24,7 +24,7 @@ relation LesSpectacle
       typeSpe : Type
       
       
-relation LesOpera
+relation LesOperas
      transformation 
       from R_Reference(Opera)
 
@@ -33,7 +33,7 @@ relation LesOpera
        numeroSpe:Integer
         
 
-relation LesHumoristique
+relation LesHumoristiques
      transformation 
       from R_Reference(Humoristique)
 
@@ -42,7 +42,7 @@ relation LesHumoristique
        numeroSpe:Integer
 
 
-relation LesRepresentation
+relation LesRepresentations
     transformation 
       from R_Class (Representation)
       from R_OneToMany (Spectacle)

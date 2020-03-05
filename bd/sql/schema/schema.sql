@@ -10,7 +10,7 @@
 ---------------------------------------------------------------------------
 
 
-CREATE TABLE LesSpectales(
+CREATE TABLE LesSpectacles(
       numeroSpe Integer,
       nomSpe VARCHAR(100)NOT NULL,
       prixDeBaseSpe Real,
@@ -47,19 +47,28 @@ CREATE TABLE LesRepresentations(
 );
 
 CREATE TABLE LesHumoristiques(
-     estUnOneWomanManShow Integer
+		numeroSpe Integer,
+		estUnOneWomanManShowHum Integer,
 
-     CONSTRAINT Dom_Hum_estUnOneWomanManShow
-     CHECK (estUnOneWomanManShow in (0,1))
+		CONSTRAINT PK_Hum
+        PRIMARY KEY (numeroSpe),
+     CONSTRAINT FK_Hum_numeroSep 
+        FOREIGN KEY (numeroSep) REFERENCES LesSpectacles(numeroSpe),
+		CONSTRAINT Dom_Hum_estUnOneWomanManShow
+			CHECK (estUnOneWomanManShow in (0,1))
 );
 
 
 CREATE TABLE LesOperas(
-
-     aUnOrchestre Integer
-
-     CONSTRAINT Dom_Ope_aUnOrchestre
-     CHECK (aUnOrchestre in (0,1))
+		numeroSpe Integer,
+		aUnOrchestreOpe Integer,
+		
+		CONSTRAINT PK_Ope
+        PRIMARY KEY (numeroSpe),
+     CONSTRAINT FK_Ope_numeroSep 
+        FOREIGN KEY (numeroSep) REFERENCES LesSpectacles(numeroSpe),
+		CONSTRAINT Dom_Ope_aUnOrchestre
+     	CHECK (aUnOrchestre in (0,1))
 
 );
 
