@@ -14,3 +14,66 @@
 
 model MyTheatre
 
+---------------------------------------------------------------------------
+-- enumerations
+---------------------------------------------------------------------------
+
+enum cible {
+    1-5ans,
+    jeunePublic,
+    toutPublic,
+    adulte
+  
+}
+
+enum type {
+    opéra,
+    drame,
+    humoristique,
+    musical,
+    cirque
+}
+
+
+---------------------------------------------------------------------------
+-- classes
+---------------------------------------------------------------------------
+
+class Spectacle
+attributes
+    numero : Integer
+    nom : String
+    prixDeBase : Float
+    cible : Cible
+    type : Type
+    
+end
+
+
+class Opera < Spectacle
+attributes
+    aUnOrchestre : Integer
+end
+
+
+class Humoristique < Spectacle
+attributes
+    estUnOneWomanManShow : Integer
+end
+
+
+class Représentation
+attributes
+    date : String
+    placeDispo : Integer
+    tauxReduc : Double
+end
+
+---------------------------------------------------------------------------
+-- associations
+---------------------------------------------------------------------------
+
+association APourRepresentation between
+    Spectacle [1] role spectacle
+    Representation [*] role representations
+end

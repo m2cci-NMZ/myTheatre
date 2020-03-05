@@ -17,59 +17,54 @@
     ! create cyrano : Spectacle
     ! cyrano.numero := 45
     ! cyrano.nom := 'Cyrano de Bergerac'
-    ! cyrano.prixDeBase := 20
-    ! cyrano.cible :: toutpublic
+    ! cyrano.prixDeBase := 20.0
+    ! cyrano.cible :: toutPublic
     ! cyrano.type :: drame
-    ! insert(cyrano, representationDu130318h) into APourRepresentation
+
 
 --| (2) Le spectacle de numero 20 et de nom l'avare avec un prix de base de 10 euros destiné a tout public et de type drame
     ! create avare : Humoristique
     ! avare.numero := 20
     ! avare.nom := 'L'avare'
-    ! avare.prixDeBase := 10
-    ! avare.cible :: toutpublic
+    ! avare.prixDeBase := 10.0
+    ! avare.cible :: toutPublic
     ! cyrano.type :: humoristique
     ! cyrano.estUnOneWomanManShow := 0
-    ! insert(bob, c232) into EstResponsableDe
+
 
 --| (3) Le spectacle de numero 25 et de nom Don Juan avec un prix de base de 10 euros destiné a un public adulte et de type opera
     ! create donJuan : Opera
     ! donJuan.numero := 25
     ! donJuan.nom := 'Don Juan'
-    ! donJuan.prixDeBase := 10
+    ! donJuan.prixDeBase := 10.0
     ! donJuan.cible :: adulte
     ! donJuan.type :: opera
     ! donJuan.aUnOrchestre := 1
-    ! insert(bob, c232) into EstResponsableDe
 
 
---| (4) La representation du 13/03 a 18h a 50 places disponibles et donne un reduction de 10%
+--| (4) La representation du 13/03 a 18h a 50 places disponibles et donne une reduction de 10%
     ! create representationDu130318h : Representation
     ! representationDu130318h.date := '13/03/2020 18h'
     ! representationDu130318h.placesDispo_d := 50
-    ! representationDu130318h.tauxReduc := 10
-    ! insert(bob, c232) into EstResponsableDe
+    ! representationDu130318h.tauxReduc := 10.0
 
---| (5) La representation du 13/03 a 20h a 10 places disponibles et donne un reduction de 10%
+--| (5) La representation du 13/03 a 20h a 10 places disponibles et donne une reduction de 10%
     ! create representationDu130320h : Representation
     ! representationDu130320h.date := '13/03/2020 20h'
     ! representationDu130320h.placesDispo_d := 10
-    ! representationDu130320h.tauxReduc := 10
-    ! insert(bob, c232) into EstResponsableDe
+    ! representationDu130320h.tauxReduc := 10.0
 
---| (6) La representation du 14/03 a 18h a 20 places disponibles et donne un reduction de 10%
+--| (6) La representation du 14/03 a 18h a 20 places disponibles et donne une reduction de 10%
     ! create representationDu140318h : Representation
     ! representationDu140318h.date := '14/03/2020 18h'
     ! representationDu140318h.placesDispo_d := 20
-    ! representationDu140318h.tauxReduc := 10
-    ! insert(bob, c232) into EstResponsableDe
+    ! representationDu140318h.tauxReduc := 10.0
 
 --| (7) La representation du 15/03 a 18h a 30 places disponibles et donne un reduction de 0%
     ! create representationDu150318h : Representation
     ! representationDu150318h.date := '15/03/2020 18h'
     ! representationDu150318h.placesDispo_d := 30
-    ! representationDu150318h.tauxReduc := 0
-    ! insert(bob, c232) into EstResponsableDe
+    ! representationDu150318h.tauxReduc := 0.0
 
 --| (8) Le 13/03 a 18h, Cyrano est à l'affiche
     ! insert(cyrano, representationDu130318h) into APourRepresentation
