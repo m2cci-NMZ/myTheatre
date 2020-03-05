@@ -7,7 +7,7 @@
 -- (A3) Il se dit que c’est l’occasion de sortir.
 -- (A4) Il demandera à sa belle-mère de garder les enfants.
 -- (A5) Sa soeur a toujours aimé le théâtre.
--- (A6) Il va donc regarder la `Programmation` proposée par MyTheatre.
+-- (A6) Il va donc regarder la `Programmation` proposée par `MyTheatre`.
 -- (A7) Il va sur le site internet.
 -- (A8) Il indique la date du vendredi (arrivée de ses visiteurs).
 -- (A9) Il choisi aussi samedi et dimanche car il ne sait pas quand sa soeur a prévu de repartir.
@@ -23,9 +23,9 @@
 -- Client:PréRéservation
 
 -- (A20) Paul préfère le `Spectacle` Le malade imaginaire de Molière.
--- (A21) Il ne reste plus beaucoup de places.
--- (A22) L’”option réservation sans payer pendant 24h” est possible pour cette représentation.
--- (A23) Il donc choisit de réserver 4 places au centre du second rang.
--- (A24) Il reçoit par email la confirmation de la préréservation.
+-- (A21) Il ne reste plus beaucoup de `Place`s.
+-- (A22) L’”option `Reservation` sans payer pendant 24h” est possible pour cette `Representation`.
+-- (A23) Il donc choisit de faire la `Reservation` 4 `Place`s au centre du second rang.
+-- (A24) Il reçoit par email la confirmation de la pré-`Reservation`.
 -- (A25) Le lendemain, sa soeur lui indique que sa préférence va au Malade imaginaire.
--- (A26) Il confirme donc sa réservation et paie ses places.
+-- (A26) Il confirme donc sa `Reservation` et paie ses `Place`s.

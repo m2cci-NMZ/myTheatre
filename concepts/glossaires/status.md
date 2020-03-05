@@ -3,11 +3,14 @@ Status actuel
 
 Fait
 ----
-BD : Traduction jusqu'à X20
+Ecriture du glossaire
+Réécriture de Donnees.rst et de s<N>.sc1
+Glossaire considéré comme terminé
+
 
 A compléter/améliorer
 ---------------------
-Reduction (pas assez large vis à vis de la suite
+
 
 A faire
 -------

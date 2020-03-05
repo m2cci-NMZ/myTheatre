@@ -5,39 +5,39 @@
 -- (B2) Elle est en charge d’organiser une sortie pour son équipe.
 -- (B3) Ils sont 8.
 -- (B4) Elle veut organiser une soirée avec repas au restaurant.
--- (B5) La soirée continuera par un spectacle.
--- (B6) Elle consulte le programme en ligne de MyTheatre.
--- (B7) Elle a déjà assisté à des spectacles dans cette salle.
--- (B8) Elle sait qu’il y a tout type de spectacle.
+-- (B5) La soirée continuera par un `Spectacle`.
+-- (B6) Elle consulte la `Programmation` en ligne de `MyTheatre`.
+-- (B7) Elle a déjà assisté à des `Spectacle`s dans cette salle.
+-- (B8) Elle sait qu’il y a tout type de `Spectacle`.
 -- (B9) Elle en cherche un qui pourrait plaire au plus grand nombre.
--- (B10) Elle indique qu’elle veut des spectacles pour tout public.
+-- (B10) Elle indique qu’elle veut des `Spectacle`s pour tout public.
 -- (B11) Elle indique aussi la période qui lui conviendrait.
 -- (B12) Son équipe travaille la nuit.
--- (B13) Inutile de regarder les spectacles proposés uniquement la nuit.
+-- (B13) Inutile de regarder les `Spectacle`s proposés uniquement la nuit.
 -- (B14) Elle obtient une liste de possibilités.
--- (B15) Parmis celles-ci il y a un spectacle humoristique.
+-- (B15) Parmis celles-ci il y a un `Spectacle` `Humoristique`.
 -- (B16) Le thème est la vie en milieu hospitalier.
--- (B17) Voilà un spectacle qui parlera à tous.
+-- (B17) Voilà un `Spectacle` qui parlera à tous.
 -- (B18) En tarif plein, le coût est de 15€ par personne.
--- (B19) Ce tarif est pour un placement dans le poulailler.
--- (B20) Le tarif est de 20€ par personne pour un placement dans la catégorie balcon.
--- (B21) Et il est de 25€ par personne pour un placement orchestre.
--- (B22) Elle constate que la représentation le lundi soir à 20% de réduction par rapport à celle du dimanche soir.
+-- (B19) Ce tarif est pour un placement dans la `Categorie Tarifaire` poulailler.
+-- (B20) Le tarif est de 20€ par `Personne` pour un placement dans la `Categorie Tarifaire` balcon.
+-- (B21) Et il est de 25€ par personne pour un placement dans la `Categorie Tarifaire` orchestre.
+-- (B22) Elle constate que la `Representation` le lundi soir à 20% de `Reduction` par rapport à celle du dimanche soir.
 -- (B23) L’équipe ne travaille pas le lundi soir.
--- (B24) Elle décide alors de prendre les billets pour cette représentation
+-- (B24) Elle décide alors de prendre les `Ticket`s pour cette `Representation`
 -- (B25) Cela lui laissera plus d’argent pour le restaurant.
--- (B26) Elle va prendre les billets.
+-- (B26) Elle va prendre les `Ticket`s.
 
--- (B27) Elle indique qu’il lui faut 8 billets.
+-- (B27) Elle indique qu’il lui faut 8 `Ticket`s.
 -- (B28) Parmi les membres de l’équipe, deux sont stagiaires.
 -- (B29) Elle constate que plusieurs tarifs existent.
--- (B30) Le tarif étudiant applique une réduction de 20% au tarif (en plus de la réduction appliquée le lundi soir).
--- (B31) Elle commande donc 2 places au tarif étudiant et 6 places au tarif plein.
+-- (B30) Le tarif étudiant applique une `Reduction` de 20% au tarif (en plus de la `Reduction` appliquée le lundi soir).
+-- (B31) Elle commande donc 2 `Place`s au tarif étudiant et 6 `Place`s au tarif plein.
 
 -- (B32) Elle paie en CB (ses collègues la rembourseront plus tard).
 -- (B33) Elle peut ensuite choisir entre 2 options.
--- (B34) La première est d’avoir ses billets en version imprimable (PDF).
--- (B35) Dans ce cas les billets lui seront envoyées par email.
+-- (B34) La première est d’avoir ses `Ticket`s en version imprimable (PDF).
+-- (B35) Dans ce cas les `Ticket` lui seront envoyées par email.
 -- (B36) La deuxième est d'avoir une version mobile qu’elle présenterait à l’entrée.
 -- (B37) Elle choisit de les avoir en version imprimable.
 -- (B38) Cela lui permettera de distribuer à chaque participant.

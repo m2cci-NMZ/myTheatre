@@ -9,7 +9,11 @@ track model MyTheatre
 
 question Q1: Glossaire MyTheatre
     | Est ce que MyTheatre correspond au théatre ou au logiciel
-    status: open
+    status: closed by D1
     date: 2020-03-04
     who: RML CKE
 
+decision D1: Glossaire MyTheatre
+    | MyTheatre est le nom du logiciel et du théatre
+    date: 2020-03-05
+    who: RML CKE JFE
