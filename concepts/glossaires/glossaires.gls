@@ -41,7 +41,8 @@ Horaire
     | Date et heure à laquelle a lieu une `Representation`
     
 Place
-    | Place disponible dans la salle du `Theatre`.
+    | Place présente dans la salle du `Theatre`.
+    | Elle peut-être disponible ou non.
     | On peut acheter un `Ticket` pour une `Place` d'une `Representation` donnee.
     | Une `Place` est contenu dans une `Zone` 
     synonyms: Siege
@@ -56,7 +57,7 @@ Categorie Tarifaire
     | En fonction de la `Categorie Tarifaire`, un taux est appliqué au prix des `Place`s
 
 Reservation
-    | Option permettant de réserver une `Place` pour une `Representation` sans la payer
+    | Option permettant de réserver une `Place` pour une `Representation` sans la payer pendant un délai maximum de 24h
     | Cette option n'est pas forcément disponible pour toutes les `Representation`s
     | Dès que la `Reservation` est confirmée, le `Ticket` correspondant est acheté
     | Au bout de 24h, si la `Reservation` n'a pas été confirmée, elle est annulée et la 
@@ -72,16 +73,18 @@ Dossier Achat
 
 Reduction
     | Promotion associee a une `Representation` ou a un `Status`
-    | Une `Reduction` réduit le prix des `Place`s d'un certains taux
+    | Une `Reduction` réduit le prix des `Place`s d'un certain taux
     | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent
     
 Spectateur
     | Personne achetant des `Place`s pour regarder un `Spectacle`
-    | Un `Spectateur` peut avoir un ou plusieurs `Status`, elle peut déjà être spectateur ordinaire
-    | ou `Adherent` et elle peut aussi être étudiante, scolaires, militaires ou séniors
+    | Une `Spectateur` peut avoir un, plusieurs ou aucun `Status`
+    | Elle peut avoir le `Status` `Adherent` ou être un spectateur ordinaire (pas de `Status` associé)
+    | Elle peut aussi être étudiante, scolaires, militaires et/ou séniors
     
 Status
     | Status caractérisant un `Spectateur` et lui permettant de profiter de `Reduction`s   
     
 Adherent
-    | `Status` d'une `Spectateur` faisant partie des adhérents du théatre
+    | `Status` d'une `Personne` faisant partie des adhérents du théatre
+    | Une `Personne` peut être soit un `Adherent soit un spectateur ordinaire
