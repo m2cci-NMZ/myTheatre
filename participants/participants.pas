@@ -17,8 +17,8 @@ import glossary model from "../glossaries/glossaries.gls"
 //==========================================================================
 
 // ----actors---------------------------------------------------------------
-actor Client
-      | Client est une `Personne`. Le role du Client est de consulter la 
+actor Spectateur
+      | `Spectateur` est une `Personne`. Le role du `Spectateur` est de consulter la 
       | `Programmation` de `MyTheatre`.
-      | Pour realiser cette tâche, Client possède une application web.
+      | Pour realiser cette tâche, `Spectateur` possède une application web.
 
