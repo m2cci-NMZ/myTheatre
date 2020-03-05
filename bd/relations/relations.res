@@ -13,7 +13,6 @@ relation model MyTheatre
 
 
 relation LesSpectacle 
-
     transformation 
       from R_Class(Spectacle)
      
@@ -27,24 +26,23 @@ relation LesSpectacle
       
 relation LesOpera
      transformation 
-      from R_Reference(Spectacle)
+      from R_Reference(Opera)
 
      columns 
-       aUnOrchestre : boolean 
+       aUnOrchestreOpe : boolean 
        numeroSpe:Integer
         
 
 relation LesHumoristique
      transformation 
-      from R_Reference(Spectacle)
+      from R_Reference(Humoristique)
 
      columns 
-       estUnOneWomanManShow: boolean 
+       estUnOneWomanManShowHum: boolean 
        numeroSpe:Integer
 
 
 relation LesRepresentation
-
     transformation 
       from R_Class (Representation)
       from R_OneToMany (Spectacle)
