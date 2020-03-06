@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 @WebServlet(name = "progCtrler", urlPatterns = {"/progCtrler"})
 public class ProgCtrler extends HttpServlet {
 
-    @Resource(name = "jdbc/CAFE")
+    @Resource(name = "jdbc/db")
     private DataSource dataSource;
 
     /**
