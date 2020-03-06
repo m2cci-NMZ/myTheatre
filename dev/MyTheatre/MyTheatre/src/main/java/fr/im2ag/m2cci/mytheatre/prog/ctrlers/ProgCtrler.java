@@ -5,13 +5,21 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
+import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
+import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  *
@@ -19,6 +27,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "progCtrler", urlPatterns = {"/progCtrler"})
 public class ProgCtrler extends HttpServlet {
+
+    @Resource(name = "jdbc/CAFE")
+    private DataSource dataSource;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,21 +39,35 @@ public class ProgCtrler extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet progCtrler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet progCtrler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            Date dateDebut;
+            String debut;
+            debut = request.getParameter("dateDebut");
+            dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
+
+            Date dateFin;
+            String fin;
+            fin = request.getParameter("dateFin");
+            dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+            
+
+            String type;
+            type = request.getParameter("type");
+            
+            String cible;
+            cible=request.getParameter("cible");
+            
+            List<Representation>  listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
+            
+            request.setAttribute("progList", listRepresentations);
+            
+       
         }
     }
 
