@@ -38,7 +38,7 @@ CREATE TABLE LesHumoristiques(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Hum_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT Dom_Hum_estUnOneWomanManShow
+	CONSTRAINT CK_Hum_estUnOneWomanManShow
 		CHECK (estUnOneWomanManShowHum in (0,1))
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE LesOperas(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Ope_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT Dom_Ope_aUnOrchestre
+	CONSTRAINT CK_Ope_aUnOrchestre
 		CHECK (aUnOrchestreOpe in (0,1))
 );
 

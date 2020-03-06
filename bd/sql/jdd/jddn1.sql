@@ -1,5 +1,5 @@
 --=========================================================================
--- CyberCinemas
+-- MyTheatre
 --=========================================================================
 -- Based on the course of M.C. Fauvet
 ---------------------------------------------------------------------------
@@ -15,16 +15,75 @@
 PRAGMA foreign_keys = ON;
 
 ---------------------------------------------------------------------------
--- Movies
+-- LesSpectacles
 ---------------------------------------------------------------------------
 
-INSERT INTO Movies VALUES ('Guardians Of The Galaxy','2014');
---@ violates Movie.PKINSERT INTO Movies VALUES ('Guardians Of The Galaxy','2014');
---@ violates Movie.PKINSERT INTO Spectacles VALUES (45,'Cyrano de Bergerac', 20.0 ,'toutPublic','drame');
-INSERT INTO Spectacles VALUES(45,'Cyrano de Bergerac', 20.0 ,'toutPublic','drame');
+-- Spectacle avec le même numéro qu'un autre ou avec un numero invalide
+INSERT INTO LesSpectacles VALUES (20, 'L avare', 10.0, 'toutPublic', 'drame');
+--@ violates PK_Spe
+INSERT INTO LesSpectacles VALUES (20, 'Andromaque', 10.0 ,'toutPublic','drame');
 
-INSERT INTO Movies VALUES ('Guardians Of The Galaxy','<==== VIOLATION');
-INSERT INTO Movies VALUES ('The Inbetweeners 2','2014');
-INSERT INTO Movies VALUES ('The Hundred Foot Journey','2014');
-INSERT INTO Movies VALUES ('Lucy','2014');
+-- Entier <0 dans Spectacle
+--@ violates CK_Spe_numeroSpe
+INSERT INTO LesSpectacles VALUES (-2, 'Le Cid', 10.0 ,'toutPublic','drame');
+--@ violates CK_Spe_prixDeBaseSpe
+INSERT INTO LesSpectacles VALUES (1, 'Le Cid', -10.0 ,'toutPublic','drame');
+
+-- Type et cible incorrectss
+--@ violates CK_Spe_cibleSpe
+INSERT INTO LesSpectacles VALUES (2, 'Le Cid', 10.0 ,'tousPublique','drame');
+--@ violates CK_Spe_typeSpe
+INSERT INTO LesSpectacles VALUES (3, 'Le Cid', 10.0 ,'toutPublic','dramatique');
+
+
+
+---------------------------------------------------------------------------
+-- LesHumoristiques et LesOperas
+---------------------------------------------------------------------------
+
+-- Un humoriste pas dans la table des Spectacles
+--@ violates FK_Hum_numeroSpe
+INSERT INTO LesHumoristiques VALUES (2, 0);
+--@ violates FK_ope_numeroSpe
+INSERT INTO LesOperas VALUES (3, 0);
+
+-- Valeurs incorrectes pour les booléens
+INSERT INTO LesSpectacles VALUES (4, 'Test', 10.0, 'jeunePublic', 'humoristique');
+--@ violates CK_Hum_estUnOneWomanManShow
+INSERT INTO LesHumoristiques VALUES (4, 4);
+DELETE FROM LesSpectacles WHERE (numeroSpe = 4);  -- Supprime le Spectacle factice
+
+INSERT INTO LesSpectacles VALUES (5, 'Test', 10.0, 'jeunePublic', 'opera');
+--@ violates CK_Ope_aUnOrchestre
+INSERT INTO LesOperas VALUES (5, 3);
+DELETE FROM LesSpectacles WHERE (numeroSpe = 5);  -- Supprime le Spectacle factice
+
+
+
+---------------------------------------------------------------------------
+-- LesRepresentations
+---------------------------------------------------------------------------
+-- Representations à la même heure
+INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 20);
+--@ violates PK_Rep
+INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 25);
+
+-- Representation pour un spectacle n'existant pas
+--@ violates FK_Rep_numeroSpe
+INSERT INTO LesRepresentations VALUES ('14/03/2032 13h', 6);
+
+
+
+---------------------------------------------------------------------------
+-- Verifications Supplémentaires
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+-- LesHumoristiques et LesOperas
+---------------------------------------------------------------------------
+
+-- Manque les INSERT dans LesOperas et LesHumoristiques pour les Spectacles humoristiques/opera
+INSERT INTO LesSpectacles VALUES (1, 'L avare', 10.0, 'toutPublic', 'humoristique');
+INSERT INTO LesSpectacles VALUES (2, 'Le Cid', 10.0, 'toutPublic', 'opera');
+
 

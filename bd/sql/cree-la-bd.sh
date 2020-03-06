@@ -26,6 +26,9 @@ DATABASE=${THISDIR?}/bd.sqlite3
 # Path to the schema. Not reason to change it
 SCHEMA=${THISDIR?}/schema/schema.sql
 
+# Chemin vers le fichier de vérification
+VERIF=${THISDIR?}/jdd/verif.sql
+
 # Path to the dataset file.
 DATASET_FILE=${THISDIR?}/jdd/${DATASET?}.sql
 
@@ -57,6 +60,11 @@ else
         else
             echo "**** Erreur pendant le chargement du jeu de données"
         fi
+        
+        echo " "
+        echo "Verification de la BD -> Données à corriger"
+    		sqlite3 ${DATABASE?} <  ${VERIF?}
+    		echo "Fin de la vérification"
     else
         echo "Le jeu de données '${DATASET?}' n'existe pas." >/dev/stderr
         echo "Fichier ${DATASET_FILE?} inexistant."  >/dev/stderr
