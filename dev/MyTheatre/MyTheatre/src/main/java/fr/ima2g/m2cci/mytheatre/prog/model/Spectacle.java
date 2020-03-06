@@ -51,4 +51,11 @@ public class Spectacle {
      public String getType() {
          return this.type;
      }
+
+    @Override
+    public String toString() {
+        return "Spectacle : " + nom + "(" + type + ", " + cible + ") à " + prixDeBase + "€";
+    }
+     
+     
 }

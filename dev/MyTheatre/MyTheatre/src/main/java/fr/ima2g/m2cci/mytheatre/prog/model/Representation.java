@@ -5,6 +5,7 @@
  */
 package fr.ima2g.m2cci.mytheatre.prog.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Representation {
@@ -33,4 +34,13 @@ public class Representation {
     public Spectacle getSpectacle() {
         return this.spe;
     }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HHh");
+        
+        return "Representation : " + "Horraire =" + formatDate.format(date) + "\n" + spe;
+    }
+    
+    
 }
