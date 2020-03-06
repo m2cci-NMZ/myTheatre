@@ -39,13 +39,17 @@ public class ProgDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 
                 while (rs.next()) {
+                    // Récupération des attributs
                     int numero = rs.getInt("numeroSpe");
                     String nom = rs.getString("nomSpe");
                     double prixDeBase = rs.getDouble("prixDeBaseSpe");
                     String cible = rs.getString("cibleSpe");
                     String type = rs.getString("typeSpe");
                     String dateRep = rs.getString("dateRep");
+                    
+                    // Création des objets
                     Date date = new SimpleDateFormat("dd/MM/yyyy HHh").parse(dateRep);
+                    Spectacle s;
 //                    switch(type){
 //                        case "opera":
 //                            
@@ -53,9 +57,11 @@ public class ProgDAO {
 //                        case "humoristique":
 //                        
 //                        default:
-//                            Spectacle s = new Spectacle(numero, nom, prixDeBase, cible, type);  
+//                            s = new Spectacle(numero, nom, prixDeBase, cible, type);   
 //                    }
-                    Spectacle s = new Spectacle(numero, nom, prixDeBase, cible, type);         
+                    
+                    
+                    
                     representations.add(new Representation(date, s)) ;
                 }
             } 
