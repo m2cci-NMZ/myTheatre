@@ -12,9 +12,8 @@ import java.util.Date;
  * @author marti236
  */
 public class Representation {
-
-    private Date date;
-    private Spectacle spe;
+    private final Date date;
+    private final Spectacle spe;
 
     public Representation(Date date, Spectacle spe) {
         this.date = date;
