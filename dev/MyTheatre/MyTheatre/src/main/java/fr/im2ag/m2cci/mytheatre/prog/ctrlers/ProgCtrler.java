@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author marti236
  */
 @WebServlet(name = "progCtrler", urlPatterns = {"/progCtrler"})
-public class progCtrler extends HttpServlet {
+public class ProgCtrler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

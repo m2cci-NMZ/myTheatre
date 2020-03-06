@@ -9,6 +9,8 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  *
  * @author marti236
  */
-public class representation {
-    
+public class Representation{
+    public Representation(){
+        
+    }
 }

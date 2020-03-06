@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ima2g.m2cci.mytheatre.prog.model;
+package fr.im2ag.m2cci.mytheatre.prog.dao;
 
 /**
  *
  * @author marti236
  */
-public class humoristique {
+public class ProgDAO {
     
 }
