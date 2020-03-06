@@ -37,5 +37,11 @@ INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 20);
 INSERT INTO LesRepresentations VALUES ('15/03/2020 18h', 25);
 
 
+SELECT R.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, dateRep
+FROM LesSpectacles S RIGHT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe
+		RIGHT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe
+		JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
+WHERE cibleSpe='toutPublic' AND typeSpe='drame';
+
 
 

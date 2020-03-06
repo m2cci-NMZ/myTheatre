@@ -5,6 +5,7 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.dao;
 
+import fr.ima2g.m2cci.mytheatre.prog.model.Humoristique;
 import fr.ima2g.m2cci.mytheatre.prog.model.Opera;
 import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import fr.ima2g.m2cci.mytheatre.prog.model.Spectacle;
