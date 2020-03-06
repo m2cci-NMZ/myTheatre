@@ -10,26 +10,21 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  * @author marti236
  */
 public class Humoristique extends Spectacle {
+    private final boolean estUnOneWomanManShow;
 
-    private boolean estUnOneWomanManShow;
-    
-
-    public Humoristique() {
-
-    }
-
-    public Humoristique(boolean estUnOneWomanManShow) {
+    public Humoristique(int numero, String nom, double prixDeBase, String type, 
+            String cible, boolean estUnOneWomanManShow) {
+        super(numero, nom, prixDeBase, type, cible);
         this.estUnOneWomanManShow = estUnOneWomanManShow;
     }
+    
 /**
      * Renvoie si le spectacle est estUnOneWomanManShow ou pas
      *
      * @return
   */
-
     public boolean getestUnOneWomanManShow (){
         return this.estUnOneWomanManShow;
-        
     }
    
 }

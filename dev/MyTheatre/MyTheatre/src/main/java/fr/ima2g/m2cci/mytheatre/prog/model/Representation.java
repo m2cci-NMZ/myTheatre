@@ -28,6 +28,7 @@ public class Representation {
     public Date getDate() {
         return this.date;
     }
+    
     /**
      * Renvoie l'objet spectacle associé a sa representation
      *
