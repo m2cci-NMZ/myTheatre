@@ -5,6 +5,7 @@ Fait
 ----
 
 Diagramme de classe terminé pour le scénario 1.
+Suppression des attributs placesDisponibles et tauxReduction.
 
 
 Synthèse
