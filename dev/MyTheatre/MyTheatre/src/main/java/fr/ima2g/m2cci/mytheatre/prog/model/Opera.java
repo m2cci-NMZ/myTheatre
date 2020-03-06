@@ -12,9 +12,11 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
 public class Opera extends Spectacle {
     private final boolean aUnOrchestre;
 
-    public Opera(boolean aUnOrchestre) {
+    public Opera(boolean aUnOrchestre, int numero, String nom, double prixDeBase, String type, String cible) {
+        super(numero, nom, prixDeBase, type, cible);
         this.aUnOrchestre = aUnOrchestre;
     }
+
     
     /**
      * Renvoie si l'opera a un orchestre ou non
