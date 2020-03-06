@@ -5,6 +5,7 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.dao;
 
+import fr.ima2g.m2cci.mytheatre.prog.model.Opera;
 import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import fr.ima2g.m2cci.mytheatre.prog.model.Spectacle;
 import java.sql.Connection;
@@ -28,11 +29,14 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList();
         
+        String preparedQueryWithCibleAndType = "SELECT R.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, dateRep \n"
+                + "FROM LesSpectacles S RIGHT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
+                +                      "RIGHT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
+                +                      "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
+                + "WHERE cibleSpe=? AND typeSpe=?";
+        
         try (Connection conn = ds.getConnection()){
-            PreparedStatement stmt = conn.prepareStatement(
-                "SELECT numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, dateRep \n"
-                + "FROM LesRepresentations R JOIN LesSpectacles S ON R.numeroSpe=S.numeroSpe \n"
-                + "WHERE cibleSpe=? AND typeSpe=?");
+            PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, "toutPublic");
             stmt.setString(2, "cirque");
             
@@ -53,19 +57,26 @@ public class ProgDAO {
                     switch(type){
                         case "opera":
                             int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
-                            boolean aUnOrchestre = aUnOrchestreOpe == 1;
-                            s = new Opera(numero, nom, prixDeBase, cible, type, aUnOrchestre)
+                            boolean aUnOrchestre = (aUnOrchestreOpe == 1);
+                            s = new Opera(numero, nom, prixDeBase, cible, type, aUnOrchestre);
                             break;
                             //Opera s = new Opera(numero, nom, prixDeBase, cible, type);
                         case "humoristique":
-                        
+                            int estUnOneWomanManShowHum = rs.getInt("aUnOrchestreOpe");
+                            boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
+                            s = new Humoristique(numero, nom, prixDeBase, cible, type, estUnOneWomanManShow);
+                            break;
                         default:
-                            s = new Spectacle(numero, nom, prixDeBase, cible, type);   
+                            s = new Spectacle(numero, nom, prixDeBase, cible, type); 
                     }
-                    
-                    
-                    
                     representations.add(new Representation(date, s)) ;
+                }
+                
+                // Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
+                for (Representation rep : representations){
+                    if (rep.getDate().before(debut) || rep.getDate().after(fin)){
+                        representations.remove(rep);
+                    }
                 }
             } 
         }
