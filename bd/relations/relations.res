@@ -13,46 +13,70 @@ relation model MyTheatre
 
 
 relation LesSpectacles 
-    transformation 
-      from R_Class(Spectacle)
-     
-    columns 
-      numeroSpe_: Integer
-      nomSpe : String
-      prixDeBaseSpe : Real
-      cibleSpe : Cible
-      typeSpe : Type
-      
-      
-relation LesOperas
-     transformation 
-      from R_Reference(Opera)
+	transformation 
+		from R_Class(Spectacle)
 
-     columns 
-       aUnOrchestreOpe : boolean 
-       numeroSpe:Integer
-        
+	columns 
+		numeroSpe_ : Integer
+		nomSpe : String
+		prixDeBaseSpe : Real
+		cibleSpe : Cible
+		typeSpe : Type
+		
+	constraints
+		key numeroSpe_
+		numeroSpe_ > 0
+
+
+
+relation LesOperas
+	transformation 
+		from R_Reference(Opera)
+
+	columns 
+		numeroSpe_ : Integer
+		aUnOrchestreOpe : Boolean
+		
+	constraints
+		key numeroSpe_
+
+  
 
 relation LesHumoristiques
-     transformation 
-      from R_Reference(Humoristique)
+	transformation 
+		from R_Reference(Humoristique)
 
-     columns 
-       estUnOneWomanManShowHum: boolean 
-       numeroSpe:Integer
+	columns
+		numeroSpe_ : Integer
+		estUnOneWomanManShowHum : Boolean
+		
+	constraints
+		key numeroSpe_
+
+
+constraints
+		LesOperas[numeroSpe_] C= LesSpectacles[numeroSpe_]
+		LesHumoristiques[numeroSpe_] C= LesSpectacles[numeroSpe_]
+
 
 
 relation LesRepresentations
-    transformation 
-      from R_Class (Representation)
-      from R_OneToMany (Spectacle)
+	transformation 
+		from R_Class (Representation)
+		from R_OneToMany (Spectacle)
 
-    columns 
-      dateRep_: String
-      numeroSpe: Integer
-      // placesDispo_dRep : Integer 
-      //tauxReducRep : Real
+	columns 
+		dateRep_: Date
+		numeroSpe : Integer
+		//placesDispoRep_d : Integer 
+		//tauxReducRep : Real
+		
+	constraints
+		key dateRep_
 
+
+constraints
+    LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
 
     
 
