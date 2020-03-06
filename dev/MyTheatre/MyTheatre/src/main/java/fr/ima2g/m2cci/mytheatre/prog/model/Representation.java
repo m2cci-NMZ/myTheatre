@@ -7,10 +7,6 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
 
 import java.util.Date;
 
-/**
- *
- * @author marti236
- */
 public class Representation {
     private final Date date;
     private final Spectacle spe;
@@ -28,7 +24,7 @@ public class Representation {
     public Date getDate() {
         return this.date;
     }
-    
+
     /**
      * Renvoie l'objet spectacle associé a sa representation
      *

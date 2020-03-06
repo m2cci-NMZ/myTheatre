@@ -5,10 +5,6 @@
  */
 package fr.ima2g.m2cci.mytheatre.prog.model;
 
-/**
- *
- * @author marti236
- */
 public class Spectacle {
     private final int numero ; 
     private final String nom;
@@ -23,7 +19,7 @@ public class Spectacle {
         this.type = type;
         this.cible = cible;
     }
-    
+
     /**
     * Renvoie du nom du spectacle
     * @return 
@@ -31,7 +27,7 @@ public class Spectacle {
      public String getNom() {
          return this.nom;
      }
-     
+
     /**
     * Renvoie le prix de base du spectacle
     * @return 
@@ -39,7 +35,7 @@ public class Spectacle {
      public double getPrixDeBase() {
          return this.prixDeBase;
      }
-     
+
     /**
     * Renvoie le public cible
     * @return 
@@ -47,7 +43,7 @@ public class Spectacle {
      public String getCible() {
          return this.cible;
      }
-     
+
     /**
     * Renvoie le type de spectacle
     * @return 
@@ -55,7 +51,4 @@ public class Spectacle {
      public String getType() {
          return this.type;
      }
-
-
-
 }
