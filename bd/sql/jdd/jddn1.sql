@@ -1,5 +1,5 @@
 --=========================================================================
--- CyberCinemas
+-- MyTheatre
 --=========================================================================
 -- Based on the course of M.C. Fauvet
 ---------------------------------------------------------------------------
@@ -19,6 +19,7 @@ PRAGMA foreign_keys = ON;
 ---------------------------------------------------------------------------
 
 -- Spectacle avec le même numéro qu'un autre ou avec un numero invalide
+INSERT INTO LesSpectacles VALUES (20, 'L avare', 10.0, 'toutPublic', 'drame');
 --@ violates PK_Spe
 INSERT INTO LesSpectacles VALUES (20, 'Andromaque', 10.0 ,'toutPublic','drame');
 
@@ -63,11 +64,26 @@ DELETE FROM LesSpectacles WHERE (numeroSpe = 5);  -- Supprime le Spectacle facti
 -- LesRepresentations
 ---------------------------------------------------------------------------
 -- Representations à la même heure
+INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 20);
 --@ violates PK_Rep
-INSERT INTO LesRepresentations VALUES ('14/03/2020 18h', 25);
+INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 25);
 
 -- Representation pour un spectacle n'existant pas
 --@ violates FK_Rep_numeroSpe
 INSERT INTO LesRepresentations VALUES ('14/03/2032 13h', 6);
+
+
+
+---------------------------------------------------------------------------
+-- Verifications Supplémentaires
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+-- LesHumoristiques et LesOperas
+---------------------------------------------------------------------------
+
+-- Manque les INSERT dans LesOperas et LesHumoristiques pour les Spectacles humoristiques/opera
+INSERT INTO LesSpectacles VALUES (1, 'L avare', 10.0, 'toutPublic', 'humoristique');
+INSERT INTO LesSpectacles VALUES (2, 'Le Cid', 10.0, 'toutPublic', 'opera');
 
 
