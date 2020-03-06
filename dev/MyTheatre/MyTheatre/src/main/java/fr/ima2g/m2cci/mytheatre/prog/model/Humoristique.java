@@ -9,6 +9,16 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  *
  * @author marti236
  */
-public class Humoristique {
-    
+public class Humoristique extends Spectacle {
+
+    public Humoristique() {
+
+    }
+/**
+ * Renvoie si le spectacle est un onewomanshow ou pas
+ * @return 
+ */
+    public boolean getEstUnOneWomanShow() {
+        return false;
+    }
 }

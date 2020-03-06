@@ -5,12 +5,36 @@
  */
 package fr.ima2g.m2cci.mytheatre.prog.model;
 
+import java.util.Date;
+
 /**
  *
  * @author marti236
  */
-public class Representation{
-    public Representation(){
-        
+public class Representation {
+
+    public Representation() {
+
+    }
+/**
+ * Renvoie la date du spectacle
+ * @return 
+ */
+    public Date getDate() {
+        return null;
+    }
+/**
+ * Renvoie l'objet spectacle associé a sa representation
+ * @return 
+ */
+    public Spectacle getSpectacle() {
+        return null;
+    }
+/**
+ * Ajoute un spectacle à la représentation
+ * @param numéro 
+ */
+    public void addSpectacle(int numéro) {
+
     }
 }

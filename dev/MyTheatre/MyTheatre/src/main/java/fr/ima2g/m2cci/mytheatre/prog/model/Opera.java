@@ -9,6 +9,16 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  *
  * @author marti236
  */
-public class Opera {
-    
+public class Opera extends Spectacle {
+
+    public Opera() {
+
+    }
+/**
+ * Renvoie si l'opera a un orchestre ou non
+ * @return 
+ */
+    public boolean getAUnOrchestre() {
+        return false;
+    }
 }
