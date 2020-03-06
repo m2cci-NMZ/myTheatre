@@ -58,7 +58,7 @@ public class ProgDAO {
                     Spectacle s = new Spectacle(numero, nom, prixDeBase, cible, type);         
                     representations.add(new Representation(date, s)) ;
                 }
-            }
+            } 
         }
         return representations;
     }

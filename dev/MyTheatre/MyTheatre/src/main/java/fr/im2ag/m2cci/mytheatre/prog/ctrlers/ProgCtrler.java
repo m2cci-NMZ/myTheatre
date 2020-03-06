@@ -71,8 +71,11 @@ public class ProgCtrler extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
 
         }
-        catch(SQLException ex)  {
-            throw new ServletException("PB BD " + ex.getMessage());
+        catch(SQLException ex )  {
+            throw new ServletException("Problème avec la BD : " + ex.getMessage());
+        }
+        catch(ParseException ex){
+            throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage());
         }
     }
 
