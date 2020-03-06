@@ -37,6 +37,8 @@ public class ProgDAO {
                 + "WHERE cibleSpe=? AND typeSpe=?;";
 
         
+        /*Refaire la requete vis à vis de jdd1*/
+        
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, "toutPublic");
