@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="fr.ima2g.m2cci.mytheatre.prog.model.Representation"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,11 +27,10 @@
                     List<Representation> prog = (List<Representation>) request.getAttribute("progList");
                     for (Representation r : prog) {
                         Date date = r.getDate();
-                        Double tauxReduc = r.getTauxReduc();
-                        String nom = r.getNom();
-                        int prixDeBase = r.getPrixDeBase();
-                        String cible = r.getCible();
-                        String type = r.getType();
+                        String nom = r.getSpectacle().getNom();
+                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                        String cible = r.getSpectacle().getCible();
+                        String type = r.getSpectacle().getType();
                 %>
                 <tr>
                     <td>Date</td>
@@ -43,7 +44,6 @@
                     <td><%=date%></td>
                     <td><%=nom%></td>
                     <td><%=prixDeBase%></td>
-                    <td><%=tauxReduc%></td>
                     <td><%=cible%></td>
                     <td><%=type%></td>
                 </tr>

@@ -22,5 +22,15 @@ public class Humoristique extends Spectacle {
     public boolean getestUnOneWomanManShow (){
         return this.estUnOneWomanManShow;
     }
-   
+    
+    @Override
+    public String toString() {
+        if (this.estUnOneWomanManShow == true)
+             return super.toString () + " est un OneWomanManShow";
+         else
+            return  super.toString ();   
+        
+
+    }
+    
 }

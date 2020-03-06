@@ -29,4 +29,12 @@ public class Opera extends Spectacle {
     }
     
     
-}
+     @Override
+    public String toString() {
+        if (this.aUnOrchestre== true)
+             return super.toString () + " a un Orchestre ";
+         else
+            return super.toString ();   
+    }
+    
+   }
