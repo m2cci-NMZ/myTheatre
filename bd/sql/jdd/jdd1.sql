@@ -16,10 +16,10 @@ PRAGMA foreign_keys = ON;
 -- LesSpectacles
 ---------------------------------------------------------------------------
 
-INSERT INTO LesSpectacles VALUES (45, 'Cyrao de Bergerac', 20.0, 'toutPublic', 'drame');
+INSERT INTO LesSpectacles VALUES (45, 'Cyrano de Bergerac', 20.0, 'toutPublic', 'drame');
 INSERT INTO LesSpectacles VALUES (46, 'Les Animaux', 8.0, 'unCinqAns', 'cirque');
 INSERT INTO LesSpectacles VALUES (47, 'Sonorites Etranges', 10.0, 'jeunePublic', 'musical');
-INSERT INTO LesSpectacles VALUES (20, 'L avare', 10.0, 'toutPublic', 'humoristique', 0);
+INSERT INTO LesSpectacles VALUES (20, 'L avare', 10.0, 'toutPublic', 'humoristique');
 INSERT INTO LesHumoristiques VALUES (20, 0);
 INSERT INTO LesSpectacles VALUES (25, 'Don Juan', 10.0, 'adulte', 'opera');
 INSERT INTO LesOperas VALUES (25, 1);
@@ -58,15 +58,15 @@ INSERT INTO LesSpectacles VALUES (3, 'Le Cid', 10.0 ,'toutPublic','dramatique');
 -----LesHumoristes et LesOperas-----
 -- Un humoriste pas dans la table des Spectacles
 INSERT INTO LesHumoristiques VALUES (2, 0);
-INSERT INTO LesOperas VALUES (3, 3);
+INSERT INTO LesOperas VALUES (3, 0);
 
 -- Valeurs incorrectes pour les booléens
 INSERT INTO LesSpectacles VALUES (4, 'Test', 10.0, 'jeunePublic', 'humoristique');
 INSERT INTO LesHumoristiques VALUES (4, 4);
+DELETE FROM LesSpectacles WHERE (numeroSpe = 4);  -- Supprime le Spectacle factice
 INSERT INTO LesSpectacles VALUES (5, 'Test', 10.0, 'jeunePublic', 'opera');
 INSERT INTO LesOperas VALUES (5, 3);
-DELETE FROM LesSpectacles WHERE (numeroSpe = 4);
-DELETE FROM LesSpectacles WHERE (numeroSpe = 5);
+DELETE FROM LesSpectacles WHERE (numeroSpe = 5);  -- Supprime le Spectacle factice
 
 
 -----LesRepresentations-----
@@ -75,6 +75,5 @@ INSERT INTO LesRepresentations VALUES ('14/03/2020 18h', 25);
 
 -- Representation pour un spectacle n'existant pas
 INSERT INTO LesRepresentations VALUES ('14/03/2032 13h', 6);
-
 
 
