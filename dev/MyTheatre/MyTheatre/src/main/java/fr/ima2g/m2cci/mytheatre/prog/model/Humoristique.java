@@ -11,27 +11,25 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  */
 public class Humoristique extends Spectacle {
 
-      private boolean estUnOneWomanManShow;
+    private boolean estUnOneWomanManShow;
+    
 
     public Humoristique() {
 
     }
 
-/**
- * Renvoie si le spectacle est un onewomanshow ou pas
- * @return 
- */
-
-    public boolean getEstUnOneWomanShow() {
-        return false;
+    public Humoristique(boolean estUnOneWomanManShow) {
+        this.estUnOneWomanManShow = estUnOneWomanManShow;
     }
+/**
+     * Renvoie si le spectacle est estUnOneWomanManShow ou pas
+     *
+     * @return
+  */
 
-public void estUnOneWomanManShow (){
-                 
-                    if(estUnOneWomanManShow ==1){
-                        return true;
-                    } else {
-                        return false;
-                    }    
-
+    public boolean getestUnOneWomanManShow (){
+        return this.estUnOneWomanManShow;
+        
+    }
+   
 }
