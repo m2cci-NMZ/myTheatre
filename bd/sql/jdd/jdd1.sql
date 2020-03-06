@@ -1,5 +1,5 @@
 --=========================================================================
--- 
+-- MyTheatre
 --=========================================================================
 -- Based on the course of M.C. Fauvet
 ---------------------------------------------------------------------------
@@ -8,19 +8,29 @@
 
 ---------------------------------------------------------------------------
 -- Prolog for sqlite
----------------------------------------------------------------------------
+---------------------------------------------------------------------------s
 
 PRAGMA foreign_keys = ON;
 
 ---------------------------------------------------------------------------
--- Movies
+-- Spectacle
 ---------------------------------------------------------------------------
 
-INSERT INTO Spectale VALUES ( 45,'Cyrao de Bergerac', 20.0 ,'toutPublic','drame');
-INSERT INTO Spectale VALUES (20,'L avare', 10.0,'toutPublic', 'humoristique',0);
-INSERT INTO Spectale VALUES (25,'Don Juan', 10.0,'adulte', 'opera',1);
-INSERT INTO Spectale VALUES (46,'Les Animaux', 8.0,'unCinqAns', 'cirque');
-INSERT INTO Spectale VALUES (47,'Sonorites Etranges', 10.0,'jeunePublic', 'musical');
+INSERT INTO LesSpectacles VALUES ( 45,'Cyrao de Bergerac', 20.0 ,'toutPublic','drame');
+INSERT INTO LesSpectacles VALUES (20,'L avare', 10.0,'toutPublic', 'humoristique',0);
+INSERT INTO LesHumoristiques VALUES (20,0);
+INSERT INTO LesSpectacles VALUES (25,'Don Juan', 10.0,'adulte', 'opera',1);
+INSERT INTO LesOperas VALUES (25,1);
+INSERT INTO LesSpectacles VALUES (46,'Les Animaux', 8.0,'unCinqAns', 'cirque');
+INSERT INTO LesSpectacles VALUES (47,'Sonorites Etranges', 10.0,'jeunePublic', 'musical');
 
 
+---------------------------------------------------------------------------
+-- Representation
+---------------------------------------------------------------------------
 
+INSERT INTO LesRepresentations VALUES ( '14/03/2020 18h',45);
+INSERT INTO LesRepresentations VALUES ( '13/03/2020 18h',46);
+INSERT INTO LesRepresentations VALUES ( '14/03/2020 15h',47);
+INSERT INTO LesRepresentations VALUES ( '13/03/2020 20h',20);
+INSERT INTO LesRepresentations VALUES ( '15/03/2020 18h',25);
