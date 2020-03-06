@@ -12,9 +12,15 @@ import java.util.Date;
  * @author marti236
  */
 public class Representation {
+     
+      private Date date ;
+     
+
+
 
     public Representation() {
 
+   
     }
 /**
  * Renvoie la date du spectacle

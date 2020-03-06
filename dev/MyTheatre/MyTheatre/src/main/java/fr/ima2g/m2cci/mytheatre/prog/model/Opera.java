@@ -11,6 +11,8 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
  */
 public class Opera extends Spectacle {
 
+     private boolean  aUnOrchestre;
+
     public Opera() {
 
     }
