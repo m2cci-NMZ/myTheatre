@@ -12,35 +12,29 @@ import java.util.Date;
  * @author marti236
  */
 public class Representation {
-     
-      private Date date ;
-     
 
+    private Date date;
+    private Spectacle spe;
 
-
-    public Representation() {
-
-   
+    public Representation(Date date, Spectacle spe) {
+        this.date = date;
+        this.spe = spe;
     }
-/**
- * Renvoie la date du spectacle
- * @return 
- */
+
+    /**
+     * Renvoie la date du spectacle
+     *
+     * @return
+     */
     public Date getDate() {
-        return null;
+        return this.date;
     }
-/**
- * Renvoie l'objet spectacle associé a sa representation
- * @return 
- */
+    /**
+     * Renvoie l'objet spectacle associé a sa representation
+     *
+     * @return
+     */
     public Spectacle getSpectacle() {
-        return null;
-    }
-/**
- * Ajoute un spectacle à la représentation
- * @param numéro 
- */
-    public void addSpectacle(int numéro) {
-
+        return this.spe;
     }
 }
