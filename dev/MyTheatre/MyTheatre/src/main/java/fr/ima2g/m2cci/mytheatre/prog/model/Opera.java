@@ -12,7 +12,7 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
 public class Opera extends Spectacle {
     private final boolean aUnOrchestre;
 
-    public Opera(boolean aUnOrchestre, int numero, String nom, double prixDeBase, String type, String cible) {
+    public Opera(int numero, String nom, double prixDeBase, String type, String cible, boolean aUnOrchestre) {
         super(numero, nom, prixDeBase, type, cible);
         this.aUnOrchestre = aUnOrchestre;
     }
@@ -27,4 +27,6 @@ public class Opera extends Spectacle {
     public boolean getAUnOrchestre() {
         return this.aUnOrchestre;
     }
+    
+    
 }

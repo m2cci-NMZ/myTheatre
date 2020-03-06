@@ -50,15 +50,18 @@ public class ProgDAO {
                     // Création des objets
                     Date date = new SimpleDateFormat("dd/MM/yyyy HHh").parse(dateRep);
                     Spectacle s;
-//                    switch(type){
-//                        case "opera":
-//                            
-//                            //Opera s = new Opera(numero, nom, prixDeBase, cible, type);
-//                        case "humoristique":
-//                        
-//                        default:
-//                            s = new Spectacle(numero, nom, prixDeBase, cible, type);   
-//                    }
+                    switch(type){
+                        case "opera":
+                            int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
+                            boolean aUnOrchestre = aUnOrchestreOpe == 1;
+                            s = new Opera(numero, nom, prixDeBase, cible, type, aUnOrchestre)
+                            break;
+                            //Opera s = new Opera(numero, nom, prixDeBase, cible, type);
+                        case "humoristique":
+                        
+                        default:
+                            s = new Spectacle(numero, nom, prixDeBase, cible, type);   
+                    }
                     
                     
                     
