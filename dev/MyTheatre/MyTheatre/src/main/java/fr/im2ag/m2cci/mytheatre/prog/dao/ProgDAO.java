@@ -30,11 +30,12 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList();
         
-        String preparedQueryWithCibleAndType = "SELECT R.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, dateRep \n"
-                + "FROM LesSpectacles S RIGHT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
-                +                      "RIGHT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
-                +                      "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
-                + "WHERE cibleSpe=? AND typeSpe=?";
+        String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, dateRep "
+                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
+                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
+                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
+                + "WHERE cibleSpe=? AND typeSpe=?;";
+
         
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
