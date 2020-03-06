@@ -26,7 +26,7 @@ INSERT INTO LesOperas VALUES (25, 1);
 
 
 
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -- LesRepresentations
 ---------------------------------------------------------------------------
 
@@ -35,6 +35,4 @@ INSERT INTO LesRepresentations VALUES ('13/03/2020 18h', 46);
 INSERT INTO LesRepresentations VALUES ('14/03/2020 15h', 47);
 INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 20);
 INSERT INTO LesRepresentations VALUES ('15/03/2020 18h', 25);
-
-
 
