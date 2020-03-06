@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,8 +24,8 @@ import javax.sql.DataSource;
  * @author marti236
  */
 public class ProgDAO {
-    public List<Representation> representationsFiltrees(DataSource ds, Date debut, 
-            Date fin, String cibleSpe, String typeSpe) throws SQLException{
+    public static List<Representation> representationsFiltrees(DataSource ds, Date debut, 
+            Date fin, String cibleSpe, String typeSpe) throws SQLException, ParseException{
         
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(
