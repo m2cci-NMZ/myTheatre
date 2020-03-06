@@ -10,6 +10,7 @@ import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -39,13 +40,14 @@ public class ProgCtrler extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException{
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             Date dateDebut;
             String debut;
             debut = request.getParameter("dateDebut");
@@ -55,19 +57,22 @@ public class ProgCtrler extends HttpServlet {
             String fin;
             fin = request.getParameter("dateFin");
             dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-            
 
             String type;
             type = request.getParameter("type");
-            
+
             String cible;
-            cible=request.getParameter("cible");
-            
-            List<Representation>  listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
-            
+            cible = request.getParameter("cible");
+
+            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
+
             request.setAttribute("progList", listRepresentations);
             
-       
+            request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
+
+        }
+        catch(SQLException ex)  {
+            throw new ServletException("PB BD " + ex.getMessage());
         }
     }
 
