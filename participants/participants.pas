@@ -29,6 +29,7 @@ actor Spectateur
 actor Gerant 
       |`Gerant` est une `Personne`. le role du `Gerant` est de gèrer le planning 
       | des `Representation`s de `MyTheatre`.
-      | pour realiser cette tâche, le `Gerant` connecte à son mail et voir les                |propositions.
-      | le `Gerant` peut planifier des `Representation`s 
+      | pour realiser cette tâche, le `Gerant` connecte à son mail et voir les               
+      | propositions.
+      |le `Gerant` peut planifier des `Representation`s 
       | Il peut accéder au  planning des `Representation`s et le modifier 
