@@ -15,16 +15,14 @@ import static org.junit.Assert.*;
  * @author marti236
  */
 public class SpectacleTest {
-    
+    private static Spectacle spectacle = null;
     public SpectacleTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
     
     @Before
     public void setUp() {
+        Spectacle spectacle = new Spectacle(10, "nom", 10.5, "comedie", "toutPublic");
     }
 
     /**
@@ -33,9 +31,8 @@ public class SpectacleTest {
     @Test
     public void testGetNom() {
         System.out.println("getNom");
-        Spectacle instance = null;
-        String expResult = "";
-        String result = instance.getNom();
+        String expResult = "nom";
+        String result = spectacle.getNom();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -47,9 +44,8 @@ public class SpectacleTest {
     @Test
     public void testGetPrixDeBase() {
         System.out.println("getPrixDeBase");
-        Spectacle instance = null;
-        double expResult = 0.0;
-        double result = instance.getPrixDeBase();
+        double expResult = 10.5;
+        double result = spectacle.getPrixDeBase();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
