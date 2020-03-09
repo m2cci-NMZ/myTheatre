@@ -27,8 +27,6 @@ public class HumoristiqueTest {
         boolean expResult = false;
         boolean result = instance.getestUnOneWomanManShow();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -37,23 +35,19 @@ public class HumoristiqueTest {
     @Test
     public void testToStringtrue() {
         System.out.println("toString");
-        Humoristique instance = new Humoristique(0, "test" , 0, null, null, true);
-        String expResult = "test, est un OneWomanManShow";
+        Humoristique instance = new Humoristique(10, "nom", 10.5, "comedie", "toutPublic", true);
+        String expResult = "Spectacle : nom (comedie, toutPublic) à 10.5€, est un OneWomanManShow";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testToStringfalse() {
         System.out.println("toString");
-        Humoristique instance = new Humoristique(0, "test" , 0, null, null, false);
-        String expResult = "test";
+        Humoristique instance = new Humoristique(10, "nom", 10.5, "comedie", "toutPublic", false);
+        String expResult = "Spectacle : nom (comedie, toutPublic) à 10.5€";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

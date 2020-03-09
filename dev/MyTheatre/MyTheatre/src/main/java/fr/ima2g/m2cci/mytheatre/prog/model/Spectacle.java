@@ -5,6 +5,8 @@
  */
 package fr.ima2g.m2cci.mytheatre.prog.model;
 
+import java.util.Objects;
+
 public class Spectacle {
     private final int numero ; 
     private final String nom;
@@ -55,6 +57,47 @@ public class Spectacle {
     @Override
     public String toString() {
         return "Spectacle : " + nom + " (" + type + ", " + cible + ") à " + prixDeBase + "€";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + this.numero;
+        hash = 11 * hash + Objects.hashCode(this.nom);
+        hash = 11 * hash + (int) (Double.doubleToLongBits(this.prixDeBase) ^ (Double.doubleToLongBits(this.prixDeBase) >>> 32));
+        hash = 11 * hash + Objects.hashCode(this.type);
+        hash = 11 * hash + Objects.hashCode(this.cible);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Spectacle other = (Spectacle) obj;
+        if (this.numero != other.numero) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.prixDeBase) != Double.doubleToLongBits(other.prixDeBase)) {
+            return false;
+        }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        if (!Objects.equals(this.cible, other.cible)) {
+            return false;
+        }
+        return true;
     }
      
      
