@@ -43,14 +43,7 @@ public class ProgDAO {
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, "toutPublic");
-            //stmt.setString(2, "cirque");
-            
-            /*Statement stmt = conn.createStatement();
-            String myQuery = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
-                    + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
-                    + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
-                    + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe;";*/
-            
+            //stmt.setString(2, "cirque");            
             
             try (ResultSet rs = stmt.executeQuery()) {
                 
@@ -87,12 +80,12 @@ public class ProgDAO {
                     System.out.println(s);
                 }
                 
-                // Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
+                /*// Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
                 for (Representation rep : representations){
                     if (rep.getDate().before(debut) || rep.getDate().after(fin)){
                         representations.remove(rep);
                     }
-                }
+                }*/
             } 
         }
         return representations;
