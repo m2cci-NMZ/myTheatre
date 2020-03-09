@@ -31,5 +31,4 @@ public class Humoristique extends Spectacle {
         
 
     }
-    
 }
