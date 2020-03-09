@@ -42,7 +42,7 @@ public class ProgDAO {
         
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
-            stmt.setString(1, "toutPublic");
+            stmt.setString(1, cibleSpe);
             //stmt.setString(2, "cirque");            
             
             try (ResultSet rs = stmt.executeQuery()) {
