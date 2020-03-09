@@ -50,13 +50,13 @@
                             <br>
                             <h4>Recherche</h4>
                             <br>
-                            <input type="date" name="dateDebut" value="2020-03-06" min="2020-03-06" max="2021-03-06">
+                            <input type="date" name="dateDebut" value="2020-03-01">
                             <br>
-                            <input type="date" name="dateFin" value="2020-03-06" min="2020-03-06" max="2021-03-06">
+                            <input type="date" name="dateFin" value="2020-03-31">
                             <br><br>
                             Categorie de spectateurs
                             <br><br>
-                            Indifférent <input type="radio" id="indiffC" name="cible" value="indifférent" checked>
+                            Indifférent <input type="radio" id="indiffC" name="cible" value="null" checked>
                             <br>
                             1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns">
                             <br>
@@ -70,7 +70,7 @@
                             <br><br>
                             Type de spectacles
                             <br><br>
-                            Indifférent <input type="radio" id="indiffT" name="type" value="indifférent" checked >
+                            Indifférent <input type="radio" id="indiffT" name="type" value="null" checked >
                             <br>
                             Opéra <input type="radio" id="ope" name="type" value="opera">
                             <br>
@@ -116,7 +116,7 @@
                                     <tr>
                                         <td><%=horaireFormatter.format(date)%>h</td>
                                         <td><%=nom%></td>
-                                        <td><%=prixDeBase%></td>
+                                        <td><%=prixDeBase%>€</td>
                                         <td><%=cible%></td>
                                         <td><%=type%></td>
                                     </tr>
