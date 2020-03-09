@@ -37,11 +37,11 @@ INSERT INTO LesRepresentations VALUES ('2020-03-13 20:00', 20);
 INSERT INTO LesRepresentations VALUES ('2020-03-15 20:00', 25);
 
 
-SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, dateRep
+SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep
 FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe
 		LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe
 		JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe
-WHERE dateRep < '2020-03-15' AND dateRep > '2020-03-13 19:00';
+WHERE horaireRep < '2020-03-15' AND horaireRep > '2020-03-13 19:00';
 
 
 
