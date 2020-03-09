@@ -63,7 +63,7 @@ end
 
 class Representation
 attributes
-    date_ : String
+    horaire_ : String
 --|placesDispo_d : Integer
 --|tauxReduc : Real  : C'est pour un scénario ultérieur
 end

@@ -57,13 +57,13 @@ CREATE TABLE LesOperas(
 
 
 CREATE TABLE LesRepresentations(
-	dateRep VARCHAR(14),
+	horaireRep VARCHAR(14),
 	numeroSpe INTEGER,
 	--placesDispo Integer,--
 	--tauxReduc Real,--
 
 	CONSTRAINT PK_Rep
-		PRIMARY KEY (dateRep),
+		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe)
 	--CONSTRAINT DOM_Rep_tauxReducRep

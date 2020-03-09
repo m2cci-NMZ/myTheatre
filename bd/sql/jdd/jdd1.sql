@@ -30,17 +30,18 @@ INSERT INTO LesOperas VALUES (25, 1);
 -- LesRepresentations
 ---------------------------------------------------------------------------
 
-INSERT INTO LesRepresentations VALUES ('14/03/2020 18h', 45);
-INSERT INTO LesRepresentations VALUES ('13/03/2020 18h', 46);
-INSERT INTO LesRepresentations VALUES ('14/03/2020 15h', 47);
-INSERT INTO LesRepresentations VALUES ('13/03/2020 20h', 20);
-INSERT INTO LesRepresentations VALUES ('15/03/2020 18h', 25);
+INSERT INTO LesRepresentations VALUES ('2020-03-14 18:00', 45);
+INSERT INTO LesRepresentations VALUES ('2020-03-13 18:00', 46);
+INSERT INTO LesRepresentations VALUES ('2020-03-14 15:00', 47);
+INSERT INTO LesRepresentations VALUES ('2020-03-13 20:00', 20);
+INSERT INTO LesRepresentations VALUES ('2020-03-15 20:00', 25);
 
 
-SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, dateRep
+SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep
 FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe
 		LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe
-		JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe;
+		JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe
+WHERE horaireRep < '2020-03-15' AND horaireRep > '2020-03-13 19:00';
 
 
 
