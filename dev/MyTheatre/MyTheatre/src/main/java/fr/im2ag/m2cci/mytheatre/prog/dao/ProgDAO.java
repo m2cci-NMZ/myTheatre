@@ -10,9 +10,9 @@ import fr.ima2g.m2cci.mytheatre.prog.model.Opera;
 import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import fr.ima2g.m2cci.mytheatre.prog.model.Spectacle;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,21 +30,27 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList();
         
-        String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
+        /*String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE cibleSpe=? AND typeSpe=?;";
+                + "WHERE cibleSpe=? AND typeSpe=?;";*/
+        
 
         
         /*Refaire la requete vis à vis de jdd1*/
         
         try (Connection conn = ds.getConnection()){
-            PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
+            /*PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, "toutPublic");
-            stmt.setString(2, "cirque");
+            stmt.setString(2, "cirque");*/
             
-            try (ResultSet rs = stmt.executeQuery()) {
+            Statement stmt = conn.createStatement();
+            String myQuery = "SELECT numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe "
+                    + "FROM LesSpectacles;";
+            
+            
+            try (ResultSet rs = stmt.executeQuery(myQuery)) {
                 
                 while (rs.next()) {
                     // Récupération des attributs
@@ -54,9 +60,10 @@ public class ProgDAO {
                     String cible = rs.getString("cibleSpe");
                     String type = rs.getString("typeSpe");
                     String dateRep = rs.getString("dateRep");
+                    System.out.println(numero);
                     
                     // Création des objets
-                    Date date = new SimpleDateFormat("dd/MM/yyyy HHh").parse(dateRep);
+                    //Date date = new SimpleDateFormat("dd/MM/yyyy HHh").parse(dateRep);
                     Spectacle s;
                     switch(type){
                         case "opera":
@@ -73,7 +80,10 @@ public class ProgDAO {
                         default:
                             s = new Spectacle(numero, nom, prixDeBase, cible, type); 
                     }
-                    representations.add(new Representation(date, s)) ;
+                    //Representation rep = new Representation(date, s);
+                   // representations.add(rep) ;
+                   // System.out.println("Test");
+                    System.out.println(s);
                 }
                 
                 // Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
