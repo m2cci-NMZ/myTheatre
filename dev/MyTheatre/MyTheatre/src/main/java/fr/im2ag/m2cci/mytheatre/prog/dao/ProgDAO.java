@@ -10,9 +10,9 @@ import fr.ima2g.m2cci.mytheatre.prog.model.Opera;
 import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import fr.ima2g.m2cci.mytheatre.prog.model.Spectacle;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,27 +30,22 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList();
         
-        /*String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
+        String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE cibleSpe=? AND typeSpe=?;";*/
+                + "WHERE cibleSpe=?;";
         
 
         
         /*Refaire la requete vis à vis de jdd1*/
         
         try (Connection conn = ds.getConnection()){
-            /*PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
+            PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, "toutPublic");
-            stmt.setString(2, "cirque");*/
+            //stmt.setString(2, "cirque");            
             
-            Statement stmt = conn.createStatement();
-            String myQuery = "SELECT numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe "
-                    + "FROM LesSpectacles;";
-            
-            
-            try (ResultSet rs = stmt.executeQuery(myQuery)) {
+            try (ResultSet rs = stmt.executeQuery()) {
                 
                 while (rs.next()) {
                     // Récupération des attributs
@@ -59,11 +54,11 @@ public class ProgDAO {
                     double prixDeBase = rs.getDouble("prixDeBaseSpe");
                     String cible = rs.getString("cibleSpe");
                     String type = rs.getString("typeSpe");
-                    String dateRep = rs.getString("dateRep");
-                    System.out.println(numero);
+                    String horaireRep = rs.getString("horaireRep");
+                    System.out.println(horaireRep);
                     
                     // Création des objets
-                    //Date date = new SimpleDateFormat("dd/MM/yyyy HHh").parse(dateRep);
+                    Date horaire = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(horaireRep);
                     Spectacle s;
                     switch(type){
                         case "opera":
@@ -71,27 +66,26 @@ public class ProgDAO {
                             boolean aUnOrchestre = (aUnOrchestreOpe == 1);
                             s = new Opera(numero, nom, prixDeBase, cible, type, aUnOrchestre);
                             break;
-                            //Opera s = new Opera(numero, nom, prixDeBase, cible, type);
                         case "humoristique":
-                            int estUnOneWomanManShowHum = rs.getInt("aUnOrchestreOpe");
+                            int estUnOneWomanManShowHum = rs.getInt("estUnOneWomanManShowHum");
                             boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
                             s = new Humoristique(numero, nom, prixDeBase, cible, type, estUnOneWomanManShow);
                             break;
                         default:
                             s = new Spectacle(numero, nom, prixDeBase, cible, type); 
                     }
-                    //Representation rep = new Representation(date, s);
-                   // representations.add(rep) ;
-                   // System.out.println("Test");
+                    Representation rep = new Representation(horaire, s);
+                    representations.add(rep) ;
+                    System.out.println("Test");
                     System.out.println(s);
                 }
                 
-                // Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
+                /*// Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
                 for (Representation rep : representations){
                     if (rep.getDate().before(debut) || rep.getDate().after(fin)){
                         representations.remove(rep);
                     }
-                }
+                }*/
             } 
         }
         return representations;

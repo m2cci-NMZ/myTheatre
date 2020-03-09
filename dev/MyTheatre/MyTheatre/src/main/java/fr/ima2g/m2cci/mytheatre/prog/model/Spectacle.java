@@ -54,7 +54,7 @@ public class Spectacle {
 
     @Override
     public String toString() {
-        return "Spectacle : " + nom + "(" + type + ", " + cible + ") à " + prixDeBase + "€";
+        return "Spectacle : " + nom + " (" + type + ", " + cible + ") à " + prixDeBase + "€";
     }
      
      
