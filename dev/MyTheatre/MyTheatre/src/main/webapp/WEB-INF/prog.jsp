@@ -25,6 +25,7 @@
             <tbody>
                 <%
                     List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                    System.out.println("Test");
                     for (Representation r : prog) {
                         Date date = r.getDate();
                         String nom = r.getSpectacle().getNom();
