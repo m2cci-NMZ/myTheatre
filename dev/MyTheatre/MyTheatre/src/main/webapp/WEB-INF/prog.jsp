@@ -4,6 +4,7 @@
     Author     : marti236
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.ima2g.m2cci.mytheatre.prog.model.Representation"%>
 <%@page import="java.util.Date"%>
@@ -88,13 +89,15 @@
                             <%
                                 Date dateFin = (Date) request.getAttribute("dateFin");
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
+                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                             %>
                             <br>
-                            <h4>Programmation du <%=dateDebut%> au <%=dateFin%></h4>
+                            <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
 
                             <table>
                                 <tbody>
                                     <%
+                                        SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
                                         List<Representation> prog = (List<Representation>) request.getAttribute("progList");
                                         for (Representation r : prog) {
                                             Date date = r.getDate();
@@ -107,12 +110,11 @@
                                         <td>Date</td>
                                         <td>Nom</td>
                                         <td>Prix de base</td>
-                                        <td>taux de réduction</td>
                                         <td>Public cible</td>
                                         <td>Type de pièce</td>
                                     </tr>
                                     <tr>
-                                        <td><%=date%></td>
+                                        <td><%=horaireFormatter.format(date)%>h</td>
                                         <td><%=nom%></td>
                                         <td><%=prixDeBase%></td>
                                         <td><%=cible%></td>

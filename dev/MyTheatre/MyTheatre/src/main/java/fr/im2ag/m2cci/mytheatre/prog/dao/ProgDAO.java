@@ -34,7 +34,7 @@ public class ProgDAO {
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE cibleSpe=?;";
+                + "WHERE cibleSpe=? AND typeSpe=?;";
         
 
         
@@ -43,7 +43,7 @@ public class ProgDAO {
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);
             stmt.setString(1, cibleSpe);
-            //stmt.setString(2, "cirque");            
+            stmt.setString(2, typeSpe);            
             
             try (ResultSet rs = stmt.executeQuery()) {
                 
