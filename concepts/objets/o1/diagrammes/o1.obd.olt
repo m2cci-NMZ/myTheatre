@@ -13,80 +13,80 @@
     <node id="representationDu130318h" sizeCalculated="true" type="Object">
         <name>representationDu130318h</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>49.02310886339569</x>
-            <y>382.69317162313746</y>
+            <x>63.63873829903963</x>
+            <y>32.67178247839231</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="avare" sizeCalculated="true" type="Object">
         <name>avare</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>543.2193133885777</x>
-            <y>118.3734658076923</y>
+            <x>70.5627340601819</x>
+            <y>66.15538214184139</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="donJuan" sizeCalculated="true" type="Object">
         <name>donJuan</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>555.8431716817483</x>
-            <y>236.7206842614164</y>
+            <x>85.78797380674796</x>
+            <y>38.96141236760571</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="representationDu140315h" sizeCalculated="true" type="Object">
         <name>representationDu140315h</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>59.340723388406786</x>
-            <y>503.8721568563458</y>
+            <x>3.4884656773267575</x>
+            <y>57.32148157335899</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="sonoritesEtranges" sizeCalculated="true" type="Object">
         <name>sonoritesEtranges</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>535.7646614366786</x>
-            <y>477.9030456143387</y>
+            <x>12.091983022797038</x>
+            <y>47.8007248817978</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="cyrano" sizeCalculated="true" type="Object">
         <name>cyrano</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>544.6888904625577</x>
-            <y>15.679259181494501</y>
+            <x>84.9462762477332</x>
+            <y>6.03033460370257</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="representationDu130320h" sizeCalculated="true" type="Object">
         <name>representationDu130320h</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>44.70641656364512</x>
-            <y>145.70228810387817</y>
+            <x>92.9691425363711</x>
+            <y>54.231686270946746</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="representationDu150318h" sizeCalculated="true" type="Object">
         <name>representationDu150318h</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>42.86449026109602</x>
-            <y>271.10465903499653</y>
+            <x>43.71644072165927</x>
+            <y>74.49533116290348</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="lesAnimaux" sizeCalculated="true" type="Object">
         <name>lesAnimaux</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>550.7894834720493</x>
-            <y>359.15651520362434</y>
+            <x>54.10259113074688</x>
+            <y>47.76229134504659</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="representationDu140318h" sizeCalculated="true" type="Object">
         <name>representationDu140318h</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>44.36959262543391</x>
-            <y>41.76010245913565</y>
+            <x>16.59478446087993</x>
+            <y>72.13370566117428</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -95,11 +95,49 @@
         <target>representationDu140315h</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>APourRepresentation</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</related0>
+                        <related1>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>spectacle</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
                 <name>representations</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>7.0</userOffsetX>
-                    <userOffsetY>14.0</userOffsetY>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                     <attached>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -116,44 +154,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>3.0</userOffsetX>
-                    <userOffsetY>11.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>APourRepresentation</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::0</related0>
-                        <related1>[APourRepresentation : (representations:representationDu140315h, spectacle:sonoritesEtranges)]::WayPoint::1</related1>
-                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -188,35 +188,25 @@
         <target>representationDu130320h</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>*</name>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>APourRepresentation</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::0</related0>
+                        <related1>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>spectacle</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>9.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>5.0</userOffsetX>
-                    <userOffsetY>9.0</userOffsetY>
                     <attached>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -236,17 +226,27 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>APourRepresentation</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::0</related0>
-                        <related1>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</related1>
-                    </related>
+                    <attached>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu130320h, spectacle:avare)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -281,11 +281,49 @@
         <target>representationDu150318h</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>APourRepresentation</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</related0>
+                        <related1>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>spectacle</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
                 <name>representations</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>10.0</userOffsetX>
-                    <userOffsetY>15.0</userOffsetY>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                     <attached>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -302,44 +340,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>4.0</userOffsetX>
-                    <userOffsetY>15.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>APourRepresentation</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::0</related0>
-                        <related1>[APourRepresentation : (representations:representationDu150318h, spectacle:donJuan)]::WayPoint::1</related1>
-                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -374,24 +374,26 @@
         <target>representationDu130318h</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>APourRepresentation</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</related0>
+                        <related1>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</related1>
+                    </related>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>spectacle</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>3.0</userOffsetX>
-                    <userOffsetY>12.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -410,29 +412,27 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>representations</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-1.0</userOffsetX>
-                    <userOffsetY>14.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</attached>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>APourRepresentation</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</related0>
-                        <related1>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</related1>
-                    </related>
+                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -467,35 +467,25 @@
         <target>representationDu140318h</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>*</name>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
+                <name>APourRepresentation</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <offsetX>0.0</offsetX>
+                    <offsetY>-10.0</offsetY>
+                    <related length="2">
+                        <related0>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::0</related0>
+                        <related1>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</related1>
+                    </related>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>spectacle</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>11.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>14.0</userOffsetY>
                     <attached>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -515,17 +505,27 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::AssociationName" sizeCalculated="true" type="associationName" userDefined="false" visible="true">
-                <name>APourRepresentation</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <offsetX>0.0</offsetX>
-                    <offsetY>-10.0</offsetY>
-                    <related length="2">
-                        <related0>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::0</related0>
-                        <related1>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</related1>
-                    </related>
+                    <attached>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu140318h, spectacle:cyrano)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
