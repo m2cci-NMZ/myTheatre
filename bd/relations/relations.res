@@ -66,7 +66,7 @@ relation LesRepresentations
 		from R_OneToMany (Spectacle)
 
 	columns 
-		dateRep_: Date
+		horaireRep_: Date
 		numeroSpe : Integer
 		//placesDispoRep_d : Integer 
 		//tauxReducRep : Real

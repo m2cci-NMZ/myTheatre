@@ -46,7 +46,8 @@ public class ProgCtrler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        
+        try {
 
             Date dateDebut;
             String debut;
@@ -57,7 +58,12 @@ public class ProgCtrler extends HttpServlet {
             String fin;
             fin = request.getParameter("dateFin");
             dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-
+            
+            
+            request.setAttribute("dateDebut",dateDebut);
+            request.setAttribute("dateFin",dateFin);
+            
+            
             String type;
             type = request.getParameter("type");
 
@@ -66,9 +72,11 @@ public class ProgCtrler extends HttpServlet {
 
             List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
             
+            System.out.println("Testxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             for (Representation rep : listRepresentations){
                 System.out.println(rep);
             }
+            System.out.println("Testyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 
             request.setAttribute("progList", listRepresentations);
             
@@ -76,10 +84,10 @@ public class ProgCtrler extends HttpServlet {
 
         }
         catch(SQLException ex )  {
-            throw new ServletException("Problème avec la BD : " + ex.getMessage());
+            throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
         }
         catch(ParseException ex){
-            throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage());
+            throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
 

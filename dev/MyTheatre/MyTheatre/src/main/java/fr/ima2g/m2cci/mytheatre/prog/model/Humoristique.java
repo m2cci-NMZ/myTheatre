@@ -8,8 +8,7 @@ package fr.ima2g.m2cci.mytheatre.prog.model;
 public class Humoristique extends Spectacle {
     private final boolean estUnOneWomanManShow;
 
-    public Humoristique(int numero, String nom, double prixDeBase, String type, 
-            String cible, boolean estUnOneWomanManShow) {
+    public Humoristique(int numero, String nom, double prixDeBase, String type, String cible, boolean estUnOneWomanManShow) {
         super(numero, nom, prixDeBase, type, cible);
         this.estUnOneWomanManShow = estUnOneWomanManShow;
     }
@@ -26,7 +25,7 @@ public class Humoristique extends Spectacle {
     @Override
     public String toString() {
         if (this.estUnOneWomanManShow == true)
-             return super.toString () + " est un OneWomanManShow";
+             return super.toString () + ", est un OneWomanManShow";
          else
             return  super.toString ();   
         

@@ -5,6 +5,7 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.dao;
 
+import fr.ima2g.m2cci.mytheatre.prog.model.Humoristique;
 import fr.ima2g.m2cci.mytheatre.prog.model.Opera;
 import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
 import fr.ima2g.m2cci.mytheatre.prog.model.Spectacle;
@@ -29,11 +30,14 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList();
         
-        String preparedQueryWithCibleAndType = "SELECT R.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, dateRep \n"
-                + "FROM LesSpectacles S RIGHT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
-                +                      "RIGHT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
-                +                      "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
-                + "WHERE cibleSpe=? AND typeSpe=?";
+        String preparedQueryWithCibleAndType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
+                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
+                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
+                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
+                + "WHERE cibleSpe=? AND typeSpe=?;";
+
+        
+        /*Refaire la requete vis à vis de jdd1*/
         
         try (Connection conn = ds.getConnection()){
             PreparedStatement stmt = conn.prepareStatement(preparedQueryWithCibleAndType);

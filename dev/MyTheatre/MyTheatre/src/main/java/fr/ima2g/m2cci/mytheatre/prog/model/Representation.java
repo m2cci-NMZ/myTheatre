@@ -39,7 +39,7 @@ public class Representation {
     public String toString() {
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HHh");
         
-        return "Representation : " + "Horraire =" + formatDate.format(date) + "\n" + spe;
+        return "Representation : " + "Horraire =" + formatDate.format(date) + "\n" + spe  + "\n";
     }
     
     
