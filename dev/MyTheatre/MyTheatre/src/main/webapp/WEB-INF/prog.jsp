@@ -21,7 +21,6 @@
 
     </head>
     <body>
-    <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
             <!-- Links -->
@@ -45,99 +44,102 @@
         <div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-0"></div>
-                    <form action="progCtrler" >
-                        <br>
-                        <h4>Recherche</h4>
-                        <br>
-                        <input type="date" name="dateDebut" value="2020-03-06" min="2020-03-06" max="2021-03-06">
-                        <br>
-                        <input type="date" name="dateFin" value="2020-03-06" min="2020-03-06" max="2021-03-06">
-                        <br><br>
-                        Categorie de spectateurs
-                        <br><br>
-                        Indifférent <input type="radio" id="indiffC" name="cible" value="indifférent" checked>
-                        <br>
-                        1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns">
-                        <br>
-                        Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic">
-                        <br>
-                        Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic">
-                        <br>
-                        Adultes <input type="radio" id="adulteP" name="cible" value="adulte">
-                        <br>
-                        Tout <input type="radio" id="tout" name="cible">
-                        <br><br>
-                        Type de spectacles
-                        <br><br>
-                        Indifférent <input type="radio" id="indiffT" name="type" value="indifférent" checked >
-                        <br>
-                        Opéra <input type="radio" id="ope" name="type" value="opera">
-                        <br>
-                        Humoristique <input type="radio" id="hum" name="type" value="humoristique">
-                        <br>
-                        Drame <input type="radio" id=dra name="type" value="drame">
-                        <br>
-                        Musical <input type="radio" id="mus" name="type" value="musical">
-                        <br>
-                        Cirque <input type="radio" id="cir" name="type" value="cirque">
-                        <br>
-                        <input type="submit" value="Envoyer"> 
-                    </form>
-                    <div class="col-lg-12"></div>
-                    <%
-                        Date dateFin = (Date) request.getAttribute("dateFin");
-                        Date dateDebut = (Date) request.getAttribute("dateDebut");
-                    %>
-                    <h1>Programmation du <%=dateDebut%></h1> au <%=dateFin%></h1>
-                        
-                    <table>
-                        <tbody>
+                    <div class="col-md-2">
+                        <form action="progCtrler" >
+                            <br>
+                            <h4>Recherche</h4>
+                            <br>
+                            <input type="date" name="dateDebut" value="2020-03-06" min="2020-03-06" max="2021-03-06">
+                            <br>
+                            <input type="date" name="dateFin" value="2020-03-06" min="2020-03-06" max="2021-03-06">
+                            <br><br>
+                            Categorie de spectateurs
+                            <br><br>
+                            Indifférent <input type="radio" id="indiffC" name="cible" value="indifférent" checked>
+                            <br>
+                            1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns">
+                            <br>
+                            Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic">
+                            <br>
+                            Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic">
+                            <br>
+                            Adultes <input type="radio" id="adulteP" name="cible" value="adulte">
+                            <br>
+                            Tout <input type="radio" id="tout" name="cible">
+                            <br><br>
+                            Type de spectacles
+                            <br><br>
+                            Indifférent <input type="radio" id="indiffT" name="type" value="indifférent" checked >
+                            <br>
+                            Opéra <input type="radio" id="ope" name="type" value="opera">
+                            <br>
+                            Humoristique <input type="radio" id="hum" name="type" value="humoristique">
+                            <br>
+                            Drame <input type="radio" id=dra name="type" value="drame">
+                            <br>
+                            Musical <input type="radio" id="mus" name="type" value="musical">
+                            <br>
+                            Cirque <input type="radio" id="cir" name="type" value="cirque">
+                            <br>
+                            <input type="submit" value="Envoyer"> 
+                        </form>
+                        </div>
+                        <div class="col-md-10">
                             <%
-                                List<Representation> prog = (List<Representation>) request.getAttribute("progList");
-                                for (Representation r : prog) {
-                                    Date date = r.getDate();
-                                    String nom = r.getSpectacle().getNom();
-                                    Double prixDeBase = r.getSpectacle().getPrixDeBase();
-                                    String cible = r.getSpectacle().getCible();
-                                    String type = r.getSpectacle().getType();
+                                Date dateFin = (Date) request.getAttribute("dateFin");
+                                Date dateDebut = (Date) request.getAttribute("dateDebut");
                             %>
-                            <tr>
-                                <td>Date</td>
-                                <td>Nom</td>
-                                <td>Prix de base</td>
-                                <td>taux de réduction</td>
-                                <td>Public cible</td>
-                                <td>Type de pièce</td>
-                            </tr>
-                            <tr>
-                                <td><%=date%></td>
-                                <td><%=nom%></td>
-                                <td><%=prixDeBase%></td>
-                                <td><%=cible%></td>
-                                <td><%=type%></td>
-                            </tr>
-                            <%
-                                }
-                            %>
+                            <br>
+                            <h4>Programmation du <%=dateDebut%> au <%=dateFin%></h4>
 
-                        </tbody>
-                    </table>                  
+                            <table>
+                                <tbody>
+                                    <%
+                                        List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                                        for (Representation r : prog) {
+                                            Date date = r.getDate();
+                                            String nom = r.getSpectacle().getNom();
+                                            Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                            String cible = r.getSpectacle().getCible();
+                                            String type = r.getSpectacle().getType();
+                                    %>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>Nom</td>
+                                        <td>Prix de base</td>
+                                        <td>taux de réduction</td>
+                                        <td>Public cible</td>
+                                        <td>Type de pièce</td>
+                                    </tr>
+                                    <tr>
+                                        <td><%=date%></td>
+                                        <td><%=nom%></td>
+                                        <td><%=prixDeBase%></td>
+                                        <td><%=cible%></td>
+                                        <td><%=type%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+
+                                </tbody>
+                            </table>                  
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous">
-        </script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                    crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous">
+            </script>
 
     </body>
 </html>
