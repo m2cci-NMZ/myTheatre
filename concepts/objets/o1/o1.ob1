@@ -58,8 +58,8 @@
     ! donJuan.aUnOrchestre := true
     
     
---| (6) Le spectacle de numero 17 et de nom Andromaque avec un prix de base de 15 euros destiné a un public adulte et de type opera
-    ! create donJuan : Spectacle
+--| (6) Le spectacle de numero 17 et de nom Andromaque avec un prix de base de 15 euros destiné a un public adulte et de type drame
+    ! create andromaque : Spectacle
     ! donJuan.numero_ := 17
     ! donJuan.nom := 'Andromaque'
     ! donJuan.prixDeBase := 15.0
@@ -93,7 +93,7 @@
 --|representationDu150318h.placesDispo_d := 30
 
 --| (12) La representation du 15/03 a 20h a 10 places disponibles et donne un reduction de 0%
-    ! create representationDu150318h : Representation
+    ! create representationDu150320h : Representation
     ! representationDu150318h.horaire_ := '15/03/2020 20h'
 --|representationDu150318h.placesDispo_d := 10
 
