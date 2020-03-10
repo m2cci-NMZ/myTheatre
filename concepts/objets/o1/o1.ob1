@@ -83,18 +83,26 @@
     ! representationDu150318h.horaire_ := '15/03/2020 18h'
 --|representationDu150318h.placesDispo_d := 30
 
---| (11) Le 13/03 a 18h, Les Animaux est à l'affiche
+--| (11) La representation du 15/03 a 20h a 10 places disponibles et donne un reduction de 0%
+    ! create representationDu150318h : Representation
+    ! representationDu150318h.horaire_ := '15/03/2020 20h'
+--|representationDu150318h.placesDispo_d := 10
+
+--| (12) Le 13/03 a 18h, Les Animaux est à l'affiche
     ! insert(lesAnimaux, representationDu130318h) into APourRepresentation
 
---| (12) Le 13/03 a 20h, l'Avare est à l'affiche
+--| (13) Le 13/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu130320h) into APourRepresentation
 
---| (13) Le 14/03 a 18h, Cyrano est à l'affiche
+--| (14) Le 14/03 a 18h, Cyrano est à l'affiche
     ! insert(cyrano, representationDu140318h) into APourRepresentation
 
---| (14) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
+--| (15) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
     ! insert(sonoritesEtranges, representationDu140315h) into APourRepresentation
 
---| (15) Le 15/03 a 18h, Don Juan est à l'affiche
+--| (16) Le 15/03 a 18h, Don Juan est à l'affiche
     ! insert(donJuan, representationDu150318h) into APourRepresentation
+    
+--| (17) Le 15/03 a 20h, l'Avare est à l'affiche
+    ! insert(avare, representationDu150320h) into APourRepresentation
 
