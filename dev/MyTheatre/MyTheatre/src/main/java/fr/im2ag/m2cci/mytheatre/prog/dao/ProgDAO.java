@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
@@ -26,6 +27,7 @@ import javax.sql.DataSource;
  */
 public class ProgDAO {
     private static final SimpleDateFormat horaireFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static final SimpleDateFormat horaireFinFormatter = new SimpleDateFormat("yyyy-MM-dd 23:59");   // La date de fin doit être inclue en entier
     
     
     public static List<Representation> representationsFiltrees(DataSource ds, Date horaireDebut, 
@@ -35,31 +37,7 @@ public class ProgDAO {
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
-                + "WHERE horaireRep>? AND horaireRep<?";
-        
-        String queryDeBase = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
-                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
-                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
-                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE horaireRep>? AND horaireRep<?;";
-        
-        String queryCible = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
-                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
-                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
-                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE horaireRep>? AND horaireRep<? AND cibleSpe=?;";
-        
-        String queryType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
-                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
-                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
-                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE horaireRep>? AND horaireRep<? AND typeSpe=?;";
-        
-        String queryCibleType = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep "
-                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe "
-                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe "
-                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe "
-                + "WHERE horaireRep>? AND horaireRep<? AND cibleSpe=? AND typeSpe=?;";
+                + "WHERE horaireRep>=? AND horaireRep<=?";
         
         List<Representation> representations = new ArrayList();
         
@@ -72,13 +50,14 @@ public class ProgDAO {
                 queryRep += " AND typeSpe=?";
             }
             queryRep += "; \n";
-            System.out.println(queryRep);
             
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             
             // Preparation de la requete
             stmt.setString(1, horaireFormatter.format(horaireDebut));
-            stmt.setString(2, horaireFormatter.format(horaireFin));
+            stmt.setString(2, horaireFinFormatter.format(horaireFin));
+            System.out.println("Test");
+            System.out.println(horaireFinFormatter.format(horaireFin));
             if (!cibleSpe.equals("null") && !typeSpe.equals("null")){
                 stmt.setString(3, cibleSpe);
                 stmt.setString(4, typeSpe);
@@ -98,7 +77,6 @@ public class ProgDAO {
                     String cible = rs.getString("cibleSpe");
                     String type = rs.getString("typeSpe");
                     String horaireRep = rs.getString("horaireRep");
-                    System.out.println(horaireRep);
                     
                     // Création des objets
                     Date horaire = horaireFormatter.parse(horaireRep);
@@ -120,13 +98,6 @@ public class ProgDAO {
                     Representation rep = new Representation(horaire, s);
                     representations.add(rep) ;
                 }
-                
-                /*// Pas possible de faire une requete sur la Date -> On retire les dates invalides du resultat
-                for (Representation rep : representations){
-                    if (rep.getDate().before(debut) || rep.getDate().after(fin)){
-                        representations.remove(rep);
-                    }
-                }*/
             } 
         }
         return representations;
