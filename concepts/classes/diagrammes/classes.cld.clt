@@ -4,7 +4,7 @@
         <antialiasing>false</antialiasing>
         <showassocnames>false</showassocnames>
         <showattributes>true</showattributes>
-        <showmultiplicities>false</showmultiplicities>
+        <showmultiplicities>true</showmultiplicities>
         <showoperations>false</showoperations>
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
@@ -12,48 +12,48 @@
     <node id="Representation" sizeCalculated="true" type="Class">
         <name>Representation</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>127.0</x>
-            <y>148.0</y>
+            <x>625.0</x>
+            <y>141.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Humoristique" sizeCalculated="true" type="Class">
         <name>Humoristique</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>626.0</x>
-            <y>174.0</y>
+            <x>49.0</x>
+            <y>111.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Spectacle" sizeCalculated="true" type="Class">
         <name>Spectacle</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>391.0</x>
-            <y>247.0</y>
+            <x>292.0</x>
+            <y>109.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Opera" sizeCalculated="true" type="Class">
         <name>Opera</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>692.0</x>
-            <y>370.0</y>
+            <x>121.0</x>
+            <y>172.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Type" sizeCalculated="true" type="Enumeration">
         <name>Type</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>865.0</x>
-            <y>8.0</y>
+            <x>49.0</x>
+            <y>262.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Cible" sizeCalculated="true" type="Enumeration">
         <name>Cible</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>984.0</x>
-            <y>13.0</y>
+            <x>163.0</x>
+            <y>262.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -62,23 +62,11 @@
         <target>Representation</target>
         <name>APourRepresentation</name>
         <properties>
-            <edgeproperty id="APourRepresentation::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>representations</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>APourRepresentation::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="APourRepresentation::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+            <edgeproperty id="APourRepresentation::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetY>-10.0</userOffsetY>
                     <attached>APourRepresentation::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -86,11 +74,23 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="APourRepresentation::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+            <edgeproperty id="APourRepresentation::target::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>3.0</userOffsetX>
+                    <userOffsetY>8.0</userOffsetY>
+                    <attached>APourRepresentation::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="APourRepresentation::source::rolename" sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>spectacle</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>4.0</userOffsetX>
+                    <userOffsetY>10.0</userOffsetY>
                     <attached>APourRepresentation::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -98,11 +98,11 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="APourRepresentation::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+            <edgeproperty id="APourRepresentation::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>9.0</userOffsetX>
+                    <userOffsetY>-9.0</userOffsetY>
                     <attached>APourRepresentation::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
