@@ -19,7 +19,7 @@ PRAGMA foreign_keys = ON;
 INSERT INTO LesSpectacles VALUES (45, 'Cyrano de Bergerac', 20.0, 'toutPublic', 'drame');
 INSERT INTO LesSpectacles VALUES (46, 'Les Animaux', 8.0, 'unCinqAns', 'cirque');
 INSERT INTO LesSpectacles VALUES (47, 'Sonorites Etranges', 10.0, 'jeunePublic', 'musical');
-INSERT INTO LesSpectacles VALUES (20, 'L avare', 10.0, 'toutPublic', 'humoristique');
+INSERT INTO LesSpectacles VALUES (20, 'L''avare', 10.0, 'toutPublic', 'humoristique');
 INSERT INTO LesHumoristiques VALUES (20, 0);
 INSERT INTO LesSpectacles VALUES (25, 'Don Juan', 10.0, 'adulte', 'opera');
 INSERT INTO LesOperas VALUES (25, 1);

@@ -94,14 +94,14 @@
                         <br>
                         <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
 
-                        <table>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <td>Horaire</td>
-                                    <td>Nom</td>
-                                    <td>Prix de base</td>
-                                    <td>Public cible</td>
-                                    <td>Type de pièce</td>
+                                    <th>Horaire</td>
+                                    <th>Nom</td>
+                                    <th>Prix de base</td>
+                                    <th>Public cible</td>
+                                    <th>Type de pièce</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,7 +119,7 @@
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
-                                    <td><%=prixDeBase%>€</td>
+                                    <td><%=prixDeBase%> €</td>
                                     <td><%=cible%></td>
                                     <td><%=type%></td>
                                 </tr>
