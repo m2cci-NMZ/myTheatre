@@ -48,8 +48,8 @@
                     <div class="col-md-2">
                         <form action="progCtrler" >
                             <br>
-                            <h4>Recherche</h4>
-                            <br>
+                            <h2>Recherche</h2>
+                            <h5>Dates</h5>
                             <%
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
@@ -69,12 +69,10 @@
                                     dateFinForm = navigateurJourFormatter.format(dateFin);
                                 } 
                             %>
-                            <input type="date" name="dateDebut" value=<%=dateDebutForm%>>
-                            <br>
+                            <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
                             <input type="date" name="dateFin" value=<%=dateFinForm%>>
                             <br><br>
-                            Categorie de spectateurs
-                            <br>
+                            <h5>Categorie de spectateurs</h5>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -95,18 +93,17 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            Indifférent <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>>
+                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
                             <br>
-                            1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>>
+                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
                             <br>
-                            Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>>
+                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
                             <br>
-                            Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>>
+                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
                             <br>
-                            Adultes <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>>
+                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
                             <br><br>
-                            Type de spectacles
-                            <br>
+                            <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
                                 whichRadio = request.getParameter("type");
                                 checkIndif = "";
@@ -130,17 +127,17 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            Indifférent <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%>>
+                            &nbsp&nbsp <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%>> Indifférent
                             <br>
-                            Opéra <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>>
+                            &nbsp&nbsp <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
                             <br>
-                            Humoristique <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>>
+                            &nbsp&nbsp <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
                             <br>
-                            Drame <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>>
+                            &nbsp&nbsp <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>> Drame
                             <br>
-                            Musical <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>>
+                            &nbsp&nbsp <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
                             <br>
-                            Cirque <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>>
+                            &nbsp&nbsp <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 

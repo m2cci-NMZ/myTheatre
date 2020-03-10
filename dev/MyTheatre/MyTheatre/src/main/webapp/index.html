@@ -35,37 +35,34 @@
                     <div class="col-sm-2">
                     <form action="progCtrler" >
                         <br>
-                        <h4>Recherche</h4>
-                        <br>
-                        <input type="date" name="dateDebut" value="2020-03-01">
-                        <br>
+                        <h2>Recherche</h2>
+                        <h5>Dates</h5>
+                        <input type="date" name="dateDebut" value="2020-03-01"> au                         
                         <input type="date" name="dateFin" value="2020-03-31">
                         <br><br>
-                        Categorie de spectateurs
+                        <h5>Categorie de spectateurs</h5>
+                        &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" checked> Indifférent 
                         <br>
-                        Indifférent <input type="radio" id="indiffC" name="cible" value="null" checked>
+                        &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns"> 1-5 ans 
                         <br>
-                        1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns">
+                        &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic"> Jeune Public 
                         <br>
-                        Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic">
-                        <br>
-                        Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic">
-                        <br>
-                        Adultes <input type="radio" id="adulteP" name="cible" value="adulte">
+                        &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic"> Tout Public 
+                        <br> 
+                        &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte"> Adultes 
                         <br><br>
-                        Type de spectacles
+                        <h5>Type de spectacles</h5>
+                        &nbsp&nbsp <input type="radio" id="indiffT" name="type" value="null" checked > Indifférent 
                         <br>
-                        Indifférent <input type="radio" id="indiffT" name="type" value="null" checked >
+                        &nbsp&nbsp <input type="radio" id="ope" name="type" value="opera"> Opéra 
                         <br>
-                        Opéra <input type="radio" id="ope" name="type" value="opera">
+                        &nbsp&nbsp <input type="radio" id="hum" name="type" value="humoristique"> Humoristique
                         <br>
-                        Humoristique <input type="radio" id="hum" name="type" value="humoristique">
+                        &nbsp&nbsp <input type="radio" id=dra name="type" value="drame"> Drame
                         <br>
-                        Drame <input type="radio" id=dra name="type" value="drame">
+                        &nbsp&nbsp <input type="radio" id="mus" name="type" value="musical"> Musical
                         <br>
-                        Musical <input type="radio" id="mus" name="type" value="musical">
-                        <br>
-                        Cirque <input type="radio" id="cir" name="type" value="cirque">
+                        &nbsp&nbsp <input type="radio" id="cir" name="type" value="cirque"> Cirque
                         <br>
                         <br>
                         <input type="submit" value="Envoyer"> 
