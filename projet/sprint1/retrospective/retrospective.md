@@ -5,7 +5,7 @@
 
 Ce qui n'a pas marché
 ---------------------
-* outil Gantt assez long à prendre en main.
+* outil GanttProject assez long à prendre en main.
 
 
 
