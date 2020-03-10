@@ -71,12 +71,6 @@ public class ProgCtrler extends HttpServlet {
             cible = request.getParameter("cible");
 
             List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
-            
-            System.out.println("Testxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            for (Representation rep : listRepresentations){
-                System.out.println(rep);
-            }
-            System.out.println("Testyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 
             request.setAttribute("progList", listRepresentations);
             

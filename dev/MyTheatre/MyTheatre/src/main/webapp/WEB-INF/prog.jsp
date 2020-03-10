@@ -84,64 +84,67 @@
                             <br>
                             <input type="submit" value="Envoyer"> 
                         </form>
-                        </div>
-                        <div class="col-md-10">
-                            <%
-                                Date dateFin = (Date) request.getAttribute("dateFin");
-                                Date dateDebut = (Date) request.getAttribute("dateDebut");
-                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                            %>
-                            <br>
-                            <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
+                    </div>
+                    <div class="col-md-10">
+                        <%
+                            Date dateFin = (Date) request.getAttribute("dateFin");
+                            Date dateDebut = (Date) request.getAttribute("dateDebut");
+                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                        %>
+                        <br>
+                        <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
 
-                            <table>
-                                <tbody>
-                                    <%
-                                        SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
-                                        List<Representation> prog = (List<Representation>) request.getAttribute("progList");
-                                        for (Representation r : prog) {
-                                            Date date = r.getDate();
-                                            String nom = r.getSpectacle().getNom();
-                                            Double prixDeBase = r.getSpectacle().getPrixDeBase();
-                                            String cible = r.getSpectacle().getCible();
-                                            String type = r.getSpectacle().getType();
-                                    %>
-                                    <tr>
-                                        <td>Date</td>
-                                        <td>Nom</td>
-                                        <td>Prix de base</td>
-                                        <td>Public cible</td>
-                                        <td>Type de pièce</td>
-                                    </tr>
-                                    <tr>
-                                        <td><%=horaireFormatter.format(date)%>h</td>
-                                        <td><%=nom%></td>
-                                        <td><%=prixDeBase%>€</td>
-                                        <td><%=cible%></td>
-                                        <td><%=type%></td>
-                                    </tr>
-                                    <%
-                                        }
-                                    %>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Horaire</td>
+                                    <td>Nom</td>
+                                    <td>Prix de base</td>
+                                    <td>Public cible</td>
+                                    <td>Type de pièce</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
+                                    List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                                    for (Representation r : prog) {
+                                        Date date = r.getDate();
+                                        String nom = r.getSpectacle().getNom();
+                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                        String cible = r.getSpectacle().getCible();
+                                        String type = r.getSpectacle().getType();
+                                %>
+                                
+                                <tr>
+                                    <td><%=horaireFormatter.format(date)%>h</td>
+                                    <td><%=nom%></td>
+                                    <td><%=prixDeBase%>€</td>
+                                    <td><%=cible%></td>
+                                    <td><%=type%></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
 
-                                </tbody>
-                            </table>                  
-                        </div>
+                            </tbody>
+                        </table>                  
                     </div>
                 </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                    crossorigin="anonymous">
-            </script>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+        </script>
 
     </body>
 </html>
