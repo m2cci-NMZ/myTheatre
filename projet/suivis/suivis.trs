@@ -17,3 +17,24 @@ decision D1: Glossaire MyTheatre
     | MyTheatre est le nom du logiciel et du théatre
     date: 2020-03-05
     who: RML CKE JFE
+
+impediment I1: Cours de jsp
+    | Cours sur les jsp de 1h
+    date: 2020-03-05
+    who: RML CKE MLR NMZ
+
+impediment I2: Panne de réseau
+    | Panne de réseau de 1h
+    date: 2020-03-09
+    who: RML CKE MLR NMZ
+
+impediment I3: Panne de réseau
+    | Panne de réseau de 1h
+    date: 2020-03-10
+    who: RML CKE MLR NMZ
+
+hypothesis H1: Affichage des `Spectacle`s `Opera` et `Humoristique`  
+    | L'affichage de la `Programmation` de `MyTheatre` pour les `Spectateur`s ne montre
+    | pas si un `Opera` ou un `Humoristique` a un orchestre ou si il est un OneWomen(Men)Show
+    priority: low
+    status: open
