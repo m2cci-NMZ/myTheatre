@@ -9,11 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Representation {
-    private final Date date;
+    private final Date horaire;
     private final Spectacle spe;
 
     public Representation(Date date, Spectacle spe) {
-        this.date = date;
+        this.horaire = date;
         this.spe = spe;
     }
 
@@ -22,8 +22,8 @@ public class Representation {
      *
      * @return
      */
-    public Date getDate() {
-        return this.date;
+    public Date getHoraire() {
+        return this.horaire;
     }
 
     /**
@@ -39,8 +39,6 @@ public class Representation {
     public String toString() {
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HHh");
         
-        return "Representation : " + "Horraire =" + formatDate.format(date) + "\n" + spe  + "\n";
+        return "Representation : " + "Horraire =" + formatDate.format(horaire) + "\n" + spe  + "\n";
     }
-    
-    
 }

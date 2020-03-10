@@ -165,7 +165,7 @@
                                     SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
                                     List<Representation> prog = (List<Representation>) request.getAttribute("progList");
                                     for (Representation r : prog) {
-                                        Date date = r.getDate();
+                                        Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
                                         String cible = r.getSpectacle().getCible();

@@ -24,19 +24,19 @@ public class RepresentationTest {
 
     @Before
     public void setUp() {
-        Date date = new Date(10,10,10,10,0);
+        Date horaire = new Date(10,10,10,10,0);
         Spectacle spectacle= new Spectacle(10, "nom", 10.5, "comedie", "toutPublic");
-        representation = new Representation(date, spectacle);
+        representation = new Representation(horaire, spectacle);
     }
 
     /**
      * Test of getDate method, of class Representation.
      */
     @Test
-    public void testGetDate() {
-        System.out.println("getDate");
-        Date date = new Date(10,10,10,10,0);
-        assertEquals(date, representation.getDate());
+    public void testGetHoraire() {
+        System.out.println("getHoraire");
+        Date horaire = new Date(10,10,10,10,0);
+        assertEquals(horaire, representation.getHoraire());
     }
 
     /**
@@ -55,9 +55,9 @@ public class RepresentationTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Date date = new Date(10,10,10,10,0);
+        Date horaire = new Date(10,10,10,10,0);
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HHh");
-        assertEquals("Representation : Horraire =" + formatDate.format(date) + "\nSpectacle : nom (comedie, toutPublic) à 10.5€\n", representation.toString());
+        assertEquals("Representation : Horraire =" + formatDate.format(horaire) + "\nSpectacle : nom (comedie, toutPublic) à 10.5€\n", representation.toString());
     }
 
 }
