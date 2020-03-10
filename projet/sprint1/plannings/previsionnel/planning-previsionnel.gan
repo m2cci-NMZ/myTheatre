@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Projet d'Intégration" company="Université Grenoble Alpes" webLink="https://github.com/m2cci/m2cci-1920-pi-info" view-date="2020-01-26" view-index="1" gantt-divider-location="442" resource-divider-location="300" version="2.7.1" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Projet d'Intégration" company="Université Grenoble Alpes" webLink="https://github.com/m2cci/m2cci-1920-pi-info" view-date="2020-01-26" view-index="1" gantt-divider-location="442" resource-divider-location="637" version="2.7.1" locale="fr">
     <description/>
-    <view zooming-state="default:3" id="gantt-chart">
+    <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="Nom" width="60" order="0"/>
         <field id="tpd4" name="Date de début" width="20" order="1"/>
         <field id="tpd5" name="Date de fin" width="18" order="2"/>
@@ -14,7 +14,7 @@
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
-        <field id="1" name="Rôle par défaut" width="50" order="1"/>
+        <field id="1" name="Rôle par défaut" width="49" order="1"/>
     </view>
     <!-- -->
     <calendars>
