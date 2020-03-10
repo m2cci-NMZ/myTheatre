@@ -55,32 +55,63 @@
                             <input type="date" name="dateFin" value="2020-03-31">
                             <br><br>
                             Categorie de spectateurs
-                            <br><br>
-                            Indifférent <input type="radio" id="indiffC" name="cible" value="null" checked>
                             <br>
-                            1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns">
+                            <%  // Conserve le bouton check pour la cible
+                                String whichRadio = request.getParameter("cible");
+                                System.out.println(whichRadio);
+                                String checkIndif = "";
+                                String check1Cinq = "";
+                                String checkJeune = "";
+                                String checkToutP = "";
+                                String checkAdult = "";
+                                if (whichRadio == null) checkIndif = " checked";
+                                else if (whichRadio.equals("unCinqAns")) check1Cinq = " checked";
+                                else if (whichRadio.equals("jeunePublic")) checkJeune = " checked";
+                                else if (whichRadio.equals("toutPublic")) checkToutP = " checked";
+                                else if (whichRadio.equals("adulte")) checkAdult = " checked";
+                                else checkIndif = " checked";
+                                %>
+                            Indifférent <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>>
                             <br>
-                            Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic">
+                            1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>>
                             <br>
-                            Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic">
+                            Jeune Public <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>>
                             <br>
-                            Adultes <input type="radio" id="adulteP" name="cible" value="adulte">
+                            Tout Public <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>>
                             <br>
-                            Tout <input type="radio" id="tout" name="cible">
+                            Adultes <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>>
                             <br><br>
                             Type de spectacles
-                            <br><br>
-                            Indifférent <input type="radio" id="indiffT" name="type" value="null" checked >
                             <br>
-                            Opéra <input type="radio" id="ope" name="type" value="opera">
+                            <%  // Conserve le bouton check pour le type de spectacle
+                                whichRadio = request.getParameter("type");
+                                System.out.println(whichRadio);
+                                checkIndif = "";
+                                String checkOpera = "";
+                                String checkHumor = "";
+                                String checkDrame = "";
+                                String checkMusic = "";
+                                String checkCirqu = "";
+                                if (whichRadio == null) checkIndif = " checked";
+                                else if (whichRadio.equals("opera")) checkOpera = " checked";
+                                else if (whichRadio.equals("humoristique")) checkHumor = " checked";
+                                else if (whichRadio.equals("drame")) checkDrame = " checked";
+                                else if (whichRadio.equals("musical")) checkMusic = " checked";
+                                else if (whichRadio.equals("cirque")) checkCirqu = " checked";
+                                else checkIndif = " checked";
+                                %>
+                            Indifférent <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%> >
                             <br>
-                            Humoristique <input type="radio" id="hum" name="type" value="humoristique">
+                            Opéra <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>>
                             <br>
-                            Drame <input type="radio" id=dra name="type" value="drame">
+                            Humoristique <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>>
                             <br>
-                            Musical <input type="radio" id="mus" name="type" value="musical">
+                            Drame <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>>
                             <br>
-                            Cirque <input type="radio" id="cir" name="type" value="cirque">
+                            Musical <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>>
+                            <br>
+                            Cirque <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>>
+                            <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
                         </form>
