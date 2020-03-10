@@ -50,27 +50,51 @@
                             <br>
                             <h4>Recherche</h4>
                             <br>
-                            <input type="date" name="dateDebut" value="2020-03-01">
+                            <%
+                                SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
+                                Date dateDebut = (Date) request.getAttribute("dateDebut");
+                                Date dateFin = (Date) request.getAttribute("dateFin");
+                                
+                                // Affichage des dates sélectionnés dans la nouvelle page
+                                String dateDebutForm;
+                                if (dateDebut == null){
+                                    dateDebutForm = "2020-03-01";
+                                } else {
+                                    dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                                }
+                                String dateFinForm;
+                                if (dateFin == null) {
+                                    dateFinForm = "2020-03-31";
+                                } else {
+                                    dateFinForm = navigateurJourFormatter.format(dateFin);
+                                } 
+                            %>
+                            <input type="date" name="dateDebut" value=<%=dateDebutForm%>>
                             <br>
-                            <input type="date" name="dateFin" value="2020-03-31">
+                            <input type="date" name="dateFin" value=<%=dateFinForm%>>
                             <br><br>
                             Categorie de spectateurs
                             <br>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
-                                System.out.println(whichRadio);
                                 String checkIndif = "";
                                 String check1Cinq = "";
                                 String checkJeune = "";
                                 String checkToutP = "";
                                 String checkAdult = "";
-                                if (whichRadio == null) checkIndif = " checked";
-                                else if (whichRadio.equals("unCinqAns")) check1Cinq = " checked";
-                                else if (whichRadio.equals("jeunePublic")) checkJeune = " checked";
-                                else if (whichRadio.equals("toutPublic")) checkToutP = " checked";
-                                else if (whichRadio.equals("adulte")) checkAdult = " checked";
-                                else checkIndif = " checked";
-                                %>
+                                if (whichRadio == null)
+                                    checkIndif = " checked";
+                                else if (whichRadio.equals("unCinqAns"))
+                                    check1Cinq = " checked";
+                                else if (whichRadio.equals("jeunePublic"))
+                                    checkJeune = " checked";
+                                else if (whichRadio.equals("toutPublic"))
+                                    checkToutP = " checked";
+                                else if (whichRadio.equals("adulte"))
+                                    checkAdult = " checked";
+                                else
+                                    checkIndif = " checked";
+                            %>
                             Indifférent <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>>
                             <br>
                             1-5 ans <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>>
@@ -85,22 +109,28 @@
                             <br>
                             <%  // Conserve le bouton check pour le type de spectacle
                                 whichRadio = request.getParameter("type");
-                                System.out.println(whichRadio);
                                 checkIndif = "";
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (whichRadio == null) checkIndif = " checked";
-                                else if (whichRadio.equals("opera")) checkOpera = " checked";
-                                else if (whichRadio.equals("humoristique")) checkHumor = " checked";
-                                else if (whichRadio.equals("drame")) checkDrame = " checked";
-                                else if (whichRadio.equals("musical")) checkMusic = " checked";
-                                else if (whichRadio.equals("cirque")) checkCirqu = " checked";
-                                else checkIndif = " checked";
-                                %>
-                            Indifférent <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%> >
+                                if (whichRadio == null)
+                                    checkIndif = " checked";
+                                else if (whichRadio.equals("opera"))
+                                    checkOpera = " checked";
+                                else if (whichRadio.equals("humoristique"))
+                                    checkHumor = " checked";
+                                else if (whichRadio.equals("drame"))
+                                    checkDrame = " checked";
+                                else if (whichRadio.equals("musical"))
+                                    checkMusic = " checked";
+                                else if (whichRadio.equals("cirque"))
+                                    checkCirqu = " checked";
+                                else
+                                    checkIndif = " checked";
+                            %>
+                            Indifférent <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%>>
                             <br>
                             Opéra <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>>
                             <br>
@@ -117,12 +147,10 @@
                         </form>
                     </div>
                     <div class="col-md-10">
+                        <br>
                         <%
-                            Date dateFin = (Date) request.getAttribute("dateFin");
-                            Date dateDebut = (Date) request.getAttribute("dateDebut");
                             SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                         %>
-                        <br>
                         <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
 
                         <table class="table table-striped">
@@ -146,7 +174,7 @@
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
                                 %>
-                                
+
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>

@@ -56,8 +56,6 @@ public class ProgDAO {
             // Preparation de la requete
             stmt.setString(1, horaireFormatter.format(horaireDebut));
             stmt.setString(2, horaireFinFormatter.format(horaireFin));
-            System.out.println("Test");
-            System.out.println(horaireFinFormatter.format(horaireFin));
             if (!cibleSpe.equals("null") && !typeSpe.equals("null")){
                 stmt.setString(3, cibleSpe);
                 stmt.setString(4, typeSpe);
