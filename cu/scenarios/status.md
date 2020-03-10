@@ -3,6 +3,7 @@ Status actuel
 
 Fait
 ----
+Scénarii réécrits vis à vis du glossaire
 
 
 A compléter/améliorer
