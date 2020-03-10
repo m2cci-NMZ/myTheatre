@@ -37,7 +37,7 @@ public class ProgDAO {
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
-                + "WHERE horaireRep>=? AND horaireRep<=?";
+                + "WHERE horaireRep>=? AND horaireRep<=?";//+ "ORDER BY horaireRep";
         
         List<Representation> representations = new ArrayList();
         
@@ -49,7 +49,7 @@ public class ProgDAO {
             if (!typeSpe.equals("null")){
                 queryRep += " AND typeSpe=?";
             }
-            queryRep += "; \n";
+            queryRep += "ORDER BY horaireRep; \n";
             
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             
