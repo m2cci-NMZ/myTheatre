@@ -82,26 +82,26 @@
                                 String checkAdult = "";
                                 if (whichRadio == null)
                                     checkIndif = " checked";
-                                else if (whichRadio.equals("un Cinq Ans"))
+                                else if (whichRadio.equals("unCinqAns"))
                                     check1Cinq = " checked";
-                                else if (whichRadio.equals("Jeune Public"))
+                                else if (whichRadio.equals("jeunePublic"))
                                     checkJeune = " checked";
-                                else if (whichRadio.equals("Tout Public"))
+                                else if (whichRadio.equals("toutPublic"))
                                     checkToutP = " checked";
-                                else if (whichRadio.equals("Adulte"))
+                                else if (whichRadio.equals("adulte"))
                                     checkAdult = " checked";
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
+                            &nbsp&nbsp <input type="radio" name="cible" value="null" <%=checkIndif%>> Indifférent 
                             <br>
-                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="Un Cinq Ans" <%=check1Cinq%>> 1-5 ans
+                            &nbsp&nbsp <input type="radio" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
                             <br>
-                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="Jeune Public" <%=checkJeune%>> Jeune Public
+                            &nbsp&nbsp <input type="radio" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="Tout Public" <%=checkToutP%>> Tout Public
+                            &nbsp&nbsp <input type="radio" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="Adulte" <%=checkAdult%>> Adultes
+                            &nbsp&nbsp <input type="radio" name="cible" value="adulte" <%=checkAdult%>> Adultes
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
