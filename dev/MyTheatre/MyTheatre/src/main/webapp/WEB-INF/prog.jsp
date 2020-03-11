@@ -82,13 +82,13 @@
                                 String checkAdult = "";
                                 if (whichRadio == null)
                                     checkIndif = " checked";
-                                else if (whichRadio.equals("unCinqAns"))
+                                else if (whichRadio.equals("un Cinq Ans"))
                                     check1Cinq = " checked";
-                                else if (whichRadio.equals("jeunePublic"))
+                                else if (whichRadio.equals("Jeune Public"))
                                     checkJeune = " checked";
-                                else if (whichRadio.equals("toutPublic"))
+                                else if (whichRadio.equals("Tout Public"))
                                     checkToutP = " checked";
-                                else if (whichRadio.equals("adulte"))
+                                else if (whichRadio.equals("Adulte"))
                                     checkAdult = " checked";
                                 else
                                     checkIndif = " checked";
@@ -114,15 +114,15 @@
                                 String checkCirqu = "";
                                 if (whichRadio == null)
                                     checkIndif = " checked";
-                                else if (whichRadio.equals("opera"))
+                                else if (whichRadio.equals("opéra"))
                                     checkOpera = " checked";
-                                else if (whichRadio.equals("humoristique"))
+                                else if (whichRadio.equals("Humoristique"))
                                     checkHumor = " checked";
-                                else if (whichRadio.equals("drame"))
+                                else if (whichRadio.equals("Drame"))
                                     checkDrame = " checked";
-                                else if (whichRadio.equals("musical"))
+                                else if (whichRadio.equals("Musical"))
                                     checkMusic = " checked";
-                                else if (whichRadio.equals("cirque"))
+                                else if (whichRadio.equals("Cirque"))
                                     checkCirqu = " checked";
                                 else
                                     checkIndif = " checked";
