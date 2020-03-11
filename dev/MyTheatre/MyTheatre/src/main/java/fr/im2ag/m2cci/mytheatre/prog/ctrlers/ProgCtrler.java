@@ -49,17 +49,19 @@ public class ProgCtrler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
+            // Gestion des dates
+            String debut = request.getParameter("dateDebut");
+            Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
 
-            Date dateDebut;
-            String debut;
-            debut = request.getParameter("dateDebut");
-            dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
-
-            Date dateFin;
-            String fin;
-            fin = request.getParameter("dateFin");
-            dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-
+            String fin = request.getParameter("dateFin");
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+            
+            if (dateDebut.after(dateFin)){   // Si l'utilisateur inverse la date de début et de fin
+                Date tmp = dateFin;
+                dateFin = dateDebut;
+                dateDebut = tmp;
+            }    
+                
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
