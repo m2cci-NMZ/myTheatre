@@ -54,10 +54,10 @@
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
                                 Date dateFin = (Date) request.getAttribute("dateFin");
-                                
+
                                 // Affichage des dates sélectionnés dans la nouvelle page
                                 String dateDebutForm;
-                                if (dateDebut == null){
+                                if (dateDebut == null) {
                                     dateDebutForm = "2020-03-01";
                                 } else {
                                     dateDebutForm = navigateurJourFormatter.format(dateDebut);
@@ -67,7 +67,7 @@
                                     dateFinForm = "2020-03-31";
                                 } else {
                                     dateFinForm = navigateurJourFormatter.format(dateFin);
-                                } 
+                                }
                             %>
                             <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
                             <input type="date" name="dateFin" value=<%=dateFinForm%>>
@@ -93,51 +93,49 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
+                            &nbsp&nbsp <input type="radio" name="cible" value="null" <%=checkIndif%>> Indifférent 
                             <br>
-                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
+                            &nbsp&nbsp <input type="radio" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
                             <br>
-                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
+                            &nbsp&nbsp <input type="radio" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
+                            &nbsp&nbsp <input type="radio" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
+                            &nbsp&nbsp <input type="radio" name="cible" value="adulte" <%=checkAdult%>> Adultes
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                whichRadio = request.getParameter("type");
-                                checkIndif = "";
+                                String[] typesCheck = request.getParameterValues("type");
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (whichRadio == null)
-                                    checkIndif = " checked";
-                                else if (whichRadio.equals("opera"))
-                                    checkOpera = " checked";
-                                else if (whichRadio.equals("humoristique"))
-                                    checkHumor = " checked";
-                                else if (whichRadio.equals("drame"))
-                                    checkDrame = " checked";
-                                else if (whichRadio.equals("musical"))
-                                    checkMusic = " checked";
-                                else if (whichRadio.equals("cirque"))
-                                    checkCirqu = " checked";
-                                else
-                                    checkIndif = " checked";
+                                if (typesCheck != null) {
+                                    for (int i = 0; i < typesCheck.length; i++) {
+                                        if (typesCheck[i].equals("opera")) {
+                                            checkOpera = " checked";
+                                        } else if (typesCheck[i].equals("humoristique")) {
+                                            checkHumor = " checked";
+                                        } else if (typesCheck[i].equals("drame")) {
+                                            checkDrame = " checked";
+                                        } else if (typesCheck[i].equals("musical")) {
+                                            checkMusic = " checked";
+                                        } else if (typesCheck[i].equals("cirque")) {
+                                            checkCirqu = " checked";
+                                        }
+                                    }
+                                }
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%>> Indifférent
+                            &nbsp&nbsp <input type="checkbox" name="type" value="opera" <%=checkOpera%>> Opéra 
                             <br>
-                            &nbsp&nbsp <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
+                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique" <%=checkHumor%>> Humoristique
                             <br>
-                            &nbsp&nbsp <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
+                            &nbsp&nbsp <input type="checkbox" name="type" value="drame" <%=checkDrame%>> Drame
                             <br>
-                            &nbsp&nbsp <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>> Drame
+                            &nbsp&nbsp <input type="checkbox" name="type" value="musical" <%=checkMusic%>> Musical
                             <br>
-                            &nbsp&nbsp <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
+                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque" <%=checkCirqu%>> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
@@ -155,9 +153,9 @@
                                 <tr>
                                     <th>Horaire</td>
                                     <th>Nom</td>
-                                    <th>Prix de base</td>
-                                    <th>Public cible</td>
+                                    <th>Prix de base</td>                    
                                     <th>Type de pièce</td>
+                                    <th>Public cible</td>   
                                 </tr>
                             </thead>
                             <tbody>
@@ -170,14 +168,18 @@
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
+
+                                        switch (type) {
+                                            case "toutPublic" : type = "Tout Public"; break;
+                                        }
                                 %>
 
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
-                                    <td><%=prixDeBase%> €</td>
-                                    <td><%=cible%></td>
+                                    <td><%=prixDeBase%>0 €</td>
                                     <td><%=type%></td>
+                                    <td><%=cible%></td>
                                 </tr>
                                 <%
                                     }
