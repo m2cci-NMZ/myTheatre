@@ -1,0 +1,11 @@
+sprint1 S1 I1
+1 - OK
+2 - A corriger : Cyble, Type et 10.0€ -> 10,00 €
+3 - OK
+4 - OK
+5 - A améliorer : Date de début > Date de fin possible
+6 - OK
+7 - OK - S1 trop léger
+8 - OK
+9 - A améliorer : cf 5
+10 - Non concerné
