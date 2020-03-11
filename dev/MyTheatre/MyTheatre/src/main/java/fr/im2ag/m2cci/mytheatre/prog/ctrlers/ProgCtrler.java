@@ -66,6 +66,7 @@ public class ProgCtrler extends HttpServlet {
             
             String type;
             type = request.getParameter("type");
+            
 
             String cible;
             cible = request.getParameter("cible");
