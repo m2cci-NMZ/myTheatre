@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -46,7 +47,7 @@ public class ProgCtrler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try {
 
             Date dateDebut;
@@ -58,29 +59,30 @@ public class ProgCtrler extends HttpServlet {
             String fin;
             fin = request.getParameter("dateFin");
             dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-            
-            
-            request.setAttribute("dateDebut",dateDebut);
-            request.setAttribute("dateFin",dateFin);
-            
-            
-            String type;
-            type = request.getParameter("type");
+
+            request.setAttribute("dateDebut", dateDebut);
+            request.setAttribute("dateFin", dateFin);
 
             String cible;
             cible = request.getParameter("cible");
 
-            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
+            List<String> types = new ArrayList<>();
+            String[] s = request.getParameterValues("type");
+            if (s != null) {
+                for (int i = 0; i < s.length; i++) {
+                    types.add(s[i]);
+                }
+            }
+
+            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
 
             request.setAttribute("progList", listRepresentations);
-            
+
             request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
 
-        }
-        catch(SQLException ex )  {
+        } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
-        }
-        catch(ParseException ex){
+        } catch (ParseException ex) {
             throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
