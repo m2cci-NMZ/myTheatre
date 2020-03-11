@@ -167,7 +167,7 @@
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
-                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                        Double prixDeBase = r.getSpectacle().getPrixDeBase(); 
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
                                 %>
