@@ -155,9 +155,9 @@
                                 <tr>
                                     <th>Horaire</td>
                                     <th>Nom</td>
-                                    <th>Prix de base</td>
-                                    <th>Public cible</td>
+                                    <th>Prix de base</td>                    
                                     <th>Type de pièce</td>
+                                     <th>Public cible</td>   
                                 </tr>
                             </thead>
                             <tbody>
