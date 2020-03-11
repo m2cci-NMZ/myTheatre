@@ -105,39 +105,36 @@
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                whichRadio = request.getParameter("type");
+                                String whichCheck= request.getParameter("type");
                                 checkIndif = "";
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (whichRadio == null)
-                                    checkIndif = " checked";
-                                else if (whichRadio.equals("opera"))
+                                if (whichCheck.equals("opera"))
                                     checkOpera = " checked";
-                                else if (whichRadio.equals("humoristique"))
+                                else if (whichCheck.equals("humoristique"))
                                     checkHumor = " checked";
-                                else if (whichRadio.equals("drame"))
+                                else if (whichCheck.equals("drame"))
                                     checkDrame = " checked";
-                                else if (whichRadio.equals("musical"))
+                                else if (whichCheck.equals("musical"))
                                     checkMusic = " checked";
-                                else if (whichRadio.equals("cirque"))
+                                else if (whichCheck.equals("cirque"))
                                     checkCirqu = " checked";
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffT" name="type" value="null" <%=checkIndif%>> Indifférent
                             <br>
-                            &nbsp&nbsp <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
+                            &nbsp&nbsp <input type="checkbox" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
                             <br>
-                            &nbsp&nbsp <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
+                            &nbsp&nbsp <input type="checkbox" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
                             <br>
-                            &nbsp&nbsp <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>> Drame
+                            &nbsp&nbsp <input type="checkbox" id=dra name="type" value="drame" <%=checkDrame%>> Drame
                             <br>
-                            &nbsp&nbsp <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
+                            &nbsp&nbsp <input type="checkbox" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
                             <br>
-                            &nbsp&nbsp <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
+                            &nbsp&nbsp <input type="checkbox" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
