@@ -125,6 +125,12 @@
                                             checkCirqu = " checked";
                                         }
                                     }
+                                } else {
+                                    checkOpera = " checked";
+                                    checkHumor = " checked";
+                                    checkDrame = " checked";
+                                    checkMusic = " checked";
+                                    checkCirqu = " checked";
                                 }
                             %>
                             &nbsp&nbsp <input type="checkbox" name="type" value="opera" <%=checkOpera%>> Opéra 
