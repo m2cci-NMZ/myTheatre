@@ -173,27 +173,28 @@
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
+                                        
+                                        // Formatage du prix à la française
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
                                         NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
                                         prix.setMinimumFractionDigits(2);
                                         String prixBase = prix.format(prixDeBase);
+                                        
+                                        // Mise en forme des cibles et des types
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
-
                                         switch (cible) {
                                             case "toutPublic" : cible = "Tout Public"; break;
                                             case "unCinqAns" : cible = "1-5 Ans"; break;
                                             case "jeunePublic" : cible = "Jeune Public"; break;
                                             case "adulte" : cible = "Adulte"; break;
                                         }
-                                        
                                         switch (type) {
                                             case "opera" : type = "Opéra"; break;
                                             case "drame" : type = "Drame"; break;
                                             case "humoristique" : type = "Humoristique"; break;
                                             case "musical" : type = "Musical"; break;
                                             case "cirque" : type = "Cirque"; break;
-                                           
                                         }
                                 %>
 
