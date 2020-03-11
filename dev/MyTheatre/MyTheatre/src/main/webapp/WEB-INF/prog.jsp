@@ -95,13 +95,13 @@
                             %>
                             &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
                             <br>
-                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
+                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="Un Cinq Ans" <%=check1Cinq%>> 1-5 ans
                             <br>
-                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
+                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="Jeune Public" <%=checkJeune%>> Jeune Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
+                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="Tout Public" <%=checkToutP%>> Tout Public
                             <br>
-                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
+                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="Adulte" <%=checkAdult%>> Adultes
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
@@ -131,13 +131,13 @@
                             <br>
                             &nbsp&nbsp <input type="radio" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
                             <br>
-                            &nbsp&nbsp <input type="radio" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
+                            &nbsp&nbsp <input type="radio" id="hum" name="type" value="Humoristique" <%=checkHumor%>> Humoristique
                             <br>
-                            &nbsp&nbsp <input type="radio" id=dra name="type" value="drame" <%=checkDrame%>> Drame
+                            &nbsp&nbsp <input type="radio" id=dra name="type" value="Drame" <%=checkDrame%>> Drame
                             <br>
-                            &nbsp&nbsp <input type="radio" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
+                            &nbsp&nbsp <input type="radio" id="mus" name="type" value="Musical" <%=checkMusic%>> Musical
                             <br>
-                            &nbsp&nbsp <input type="radio" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
+                            &nbsp&nbsp <input type="radio" id="cir" name="type" value="Cirque" <%=checkCirqu%>> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
