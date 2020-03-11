@@ -175,7 +175,7 @@
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
-                                    <td><%=prixDeBase%> €</td>
+                                    <td><%=prixDeBase%>0 €</td>
                                     <td><%=type%></td>
                                     <td><%=cible%></td>
                                 </tr>
