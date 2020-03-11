@@ -31,7 +31,7 @@ public class ProgDAO {
     
     
     public static List<Representation> representationsFiltrees(DataSource ds, Date horaireDebut, 
-            Date horaireFin, String cibleSpe, String typeSpe) throws SQLException, ParseException{
+            Date horaireFin, String cibleSpe, List<String> typeSpe) throws SQLException, ParseException{
         
         String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
