@@ -176,7 +176,6 @@
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
                                         NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
                                         prix.setMinimumFractionDigits(2);
-                                        prix.setMinimumFractionDigits(2);
                                         String prixBase = prix.format(prixDeBase);
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
