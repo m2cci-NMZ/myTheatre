@@ -54,10 +54,10 @@
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
                                 Date dateFin = (Date) request.getAttribute("dateFin");
-                                
+
                                 // Affichage des dates sélectionnés dans la nouvelle page
                                 String dateDebutForm;
-                                if (dateDebut == null){
+                                if (dateDebut == null) {
                                     dateDebutForm = "2020-03-01";
                                 } else {
                                     dateDebutForm = navigateurJourFormatter.format(dateDebut);
@@ -67,7 +67,7 @@
                                     dateFinForm = "2020-03-31";
                                 } else {
                                     dateFinForm = navigateurJourFormatter.format(dateFin);
-                                } 
+                                }
                             %>
                             <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
                             <input type="date" name="dateFin" value=<%=dateFinForm%>>
@@ -105,7 +105,7 @@
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                String whichCheck= request.getParameter("type");
+                                /*String whichCheck= request.getParameter("type");
                                 checkIndif = "";
                                 String checkOpera = "";
                                 String checkHumor = "";
@@ -123,18 +123,17 @@
                                 else if (whichCheck.equals("cirque"))
                                     checkCirqu = " checked";
                                 else
-                                    checkIndif = " checked";
+                                    checkIndif = " checked";*/
                             %>
+                            &nbsp&nbsp <input type="checkbox" name="type" value="opera"> Opéra 
                             <br>
-                            &nbsp&nbsp <input type="checkbox" id="ope" name="type" value="opera" <%=checkOpera%>> Opéra
+                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique"> Humoristique
                             <br>
-                            &nbsp&nbsp <input type="checkbox" id="hum" name="type" value="humoristique" <%=checkHumor%>> Humoristique
+                            &nbsp&nbsp <input type="checkbox" name="type" value="drame"> Drame
                             <br>
-                            &nbsp&nbsp <input type="checkbox" id=dra name="type" value="drame" <%=checkDrame%>> Drame
+                            &nbsp&nbsp <input type="checkbox" name="type" value="musical"> Musical
                             <br>
-                            &nbsp&nbsp <input type="checkbox" id="mus" name="type" value="musical" <%=checkMusic%>> Musical
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" id="cir" name="type" value="cirque" <%=checkCirqu%>> Cirque
+                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque"> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
@@ -154,7 +153,7 @@
                                     <th>Nom</td>
                                     <th>Prix de base</td>                    
                                     <th>Type de pièce</td>
-                                     <th>Public cible</td>   
+                                    <th>Public cible</td>   
                                 </tr>
                             </thead>
                             <tbody>

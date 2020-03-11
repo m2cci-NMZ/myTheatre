@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -62,16 +63,17 @@ public class ProgCtrler extends HttpServlet {
             
             request.setAttribute("dateDebut",dateDebut);
             request.setAttribute("dateFin",dateFin);
-            
-            
-            String type;
-            type = request.getParameter("type");
-            
 
             String cible;
             cible = request.getParameter("cible");
+            
+            List<String> types = new ArrayList<>();
+            String[] s = request.getParameterValues("type");
+            for (int i = 0; i < s.length; i++) {
+                types.add(s[i]);
+            }
 
-            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, type);
+            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
 
             request.setAttribute("progList", listRepresentations);
             
