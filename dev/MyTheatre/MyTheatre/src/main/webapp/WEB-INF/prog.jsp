@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.ima2g.m2cci.mytheatre.prog.model.Representation"%>
@@ -172,6 +174,10 @@
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                        NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
+                                        prix.setMinimumFractionDigits(2);
+                                        prix.setMinimumFractionDigits(2);
+                                        String prixBase = prix.format(prixDeBase);
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
 
@@ -183,7 +189,7 @@
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
-                                    <td><%=prixDeBase%>0 €</td>
+                                    <td><%=prixBase%> €</td>
                                     <td><%=type%></td>
                                     <td><%=cible%></td>
                                 </tr>
