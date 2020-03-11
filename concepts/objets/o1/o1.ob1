@@ -25,7 +25,7 @@
     ! create lesAnimaux : Spectacle
     ! lesAnimaux.numero_ := 46
     ! lesAnimaux.nom := 'Les Animaux'
-    ! lesAnimaux.prixDeBase := 8.0
+    ! lesAnimaux.prixDeBase := 9.5
     ! lesAnimaux.cible := Cible::unCinqAns
     ! lesAnimaux.type := Type::cirque
 
