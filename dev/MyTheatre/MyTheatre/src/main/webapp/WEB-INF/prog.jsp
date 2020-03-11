@@ -95,15 +95,15 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" name="cible" value="null" <%=checkIndif%>> Indifférent 
+                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
                             <br>
-                            &nbsp&nbsp <input type="radio" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
+                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
                             <br>
-                            &nbsp&nbsp <input type="radio" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
+                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
                             <br>
-                            &nbsp&nbsp <input type="radio" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
+                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
                             <br>
-                            &nbsp&nbsp <input type="radio" name="cible" value="adulte" <%=checkAdult%>> Adultes
+                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
@@ -181,8 +181,20 @@
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
 
+                                        switch (cible) {
+                                            case "toutPublic" : cible = "Tout Public"; break;
+                                            case "unCinqAns" : cible = "1-5 Ans"; break;
+                                            case "jeunePublic" : cible = "Jeune Public"; break;
+                                            case "adulte" : cible = "Adulte"; break;
+                                        }
+                                        
                                         switch (type) {
-                                            case "toutPublic" : type = "Tout Public"; break;
+                                            case "opera" : type = "Opéra"; break;
+                                            case "drame" : type = "Drame"; break;
+                                            case "humoristique" : type = "Humoristique"; break;
+                                            case "musical" : type = "Musical"; break;
+                                            case "cirque" : type = "Cirque"; break;
+                                           
                                         }
                                 %>
 
