@@ -152,9 +152,9 @@
                                 <tr>
                                     <th>Horaire</td>
                                     <th>Nom</td>
-                                    <th>Prix de base</td>
-                                    <th>Public cible</td>
+                                    <th>Prix de base</td>                    
                                     <th>Type de pièce</td>
+                                     <th>Public cible</td>   
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,8 +173,8 @@
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
                                     <td><%=prixDeBase%> €</td>
-                                    <td><%=cible%></td>
                                     <td><%=type%></td>
+                                    <td><%=cible%></td>
                                 </tr>
                                 <%
                                     }

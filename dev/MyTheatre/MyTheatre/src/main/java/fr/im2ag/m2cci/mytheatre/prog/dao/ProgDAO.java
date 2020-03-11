@@ -83,15 +83,15 @@ public class ProgDAO {
                         case "opera":
                             int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
                             boolean aUnOrchestre = (aUnOrchestreOpe == 1);
-                            s = new Opera(numero, nom, prixDeBase, cible, type, aUnOrchestre);
+                            s = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
                             break;
                         case "humoristique":
                             int estUnOneWomanManShowHum = rs.getInt("estUnOneWomanManShowHum");
                             boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
-                            s = new Humoristique(numero, nom, prixDeBase, cible, type, estUnOneWomanManShow);
+                            s = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanManShow);
                             break;
                         default:
-                            s = new Spectacle(numero, nom, prixDeBase, cible, type); 
+                            s = new Spectacle(numero, nom, prixDeBase, type, cible); 
                     }
                     Representation rep = new Representation(horaire, s);
                     representations.add(rep) ;
