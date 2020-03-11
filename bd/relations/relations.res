@@ -72,7 +72,7 @@ relation LesRepresentations
 		//tauxReducRep : Real
 		
 	constraints
-		key dateRep_
+		key horaireRep_
 
 
 constraints
