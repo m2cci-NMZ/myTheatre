@@ -167,7 +167,7 @@
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
-                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                        Double prixDeBase = r.getSpectacle().getPrixDeBase(); 
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
                                 %>
@@ -175,7 +175,7 @@
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
                                     <td><%=nom%></td>
-                                    <td><%=prixDeBase%> €</td>
+                                    <td><%=prixDeBase%>0 €</td>
                                     <td><%=type%></td>
                                     <td><%=cible%></td>
                                 </tr>
