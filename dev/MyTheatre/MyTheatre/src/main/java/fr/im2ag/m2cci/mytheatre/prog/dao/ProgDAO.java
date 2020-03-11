@@ -31,7 +31,7 @@ public class ProgDAO {
     
     
     public static List<Representation> representationsFiltrees(DataSource ds, Date horaireDebut, 
-            Date horaireFin, String cibleSpe, List<String> typeSpe) throws SQLException, ParseException{
+            Date horaireFin, String cibleSpe, List<String> typesSpe) throws SQLException, ParseException{
         
         String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
@@ -39,15 +39,23 @@ public class ProgDAO {
                 + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
                 + "WHERE horaireRep>=? AND horaireRep<=?";//+ "ORDER BY horaireRep";
         
-        List<Representation> representations = new ArrayList();
+        List<Representation> representations = new ArrayList<>();
+        
+        List<String> typeSpe = new ArrayList<>();
+        typeSpe.add("drame");
+        typeSpe.add("cirque");
         
         try (Connection conn = ds.getConnection()){
             // Construction de la requête en fonction des filtres
             if (!cibleSpe.equals("null")){
                 queryRep += " AND cibleSpe=?";
             }
-            if (!typeSpe.equals("null")){
-                queryRep += " AND typeSpe=?";
+            if (!typeSpe.isEmpty()){
+                queryRep += " AND (typeSpe=?";
+                for (int i = 1; i < typeSpe.size(); i++){
+                    queryRep += " OR typeSpe=?";
+                }
+                queryRep += ") \n";
             }
             queryRep += "ORDER BY horaireRep; \n";
             
@@ -56,17 +64,18 @@ public class ProgDAO {
             // Preparation de la requete
             stmt.setString(1, horaireFormatter.format(horaireDebut));
             stmt.setString(2, horaireFinFormatter.format(horaireFin));
-            if (!cibleSpe.equals("null") && !typeSpe.equals("null")){
+            int iQuery = 3;     // Permet de garder l'indice d'ajout du PreparedStatement
+            if (!cibleSpe.equals("null")){
                 stmt.setString(3, cibleSpe);
-                stmt.setString(4, typeSpe);
-            } else if (!cibleSpe.equals("null")) {
-                stmt.setString(3, cibleSpe);
-            } else if (!typeSpe.equals("null")) {
-                stmt.setString(3, typeSpe);
-            } 
+                iQuery ++;
+            }
+            if (!typeSpe.isEmpty()) {
+                for (int i = 1; i < typeSpe.size(); i++){
+                    stmt.setString(iQuery+i, typeSpe.get(i));
+                }
+            }
             
             try (ResultSet rs = stmt.executeQuery()) {
-                
                 while (rs.next()) {
                     // Récupération des attributs
                     int numero = rs.getInt("numeroSpe");
