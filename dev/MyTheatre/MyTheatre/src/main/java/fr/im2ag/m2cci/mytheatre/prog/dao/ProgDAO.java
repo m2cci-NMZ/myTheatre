@@ -41,23 +41,20 @@ public class ProgDAO {
         
         List<Representation> representations = new ArrayList<>();
         
-        List<String> typeSpe = new ArrayList<>();
-        typeSpe.add("drame");
-        typeSpe.add("cirque");
-        
         try (Connection conn = ds.getConnection()){
             // Construction de la requête en fonction des filtres
             if (!cibleSpe.equals("null")){
                 queryRep += " AND cibleSpe=?";
             }
-            if (!typeSpe.isEmpty()){
+            if (!typesSpe.isEmpty()){
                 queryRep += " AND (typeSpe=?";
-                for (int i = 1; i < typeSpe.size(); i++){
+                for (int i = 1; i < typesSpe.size(); i++){
                     queryRep += " OR typeSpe=?";
                 }
-                queryRep += ") \n";
+                queryRep += ")\n";
             }
-            queryRep += "ORDER BY horaireRep; \n";
+            queryRep += " ORDER BY horaireRep; \n";
+            System.out.println(queryRep);
             
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             
@@ -69,9 +66,9 @@ public class ProgDAO {
                 stmt.setString(3, cibleSpe);
                 iQuery ++;
             }
-            if (!typeSpe.isEmpty()) {
-                for (int i = 1; i < typeSpe.size(); i++){
-                    stmt.setString(iQuery+i, typeSpe.get(i));
+            if (!typesSpe.isEmpty()) {
+                for (int i = 0; i < typesSpe.size(); i++){
+                    stmt.setString(iQuery+i, typesSpe.get(i));
                 }
             }
             
