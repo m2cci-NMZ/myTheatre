@@ -105,35 +105,37 @@
                             <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                /*String whichCheck= request.getParameter("type");
-                                checkIndif = "";
+                                String[] typesCheck = request.getParameterValues("type");
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (whichCheck.equals("opera"))
-                                    checkOpera = " checked";
-                                else if (whichCheck.equals("humoristique"))
-                                    checkHumor = " checked";
-                                else if (whichCheck.equals("drame"))
-                                    checkDrame = " checked";
-                                else if (whichCheck.equals("musical"))
-                                    checkMusic = " checked";
-                                else if (whichCheck.equals("cirque"))
-                                    checkCirqu = " checked";
-                                else
-                                    checkIndif = " checked";*/
+                                if (typesCheck != null) {
+                                    for (int i = 0; i < typesCheck.length; i++) {
+                                        if (typesCheck[i].equals("opera")) {
+                                            checkOpera = " checked";
+                                        } else if (typesCheck[i].equals("humoristique")) {
+                                            checkHumor = " checked";
+                                        } else if (typesCheck[i].equals("drame")) {
+                                            checkDrame = " checked";
+                                        } else if (typesCheck[i].equals("musical")) {
+                                            checkMusic = " checked";
+                                        } else if (typesCheck[i].equals("cirque")) {
+                                            checkCirqu = " checked";
+                                        }
+                                    }
+                                }
                             %>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="opera"> Opéra 
+                            &nbsp&nbsp <input type="checkbox" name="type" value="opera" <%=checkOpera%>> Opéra 
                             <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique"> Humoristique
+                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique" <%=checkHumor%>> Humoristique
                             <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="drame"> Drame
+                            &nbsp&nbsp <input type="checkbox" name="type" value="drame" <%=checkDrame%>> Drame
                             <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="musical"> Musical
+                            &nbsp&nbsp <input type="checkbox" name="type" value="musical" <%=checkMusic%>> Musical
                             <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque"> Cirque
+                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque" <%=checkCirqu%>> Cirque
                             <br>
                             <br>
                             <input type="submit" value="Envoyer"> 
