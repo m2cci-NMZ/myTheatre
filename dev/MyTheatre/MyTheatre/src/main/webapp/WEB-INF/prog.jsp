@@ -82,13 +82,13 @@
                                 String checkAdult = "";
                                 if (whichRadio == null)
                                     checkIndif = " checked";
-                                else if (whichRadio.equals("un Cinq Ans"))
+                                else if (whichRadio.equals("unCinqAns"))
                                     check1Cinq = " checked";
-                                else if (whichRadio.equals("Jeune Public"))
+                                else if (whichRadio.equals("jeunePublic"))
                                     checkJeune = " checked";
-                                else if (whichRadio.equals("Tout Public"))
+                                else if (whichRadio.equals("toutPublic"))
                                     checkToutP = " checked";
-                                else if (whichRadio.equals("Adulte"))
+                                else if (whichRadio.equals("adulte"))
                                     checkAdult = " checked";
                                 else
                                     checkIndif = " checked";
