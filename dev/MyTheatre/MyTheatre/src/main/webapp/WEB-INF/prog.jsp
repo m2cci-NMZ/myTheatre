@@ -160,11 +160,11 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Horaire</td>
-                                    <th>Nom</td>
-                                    <th>Prix</td>                    
-                                    <th>Type de spectacle</td>
-                                    <th>Catégorie de spectateurs</td>   
+                                    <th>Horaire</th>
+                                    <th>Nom</th>
+                                    <th>Prix</th>                    
+                                    <th>Type de spectacle</th>
+                                    <th>Catégorie de spectateurs</th>   
                                 </tr>
                             </thead>
                             <tbody>
