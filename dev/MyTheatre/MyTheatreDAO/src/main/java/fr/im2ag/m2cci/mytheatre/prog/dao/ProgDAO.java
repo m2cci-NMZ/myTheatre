@@ -64,7 +64,6 @@ public class ProgDAO {
                 queryRep += ")\n";
             }
             queryRep += " ORDER BY horaireRep; \n";
-            System.out.println(queryRep);
             
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             
@@ -118,7 +117,6 @@ public class ProgDAO {
     }
     
     
-    
     public static List<Spectacle> toutSpectacles(DataSource ds) throws SQLException{
         
         String querySpe = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe \n"
@@ -161,5 +159,23 @@ public class ProgDAO {
             } 
         }
         return spectacles;
+    }
+    
+    
+    public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type, 
+            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException{
+        // todo : Traiter le cas des opera et des humoristique
+        String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
+        
+        try (Connection conn = ds.getConnection()){
+            PreparedStatement stmt = conn.prepareStatement(queryInsert);
+            stmt.setInt(1, numero);
+            stmt.setString(2, nom);
+            stmt.setDouble(3, prixDeBase);
+            stmt.setString(4, cible);
+            stmt.setString(5, type);
+            
+            stmt.executeUpdate();
+        }
     }
 }

@@ -48,10 +48,10 @@
                             <div class="col-md-6">
                                 <br>
                                 <h2>Spectacle</h2>
-                                <form action="???" >
-                                    &nbsp&nbsp Numéro <input type="number" name="numero" min="1" step="1">
+                                <form action="ajoutSpectacle">
+                                    &nbsp&nbsp Numéro <input type="number" name="numeroSpe" min="1" step="1">
                                     <br><br>
-                                    &nbsp&nbsp Nom <input type="text" name="nom">
+                                    &nbsp&nbsp Nom <input type="text" name="nomSpe">
                                     <br><br>
                                     &nbsp&nbsp Prix <input type="number" name="prix" step="0.01" min="0.01">
                                     <br><br>
@@ -62,7 +62,7 @@
                                         <option value="adulte">Adultes</option>
                                     </select>
                                     <br><br>
-                                    &nbsp&nbsp Type <select name="type" class="custom-select-sm">
+                                    &nbsp&nbsp Type <select name="typeSpe" class="custom-select-sm">
                                         <option value="opera">Opéra</option>
                                         <option value="humoristique">Humoristique</option>
                                         <option value="drame">Drame</option>
@@ -101,7 +101,6 @@
                                                 for (Spectacle s : spectacles) {
                                                     int numero = s.getNumero();
                                                     String nom = s.getNom();
-                                                    for (int i = 0; i < 4; i++) {
                                             %>
 
                                             <tr>
@@ -109,7 +108,6 @@
                                                 <td><%=numero%></td>
                                             </tr>
                                             <%
-                                                    }
                                                 }
                                             %>
                                         </tbody>
