@@ -8,7 +8,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
-<%@page import="fr.ima2g.m2cci.mytheatre.prog.model.Representation"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Representation"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,13 +34,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="../index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacts</a>
+                    <a class="nav-link" href="../administration.html">Administration</a>
                 </li>
             </ul>
         </nav>
@@ -74,7 +74,7 @@
                             <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
                             <input type="date" name="dateFin" value=<%=dateFinForm%>>
                             <br><br>
-                            <h5>Categorie de spectateurs</h5>
+                            <h5>Catégorie de spectateurs</h5>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -161,9 +161,9 @@
                                 <tr>
                                     <th>Horaire</td>
                                     <th>Nom</td>
-                                    <th>Prix de base</td>                    
-                                    <th>Type de pièce</td>
-                                    <th>Public cible</td>   
+                                    <th>Prix</td>                    
+                                    <th>Type de spectacle</td>
+                                    <th>Catégorie de spectateurs</td>   
                                 </tr>
                             </thead>
                             <tbody>
