@@ -154,7 +154,7 @@
                         <%
                             SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                         %>
-                        <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
+                        <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
 
                         <table class="table table-striped">
                             <thead>
