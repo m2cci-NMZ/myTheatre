@@ -35,18 +35,18 @@ usecase PlanifierDesRepresentations
      actor Gerant
       | le `Gerant` souhaite proposer une `Programmation` variée de `MyTheatre` 
       | selon les propositions d'artistes.
-      | Le `Gerant` va planifier et gèrer la planning des `Representation`s 
+      | Le `Gerant` va planifier et gèrer le planning des `Representation`s 
       
 
-usecase ModifierLePlanningDesRepresentations
-     actor Gerant
-      | le `Gerant` peut modifier le planning des `Representation`s selon 
-      | les propositions reçu et selon les jours et les heures disponible 
+usecase AjouterUneRepresentation
+     actor Gerant 
+      | le `Gerant` peut ajouter au planning des `Representation`s selon 
+      | les propositions reçu et selon les `Horaire` disponible 
       
 
 interactions
-    a Gerant  can gererLePlanningDesRepresentations
-    a Gerant  can proposerUneProgrammationVariee
-    a Gerant  can PlanifierDesRepresentations
-    a Gerant  can ModifierLePlanningDesRepresentations
+    a Gerant  can AjouterUneRepresentation
+    a Gerant  can PlanifierDesRepresentations 
+
+   
     
