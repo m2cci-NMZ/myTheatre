@@ -6,9 +6,8 @@
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
-import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
+import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
