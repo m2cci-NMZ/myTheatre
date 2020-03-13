@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Representation"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Spectacle"%>
@@ -32,13 +34,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Accueil</a>
+                    <a class="nav-link" href="./index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../administration.html">Administration</a>
+                    <a class="nav-link" href="./administration.html">Administration</a>
                 </li>
             </ul>
         </nav>
@@ -137,6 +139,7 @@
                                                 for (Spectacle s : spectacles) {
                                                     int numero = s.getNumero();
                                                     String nom = s.getNom();
+                                                    for (int i = 0; i < 2; i++) {
                                             %>
 
                                             <tr>
@@ -144,6 +147,7 @@
                                                 <td><%=numero%></td>
                                             </tr>
                                             <%
+                                                    }
                                                 }
                                             %>
                                         </tbody>
@@ -161,18 +165,8 @@
                             Date dateFin = (Date) request.getAttribute("dateFin");
 
                             // Affichage des dates sélectionnés dans la nouvelle page
-                            String dateDebutForm;
-                            if (dateDebut == null) {
-                                dateDebutForm = "2020-03-01";
-                            } else {
-                                dateDebutForm = navigateurJourFormatter.format(dateDebut);
-                            }
-                            String dateFinForm;
-                            if (dateFin == null) {
-                                dateFinForm = "2020-03-31";
-                            } else {
-                                dateFinForm = navigateurJourFormatter.format(dateFin);
-                            }
+                            String dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                            String dateFinForm = navigateurJourFormatter.format(dateFin);
                         %>
                         <form>
                             <div class="form-row">
@@ -190,6 +184,49 @@
                                 </div>
                             </div>
                         </form>
+                        <br>
+                        <%
+                            int nbSem = (int) request.getAttribute("nbSemaines");   // Récupère le nombre de semaines entre les deux dates du formulaire
+                            //List<Representation> representations = (List<Representation>) request.getAttribute("listeRepresentations");
+                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
+                            SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
+
+                            Date[] datesDebutsSemaines = (Date[]) request.getAttribute("datesDebutsSemaines");
+                            Date[] datesFinsSemaines = (Date[]) request.getAttribute("datesFinsSemaines");
+
+                            /*// Dates de début et de fin de chaque semaines
+                            Date dateDebutSem = dateDebut;
+                            Date dateFinSem;
+                            Calendar c = Calendar.getInstance();
+
+                            // On retrouve la date du lundi correspondant à la première semaine
+                            c.setTime(dateDebutSem);
+                            int numeroJourDateDebSem = c.get(Calendar.DAY_OF_WEEK);        // Commence au Dimanche donc on décalle de 1 jour
+                            numeroJourDateDebSem -= 1;
+                            if (numeroJourDateDebSem == 0) {
+                                numeroJourDateDebSem = 7;
+                            }
+                            c.add(Calendar.DATE, -(numeroJourDateDebSem - 1));      // Ici on met dans le calendrier la date du lundi
+                            dateDebutSem = c.getTime();     // On convertit en date*/
+                            for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
+
+
+                        %>
+                        <h4>Semaine du <%=jourFormatter.format(datesDebutsSemaines[i])%> au <%=jourFormatter.format(datesFinsSemaines[i])%></h4>
+                        <%
+                            }
+                        %>
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
