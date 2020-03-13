@@ -6,13 +6,9 @@
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
-import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
+import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -24,14 +20,14 @@ import javax.sql.DataSource;
 
 /**
  *
- * @author marti236
+ * @author miquelr
  */
-@WebServlet(name = "progCtrler", urlPatterns = {"/progCtrler"})
-public class ProgCtrler extends HttpServlet {
+@WebServlet(name = "ajoutSpectacle", urlPatterns = {"/ajoutSpectacle"})
+public class AjoutSpectacle extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,51 +36,27 @@ public class ProgCtrler extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
-     * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         try {
-            // Récupération des valeurs des champs du formulaire
-            String debut = request.getParameter("dateDebut");
-            String fin = request.getParameter("dateFin");
-            String cible = request.getParameter("cible");
-            String[] paramTypes = request.getParameterValues("type");
-
-            if (debut != null && fin != null && cible != null && paramTypes != null) {  // Si les paramètres ont été complétés
-                // Gestion des dates
-                Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
-                Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-
-                if (dateDebut.after(dateFin)) {   // Si l'utilisateur inverse la date de début et de fin
-                    Date tmp = dateFin;
-                    dateFin = dateDebut;
-                    dateDebut = tmp;
-                }
-
-                request.setAttribute("dateDebut", dateDebut);
-                request.setAttribute("dateFin", dateFin);
-
-                // Gestion des types de spectacles
-                List<String> types = new ArrayList<>();
-                for (int i = 0; i < paramTypes.length; i++) {
-                    types.add(paramTypes[i]);
-                }
-
-                // Requete à la BD
-                List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
-                request.setAttribute("progList", listRepresentations);
-            }
-
-            request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
-
+            int numero = Integer.parseInt(request.getParameter("numeroSpe"));
+            String nom = request.getParameter("nomSpe");
+            double prixDeBase = Double.parseDouble(request.getParameter("prixSpe"));
+            String cible = request.getParameter("cibleSpe");
+            String type = request.getParameter("typeSpe");
+            
+            // Requete à la BD pour l'insertion
+            ProgDAO.ajoutSpectacle(dataSource, numero, nom, prixDeBase, cible, type, false, false);
+            
+            // Requete à la BD pour avoir tous les Spectacles
+            List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
+            request.setAttribute("listeSpectacles", listSpectacles);
+            
+            request.getRequestDispatcher("/WEB-INF/ajoutProgrammation.jsp").forward(request, response);
         } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
-        } catch (ParseException ex) {
-            throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
 
