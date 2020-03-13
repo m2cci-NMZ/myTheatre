@@ -53,7 +53,7 @@ public class ProgDAO {
                 queryRep += ")\n";
             }
             queryRep += " ORDER BY horaireRep; \n";
-            System.out.println(queryRep);
+//            System.out.println(queryRep);
             
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             
