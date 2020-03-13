@@ -7,6 +7,7 @@ package fr.im2ag.m2cci.mytheatre.prog.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class Representation {
     private final Date horaire;
@@ -41,4 +42,34 @@ public class Representation {
         
         return "Representation : " + "Horraire =" + formatDate.format(horaire) + "\n" + spe  + "\n";
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.horaire);
+        hash = 67 * hash + Objects.hashCode(this.spe);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Representation other = (Representation) obj;
+        if (!Objects.equals(this.horaire, other.horaire)) {
+            return false;
+        }
+        if (!Objects.equals(this.spe, other.spe)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

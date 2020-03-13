@@ -34,13 +34,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Accueil</a>
+                    <a class="nav-link" href="./index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../administration.html">Administration</a>
+                    <a class="nav-link" href="./administration.html">Administration</a>
                 </li>
             </ul>
         </nav>
