@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ProgDAOTest {
 
-    static DataSource ds = new MockDataSource("org.sqlite.JDBC", "jdbc:sqlite:/home/m/marti236/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/test.db", null, null);
+    static DataSource ds = new MockDataSource("org.sqlite.JDBC", "jdbc:sqlite:/home/m/miquelr/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/test.db", null, null);
 
     public ProgDAOTest() {
     }
