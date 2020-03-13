@@ -50,6 +50,8 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
             request.setAttribute("listeSpectacles", listSpectacles);
             
+            //List<Representation> listRepresentations = ProgDAO.
+            
             request.getRequestDispatcher("/WEB-INF/ajoutProgrammation.jsp").forward(request, response);
         } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);

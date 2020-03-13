@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Spectacle"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -45,46 +47,80 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <br>
                                 <h2>Spectacle</h2>
                                 <form action="ajoutSpectacle">
-                                    &nbsp&nbsp Numéro <input type="number" name="numeroSpe" min="1" step="1">
-                                    <br><br>
-                                    &nbsp&nbsp Nom <input type="text" name="nomSpe">
-                                    <br><br>
-                                    &nbsp&nbsp Prix <input type="number" name="prix" step="0.01" min="0.01">
-                                    <br><br>
-                                    &nbsp&nbsp Cible <select name="cible" class="custom-select-sm">
-                                        <option value="unCinqAns">1-5 Ans</option>
-                                        <option value="jeunePublic">Jeune Public</option>
-                                        <option value="toutPublic">Tout Public</option>
-                                        <option value="adulte">Adultes</option>
-                                    </select>
-                                    <br><br>
-                                    &nbsp&nbsp Type <select name="typeSpe" class="custom-select-sm">
-                                        <option value="opera">Opéra</option>
-                                        <option value="humoristique">Humoristique</option>
-                                        <option value="drame">Drame</option>
-                                        <option value="musical">Musical</option>
-                                        <option value="cirque">Cirque</option>
-                                    </select>
-                                    <br><br>
-                                    <input type="submit" value="Ajouter"> 
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Numéro</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" name="numeroSpe" min="1" step="1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Nom</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="nomSpe">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Prix</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" name="prixSpe" step="0.01" min="0.01">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Cible</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="cibleSpe">
+                                                <option value="unCinqAns">1-5 Ans</option>
+                                                <option value="jeunePublic">Jeune Public</option>
+                                                <option value="toutPublic">Tout Public</option>
+                                                <option value="adulte">Adultes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Type</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="typeSpe">
+                                                <option value="opera">Opéra</option>
+                                                <option value="humoristique">Humoristique</option>
+                                                <option value="drame">Drame</option>
+                                                <option value="musical">Musical</option>
+                                                <option value="cirque">Cirque</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-right"> 
+                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                    </div>
                                 </form>
-                                <br>
                                 <hr>
                                 <h2>Représentation</h2>
-                                <br>
                                 <form action="???" >
-                                    &nbsp&nbsp Numéro du spectacle <input type="number" name="numero" min="1" step="1">
-                                    <br><br>
-                                    &nbsp&nbsp Horaire <input type="date" name="horaire_date"> à <input type="time" name="horaire_heure">
-                                    <br><br>
-                                    <input type="submit" value="Ajouter"> 
+                                    <div class="form-group">
+                                        <label class="col-form-label">Numéro du Spectacle</label>
+                                        <input type="number" class="form-control" name="numeroSpeRep" min="1" step="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label">Horaire de la Représentation</label>
+                                        <div class="form-row"> 
+                                            <div class="col-md-6">
+                                                <input type="date" class="form-control" name="horaireRepDate">
+                                            </div>
+                                            <label class="col-form-label">à</label>
+                                            <div class="col-md-5">
+                                                <input type="time" class="form-control" name="horaireRepHeure">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right"> 
+                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <br>
                                 <h2>Spectacles à l'affiche</h2>
                                 <div style="height:85vh; overflow: auto;">
@@ -118,7 +154,42 @@
                     </div>                  
                     <div class="col-md-7">
                         <br>
-                        <h2>Programmation</h2>
+                        <h2>La Programmation</h2>
+                        <%
+                            SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
+                            Date dateDebut = (Date) request.getAttribute("dateDebut");
+                            Date dateFin = (Date) request.getAttribute("dateFin");
+
+                            // Affichage des dates sélectionnés dans la nouvelle page
+                            String dateDebutForm;
+                            if (dateDebut == null) {
+                                dateDebutForm = "2020-03-01";
+                            } else {
+                                dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                            }
+                            String dateFinForm;
+                            if (dateFin == null) {
+                                dateFinForm = "2020-03-31";
+                            } else {
+                                dateFinForm = navigateurJourFormatter.format(dateFin);
+                            }
+                        %>
+                        <form>
+                            <div class="form-row">
+                                <div class=col-auto">
+                                    <label class="col-form-label">Du</label>
+                                </div>
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%>>
+                                </div>
+                                <div class=col-auto">
+                                    <label class="col-form-label">au</label>
+                                </div>
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

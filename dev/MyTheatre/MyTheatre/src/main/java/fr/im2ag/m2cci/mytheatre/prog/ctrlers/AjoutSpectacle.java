@@ -43,8 +43,8 @@ public class AjoutSpectacle extends HttpServlet {
         try {
             int numero = Integer.parseInt(request.getParameter("numeroSpe"));
             String nom = request.getParameter("nomSpe");
-            double prixDeBase = Double.parseDouble(request.getParameter("prix"));
-            String cible = request.getParameter("cible");
+            double prixDeBase = Double.parseDouble(request.getParameter("prixSpe"));
+            String cible = request.getParameter("cibleSpe");
             String type = request.getParameter("typeSpe");
             
             // Requete à la BD pour l'insertion
