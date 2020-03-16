@@ -191,28 +191,13 @@
                             SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
                             SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
 
-                            Date[] datesDebutsSemaines = (Date[]) request.getAttribute("datesDebutsSemaines");
-                            Date[] datesFinsSemaines = (Date[]) request.getAttribute("datesFinsSemaines");
+                            Date[] datesLundi = (Date[]) request.getAttribute("datesLundi");
+                            Date[] datesDimanche = (Date[]) request.getAttribute("datesDimanche");
 
-                            /*// Dates de début et de fin de chaque semaines
-                            Date dateDebutSem = dateDebut;
-                            Date dateFinSem;
-                            Calendar c = Calendar.getInstance();
-
-                            // On retrouve la date du lundi correspondant à la première semaine
-                            c.setTime(dateDebutSem);
-                            int numeroJourDateDebSem = c.get(Calendar.DAY_OF_WEEK);        // Commence au Dimanche donc on décalle de 1 jour
-                            numeroJourDateDebSem -= 1;
-                            if (numeroJourDateDebSem == 0) {
-                                numeroJourDateDebSem = 7;
-                            }
-                            c.add(Calendar.DATE, -(numeroJourDateDebSem - 1));      // Ici on met dans le calendrier la date du lundi
-                            dateDebutSem = c.getTime();     // On convertit en date*/
                             for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
-
-
+                                
                         %>
-                        <h4>Semaine du <%=jourFormatter.format(datesDebutsSemaines[i])%> au <%=jourFormatter.format(datesFinsSemaines[i])%></h4>
+                        <h4>Semaine du <%=jourFormatter.format(datesLundi[i])%> au <%=jourFormatter.format(datesDimanche[i])%></h4>
                         <%
                             }
                         %>

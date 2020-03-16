@@ -56,7 +56,7 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
         // Récupération des valeurs des dates du formulaire
         String debut = request.getParameter("dateDebut");
         String fin = request.getParameter("dateFin");
-        if (debut == null) {         // Si il n'y a pas de date spécifiée, on la force
+        if (debut == null) {         // Si il n'y a pas de dates spécifiées, on les force à des dates par défaut
             debut = "2020-03-01";
         }
         if (fin == null) {
@@ -64,20 +64,21 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
         }
 
         try {
-            // Récupération et set si besoin des dates
+            // Conversion en date
             Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
             Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-            if (dateDebut.after(dateFin)) {   // Si l'utilisateur inverse la date de début et de fin
+            // Si l'utilisateur inverse la date de début et de fin on le met dans le bon ordre
+            if (dateDebut.after(dateFin)) {   
                 Date tmp = dateFin;
                 dateFin = dateDebut;
                 dateDebut = tmp;
             }
-
+            // Ajout de l'attribut à la requete
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
             
-            // Requete à la BD
+            // Requete à la BD pour tous les Spectacles et pour les Representations
             List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
             request.setAttribute("listeSpectacles", listSpectacles);
 
@@ -85,48 +86,50 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             request.setAttribute("listeRepresentations", listRepresentations);
             
             
-            // On prépare les attributs de la requete Web
-            // Nombre de semaines entre les deux dates (toutes semaine inclu)
+            //######################################################################
+            //Traitement de la partie affichage de la programmation en semaines
+            //######################################################################
+            
+            //##### Calcul des Dates du Lundi et du Dimanche de chaque semaines
+            // Nombre de semaines entre les deux dates (toutes semaines inclus)
             int nbSem = nbSemaineEntre(dateDebut, dateFin);
             request.setAttribute("nbSemaines", nbSem);
             
-            
             // Dates de début et de fin de chaque semaines stockées dans des tableaux
-            Date[] datesDebutsSemaines = new Date[nbSem];
-            Date[] datesFinsSemaines = new Date[nbSem];
+            Date[] datesLundi = new Date[nbSem];
+            Date[] datesDimanche = new Date[nbSem];
             
-            // Remplissage de ces deux tableaux
-            Date dateDebutSem = dateDebut;
-            Date dateFinSem;
+            // Remplissage des deux tableaux
+            Date dateLundi, dateDimanche;
             Calendar c = Calendar.getInstance();
             
             // On retrouve la date du lundi correspondant à la première semaine
-            c.setTime(dateDebutSem);
-            int numeroJourDateDebSem = c.get(Calendar.DAY_OF_WEEK);        // Commence au Dimanche donc on décalle de 1 jour
-            numeroJourDateDebSem -= 1;
-            if (numeroJourDateDebSem == 0) {
-                numeroJourDateDebSem = 7;
-            }
-            c.add(Calendar.DATE, -(numeroJourDateDebSem - 1));      // Ici on met dans le calendrier la date du lundi
-            dateDebutSem = c.getTime();     // On convertit en date
+            int numeroJourSemDateDeb = numeroJourSemaine(dateDebut);
+            c.setTime(dateDebut);
+            c.add(Calendar.DATE, -(numeroJourSemDateDeb - 1));      // Met dans le calendrier la date du lundi
 
             // On parcours jusqu'à la dernière semaine
             for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
-                c.setTime(dateDebutSem);    // On convertit le lundi en calendrier
+                dateLundi = c.getTime();     // Récupère la date du lundi
 
                 c.add(Calendar.DATE, 6);    // On ajoute 6 pour passer au dimanche
-                dateFinSem = c.getTime();   // On récupère la date
+                dateDimanche = c.getTime();   // On récupère la date
                 
                 // On remplit les tableaux
-                datesDebutsSemaines[i] = dateDebutSem;      
-                datesFinsSemaines[i] = dateFinSem;
+                datesLundi[i] = dateLundi;      
+                datesDimanche[i] = dateDimanche;
 
                 c.add(Calendar.DATE, 1);    // On passe au lundi suivant
-                dateDebutSem = c.getTime();     // On prépare l'itération suivante
             }
             
-            request.setAttribute("datesDebutsSemaines", datesDebutsSemaines);
-            request.setAttribute("datesFinsSemaines", datesFinsSemaines);
+            request.setAttribute("datesLundi", datesLundi);
+            request.setAttribute("datesDimanche", datesDimanche);
+            
+            System.out.println(datesLundi);
+            System.out.println(datesDimanche);
+            
+            
+            //##### 
             
             
             // Pour chaque semaine, on récupère toutes les représentations et on les trie par jour de la semaine
@@ -196,29 +199,39 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
     }
     
     private int nbSemaineEntre(Date d1, Date d2){
-        // Calcul le numéro du jour de semaine de d2
-        Calendar c = Calendar.getInstance();
-        c.setTime(d2);
-        int dayOfWeekOfD2 = c.get(Calendar.DAY_OF_WEEK);        // Commence au Dimanche 
-        dayOfWeekOfD2 -= 1;
-        if (dayOfWeekOfD2 == 0) {
-            dayOfWeekOfD2 = 7;
-        }
-        
         // Calcul du nombre de jour entre les deux dates
         LocalDate date1 = d1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate date2 = d2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        long nbJour = ChronoUnit.DAYS.between(date1, date2) + 1;
+        long nbJour = ChronoUnit.DAYS.between(date1, date2) + 1;    // On ajoute un pour inclure d1 et d2
         
         // Calcul du nombre de semaines
         int nbSem = 0;
+        int nbJourAEnlever = numeroJourSemaine(d2);     // On commence par enlever le nombre de jours dans la dernière semaine
         while(nbJour > 0){
             nbSem ++;
-            nbJour -= dayOfWeekOfD2;
-            dayOfWeekOfD2 = 7;
+            nbJour -= nbJourAEnlever;      
+            nbJourAEnlever = 7;
         }
       
         return nbSem;
+    }
+    
+    /**
+     * 
+     * @param d : Date inst
+     * @return Le numéro du jour de la semaine correspondant à la date
+     * Lundi, ... 7 : Dimanche
+     */
+    private int numeroJourSemaine(Date d){
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        int numeroJour = c.get(Calendar.DAY_OF_WEEK);        // Retourne 1 pour Dimanche puis 2 pour Lundi, ...
+        numeroJour -= 1;
+        if (numeroJour == 0) {
+            numeroJour = 7;
+        }
+        
+        return numeroJour;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
