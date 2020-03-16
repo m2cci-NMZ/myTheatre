@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accueil My Theatre</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-brand" href="#">
+                        <img src="img/logo" alt="logo" style="width:40px;">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Programmation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./administration.html">Administration</a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                    <form action="progCtrler" >
+                        <br>
+                        <h2>Recherche</h2>
+                        <h5>Dates</h5>
+                        <input type="date" name="dateDebut" value="2020-03-01"> au                         
+                        <input type="date" name="dateFin" value="2020-03-31">
+                        <br><br>
+                        <h5>Categorie de spectateurs</h5>
+                        &nbsp&nbsp <input type="radio" name="cible" value="null" checked> Indifférent 
+                        <br>
+                        &nbsp&nbsp <input type="radio" name="cible" value="unCinqAns"> 1-5 ans 
+                        <br>
+                        &nbsp&nbsp <input type="radio" name="cible" value="jeunePublic"> Jeune Public 
+                        <br>
+                        &nbsp&nbsp <input type="radio" name="cible" value="toutPublic"> Tout Public 
+                        <br> 
+                        &nbsp&nbsp <input type="radio" name="cible" value="adulte"> Adultes 
+                        <br><br>
+                        <h5>Type de spectacles</h5>
+                        &nbsp&nbsp <input type="checkbox" name="type" value="opera" checked> Opéra 
+                        <br>
+                        &nbsp&nbsp <input type="checkbox" name="type" value="humoristique" checked> Humoristique
+                        <br>
+                        &nbsp&nbsp <input type="checkbox" name="type" value="drame" checked> Drame
+                        <br>
+                        &nbsp&nbsp <input type="checkbox" name="type" value="musical" checked> Musical
+                        <br>
+                        &nbsp&nbsp <input type="checkbox" name="type" value="cirque" checked> Cirque
+                        <br>
+                        <br>
+                        <input type="submit" value="Envoyer"> 
+                    </form>
+                    <div class="col-md-10">
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+        </script>
+    </body>
+</html>

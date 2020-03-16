@@ -20,16 +20,15 @@ import glossary model from "../glossaries/glossaries.gls"
 //-------Scenario 1 -----------------------------------------------------
 
 actor Spectateur
-      | `Spectateur` est une `Personne`. Le role du `Spectateur` est de consulter la 
+      | `Spectateur` est une personne. Le role du `Spectateur` est de consulter la 
       | `Programmation` de `MyTheatre`.
       | Pour realiser cette tâche, `Spectateur` possède une application web.
 
 
 //-------Scenario 3 -----------------------------------------------------
+
 actor Gerant 
-      | `Gerant` est une `Personne`. le role du `Gerant` est de gèrer le planning 
-      | des `Representation`s de `MyTheatre`.
-      | pour realiser cette tâche, le `Gerant` connecte à son mail et voir les               
-      | propositions.
-      | Le `Gerant` peut planifier des `Representation`s 
-      | Il peut accéder au  planning des `Representation`s et le modifier 
+      | `Gerant` est une personne. Le role du `Gerant` est de gèrer la `Programmation`s de `MyTheatre`.
+      | Pour realiser cette tâche, le `Gerant` utilise une application web.
+      | Il peut visualiser la `Programmation` de manière globale et il peut ajouter des `Spectacle`s
+      | et des `Representation`s

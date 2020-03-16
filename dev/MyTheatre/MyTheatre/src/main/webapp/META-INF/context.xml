@@ -7,6 +7,6 @@
               maxIdle="3" 
               maxWaitMillis="10000"
               driverClassName="org.sqlite.JDBC" 
-              url="jdbc:sqlite:/home/m/marti236/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3" 
+              url="jdbc:sqlite:/home/m/miquelr/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3" 
     />
 </Context>

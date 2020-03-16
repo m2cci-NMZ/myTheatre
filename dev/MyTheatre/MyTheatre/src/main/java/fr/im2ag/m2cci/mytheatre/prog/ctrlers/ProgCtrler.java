@@ -6,9 +6,8 @@
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
-import fr.ima2g.m2cci.mytheatre.prog.model.Representation;
+import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,36 +48,36 @@ public class ProgCtrler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-            // Gestion des dates
+            // Récupération des valeurs des champs du formulaire
             String debut = request.getParameter("dateDebut");
-            Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
-
             String fin = request.getParameter("dateFin");
-            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-            
-            if (dateDebut.after(dateFin)){   // Si l'utilisateur inverse la date de début et de fin
-                Date tmp = dateFin;
-                dateFin = dateDebut;
-                dateDebut = tmp;
-            }    
-                
-            request.setAttribute("dateDebut", dateDebut);
-            request.setAttribute("dateFin", dateFin);
+            String cible = request.getParameter("cible");
+            String[] paramTypes = request.getParameterValues("type");
 
-            String cible;
-            cible = request.getParameter("cible");
+            if (debut != null && fin != null && cible != null && paramTypes != null) {  // Si les paramètres ont été complétés
+                // Gestion des dates
+                Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
+                Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
 
-            List<String> types = new ArrayList<>();
-            String[] s = request.getParameterValues("type");
-            if (s != null) {
-                for (int i = 0; i < s.length; i++) {
-                    types.add(s[i]);
+                if (dateDebut.after(dateFin)) {   // Si l'utilisateur inverse la date de début et de fin
+                    Date tmp = dateFin;
+                    dateFin = dateDebut;
+                    dateDebut = tmp;
                 }
+
+                request.setAttribute("dateDebut", dateDebut);
+                request.setAttribute("dateFin", dateFin);
+
+                // Gestion des types de spectacles
+                List<String> types = new ArrayList<>();
+                for (int i = 0; i < paramTypes.length; i++) {
+                    types.add(paramTypes[i]);
+                }
+
+                // Requete à la BD
+                List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
+                request.setAttribute("progList", listRepresentations);
             }
-
-            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
-
-            request.setAttribute("progList", listRepresentations);
 
             request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
 

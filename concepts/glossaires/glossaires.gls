@@ -88,3 +88,6 @@ Statut
 Adherent
     | `Statut` d'une `Personne` faisant partie des adhérents du théatre
     | Une `Personne` peut être soit un `Adherent soit un spectateur ordinaire
+    
+Gerant
+		| Personne responsable du théâtre `MyTheatre` et qui gère la `Programmation`

@@ -1,3 +1,7 @@
-dev/MyTheatre/MyTheatre/target/
-dev/MyTheatre/MyTheatre/src/main/webapp/META-INF/context.xml
+/dev/MyTheatre/MyTheatre/target/
+/dev/MyTheatre/MyTheatre/src/main/webapp/META-INF/context.xml
 /dev/MyTheatre/MyTheatre/nbproject/
+/dev/MyTheatre/MyTheatreModel/nbproject/
+/dev/MyTheatre/MyTheatreModel/target/
+/dev/MyTheatre/MyTheatreDAO/nbproject/
+/dev/MyTheatre/MyTheatreDAO/target/

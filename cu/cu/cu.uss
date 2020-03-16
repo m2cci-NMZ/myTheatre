@@ -28,25 +28,27 @@ interactions
 
 
 
-    //-------Scenario 3 -----------------------------------------------------
+//-------Scenario 3 -----------------------------------------------------
 
+usecase AjouterUnSpectacle
+			actor Gerant 
+      | Le `Gerant` peut ajouter un `Spectacle` dans le système
 
-usecase PlanifierDesRepresentations
-     actor Gerant
-      | le `Gerant` souhaite proposer une `Programmation` variée de `MyTheatre` 
-      | selon les propositions d'artistes.
-      | Le `Gerant` va planifier et gèrer la planning des `Representation`s 
+usecase AjouterUneRepresentation
+			actor Gerant 
+      | Le `Gerant` peut ajouter à la `Programmation` une `Representation` selon les 
+      | `Horaire` disponible
       
-
-usecase ModifierLePlanningDesRepresentations
-     actor Gerant
-      | le `Gerant` peut modifier le planning des `Representation`s selon 
-      | les propositions reçu et selon les jours et les heures disponible 
-      
+usecase VisualiserLaProgrammationGlobalement
+			actor Gerant 
+      | Le `Gerant` peut visualiser la `Programmation` de manière plus globale qu'un
+      | `Spectateur. Les informations sont plus compactées et lui offrent une vision 
+      | d'ensemble      
 
 interactions
-    a Gerant  can gererLePlanningDesRepresentations
-    a Gerant  can proposerUneProgrammationVariee
-    a Gerant  can PlanifierDesRepresentations
-    a Gerant  can ModifierLePlanningDesRepresentations
+    a Gerant can AjouterUnSpectacle
+    a Gerant can AjouterUneRepresentation 
+    a Gerant can VisualiserLaProgrammationGlobalement 
+
+   
     

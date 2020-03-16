@@ -8,7 +8,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
-<%@page import="fr.ima2g.m2cci.mytheatre.prog.model.Representation"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Representation"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,13 +34,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="./index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacts</a>
+                    <a class="nav-link" href="./administration.html">Administration</a>
                 </li>
             </ul>
         </nav>
@@ -74,7 +74,7 @@
                             <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
                             <input type="date" name="dateFin" value=<%=dateFinForm%>>
                             <br><br>
-                            <h5>Categorie de spectateurs</h5>
+                            <h5>Catégorie de spectateurs</h5>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -152,18 +152,19 @@
                     <div class="col-md-10">
                         <br>
                         <%
-                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                            if (dateDebut != null && dateFin != null) {
+                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                         %>
-                        <h4>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h4>
+                        <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
 
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Horaire</td>
-                                    <th>Nom</td>
-                                    <th>Prix de base</td>                    
-                                    <th>Type de pièce</td>
-                                    <th>Public cible</td>   
+                                    <th>Horaire</th>
+                                    <th>Nom</th>
+                                    <th>Prix</th>                    
+                                    <th>Type de spectacle</th>
+                                    <th>Catégorie de spectateurs</th>   
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,28 +174,47 @@
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
-                                        
+
                                         // Formatage du prix à la française
                                         Double prixDeBase = r.getSpectacle().getPrixDeBase();
                                         NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
                                         prix.setMinimumFractionDigits(2);
+                                        prix.setMaximumFractionDigits(2);
                                         String prixBase = prix.format(prixDeBase);
-                                        
+
                                         // Mise en forme des cibles et des types
                                         String cible = r.getSpectacle().getCible();
                                         String type = r.getSpectacle().getType();
                                         switch (cible) {
-                                            case "toutPublic" : cible = "Tout Public"; break;
-                                            case "unCinqAns" : cible = "1-5 Ans"; break;
-                                            case "jeunePublic" : cible = "Jeune Public"; break;
-                                            case "adulte" : cible = "Adulte"; break;
+                                            case "toutPublic":
+                                                cible = "Tout Public";
+                                                break;
+                                            case "unCinqAns":
+                                                cible = "1-5 Ans";
+                                                break;
+                                            case "jeunePublic":
+                                                cible = "Jeune Public";
+                                                break;
+                                            case "adulte":
+                                                cible = "Adulte";
+                                                break;
                                         }
                                         switch (type) {
-                                            case "opera" : type = "Opéra"; break;
-                                            case "drame" : type = "Drame"; break;
-                                            case "humoristique" : type = "Humoristique"; break;
-                                            case "musical" : type = "Musical"; break;
-                                            case "cirque" : type = "Cirque"; break;
+                                            case "opera":
+                                                type = "Opéra";
+                                                break;
+                                            case "drame":
+                                                type = "Drame";
+                                                break;
+                                            case "humoristique":
+                                                type = "Humoristique";
+                                                break;
+                                            case "musical":
+                                                type = "Musical";
+                                                break;
+                                            case "cirque":
+                                                type = "Cirque";
+                                                break;
                                         }
                                 %>
 
@@ -209,7 +229,10 @@
                                     }
                                 %>
                             </tbody>
-                        </table>                  
+                        </table>   
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
