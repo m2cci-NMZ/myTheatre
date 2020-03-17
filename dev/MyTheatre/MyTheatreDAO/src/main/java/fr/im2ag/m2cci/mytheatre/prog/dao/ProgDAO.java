@@ -178,4 +178,18 @@ public class ProgDAO {
             stmt.executeUpdate();
         }
     }
+    
+    
+    public static void insertRepresentation(DataSource ds, int numeroSpe, Date horaireRep) throws SQLException{
+        // todo : Traiter le cas des opera et des humoristique
+        String queryInsert = "INSERT INTO LesRepresentations VALUES (?, ?);";
+        
+        try (Connection conn = ds.getConnection()){
+            PreparedStatement stmt = conn.prepareStatement(queryInsert);
+            stmt.setString(1, horaireFormatter.format(horaireRep));
+            stmt.setInt(2, numeroSpe);
+            
+            stmt.executeUpdate();
+        }
+    }
 }

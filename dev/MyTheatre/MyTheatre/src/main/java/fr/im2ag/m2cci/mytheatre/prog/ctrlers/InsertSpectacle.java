@@ -6,10 +6,8 @@
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
-import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +20,8 @@ import javax.sql.DataSource;
  *
  * @author miquelr
  */
-@WebServlet(name = "ajoutSpectacle", urlPatterns = {"/ajoutSpectacle"})
-public class AjoutSpectacle extends HttpServlet {
+@WebServlet(name = "insertSpectacle", urlPatterns = {"/insertSpectacle"})
+public class InsertSpectacle extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;
@@ -49,10 +47,6 @@ public class AjoutSpectacle extends HttpServlet {
             
             // Requete à la BD pour l'insertion
             ProgDAO.ajoutSpectacle(dataSource, numero, nom, prixDeBase, cible, type, false, false);
-            
-            // Requete à la BD pour avoir tous les Spectacles
-            List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
-            request.setAttribute("listeSpectacles", listSpectacles);
             
             request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
         } catch (SQLException ex) {
