@@ -68,7 +68,7 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
             Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
             // Si l'utilisateur inverse la date de début et de fin on le met dans le bon ordre
-            if (dateDebut.after(dateFin)) {   
+            if (dateDebut.after(dateFin)) {
                 Date tmp = dateFin;
                 dateFin = dateDebut;
                 dateDebut = tmp;
@@ -77,15 +77,13 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
-            
             // Requete à la BD pour tous les Spectacles et pour les Representations
             List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
             request.setAttribute("listeSpectacles", listSpectacles);
 
             List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, "null", new ArrayList<String>());
             request.setAttribute("listeRepresentations", listRepresentations);
-            
-            
+
             //######################################################################
             //Traitement de la partie affichage de la programmation en semaines
             //######################################################################
@@ -94,19 +92,19 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             // Nombre de semaines entre les deux dates (toutes semaines inclus)
             int nbSem = nbSemaineEntre(dateDebut, dateFin);
             request.setAttribute("nbSemaines", nbSem);
-            
+
             // Dates de début et de fin de chaque semaines stockées dans des tableaux
             Date[] datesLundi = new Date[nbSem];
             Date[] datesDimanche = new Date[nbSem];
-            
+
             // Remplissage des deux tableaux
             Date dateLundi, dateDimanche;
             Calendar c = Calendar.getInstance();
-            
+
             // On retrouve la date du lundi correspondant à la première semaine
             int numeroJourSemDateDeb = numeroJourSemaine(dateDebut);
             c.setTime(dateDebut);
-            c.add(Calendar.DATE, -(numeroJourSemDateDeb - 1));      // Met dans le calendrier la date du lundi
+            c.add(Calendar.DATE, -numeroJourSemDateDeb);      // Met dans le calendrier la date du lundi
 
             // On parcours jusqu'à la dernière semaine
             for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
@@ -114,82 +112,41 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
 
                 c.add(Calendar.DATE, 6);    // On ajoute 6 pour passer au dimanche
                 dateDimanche = c.getTime();   // On récupère la date
-                
+
                 // On remplit les tableaux
-                datesLundi[i] = dateLundi;      
+                datesLundi[i] = dateLundi;
                 datesDimanche[i] = dateDimanche;
 
                 c.add(Calendar.DATE, 1);    // On passe au lundi suivant
             }
-            
+
             request.setAttribute("datesLundi", datesLundi);
             request.setAttribute("datesDimanche", datesDimanche);
-            
-            System.out.println(datesLundi);
-            System.out.println(datesDimanche);
-            
-            
-            //##### 
-            
-            
-            // Pour chaque semaine, on récupère toutes les représentations et on les trie par jour de la semaine
-            ArrayList[] representationsParSemaine = new ArrayList[nbSem];
-            
-            // On crée le gros tableau qui contient toutes les semaines
-            for (int iSem = 0; iSem < nbSem; iSem++){ 
-                representationsParSemaine[iSem] = new ArrayList();;
-                for (int iJour = 0; iJour < 7; iJour ++){
-                    representationsParSemaine[iSem].add(new ArrayList<Representation>());
+    
+            //##### Séparation des Representations par semaines et par jours de la semaine
+            List<List<List<Representation>>> repParSemaine = new ArrayList<>();
+            for (int iSem = 0; iSem < nbSem; iSem++) {
+                repParSemaine.add(new ArrayList<List<Representation>>());
+            }
+
+            int iSem = 0;
+            int iRep = 0;
+            while (iRep < listRepresentations.size()){
+                Representation rep = listRepresentations.get(iRep);
+                Date horaire = rep.getHoraire();
+                if (horaire.after(datesLundi[iSem]) && horaire.before(toFinDeJournee(datesDimanche[iSem]))) {
+                    ajouterAuRepParSemaine(rep, iSem, repParSemaine);
+                    iRep++;
+                } else if (!horaire.after(toFinDeJournee(datesDimanche[iSem]))) {
+                    throw new RuntimeException ("Une des représentations de la requete n'est pas dans la plage horraire définie par l'utilisateur");
+                } else {
+                    iSem++;
                 }
             }
-            
-            /*// On remplit le tableau
-            for (Representation r : listRepresentations) {
-                Date horaire = r.getHoraire();
-                for (int iSem = 0; iSem < nbSem; iSem++){
-                    dateDebutSem = datesDebutsSemaines[iSem];
-                    dateFinSem = datesDebutsSemaines[iSem];
-                    if (horaire.after(dateDebutSem) && horaire.before(dateDebutSemSuivante)) 
-                }
-            }*/
-            
-            
-            
-            
-            
-            
-            
-            /*// On récupère toutes les représentations entre la dateDebutSem et la dateFinSem
-                for (Representation r : listRepresentations) {
-                    Date horaire = r.getHoraire();
-                    if (horaire.after(dateDebutSem) && horaire.before(dateDebutSemSuivante)) {
-                        String nom = r.getSpectacle().getNom();
-                        String heure = heureFormatter.format(horaire) + "h";
 
-                        // Calcul du numero du jour de la semaine
-                        Calendar cJourSemaine = Calendar.getInstance();
-                        cJourSemaine.setTime(horaire);
-                        int numJourSem = cJourSemaine.get(Calendar.DAY_OF_WEEK);
-                        numJourSem -= 1;
-                        if (numJourSem == 0) {
-                            numJourSem = 7;
-                        }
-                        
-                    }
-                }
+            request.setAttribute("repParSemaine", repParSemaine);
             
             
-            // On 
-            ArrayList[] test = new ArrayList[7];
-            for (int i = 0; i < 7 ; i++){
-                test[i] = new ArrayList<Representation>();
-            }*/
-            
-            
-            
-            
-            
-
             request.getRequestDispatcher("/WEB-INF/ajoutProgrammation.jsp").forward(request, response);
         } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
@@ -197,32 +154,40 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
-    
-    private int nbSemaineEntre(Date d1, Date d2){
+
+    /**
+     * Calcule le nombre de semaines de la période délimitée par deux dates
+     *
+     * @param d1 : Premier jour
+     * @param d2 : Dernier jour
+     * @return : int correspondant au nombre de semaine
+     */
+    protected static int nbSemaineEntre(Date d1, Date d2) {
         // Calcul du nombre de jour entre les deux dates
         LocalDate date1 = d1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate date2 = d2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         long nbJour = ChronoUnit.DAYS.between(date1, date2) + 1;    // On ajoute un pour inclure d1 et d2
-        
+
         // Calcul du nombre de semaines
         int nbSem = 0;
-        int nbJourAEnlever = numeroJourSemaine(d2);     // On commence par enlever le nombre de jours dans la dernière semaine
-        while(nbJour > 0){
-            nbSem ++;
-            nbJour -= nbJourAEnlever;      
+        int nbJourAEnlever = numeroJourSemaine(d2) + 1;     // On commence par enlever le nombre de jours dans la dernière semaine
+        while (nbJour > 0) {
+            nbSem++;
+            nbJour -= nbJourAEnlever;
             nbJourAEnlever = 7;
         }
-      
+
         return nbSem;
     }
-    
+
     /**
-     * 
-     * @param d : Date inst
-     * @return Le numéro du jour de la semaine correspondant à la date
-     * Lundi, ... 7 : Dimanche
+     * Calcul le numéro du jour de la semaine correspondant à la date donnée en
+     * paramètre : 0 pour lundi, ..., 6 pour dimanche
+     *
+     * @param d : Date
+     * @return : int correspondant au numéro du jour
      */
-    private int numeroJourSemaine(Date d){
+    private static int numeroJourSemaine(Date d) {
         Calendar c = Calendar.getInstance();
         c.setTime(d);
         int numeroJour = c.get(Calendar.DAY_OF_WEEK);        // Retourne 1 pour Dimanche puis 2 pour Lundi, ...
@@ -230,8 +195,37 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
         if (numeroJour == 0) {
             numeroJour = 7;
         }
-        
+        numeroJour -= 1;    // On fait commencer le lundi à 0
+
         return numeroJour;
+    }
+
+    /**
+     * Retourne une nouvelle date de même jour que à celle passée en paramètre,
+     * mais ayant pour heure 23h59 Permet de faire des comparaison entre jours
+     *
+     * @param d : Date
+     * @return : Date fixée à 23h59
+     */
+    private Date toFinDeJournee(Date d) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.HOUR, +23);
+        c.add(Calendar.MINUTE, +59);
+
+        return c.getTime();
+    }
+    
+    private void ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine){
+        if (repParSemaine.get(numeroSem).isEmpty()){
+            // Premier ajout pour cette semaine, on crée les 7 List<Representation> pour chaque jour (Lundi, ..., Dimanche)
+            for (int iJour = 0; iJour < 7; iJour++){
+                repParSemaine.get(numeroSem).add(new ArrayList<Representation>());
+            }
+        }
+        
+        int numeroJourSemaineRep = numeroJourSemaine(rep.getHoraire());     // On trouve l'indice du jour
+        repParSemaine.get(numeroSem).get(numeroJourSemaineRep).add(rep);    // On ajoute dans le bon jour
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

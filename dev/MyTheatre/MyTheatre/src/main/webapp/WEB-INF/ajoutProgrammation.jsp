@@ -187,18 +187,50 @@
                         <br>
                         <%
                             int nbSem = (int) request.getAttribute("nbSemaines");   // Récupère le nombre de semaines entre les deux dates du formulaire
-                            //List<Representation> representations = (List<Representation>) request.getAttribute("listeRepresentations");
-                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
-                            SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
+                            List<List<List<Representation>>> representationsParSemaine = (List<List<List<Representation>>>) request.getAttribute("repParSemaine");
 
                             Date[] datesLundi = (Date[]) request.getAttribute("datesLundi");
                             Date[] datesDimanche = (Date[]) request.getAttribute("datesDimanche");
 
-                            for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
-                                
+                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
+                            SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
+
+                            for (int iSem = 0; iSem < nbSem; iSem++) {
                         %>
-                        <h4>Semaine du <%=jourFormatter.format(datesLundi[i])%> au <%=jourFormatter.format(datesDimanche[i])%></h4>
+                                <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
                         <%
+                                // Pour chaque semaine    
+                                if (representationsParSemaine.get(iSem).isEmpty()) {
+                                    // Si la semaine est vide
+                        %>
+                                    <h6>Semaine vide</h6><br><br>
+                        <%
+                                } else {
+                                    // Si la semaine n'est pas vide, il y a une List par jour
+                                    for (int iJour = 0; iJour < 7; iJour++) {
+                        %>
+                                        <h6>Jour <%=iJour%> : </h6>  
+                        <%
+                                        if (representationsParSemaine.get(iSem).get(iJour).isEmpty()) {
+                                            // Si le jour est vide
+                        %>
+                                            <h6>Vide</h6><br>
+                        <%
+                                        } else {
+                                            // Si le jour n'est pas vide
+                                            for (Representation rep : representationsParSemaine.get(iSem).get(iJour)) {
+                                                Date horaireRep = rep.getHoraire();
+                                                String nomSpe = rep.getSpectacle().getNom();
+                        %>
+                                                <h6><%=heureFormatter.format(horaireRep)%> - <%=nomSpe%></h6><br>
+                        <%
+                                            }
+                        %>
+                                            <br>
+                        <%
+                                        }
+                                    }
+                                }
                             }
                         %>
 
