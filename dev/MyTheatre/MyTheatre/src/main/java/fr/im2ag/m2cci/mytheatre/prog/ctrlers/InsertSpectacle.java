@@ -22,8 +22,8 @@ import javax.sql.DataSource;
  *
  * @author miquelr
  */
-@WebServlet(name = "ajoutSpectacle", urlPatterns = {"/ajoutSpectacle"})
-public class AjoutSpectacle extends HttpServlet {
+@WebServlet(name = "insertSpectacle", urlPatterns = {"/insertSpectacle"})
+public class InsertSpectacle extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;

@@ -8,6 +8,7 @@ package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
 import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.Resource;
@@ -20,10 +21,10 @@ import javax.sql.DataSource;
 
 /**
  *
- * @author miquelr
+ * @author iXeRay
  */
-@WebServlet(name = "ajoutSpectacle", urlPatterns = {"/ajoutSpectacle"})
-public class AjoutSpectacle extends HttpServlet {
+@WebServlet(name = "insertRepresentation", urlPatterns = {"/insertRepresentation"})
+public class InsertRepresentation extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;

@@ -52,7 +52,7 @@
                             <div class="col-md-5">
                                 <br>
                                 <h2>Spectacle</h2>
-                                <form action="ajoutSpectacle">
+                                <form action="insertSpectacle">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Numéro</label>
                                         <div class="col-sm-9">
@@ -203,33 +203,56 @@
                                 if (representationsParSemaine.get(iSem).isEmpty()) {
                                     // Si la semaine est vide
                         %>
-                                    <h6>Semaine vide</h6><br><br>
+                                    Planning vide<br><br>
                         <%
                                 } else {
                                     // Si la semaine n'est pas vide, il y a une List par jour
-                                    for (int iJour = 0; iJour < 7; iJour++) {
+                                    int nbMaxRepJour = representationsParSemaine.get(iSem).get(0).size();   // On calcule le maximum de Representation par jour pour la semaine
+                                    for (int iJour = 1; iJour < 7; iJour++){
+                                        int nbRepJour = representationsParSemaine.get(iSem).get(iJour).size();
+                                        if (nbMaxRepJour < nbRepJour) nbMaxRepJour = nbRepJour;
+                                    }
                         %>
-                                        <h6>Jour <%=iJour%> : </h6>  
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Lundi</th>
+                                            <th>Mardi</th>
+                                            <th>Mercredi</th>                    
+                                            <th>Jeudi</th>
+                                            <th>Vendredi</th>   
+                                            <th>Samedi</th>
+                                            <th>Dimanche</th>   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                         <%
-                                        if (representationsParSemaine.get(iSem).get(iJour).isEmpty()) {
-                                            // Si le jour est vide
+                                    String repAffichee;
+                                    for(int iRep = 0; iRep < nbMaxRepJour; iRep++){
                         %>
-                                            <h6>Vide</h6><br>
+                                        <tr>
                         <%
-                                        } else {
-                                            // Si le jour n'est pas vide
-                                            for (Representation rep : representationsParSemaine.get(iSem).get(iJour)) {
+                                        for (int iJour = 0; iJour < 7; iJour++) {
+                                            if (representationsParSemaine.get(iSem).get(iJour).size() > iRep){
+                                                Representation rep = representationsParSemaine.get(iSem).get(iJour).get(iRep);
                                                 Date horaireRep = rep.getHoraire();
                                                 String nomSpe = rep.getSpectacle().getNom();
-                        %>
-                                                <h6><%=heureFormatter.format(horaireRep)%> - <%=nomSpe%></h6><br>
-                        <%
+                                                repAffichee = heureFormatter.format(horaireRep) + "h - " + nomSpe;
+                                            } else {
+                                                repAffichee = "";
                                             }
                         %>
-                                            <br>
+                                            <td><%=repAffichee%></td>
                         <%
                                         }
+                        %>
+                                        </tr>
+                        <%
                                     }
+                        %>      
+                                    </tbody>
+                                </table>   
+                        <%
                                 }
                             }
                         %>
