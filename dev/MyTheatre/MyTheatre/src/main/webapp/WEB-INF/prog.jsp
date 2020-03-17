@@ -46,7 +46,7 @@
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./administration.html">Administration</a>
+                    <a class="nav-link" href="./progCtrlerAjoutProg">Administration</a>
                 </li>
             </ul>
         </nav>
@@ -192,7 +192,7 @@
                                     </label>
                                 </div> 
                             </div>
-                            <div class="text-right"> 
+                            <div> 
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </div>
 
