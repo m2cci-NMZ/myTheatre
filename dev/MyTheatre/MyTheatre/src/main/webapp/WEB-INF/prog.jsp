@@ -24,7 +24,7 @@
 
         <style>
             .form-check{
-                padding-left : 1cm;
+                padding-left : 0.85cm;
             }
         </style>
 
