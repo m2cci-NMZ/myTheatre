@@ -71,9 +71,16 @@
                                     dateFinForm = navigateurJourFormatter.format(dateFin);
                                 }
                             %>
-                            <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
-                            <input type="date" name="dateFin" value=<%=dateFinForm%>>
-                            <br><br>
+                            <div class="form-row">
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%>  
+                                           <class="col-form-label">au
+                                </div>
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                </div>
+                            </div>
+                            <br>
                             <h5>Catégorie de spectateurs</h5>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
@@ -95,16 +102,32 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="indiffC" name="cible" value="null"<%=checkIndif%>>Indifférent 
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
+                                </label>
+                            </div>
                             <br>
-                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
-                            <br><br>
                             <h5>Type de spectacles</h5>
                             <%  // Conserve le bouton check pour le type de spectacle
                                 String[] typesCheck = request.getParameterValues("type");
@@ -135,26 +158,32 @@
                                     checkCirqu = " checked";
                                 }
                             %>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="opera" <%=checkOpera%>> Opéra 
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique" <%=checkHumor%>> Humoristique
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="drame" <%=checkDrame%>> Drame
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="musical" <%=checkMusic%>> Musical
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque" <%=checkCirqu%>> Cirque
-                            <br>
-                            <br>
-                            <input type="submit" value="Envoyer"> 
-                        </form>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="type" value="opera"<%=checkOpera%>> Opéra</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="type" value="humoristique"<%=checkHumor%>> Humoristique</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="type" value="drame" <%=checkDrame%>> Drame</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="type" value="musical" <%=checkMusic%>> Musical</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="type" value="cirque" <%=checkCirqu%>> Cirque</label>
+                            </div>  
+                            <div class="text-right"> 
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+
                     </div>
                     <div class="col-md-10">
                         <br>
-                        <%
-                            if (dateDebut != null && dateFin != null) {
-                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                        %>
+                            <%
+                                if (dateDebut != null && dateFin != null) {
+                                    SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                            %>
                         <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
 
                         <table class="table table-striped">
@@ -168,55 +197,55 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%
-                                    SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
-                                    List<Representation> prog = (List<Representation>) request.getAttribute("progList");
-                                    for (Representation r : prog) {
-                                        Date date = r.getHoraire();
-                                        String nom = r.getSpectacle().getNom();
+                            <%
+                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
+                                List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                                for (Representation r : prog) {
+                                    Date date = r.getHoraire();
+                                    String nom = r.getSpectacle().getNom();
 
-                                        // Formatage du prix à la française
-                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
-                                        NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
-                                        prix.setMinimumFractionDigits(2);
-                                        prix.setMaximumFractionDigits(2);
-                                        String prixBase = prix.format(prixDeBase);
+                                    // Formatage du prix à la française
+                                    Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                    NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
+                                    prix.setMinimumFractionDigits(2);
+                                    prix.setMaximumFractionDigits(2);
+                                    String prixBase = prix.format(prixDeBase);
 
-                                        // Mise en forme des cibles et des types
-                                        String cible = r.getSpectacle().getCible();
-                                        String type = r.getSpectacle().getType();
-                                        switch (cible) {
-                                            case "toutPublic":
-                                                cible = "Tout Public";
-                                                break;
-                                            case "unCinqAns":
-                                                cible = "1-5 Ans";
-                                                break;
-                                            case "jeunePublic":
-                                                cible = "Jeune Public";
-                                                break;
-                                            case "adulte":
-                                                cible = "Adulte";
-                                                break;
-                                        }
-                                        switch (type) {
-                                            case "opera":
-                                                type = "Opéra";
-                                                break;
-                                            case "drame":
-                                                type = "Drame";
-                                                break;
-                                            case "humoristique":
-                                                type = "Humoristique";
-                                                break;
-                                            case "musical":
-                                                type = "Musical";
-                                                break;
-                                            case "cirque":
-                                                type = "Cirque";
-                                                break;
-                                        }
-                                %>
+                                    // Mise en forme des cibles et des types
+                                    String cible = r.getSpectacle().getCible();
+                                    String type = r.getSpectacle().getType();
+                                    switch (cible) {
+                                        case "toutPublic":
+                                            cible = "Tout Public";
+                                            break;
+                                        case "unCinqAns":
+                                            cible = "1-5 Ans";
+                                            break;
+                                        case "jeunePublic":
+                                            cible = "Jeune Public";
+                                            break;
+                                        case "adulte":
+                                            cible = "Adulte";
+                                            break;
+                                    }
+                                    switch (type) {
+                                        case "opera":
+                                            type = "Opéra";
+                                            break;
+                                        case "drame":
+                                            type = "Drame";
+                                            break;
+                                        case "humoristique":
+                                            type = "Humoristique";
+                                            break;
+                                        case "musical":
+                                            type = "Musical";
+                                            break;
+                                        case "cirque":
+                                            type = "Cirque";
+                                            break;
+                                    }
+                            %>
 
                                 <tr>
                                     <td><%=horaireFormatter.format(date)%>h</td>
