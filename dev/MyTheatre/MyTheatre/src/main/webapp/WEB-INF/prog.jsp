@@ -205,14 +205,25 @@
                                 if (dateDebut.equals(dateFin)){     
                                     // Affichage de la date une seule fois si le début et la fin correspondent au même jour
                         %>
-                                    <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
+                            <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
                         <%              
                                 } else {
                         %>
-                                    <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
+                            <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
                         <%
                                 }
                         %>    
+                        
+                            <%
+                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
+                                List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                                if (prog.isEmpty()){
+                            %>  
+                            <br>    
+                            Aucune représentation ne correspond à vos critères
+                            <%
+                                } else {
+                            %>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -223,10 +234,8 @@
                                     <th>Catégorie de spectateurs</th>   
                                 </tr>
                             </thead>
-                            <tbody>
-                                <%
-                                    SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
-                                    List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                            <tbody>        
+                            <%
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
                                         String nom = r.getSpectacle().getNom();
@@ -287,6 +296,7 @@
                             </tbody>
                         </table>   
                         <%
+                                }
                             }
                         %>
                     </div>
