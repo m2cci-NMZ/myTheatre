@@ -6,10 +6,11 @@
 package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
-import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +21,10 @@ import javax.sql.DataSource;
 
 /**
  *
- * @author miquelr
+ * @author iXeRay
  */
-@WebServlet(name = "ajoutSpectacle", urlPatterns = {"/ajoutSpectacle"})
-public class AjoutSpectacle extends HttpServlet {
+@WebServlet(name = "insertRepresentation", urlPatterns = {"/insertRepresentation"})
+public class InsertRepresentation extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;
@@ -41,22 +42,19 @@ public class AjoutSpectacle extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            int numero = Integer.parseInt(request.getParameter("numeroSpe"));
-            String nom = request.getParameter("nomSpe");
-            double prixDeBase = Double.parseDouble(request.getParameter("prixSpe"));
-            String cible = request.getParameter("cibleSpe");
-            String type = request.getParameter("typeSpe");
+            int numeroSpe = Integer.parseInt(request.getParameter("numeroSpeRep"));
+            String horaireRepDate = request.getParameter("horaireRepDate");
+            String horaireRepHeure = request.getParameter("horaireRepHeure");
+            Date horaireRep = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(horaireRepDate + " " + horaireRepHeure);
             
             // Requete à la BD pour l'insertion
-            ProgDAO.ajoutSpectacle(dataSource, numero, nom, prixDeBase, cible, type, false, false);
-            
-            // Requete à la BD pour avoir tous les Spectacles
-            List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
-            request.setAttribute("listeSpectacles", listSpectacles);
+            ProgDAO.insertRepresentation(dataSource, numeroSpe, horaireRep);
             
             request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
         } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
+        } catch (ParseException ex) {
+            throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
 

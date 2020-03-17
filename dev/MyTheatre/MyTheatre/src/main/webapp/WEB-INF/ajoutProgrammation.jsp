@@ -47,12 +47,12 @@
         <div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <br>
                                 <h2>Spectacle</h2>
-                                <form action="ajoutSpectacle">
+                                <form action="insertSpectacle">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Numéro</label>
                                         <div class="col-sm-9">
@@ -100,7 +100,7 @@
                                 </form>
                                 <hr>
                                 <h2>Représentation</h2>
-                                <form action="???" >
+                                <form action="insertRepresentation" >
                                     <div class="form-group">
                                         <label class="col-form-label">Numéro du Spectacle</label>
                                         <input type="number" class="form-control" name="numeroSpeRep" min="1" step="1">
@@ -122,9 +122,9 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <br>
-                                <h2>Spectacles à l'affiche</h2>
+                                <h2>Les Spectacles</h2>
                                 <div style="height:85vh; overflow: auto;">
                                     <table class="table table-striped">
                                         <thead>
@@ -182,51 +182,83 @@
                                 <div class=col-auto">
                                     <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
                                 </div>
+                                <div class=col-auto">
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                </div>
                             </div>
                         </form>
                         <br>
                         <%
                             int nbSem = (int) request.getAttribute("nbSemaines");   // Récupère le nombre de semaines entre les deux dates du formulaire
-                            //List<Representation> representations = (List<Representation>) request.getAttribute("listeRepresentations");
+                            List<List<List<Representation>>> representationsParSemaine = (List<List<List<Representation>>>) request.getAttribute("repParSemaine");
+
+                            Date[] datesLundi = (Date[]) request.getAttribute("datesLundi");
+                            Date[] datesDimanche = (Date[]) request.getAttribute("datesDimanche");
+
                             SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
                             SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
 
-                            Date[] datesDebutsSemaines = (Date[]) request.getAttribute("datesDebutsSemaines");
-                            Date[] datesFinsSemaines = (Date[]) request.getAttribute("datesFinsSemaines");
-
-                            /*// Dates de début et de fin de chaque semaines
-                            Date dateDebutSem = dateDebut;
-                            Date dateFinSem;
-                            Calendar c = Calendar.getInstance();
-
-                            // On retrouve la date du lundi correspondant à la première semaine
-                            c.setTime(dateDebutSem);
-                            int numeroJourDateDebSem = c.get(Calendar.DAY_OF_WEEK);        // Commence au Dimanche donc on décalle de 1 jour
-                            numeroJourDateDebSem -= 1;
-                            if (numeroJourDateDebSem == 0) {
-                                numeroJourDateDebSem = 7;
-                            }
-                            c.add(Calendar.DATE, -(numeroJourDateDebSem - 1));      // Ici on met dans le calendrier la date du lundi
-                            dateDebutSem = c.getTime();     // On convertit en date*/
-                            for (int i = 0; i < nbSem; i++) {       // Pour chaque semaine
-
-
+                            for (int iSem = 0; iSem < nbSem; iSem++) {
                         %>
-                        <h4>Semaine du <%=jourFormatter.format(datesDebutsSemaines[i])%> au <%=jourFormatter.format(datesFinsSemaines[i])%></h4>
+                                <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
                         <%
+                                // Pour chaque semaine    
+                                if (representationsParSemaine.get(iSem).isEmpty()) {
+                                    // Si la semaine est vide
+                        %>
+                                    Planning vide<br><br>
+                        <%
+                                } else {
+                                    // Si la semaine n'est pas vide, il y a une List par jour
+                                    int nbMaxRepJour = representationsParSemaine.get(iSem).get(0).size();   // On calcule le maximum de Representation par jour pour la semaine
+                                    for (int iJour = 1; iJour < 7; iJour++){
+                                        int nbRepJour = representationsParSemaine.get(iSem).get(iJour).size();
+                                        if (nbMaxRepJour < nbRepJour) nbMaxRepJour = nbRepJour;
+                                    }
+                        %>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Lundi</th>
+                                            <th>Mardi</th>
+                                            <th>Mercredi</th>                    
+                                            <th>Jeudi</th>
+                                            <th>Vendredi</th>   
+                                            <th>Samedi</th>
+                                            <th>Dimanche</th>   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                        <%
+                                    String repAffichee;
+                                    for(int iRep = 0; iRep < nbMaxRepJour; iRep++){
+                        %>
+                                        <tr>
+                        <%
+                                        for (int iJour = 0; iJour < 7; iJour++) {
+                                            if (representationsParSemaine.get(iSem).get(iJour).size() > iRep){
+                                                Representation rep = representationsParSemaine.get(iSem).get(iJour).get(iRep);
+                                                Date horaireRep = rep.getHoraire();
+                                                String nomSpe = rep.getSpectacle().getNom();
+                                                repAffichee = heureFormatter.format(horaireRep) + "h - " + nomSpe;
+                                            } else {
+                                                repAffichee = "";
+                                            }
+                        %>
+                                            <td><%=repAffichee%></td>
+                        <%
+                                        }
+                        %>
+                                        </tr>
+                        <%
+                                    }
+                        %>      
+                                    </tbody>
+                                </table>   
+                        <%
+                                }
                             }
                         %>
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
