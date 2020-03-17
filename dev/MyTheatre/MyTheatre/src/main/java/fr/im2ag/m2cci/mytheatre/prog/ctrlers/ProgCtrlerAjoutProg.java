@@ -134,7 +134,7 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             while (iRep < listRepresentations.size()){
                 Representation rep = listRepresentations.get(iRep);
                 Date horaire = rep.getHoraire();
-                if (horaire.after(datesLundi[iSem]) && horaire.before(toFinDeJournee(datesDimanche[iSem]))) {
+                if (horaire.compareTo(datesLundi[iSem])>=0 && horaire.compareTo(toFinDeJournee(datesDimanche[iSem]))<=0) {
                     ajouterAuRepParSemaine(rep, iSem, repParSemaine);
                     iRep++;
                 } else if (!horaire.after(toFinDeJournee(datesDimanche[iSem]))) {

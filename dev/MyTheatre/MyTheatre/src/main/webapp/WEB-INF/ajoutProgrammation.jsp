@@ -47,9 +47,9 @@
         <div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <br>
                                 <h2>Spectacle</h2>
                                 <form action="insertSpectacle">
@@ -100,7 +100,7 @@
                                 </form>
                                 <hr>
                                 <h2>Représentation</h2>
-                                <form action="???" >
+                                <form action="insertRepresentation" >
                                     <div class="form-group">
                                         <label class="col-form-label">Numéro du Spectacle</label>
                                         <input type="number" class="form-control" name="numeroSpeRep" min="1" step="1">
@@ -122,9 +122,9 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <br>
-                                <h2>Spectacles à l'affiche</h2>
+                                <h2>Les Spectacles</h2>
                                 <div style="height:85vh; overflow: auto;">
                                     <table class="table table-striped">
                                         <thead>
@@ -181,6 +181,9 @@
                                 </div>
                                 <div class=col-auto">
                                     <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                </div>
+                                <div class=col-auto">
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
                                 </div>
                             </div>
                         </form>
@@ -256,17 +259,6 @@
                                 }
                             }
                         %>
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
