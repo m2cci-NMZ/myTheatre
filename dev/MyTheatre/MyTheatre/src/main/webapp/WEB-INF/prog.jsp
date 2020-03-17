@@ -202,9 +202,17 @@
                         <%
                             if (dateDebut != null && dateFin != null) {
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                                if (dateDebut.equals(dateFin)){     
+                                    // Affichage de la date une seule fois si le début et la fin correspondent au même jour
                         %>
-                        <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
-
+                                    <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
+                        <%              
+                                } else {
+                        %>
+                                    <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
+                        <%
+                                }
+                        %>    
                         <table class="table table-striped">
                             <thead>
                                 <tr>
