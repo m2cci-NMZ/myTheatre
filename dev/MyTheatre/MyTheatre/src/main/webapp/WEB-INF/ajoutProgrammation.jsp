@@ -37,10 +37,10 @@
                     <a class="nav-link" href="./index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programmation</a>
+                    <a class="nav-link" href="./progCtrler">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./administration.html">Administration</a>
+                    <a class="nav-link" href="#">Administration</a>
                 </li>
             </ul>
         </nav>
@@ -94,7 +94,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="text-right"> 
+                                    <div> 
                                         <button type="submit" class="btn btn-primary">Ajouter</button>
                                     </div>
                                 </form>
@@ -117,7 +117,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-right"> 
+                                    <div> 
                                         <button type="submit" class="btn btn-primary">Ajouter</button>
                                     </div>
                                 </form>
