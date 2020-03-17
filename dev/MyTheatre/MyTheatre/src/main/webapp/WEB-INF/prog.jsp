@@ -22,6 +22,12 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
 
+        <style>
+            .form-check{
+                padding-left : 0.9cm;
+            }
+        </style>
+
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -40,18 +46,18 @@
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./administration.html">Administration</a>
+                    <a class="nav-link" href="./progCtrlerAjoutProg">Administration</a>
                 </li>
             </ul>
         </nav>
         <div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <form action="progCtrler" >
                             <br>
                             <h2>Recherche</h2>
-                            <h5>Dates</h5>
+                            <h4>Dates</h4>
                             <%
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
@@ -71,10 +77,17 @@
                                     dateFinForm = navigateurJourFormatter.format(dateFin);
                                 }
                             %>
-                            <input type="date" name="dateDebut" value=<%=dateDebutForm%>> au                             
-                            <input type="date" name="dateFin" value=<%=dateFinForm%>>
-                            <br><br>
-                            <h5>Catégorie de spectateurs</h5>
+                            <div class="form-row">
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%>>
+                                </div>
+                                <label class="col-form-label">au</label>
+                                <div class=col-auto">
+                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                </div>
+                            </div>
+                            <br>
+                            <h4>Catégorie de spectateurs</h4>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -95,17 +108,34 @@
                                 else
                                     checkIndif = " checked";
                             %>
-                            &nbsp&nbsp <input type="radio" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent 
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
-                            <br>
-                            &nbsp&nbsp <input type="radio" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
-                            <br><br>
-                            <h5>Type de spectacles</h5>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" id="indiffC" name="cible" value="null" <%=checkIndif%>> Indifférent
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" id="unCinqP" name="cible" value="unCinqAns" <%=check1Cinq%>> 1-5 ans
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" id="jeuneP" name="cible" value="jeunePublic" <%=checkJeune%>> Jeune Public
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" id="toutP" name="cible" value="toutPublic" <%=checkToutP%>> Tout Public
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" id="adulteP" name="cible" value="adulte" <%=checkAdult%>> Adultes
+                                    </label>
+                                </div>
+                            </div>
+                            <h4>Type de spectacles</h4>
                             <%  // Conserve le bouton check pour le type de spectacle
                                 String[] typesCheck = request.getParameterValues("type");
                                 String checkOpera = "";
@@ -135,21 +165,39 @@
                                     checkCirqu = " checked";
                                 }
                             %>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="opera" <%=checkOpera%>> Opéra 
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="humoristique" <%=checkHumor%>> Humoristique
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="drame" <%=checkDrame%>> Drame
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="musical" <%=checkMusic%>> Musical
-                            <br>
-                            &nbsp&nbsp <input type="checkbox" name="type" value="cirque" <%=checkCirqu%>> Cirque
-                            <br>
-                            <br>
-                            <input type="submit" value="Envoyer"> 
-                        </form>
+                            <div class="form-group">        
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="type" value="opera"<%=checkOpera%>> Opéra
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="type" value="humoristique"<%=checkHumor%>> Humoristique
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="type" value="drame" <%=checkDrame%>> Drame
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="type" value="musical" <%=checkMusic%>> Musical
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="type" value="cirque" <%=checkCirqu%>> Cirque
+                                    </label>
+                                </div> 
+                            </div>
+                            <div> 
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <br>
                         <%
                             if (dateDebut != null && dateFin != null) {
