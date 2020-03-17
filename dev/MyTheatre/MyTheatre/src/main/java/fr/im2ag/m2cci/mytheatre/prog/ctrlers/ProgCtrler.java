@@ -54,7 +54,7 @@ public class ProgCtrler extends HttpServlet {
             String cible = request.getParameter("cible");
             String[] paramTypes = request.getParameterValues("type");
 
-            if (debut != null && fin != null && cible != null && paramTypes != null) {  // Si les paramètres ont été complétés
+            if (debut != null && fin != null && cible != null) {  // Si les paramètres sont null, alors c'est la page par défaut qui s'affiche au début (on ne met pas paramType)
                 // Gestion des dates
                 Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
                 Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
@@ -70,9 +70,13 @@ public class ProgCtrler extends HttpServlet {
 
                 // Gestion des types de spectacles
                 List<String> types = new ArrayList<>();
-                for (int i = 0; i < paramTypes.length; i++) {
-                    types.add(paramTypes[i]);
+                if (paramTypes != null){
+                    // On traite paramType différemment des autres paramètres car il peut être vide à la demande de l'utilisateur (si il décoche tout)
+                    for (String paramType : paramTypes) {
+                        types.add(paramType);
+                    }
                 }
+                
 
                 // Requete à la BD
                 List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
