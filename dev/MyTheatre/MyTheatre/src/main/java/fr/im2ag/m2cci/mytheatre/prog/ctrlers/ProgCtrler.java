@@ -47,37 +47,52 @@ public class ProgCtrler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // Récupération des valeurs des champs du formulaire
+        String debut = request.getParameter("dateDebut");
+        String fin = request.getParameter("dateFin");
+        String cible = request.getParameter("cible");
+        String[] paramTypes = request.getParameterValues("type");
+        
+        // Traitement du cas où on charge la page pour la première fois
+        boolean premierChargement = false;
+        if(debut == null && fin == null && cible == null && paramTypes == null){
+            premierChargement = true;
+        }
+        // Ajout de l'attribut à la requete
+        request.setAttribute("premierChargement", premierChargement);
+        
+        // Dates par défaut
+        if (debut == null) { 
+            debut = "2020-03-01";
+        }
+        if (fin == null) {
+            fin = "2020-03-31";
+        }
+        
         try {
-            // Récupération des valeurs des champs du formulaire
-            String debut = request.getParameter("dateDebut");
-            String fin = request.getParameter("dateFin");
-            String cible = request.getParameter("cible");
-            String[] paramTypes = request.getParameterValues("type");
-
-            if (debut != null && fin != null && cible != null) {  // Si les paramètres sont null, alors c'est la page par défaut qui s'affiche au début (on ne met pas paramType)
-                // Gestion des dates
-                Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
-                Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
-
-                if (dateDebut.after(dateFin)) {   // Si l'utilisateur inverse la date de début et de fin
-                    Date tmp = dateFin;
-                    dateFin = dateDebut;
-                    dateDebut = tmp;
-                }
-
-                request.setAttribute("dateDebut", dateDebut);
-                request.setAttribute("dateFin", dateFin);
-
+            // Conversion en date
+            Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+            // Si l'utilisateur inverse la date de début et de fin on le met dans le bon ordre
+            if (dateDebut.after(dateFin)) {
+                Date tmp = dateFin;
+                dateFin = dateDebut;
+                dateDebut = tmp;
+            }
+            // Ajout des attributs à la requete
+            request.setAttribute("dateDebut", dateDebut);
+            request.setAttribute("dateFin", dateFin);
+            
+            if (!premierChargement) {  // Si ce n'est pas la page par défaut on doit faire des requetes
                 // Gestion des types de spectacles
                 List<String> types = new ArrayList<>();
-                if (paramTypes != null){
+                if (paramTypes != null) {
                     // On traite paramType différemment des autres paramètres car il peut être vide à la demande de l'utilisateur (si il décoche tout)
                     for (String paramType : paramTypes) {
                         types.add(paramType);
                     }
                 }
                 request.setAttribute("listTypes", types);
-                
 
                 // Requete à la BD
                 List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);

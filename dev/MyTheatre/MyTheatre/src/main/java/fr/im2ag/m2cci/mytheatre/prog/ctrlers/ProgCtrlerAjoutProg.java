@@ -73,7 +73,7 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
                 dateFin = dateDebut;
                 dateDebut = tmp;
             }
-            // Ajout de l'attribut à la requete
+            // Ajout des attributs à la requete
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
