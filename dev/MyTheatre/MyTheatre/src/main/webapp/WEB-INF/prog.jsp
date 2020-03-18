@@ -64,18 +64,8 @@
                                 Date dateFin = (Date) request.getAttribute("dateFin");
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
-                                String dateDebutForm;
-                                if (dateDebut == null) {
-                                    dateDebutForm = "2020-03-01";
-                                } else {
-                                    dateDebutForm = navigateurJourFormatter.format(dateDebut);
-                                }
-                                String dateFinForm;
-                                if (dateFin == null) {
-                                    dateFinForm = "2020-03-31";
-                                } else {
-                                    dateFinForm = navigateurJourFormatter.format(dateFin);
-                                }
+                                String dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                                String dateFinForm = navigateurJourFormatter.format(dateFin);
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
