@@ -64,18 +64,8 @@
                                 Date dateFin = (Date) request.getAttribute("dateFin");
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
-                                String dateDebutForm;
-                                if (dateDebut == null) {
-                                    dateDebutForm = "2020-03-01";
-                                } else {
-                                    dateDebutForm = navigateurJourFormatter.format(dateDebut);
-                                }
-                                String dateFinForm;
-                                if (dateFin == null) {
-                                    dateFinForm = "2020-03-31";
-                                } else {
-                                    dateFinForm = navigateurJourFormatter.format(dateFin);
-                                }
+                                String dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                                String dateFinForm = navigateurJourFormatter.format(dateFin);
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
@@ -200,7 +190,9 @@
                     <div class="col-md-9">
                         <br>
                         <%
-                            if (dateDebut != null && dateFin != null) {
+                            boolean premierChargement = (boolean) request.getAttribute("premierChargement");
+                            if (!premierChargement) {   
+                                // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                                 if (dateDebut.equals(dateFin)){     
                                     // Affichage de la date une seule fois si le début et la fin correspondent au même jour
