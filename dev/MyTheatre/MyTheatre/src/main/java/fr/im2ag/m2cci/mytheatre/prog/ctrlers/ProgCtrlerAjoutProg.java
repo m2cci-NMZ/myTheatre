@@ -72,11 +72,10 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
-
             //######################################################################
             //Traitement de la partie affichage de la programmation en semaines
             //######################################################################
-            
+
             //##### Calcul des Dates du Lundi et du Dimanche de chaque semaines
             // Nombre de semaines entre les deux dates (toutes semaines inclus)
             int nbSem = ControlerTools.nbSemaineEntre(dateDebut, dateFin);
@@ -152,16 +151,18 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
-     private void ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine){
-        if (repParSemaine.get(numeroSem).isEmpty()){
-            // Premier ajout pour cette semaine, on crée les 7 List<Representation> pour chaque jour (Lundi, ..., Dimanche)
-            for (int iJour = 0; iJour < 7; iJour++){
-                repParSemaine.get(numeroSem).add(new ArrayList<Representation>());
-            }
-        }
-        
-        int numeroJourSemaineRep = ControlerTools.numeroJourSemaine(rep.getHoraire());     // On trouve l'indice du jour
-        repParSemaine.get(numeroSem).get(numeroJourSemaineRep).add(rep);    // On ajoute dans le bon jour
+    
+    
+    private void ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine){
+       if (repParSemaine.get(numeroSem).isEmpty()){
+           // Premier ajout pour cette semaine, on crée les 7 List<Representation> pour chaque jour (Lundi, ..., Dimanche)
+           for (int iJour = 0; iJour < 7; iJour++){
+               repParSemaine.get(numeroSem).add(new ArrayList<Representation>());
+           }
+       }
+
+       int numeroJourSemaineRep = ControlerTools.numeroJourSemaine(rep.getHoraire());     // On trouve l'indice du jour
+       repParSemaine.get(numeroSem).get(numeroJourSemaineRep).add(rep);    // On ajoute dans le bon jour
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

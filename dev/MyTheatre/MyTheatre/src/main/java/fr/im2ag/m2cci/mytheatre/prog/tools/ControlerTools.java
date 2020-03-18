@@ -24,6 +24,8 @@ public class ControlerTools {
     
     /**
      * Calcule le nombre de semaines de la période délimitée par deux dates
+     * On compte chaque semaine dans lequel il y a un jour, si c'est du dimanche 
+     * au lundi, c'est donc 2 semaines, cele du dimanche et celle du lundi
      *
      * @param d1 : Premier jour
      * @param d2 : Dernier jour
@@ -84,49 +86,4 @@ public class ControlerTools {
 
         return c.getTime();
     }
-    
-    
-   
-    
-//    /**
-//     * Test nbSemaineEntre(Date d1, Date d2) method, of class ControlerTools.
-//     */
-//    public void nbSemainesEntreTest() throws Exception {
-//        Date horaireDebut1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-01");
-//        Date horaireFin2 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-10");
-//        Date horaireDebut3 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-10");
-//        Date horaireFin4 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-19");
-//        int periode1 = nbSemaineEntre(horaireDebut1, horaireFin2);
-//        int periode2 = nbSemaineEntre(horaireDebut3, horaireFin4);
-//        if (periode1.equals(periode2)){
-//            System.out.println("Le test a fonctionné");
-//        }
-//    }
-//        /**
-//     * Test numeroJourSemaine(Date d) method, of class ControlerTools.
-//     */
-//    public void numeroJourSemaineTest() throws Exception {
-//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
-//        if (numeroJourSemaine(d1).equals(1)){
-//            System.out.println("Le test a fonctionné");
-//        }
-//    }
-//    /**
-//     * Test toFinDeJournee(Date d) method, of class ControlerTools.
-//     */
-//    public void toFinDeJourneeTest() throws Exception {
-//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
-//        Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-03-16 23:59:59");
-//        assertEquals(toFinDeJournee(d1),d2);
-//            System.out.println("Le test a fonctionné");
-//        }
-//    /**
-//     * Test ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine) method, of class ControlerTools.
-//     */
-//    public void ajouterAuRepParSemaineTest() throws Exception {
-//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
-//        Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-03-16 23:59:59");
-//        assertEquals(toFinDeJournee(d1),d2);
-//            System.out.println("Le test a fonctionné");
-//        }
 }
