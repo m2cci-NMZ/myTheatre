@@ -137,7 +137,6 @@
                             </div>
                             <h4>Type de spectacles</h4>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                String[] typesChecks = request.getParameterValues("type");
                                 List<String> typesCheck = (List<String>) request.getAttribute("listTypes");
                                 String checkOpera = "";
                                 String checkHumor = "";
