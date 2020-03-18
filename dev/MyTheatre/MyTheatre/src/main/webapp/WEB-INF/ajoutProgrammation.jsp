@@ -56,19 +56,32 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Numéro</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" name="numeroSpe" min="1" step="1">
-                                        </div>
+                                            <input type="number" class="form-control" name="numeroSpe" min="1" step="1" required>
+                                        </div>  <br>
                                     </div>
+                            <%
+                                // Message d'erreur lié aux Spectacle
+                                String erreur = (String) request.getAttribute("erreurSQL");
+                                if(erreur != null && erreur.equals("PK_SPE")){
+                            %>
+                                    <div style="color: #FF0000;"> 
+                                        Attention, ce numéro correspond déjà à un autre spectacle, il doit être unique 
+                                    </div> 
+                                    <br>
+                            <%
+                                }
+                            %>
+                            
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nom</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="nomSpe">
+                                            <input type="text" class="form-control" name="nomSpe" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Prix</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" name="prixSpe" step="0.01" min="0.01">
+                                            <input type="number" class="form-control" name="prixSpe" step="0.01" min="0.01" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -129,8 +142,8 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Nom</th>
-                                                <th>Numéro</th> 
+                                                <th>N°</th> 
+                                                <th>Nom du Spectacle</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -143,8 +156,8 @@
                                             %>
 
                                             <tr>
-                                                <td><%=nom%></td>
                                                 <td><%=numero%></td>
+                                                <td><%=nom%></td>
                                             </tr>
                                             <%
                                                     }
@@ -200,43 +213,45 @@
 
                             for (int iSem = 0; iSem < nbSem; iSem++) {
                         %>
-                                <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
+                        <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
                         <%
-                                // Pour chaque semaine    
-                                if (representationsParSemaine.get(iSem).isEmpty()) {
-                                    // Si la semaine est vide
+                            // Pour chaque semaine    
+                            if (representationsParSemaine.get(iSem).isEmpty()) {
+                                // Si la semaine est vide
                         %>
-                                    Planning vide<br><br>
+                        Planning vide<br><br>
                         <%
-                                } else {
-                                    // Si la semaine n'est pas vide, il y a une List par jour
-                                    int nbMaxRepJour = representationsParSemaine.get(iSem).get(0).size();   // On calcule le maximum de Representation par jour pour la semaine
-                                    for (int iJour = 1; iJour < 7; iJour++){
-                                        int nbRepJour = representationsParSemaine.get(iSem).get(iJour).size();
-                                        if (nbMaxRepJour < nbRepJour) nbMaxRepJour = nbRepJour;
-                                    }
+                        } else {
+                            // Si la semaine n'est pas vide, il y a une List par jour
+                            int nbMaxRepJour = representationsParSemaine.get(iSem).get(0).size();   // On calcule le maximum de Representation par jour pour la semaine
+                            for (int iJour = 1; iJour < 7; iJour++) {
+                                int nbRepJour = representationsParSemaine.get(iSem).get(iJour).size();
+                                if (nbMaxRepJour < nbRepJour) {
+                                    nbMaxRepJour = nbRepJour;
+                                }
+                            }
                         %>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Lundi</th>
-                                            <th>Mardi</th>
-                                            <th>Mercredi</th>                    
-                                            <th>Jeudi</th>
-                                            <th>Vendredi</th>   
-                                            <th>Samedi</th>
-                                            <th>Dimanche</th>   
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                        <%
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Lundi</th>
+                                    <th>Mardi</th>
+                                    <th>Mercredi</th>                    
+                                    <th>Jeudi</th>
+                                    <th>Vendredi</th>   
+                                    <th>Samedi</th>
+                                    <th>Dimanche</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
                                     String repAffichee;
-                                    for(int iRep = 0; iRep < nbMaxRepJour; iRep++){
-                        %>
-                                        <tr>
-                        <%
+                                    for (int iRep = 0; iRep < nbMaxRepJour; iRep++) {
+                                %>
+                                <tr>
+                                    <%
                                         for (int iJour = 0; iJour < 7; iJour++) {
-                                            if (representationsParSemaine.get(iSem).get(iJour).size() > iRep){
+                                            if (representationsParSemaine.get(iSem).get(iJour).size() > iRep) {
                                                 Representation rep = representationsParSemaine.get(iSem).get(iJour).get(iRep);
                                                 Date horaireRep = rep.getHoraire();
                                                 String nomSpe = rep.getSpectacle().getNom();
@@ -244,17 +259,17 @@
                                             } else {
                                                 repAffichee = "";
                                             }
-                        %>
-                                            <td><%=repAffichee%></td>
-                        <%
+                                    %>
+                                    <td><%=repAffichee%></td>
+                                    <%
                                         }
-                        %>
-                                        </tr>
-                        <%
+                                    %>
+                                </tr>
+                                <%
                                     }
-                        %>      
-                                    </tbody>
-                                </table>   
+                                %>      
+                            </tbody>
+                        </table>   
                         <%
                                 }
                             }
