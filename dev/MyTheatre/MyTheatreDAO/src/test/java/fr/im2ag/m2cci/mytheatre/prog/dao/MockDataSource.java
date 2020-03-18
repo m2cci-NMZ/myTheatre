@@ -49,11 +49,11 @@ public class MockDataSource implements DataSource {
         String jdbcDriver = null;
         try {
             Properties options = new Properties();
-            options.load(new FileInputStream(new File("testdata/jdbc.properties")));
+            options.load(new FileInputStream(new File("/home/nico/tmp/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/jdbc.properties")));
             jdbcDriver = options.getProperty("jdbcDriver");
-            dbURL = options.getProperty("dataBaseUrl");
-            user = options.getProperty("userName");
-            passwd = options.getProperty("passwd");
+            this.dbURL = options.getProperty("dataBaseUrl");
+            this.user = null;
+            this.passwd = null;
             Class.forName(jdbcDriver);
         } catch (ClassNotFoundException e) {
             System.out.println("Driver " + jdbcDriver + " non trouvé");
@@ -125,7 +125,7 @@ public class MockDataSource implements DataSource {
      * @throws SQLException
      */
     public static void main(String[] args) throws SQLException {
-        DataSource ds = new MockDataSource("org.sqlite.JDBC",  "jdbc:sqlite:/home/m/marti236/m2cci-1920-pi-GP02/bd/sql/bdtest.sqlite3",null , null);
+        DataSource ds = new MockDataSource();
         System.out.println("DataSource OK");
         try (Connection con = ds.getConnection()) {
             System.out.println("connexion OK");
