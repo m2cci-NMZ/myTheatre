@@ -12,16 +12,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,11 +48,11 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         // Récupération des valeurs des dates du formulaire
         String debut = request.getParameter("dateDebut");
         String fin = request.getParameter("dateFin");
+        
         if (debut == null) {         // Si il n'y a pas de dates spécifiées, on les force à des dates par défaut
             debut = "2020-03-01";
         }
