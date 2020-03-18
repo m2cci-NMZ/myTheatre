@@ -6,6 +6,7 @@
 package fr.im2ag.m2cci.mytheatre.prog.tools;
 
 import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -85,15 +86,47 @@ public class ControlerTools {
     }
     
     
-    public static void ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine){
-        if (repParSemaine.get(numeroSem).isEmpty()){
-            // Premier ajout pour cette semaine, on crée les 7 List<Representation> pour chaque jour (Lundi, ..., Dimanche)
-            for (int iJour = 0; iJour < 7; iJour++){
-                repParSemaine.get(numeroSem).add(new ArrayList<Representation>());
-            }
-        }
-        
-        int numeroJourSemaineRep = numeroJourSemaine(rep.getHoraire());     // On trouve l'indice du jour
-        repParSemaine.get(numeroSem).get(numeroJourSemaineRep).add(rep);    // On ajoute dans le bon jour
-    }
+   
+    
+//    /**
+//     * Test nbSemaineEntre(Date d1, Date d2) method, of class ControlerTools.
+//     */
+//    public void nbSemainesEntreTest() throws Exception {
+//        Date horaireDebut1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-01");
+//        Date horaireFin2 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-10");
+//        Date horaireDebut3 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-10");
+//        Date horaireFin4 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-19");
+//        int periode1 = nbSemaineEntre(horaireDebut1, horaireFin2);
+//        int periode2 = nbSemaineEntre(horaireDebut3, horaireFin4);
+//        if (periode1.equals(periode2)){
+//            System.out.println("Le test a fonctionné");
+//        }
+//    }
+//        /**
+//     * Test numeroJourSemaine(Date d) method, of class ControlerTools.
+//     */
+//    public void numeroJourSemaineTest() throws Exception {
+//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
+//        if (numeroJourSemaine(d1).equals(1)){
+//            System.out.println("Le test a fonctionné");
+//        }
+//    }
+//    /**
+//     * Test toFinDeJournee(Date d) method, of class ControlerTools.
+//     */
+//    public void toFinDeJourneeTest() throws Exception {
+//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
+//        Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-03-16 23:59:59");
+//        assertEquals(toFinDeJournee(d1),d2);
+//            System.out.println("Le test a fonctionné");
+//        }
+//    /**
+//     * Test ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine) method, of class ControlerTools.
+//     */
+//    public void ajouterAuRepParSemaineTest() throws Exception {
+//        Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-16");
+//        Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-03-16 23:59:59");
+//        assertEquals(toFinDeJournee(d1),d2);
+//            System.out.println("Le test a fonctionné");
+//        }
 }

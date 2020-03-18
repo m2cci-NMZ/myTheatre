@@ -13,16 +13,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -136,7 +130,7 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
                 Representation rep = listRepresentations.get(iRep);
                 Date horaire = rep.getHoraire();
                 if (horaire.compareTo(datesLundi[iSem])>=0 && horaire.compareTo(ControlerTools.toFinDeJournee(datesDimanche[iSem]))<=0) {
-                    ControlerTools.ajouterAuRepParSemaine(rep, iSem, repParSemaine);
+                    ajouterAuRepParSemaine(rep, iSem, repParSemaine);
                     iRep++;
                 } else if (!horaire.after(ControlerTools.toFinDeJournee(datesDimanche[iSem]))) {
                     throw new RuntimeException ("Une des représentations de la requete n'est pas dans la plage horraire définie par l'utilisateur");
@@ -155,7 +149,17 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             throw new ServletException("Problème avec la convertion des dates : " + ex.getMessage(), ex);
         }
     }
-
+     private void ajouterAuRepParSemaine(Representation rep, int numeroSem, List<List<List<Representation>>> repParSemaine){
+        if (repParSemaine.get(numeroSem).isEmpty()){
+            // Premier ajout pour cette semaine, on crée les 7 List<Representation> pour chaque jour (Lundi, ..., Dimanche)
+            for (int iJour = 0; iJour < 7; iJour++){
+                repParSemaine.get(numeroSem).add(new ArrayList<Representation>());
+            }
+        }
+        
+        int numeroJourSemaineRep = ControlerTools.numeroJourSemaine(rep.getHoraire());     // On trouve l'indice du jour
+        repParSemaine.get(numeroSem).get(numeroJourSemaineRep).add(rep);    // On ajoute dans le bon jour
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
