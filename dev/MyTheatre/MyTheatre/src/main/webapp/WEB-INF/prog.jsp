@@ -190,7 +190,9 @@
                     <div class="col-md-9">
                         <br>
                         <%
-                            if (dateDebut != null && dateFin != null) {
+                            boolean premierChargement = (boolean) request.getAttribute("premierChargement");
+                            if (!premierChargement) {   
+                                // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                                 if (dateDebut.equals(dateFin)){     
                                     // Affichage de la date une seule fois si le début et la fin correspondent au même jour

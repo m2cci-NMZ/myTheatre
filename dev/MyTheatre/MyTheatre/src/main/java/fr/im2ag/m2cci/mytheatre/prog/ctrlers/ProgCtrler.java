@@ -83,7 +83,7 @@ public class ProgCtrler extends HttpServlet {
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
             
-            if (!premierChargement) {  // Si les paramètres sont null, alors c'est la page par défaut qui s'affiche au début (on ne met pas paramType)
+            if (!premierChargement) {  // Si ce n'est pas la page par défaut on doit faire des requetes
                 // Gestion des types de spectacles
                 List<String> types = new ArrayList<>();
                 if (paramTypes != null) {
