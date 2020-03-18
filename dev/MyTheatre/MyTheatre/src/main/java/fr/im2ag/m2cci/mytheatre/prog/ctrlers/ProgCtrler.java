@@ -76,6 +76,7 @@ public class ProgCtrler extends HttpServlet {
                         types.add(paramType);
                     }
                 }
+                request.setAttribute("listTypes", types);
                 
 
                 // Requete à la BD
