@@ -62,6 +62,9 @@ public class ProgDAO {
                     queryRep += " OR typeSpe=?";
                 }
                 queryRep += ")\n";
+            } else {
+                // Si l'utilisateur décoche volontairement tous les types de spectacles, la requete de retourne rien
+               queryRep += " AND (typeSpe='null')\n" ;
             }
             queryRep += " ORDER BY horaireRep; \n";
             

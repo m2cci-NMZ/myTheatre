@@ -137,23 +137,24 @@
                             </div>
                             <h4>Type de spectacles</h4>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                String[] typesCheck = request.getParameterValues("type");
+                                String[] typesChecks = request.getParameterValues("type");
+                                List<String> typesCheck = (List<String>) request.getAttribute("listTypes");
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
                                 if (typesCheck != null) {
-                                    for (int i = 0; i < typesCheck.length; i++) {
-                                        if (typesCheck[i].equals("opera")) {
+                                    for (int i = 0; i < typesCheck.size(); i++) {
+                                        if (typesCheck.get(i).equals("opera")) {
                                             checkOpera = " checked";
-                                        } else if (typesCheck[i].equals("humoristique")) {
+                                        } else if (typesCheck.get(i).equals("humoristique")) {
                                             checkHumor = " checked";
-                                        } else if (typesCheck[i].equals("drame")) {
+                                        } else if (typesCheck.get(i).equals("drame")) {
                                             checkDrame = " checked";
-                                        } else if (typesCheck[i].equals("musical")) {
+                                        } else if (typesCheck.get(i).equals("musical")) {
                                             checkMusic = " checked";
-                                        } else if (typesCheck[i].equals("cirque")) {
+                                        } else if (typesCheck.get(i).equals("cirque")) {
                                             checkCirqu = " checked";
                                         }
                                     }
