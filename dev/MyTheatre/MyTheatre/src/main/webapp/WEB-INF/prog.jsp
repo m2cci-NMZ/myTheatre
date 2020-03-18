@@ -69,11 +69,11 @@
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%>>
+                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%> required>
                                 </div>
                                 <label class="col-form-label">au</label>
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%> required>
                                 </div>
                             </div>
                             <br>
