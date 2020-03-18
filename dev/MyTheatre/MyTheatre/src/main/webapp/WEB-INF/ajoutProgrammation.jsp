@@ -156,7 +156,7 @@
                             </div>  
                         </div>
                     </div>                  
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <br>
                         <h2>La Programmation</h2>
                         <%

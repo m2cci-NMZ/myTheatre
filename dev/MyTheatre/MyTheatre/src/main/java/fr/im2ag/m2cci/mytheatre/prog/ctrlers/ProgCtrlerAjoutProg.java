@@ -77,12 +77,6 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
 
-            // Requete à la BD pour tous les Spectacles et pour les Representations
-            List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
-            request.setAttribute("listeSpectacles", listSpectacles);
-
-            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, "null", new ArrayList<String>());
-            request.setAttribute("listeRepresentations", listRepresentations);
 
             //######################################################################
             //Traitement de la partie affichage de la programmation en semaines
@@ -122,13 +116,17 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
 
             request.setAttribute("datesLundi", datesLundi);
             request.setAttribute("datesDimanche", datesDimanche);
+
     
             //##### Séparation des Representations par semaines et par jours de la semaine
+            // Requete a la BD
+            List<Representation> listRepresentations = ProgDAO.toutesRepresentationsDatees(dataSource, dateDebut, dateFin);
+            // Découpage en Liste
             List<List<List<Representation>>> repParSemaine = new ArrayList<>();
             for (int iSem = 0; iSem < nbSem; iSem++) {
                 repParSemaine.add(new ArrayList<List<Representation>>());
             }
-
+            // Remplissage des List
             int iSem = 0;
             int iRep = 0;
             while (iRep < listRepresentations.size()){
@@ -143,8 +141,13 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
                     iSem++;
                 }
             }
-
+            // Ajout de l'attribut
             request.setAttribute("repParSemaine", repParSemaine);
+            
+            
+            // Requete à la BD pour tous les Spectacles
+            List<Spectacle> listSpectacles = ProgDAO.toutSpectacles(dataSource);
+            request.setAttribute("listeSpectacles", listSpectacles);
             
             
             request.getRequestDispatcher("/WEB-INF/ajoutProgrammation.jsp").forward(request, response);
