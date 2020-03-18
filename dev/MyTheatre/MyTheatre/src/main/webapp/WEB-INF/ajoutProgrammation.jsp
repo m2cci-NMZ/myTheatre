@@ -168,7 +168,7 @@
                             String dateDebutForm = navigateurJourFormatter.format(dateDebut);
                             String dateFinForm = navigateurJourFormatter.format(dateFin);
                         %>
-                        <form>
+                        <form action="progCtrlerAjoutProg">
                             <div class="form-row">
                                 <div class=col-auto">
                                     <label class="col-form-label">Du</label>
