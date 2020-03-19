@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ProgDAOTest {
 
-    static DataSource ds = new MockDataSource("org.sqlite.JDBC", "jdbc:sqlite:C:/MSys64/home/m/miquelr/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/test.db", null, null);
+    static DataSource ds = new MockDataSource("org.sqlite.JDBC", "jdbc:sqlite:C:/MSys64/home/celia/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3", null, null);
 
     public ProgDAOTest() {
     }
@@ -356,8 +356,8 @@ public class ProgDAOTest {
         }
 
     }
-    
-        /**
+
+    /**
      * Test of representationsFiltrees method, of class ProgDAO.
      */
     @Test
@@ -374,4 +374,56 @@ public class ProgDAOTest {
 
     }
 
+    @Test
+    public void testAjoutSpectale() throws Exception {
+        System.out.println("AjoutSpectacle");
+        int numero = 1000;
+        String nom = "A";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "drame";
+        Spectacle spe = new Spectacle(numero, nom, prixDeBase, type, cible);
+        ProgDAO.ajoutSpectacle(ds, numero, nom, prixDeBase, cible, type, false, false);
+        List<Spectacle> spectacles = ProgDAO.toutSpectacles(ds);
+        int i = spectacles.indexOf(spe);
+        assertEquals(spectacles.get(i), spe);
+
+    }
+    @Test
+    public void testInsertRepresentation() throws Exception{
+        System.out.println("insertRepresentation");
+        int numeroSpe = 100 ; 
+        Date horaireRep = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2020-03-10 15:00");
+        Representation rep = new Representation(horaireRep, spec);
+        ProgDAO.insertRepresentation(ds, numeroSpe, horaireRep);
+        List<Spectacle> spectacles = ProgDAO.toutSpectacles(ds);
+        int i = spectacles.indexOf(numeroSpe);
+        assertEquals(spectacles.get(i),numeroSpe);
+        
+       
+    }
+     @Test
+    public void testInsertRepresentation() throws Exception {
+        System.out.println("insertRepresentation");
+        DataSource ds = null;
+        int numeroSpe = 0;
+        Date horaireRep = null;
+        ProgDAO.insertRepresentation(ds, numeroSpe, horaireRep);
+      
+     
+}
+     List<Representation> result = ProgDAO.representationsFiltrees(ds, horaireDebut, horaireFin, cibleSpe, typesSpe);
+        Spectacle spec = new Spectacle(46, "Les Animaux", 8.0, "cirque", "unCinqAns");
+        Representation rep = new Representation(dateRep, spec);
+        assertEquals(rep, result.get(0));
+}
+
+     public void testDecrement() {
+        System.out.println("decrement");
+        Counter instance = new Counter();
+        int expResult = 0;
+        int result = instance.decrement();
+        assertEquals(expResult, result);
+        
+   }
 }

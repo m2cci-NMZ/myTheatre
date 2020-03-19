@@ -52,4 +52,5 @@ public class HumoristiqueTest {
         assertEquals(expResult, result);
     }
     
+     
 }
