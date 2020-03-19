@@ -55,6 +55,9 @@ INSERT INTO LesRepresentations VALUES ('2020-03-12 12:00', 23);
 INSERT INTO LesRepresentations VALUES ('2020-03-13 22:00', 17);
 INSERT INTO LesRepresentations VALUES ('2020-03-15 22:00', 45);
 INSERT INTO LesRepresentations VALUES ('2020-03-19 15:00', 27);
+INSERT INTO LesRepresentations VALUES ('2020-03-19 18:00', 24);
+INSERT INTO LesRepresentations VALUES ('2020-03-19 20:00', 25);
+INSERT INTO LesRepresentations VALUES ('2020-03-19 23:00', 17);
 INSERT INTO LesRepresentations VALUES ('2020-03-31 20:00', 46);
 
 
