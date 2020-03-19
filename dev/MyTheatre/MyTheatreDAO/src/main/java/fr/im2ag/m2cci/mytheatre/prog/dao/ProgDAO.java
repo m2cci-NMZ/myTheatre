@@ -26,11 +26,14 @@ import javax.sql.DataSource;
  * @author marti236
  */
 public class ProgDAO {
+
     private static final SimpleDateFormat horaireFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat horaireFinFormatter = new SimpleDateFormat("yyyy-MM-dd 23:59");   // La date de fin doit être inclue en entier
-    
+
     /**
-     * Permet de faire une requete sur les `Representation`s selon des filtres passés en paramètres
+     * Permet de faire une requete sur les `Representation`s selon des filtres
+     * passés en paramètres
+     *
      * @param ds
      * @param horaireDebut
      * @param horaireFin
@@ -38,97 +41,101 @@ public class ProgDAO {
      * @param typesSpe
      * @return Une liste de Representations
      * @throws SQLException
-     * @throws ParseException 
+     * @throws ParseException
      */
-    public static List<Representation> representationsFiltrees(DataSource ds, Date horaireDebut, 
-            Date horaireFin, String cibleSpe, List<String> typesSpe) throws SQLException, ParseException{
-        
-        String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
-                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
-                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
-                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
-                + "WHERE horaireRep>=? AND horaireRep<=?";//+ "ORDER BY horaireRep";
-        
+    public static List<Representation> representationsFiltrees(DataSource ds, Date horaireDebut,
+            Date horaireFin, String cibleSpe, List<String> typesSpe) throws SQLException, ParseException {
+
         List<Representation> representations = new ArrayList<>();
-        
-        try (Connection conn = ds.getConnection()){
-            // Construction de la requête en fonction des filtres
-            if (!cibleSpe.equals("null")){
-                queryRep += " AND cibleSpe=?";
-            }
-            if (!typesSpe.isEmpty()){
+
+        if (!typesSpe.isEmpty()) {
+            // Si la liste des types de Spectacles et vide, la requete ne retournera rien, on ne la fait donc pas
+
+            String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
+                    + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
+                    + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
+                    + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
+                    + "WHERE horaireRep>=? AND horaireRep<=?";
+
+            try (Connection conn = ds.getConnection()) {
+                // Construction de la requête en fonction des filtres
+                // Cible
+                if (!cibleSpe.equals("null")) {
+                    queryRep += " AND cibleSpe=?";
+                }
+                // Types de spectacle
                 queryRep += " AND (typeSpe=?";
-                for (int i = 1; i < typesSpe.size(); i++){
+                for (int i = 1; i < typesSpe.size(); i++) {
                     queryRep += " OR typeSpe=?";
                 }
                 queryRep += ")\n";
-            }
-            queryRep += " ORDER BY horaireRep; \n";
-            
-            PreparedStatement stmt = conn.prepareStatement(queryRep);
-            
-            // Preparation de la requete
-            stmt.setString(1, horaireFormatter.format(horaireDebut));
-            stmt.setString(2, horaireFinFormatter.format(horaireFin));
-            int iQuery = 3;     // Permet de garder l'indice d'ajout du PreparedStatement
-            if (!cibleSpe.equals("null")){
-                stmt.setString(3, cibleSpe);
-                iQuery ++;
-            }
-            if (!typesSpe.isEmpty()) {
-                for (int i = 0; i < typesSpe.size(); i++){
-                    stmt.setString(iQuery+i, typesSpe.get(i));
+
+                // Ajout d'un ordre
+                queryRep += " ORDER BY horaireRep; \n";
+
+                PreparedStatement stmt = conn.prepareStatement(queryRep);
+
+                // Preparation de la requete
+                stmt.setString(1, horaireFormatter.format(horaireDebut));
+                stmt.setString(2, horaireFinFormatter.format(horaireFin));
+                int iQuery = 3;     // Permet de garder l'indice d'ajout du PreparedStatement
+                if (!cibleSpe.equals("null")) {
+                    stmt.setString(3, cibleSpe);
+                    iQuery++;
                 }
-            }
-            
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    // Récupération des attributs
-                    int numero = rs.getInt("numeroSpe");
-                    String nom = rs.getString("nomSpe");
-                    double prixDeBase = rs.getDouble("prixDeBaseSpe");
-                    String cible = rs.getString("cibleSpe");
-                    String type = rs.getString("typeSpe");
-                    String horaireRep = rs.getString("horaireRep");
-                    
-                    // Création des objets
-                    Date horaire = horaireFormatter.parse(horaireRep);
-                    Spectacle s;
-                    switch(type){
-                        case "opera":
-                            int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
-                            boolean aUnOrchestre = (aUnOrchestreOpe == 1);
-                            s = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
-                            break;
-                        case "humoristique":
-                            int estUnOneWomanManShowHum = rs.getInt("estUnOneWomanManShowHum");
-                            boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
-                            s = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanManShow);
-                            break;
-                        default:
-                            s = new Spectacle(numero, nom, prixDeBase, type, cible); 
+                for (int i = 0; i < typesSpe.size(); i++) {
+                    stmt.setString(iQuery + i, typesSpe.get(i));
+                }
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        // Récupération des attributs
+                        int numero = rs.getInt("numeroSpe");
+                        String nom = rs.getString("nomSpe");
+                        double prixDeBase = rs.getDouble("prixDeBaseSpe");
+                        String cible = rs.getString("cibleSpe");
+                        String type = rs.getString("typeSpe");
+                        String horaireRep = rs.getString("horaireRep");
+
+                        // Création des objets
+                        Date horaire = horaireFormatter.parse(horaireRep);
+                        Spectacle s;
+                        switch (type) {
+                            case "opera":
+                                int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
+                                boolean aUnOrchestre = (aUnOrchestreOpe == 1);
+                                s = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+                                break;
+                            case "humoristique":
+                                int estUnOneWomanManShowHum = rs.getInt("estUnOneWomanManShowHum");
+                                boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
+                                s = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanManShow);
+                                break;
+                            default:
+                                s = new Spectacle(numero, nom, prixDeBase, type, cible);
+                        }
+                        Representation rep = new Representation(horaire, s);
+                        representations.add(rep);
                     }
-                    Representation rep = new Representation(horaire, s);
-                    representations.add(rep) ;
                 }
-            } 
+            }
         }
+
         return representations;
     }
-    
-    
-    public static List<Spectacle> toutSpectacles(DataSource ds) throws SQLException{
-        
+
+    public static List<Spectacle> toutSpectacles(DataSource ds) throws SQLException {
+
         String querySpe = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
-                + "ORDER BY nomSpe; \n";         
-        
+                + "ORDER BY nomSpe; \n";
+
         List<Spectacle> spectacles = new ArrayList<>();
-        
-        try (Connection conn = ds.getConnection()){
+
+        try (Connection conn = ds.getConnection()) {
             Statement stmt = conn.createStatement();
-            
+
             try (ResultSet rs = stmt.executeQuery(querySpe)) {
                 while (rs.next()) {
                     // Récupération des attributs
@@ -137,10 +144,10 @@ public class ProgDAO {
                     double prixDeBase = rs.getDouble("prixDeBaseSpe");
                     String cible = rs.getString("cibleSpe");
                     String type = rs.getString("typeSpe");
-                    
+
                     // Création des objets
                     Spectacle spec;
-                    switch(type){
+                    switch (type) {
                         case "opera":
                             int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
                             boolean aUnOrchestre = (aUnOrchestreOpe == 1);
@@ -152,43 +159,67 @@ public class ProgDAO {
                             spec = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanManShow);
                             break;
                         default:
-                            spec = new Spectacle(numero, nom, prixDeBase, type, cible); 
+                            spec = new Spectacle(numero, nom, prixDeBase, type, cible);
                     }
-                    spectacles.add(spec) ;
+                    spectacles.add(spec);
                 }
-            } 
+            }
         }
         return spectacles;
     }
+
+    /**
+     * Retourne la liste de toutes les Representations entre les deux Dates passées
+     * en paramètre
+     * Appelle representationsFiltrees en mettant dans cibleSpe et typeSpe les valeurs 
+     * adaptées permettant de récupérer toutes les Spectacles possibles
+     * 
+     * @param ds : DataSource
+     * @param horaireDebut : Date
+     * @param horaireFin : Date
+     * @return : Liste de Representation
+     * @throws SQLException
+     * @throws ParseException 
+     */
+    public static List<Representation> toutesRepresentationsDatees(DataSource ds, Date horaireDebut,
+            Date horaireFin) throws SQLException, ParseException{
+        String cibleSpe = "null";
+        List<String> typesSpe = new ArrayList<>();
+        typesSpe.add("opera");
+        typesSpe.add("humoristique");
+        typesSpe.add("drame");
+        typesSpe.add("musical");
+        typesSpe.add("cirque");
+        
+        return representationsFiltrees(ds, horaireDebut, horaireFin, cibleSpe, typesSpe);
+    }
     
-    
-    public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type, 
-            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException{
+    public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
+            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException {
         // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
-        
-        try (Connection conn = ds.getConnection()){
+
+        try (Connection conn = ds.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
             stmt.setInt(1, numero);
             stmt.setString(2, nom);
             stmt.setDouble(3, prixDeBase);
             stmt.setString(4, cible);
             stmt.setString(5, type);
-            
+
             stmt.executeUpdate();
         }
     }
-    
-    
-    public static void insertRepresentation(DataSource ds, int numeroSpe, Date horaireRep) throws SQLException{
+
+    public static void insertRepresentation(DataSource ds, int numeroSpe, Date horaireRep) throws SQLException {
         // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesRepresentations VALUES (?, ?);";
-        
-        try (Connection conn = ds.getConnection()){
+
+        try (Connection conn = ds.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
             stmt.setString(1, horaireFormatter.format(horaireRep));
             stmt.setInt(2, numeroSpe);
-            
+
             stmt.executeUpdate();
         }
     }
