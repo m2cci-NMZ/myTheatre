@@ -207,7 +207,7 @@
                         %>    
                         
                             <%
-                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH");
+                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
                                 List<Representation> prog = (List<Representation>) request.getAttribute("progList");
                                 if (prog.isEmpty()){
                             %>  
@@ -216,17 +216,18 @@
                             <%
                                 } else {
                             %>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Horaire</th>
-                                    <th>Nom</th>
-                                    <th>Prix</th>                    
-                                    <th>Type de spectacle</th>
-                                    <th>Catégorie de spectateurs</th>   
-                                </tr>
-                            </thead>
-                            <tbody>        
+                        <div style="height:85vh; overflow: auto;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width:14%">Horaire</th>
+                                        <th>Nom</th>
+                                        <th style="width:10%">Prix</th>                    
+                                        <th style="width:20%">Type de spectacle</th>
+                                        <th style="width:23%">Catégorie de spectateurs</th>   
+                                    </tr>
+                                </thead>
+                                <tbody>        
                             <%
                                     for (Representation r : prog) {
                                         Date date = r.getHoraire();
@@ -274,19 +275,19 @@
                                                 break;
                                         }
                                 %>
-
-                                <tr>
-                                    <td><%=horaireFormatter.format(date)%>h</td>
-                                    <td><%=nom%></td>
-                                    <td><%=prixBase%> €</td>
-                                    <td><%=type%></td>
-                                    <td><%=cible%></td>
-                                </tr>
+                                    <tr>
+                                        <td><%=horaireFormatter.format(date)%></td>
+                                        <td><%=nom%></td>
+                                        <td><%=prixBase%> €</td>
+                                        <td><%=type%></td>
+                                        <td><%=cible%></td>
+                                    </tr>
                                 <%
                                     }
                                 %>
-                            </tbody>
-                        </table>   
+                                </tbody>
+                            </table>
+                        </div>
                         <%
                                 }
                             }

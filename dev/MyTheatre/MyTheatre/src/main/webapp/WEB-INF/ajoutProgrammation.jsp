@@ -21,7 +21,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
-
+        <style>
+            .colRepAdmin{
+                width: 14.28%;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -201,6 +205,7 @@
                             </div>
                         </form>
                         <br>
+                        <div style="height:78.5vh; overflow: auto;">
                         <%
                             int nbSem = (int) request.getAttribute("nbSemaines");   // Récupère le nombre de semaines entre les deux dates du formulaire
                             List<List<List<Representation>>> representationsParSemaine = (List<List<List<Representation>>>) request.getAttribute("repParSemaine");
@@ -209,17 +214,18 @@
                             Date[] datesDimanche = (Date[]) request.getAttribute("datesDimanche");
 
                             SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
-                            SimpleDateFormat heureFormatter = new SimpleDateFormat("HH");           // Formatte l'affichage des heures
+                            SimpleDateFormat heureFormatter = new SimpleDateFormat("HH'h'mm");      // Formatte l'affichage des heures
+                            
 
                             for (int iSem = 0; iSem < nbSem; iSem++) {
                         %>
-                        <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
+                            <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>
                         <%
                             // Pour chaque semaine    
                             if (representationsParSemaine.get(iSem).isEmpty()) {
                                 // Si la semaine est vide
                         %>
-                        Planning vide<br><br>
+                            <b>Planning vide</b><br><br>
                         <%
                         } else {
                             // Si la semaine n'est pas vide, il y a une List par jour
@@ -231,64 +237,66 @@
                                 }
                             }
                         %>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Lundi</th>
-                                    <th>Mardi</th>
-                                    <th>Mercredi</th>                    
-                                    <th>Jeudi</th>
-                                    <th>Vendredi</th>   
-                                    <th>Samedi</th>
-                                    <th>Dimanche</th>   
-                                </tr>
-                            </thead>
-                            <tbody>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="colRepAdmin">Lundi</th>
+                                        <th class="colRepAdmin">Mardi</th>
+                                        <th class="colRepAdmin">Mercredi</th>                    
+                                        <th class="colRepAdmin"> Jeudi</th>
+                                        <th class="colRepAdmin">Vendredi</th>   
+                                        <th class="colRepAdmin">Samedi</th>
+                                        <th class="colRepAdmin">Dimanche</th>   
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <%
-                                    String repAffichee;
                                     for (int iRep = 0; iRep < nbMaxRepJour; iRep++) {
                                 %>
-                                <tr>
+                                    <tr>
                                     <%
                                         for (int iJour = 0; iJour < 7; iJour++) {
                                             if (representationsParSemaine.get(iSem).get(iJour).size() > iRep) {
                                                 Representation rep = representationsParSemaine.get(iSem).get(iJour).get(iRep);
                                                 Date horaireRep = rep.getHoraire();
                                                 String nomSpe = rep.getSpectacle().getNom();
-                                                repAffichee = heureFormatter.format(horaireRep) + "h - " + nomSpe;
-                                            } else {
-                                                repAffichee = "";
-                                            }
                                     %>
-                                    <td><%=repAffichee%></td>
+                                        <td><b style="color:grey"><%=heureFormatter.format(horaireRep)%></b>
+                                        <br><%=nomSpe%></td>
                                     <%
+                                            } else {
+                                    %>
+                                        <td></td>
+                                    <%
+                                            }
                                         }
                                     %>
-                                </tr>
+                                    </tr>
                                 <%
                                     }
                                 %>      
-                            </tbody>
-                        </table>   
+                                </tbody>
+                            </table>   
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </div>
                 </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                    crossorigin="anonymous">
-            </script>
-
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+        </script>
     </body>
 </html>
