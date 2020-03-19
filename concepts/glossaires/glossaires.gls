@@ -7,87 +7,85 @@
 
 glossary model MyTheatre
 
+Theatre
+    | Etablissement proposant des `Representation`s de divers `Spectacle`s.
+	
 MyTheatre
-    | Theatre utilisant le logiciel pour son système de réservation de `Place`s pour 
-    | les `Spectacle`s au cours d’une même saison
-    | C'est aussi le nom du logiciel
+    | Logiciel de gestion d'un `Theatre`.
+    | Il permet à un potentiel `Spectateur` de visualiser la `Programmation` du `Theatre` et de réserver des `Ticket`s pour les `Spectacle`s.
+	| Il permet également au `Gerant` d'avoir accès à la `Programmation` du `Theatre` et d'ajouter des `Spectacle`s et/ou des `Representation`.
 
 Programmation
-    | Ensemble des `Representation`s proposées par le `Theatre`
+    | Ensemble des `Representation`s proposées par le `Theatre`.
 
 Representation
-    | Programmation d'un `Spectacle` à une `Horaire` donnée
+	| Créneau `Horaire` durant lequel une exhibition d'un `Spectacle` peut avoir lieu dans la salle du `Theatre`.
     
 Spectacle
-    | Spectacle se déroulant au `Theatre`
-    | Un spectacle peut être `Humoristique`, `Musical`, de l'`Opera`, un `Drame` ou du `Cirque`
+    | Spectacle se déroulant au `Theatre`.
+    | Un `Spectacle` peut être `Humoristique`, `Musical`, de l'`Opera`, un `Drame` ou du `Cirque`.
     
 Opera
-    | Type de `Spectacle` pouvant avoir ou non un orchestre
+    | Type de `Spectacle` pouvant avoir ou non un orchestre.
     
 Drame
-    | Type de `Spectacle`
+    | Type de `Spectacle`.
     
 Cirque
-    | Type de `Spectacle`
+    | Type de `Spectacle`.
     
 Humoristique
-    | Type de `Spectacle` pouvant être OneWomen(Men)Show
+    | Type de `Spectacle` pouvant être ou non un OneWomen(Men)Show.
     
 Musical
-    | Type de `Spectacle`
+    | Type de `Spectacle`.
     
 Horaire
-    | Date et heure à laquelle a lieu une `Representation`
+    | Date et heure à laquelle a lieu une `Representation`.
     
 Place
-    | Place présente dans la salle du `Theatre`.
-    | Elle peut-être disponible ou non.
-    | On peut acheter un `Ticket` pour une `Place` d'une `Representation` donnee.
-    | Une `Place` est contenu dans une `Zone` 
+    | Une `Place` correspond à un siège d'une `Zone` dans la salle du `Theatre`.
     synonyms: Siege
 
 Zone
     | Regroupement d'un ensemble de `Place` dans la salle de théatre.
-    | Une `Zone` est associée a une `Categorie Tarifaire`
+    | Une `Zone` est associée a une `Categorie`.
 
-Categorie Tarifaire
+Categorie
     | Categorie associée a une ou plusieurs `Zone`.
     | Peut être orchestre, balcon, poulailler, ...
-    | En fonction de la `Categorie Tarifaire`, un taux est appliqué au prix des `Place`s
+    | En fonction de la `Categorie`, un taux est appliqué au prix des `Ticket`s.
 
 Reservation
-    | Option permettant de réserver une `Place` pour une `Representation` sans la payer pendant un délai maximum de 24h
-    | Cette option n'est pas forcément disponible pour toutes les `Representation`s
-    | Dès que la `Reservation` est confirmée, le `Ticket` correspondant est acheté
+    | Option empêchant la création d'un `Ticket` associé à une `Place` pour une `Representation`.
+    | Cette option a une durée limitée de 24 heures et n'est pas forcément disponible pour toutes les `Representation`s.
+    | Dès que la `Reservation` est confirmée, le `Ticket` est créé.
     | Au bout de 24h, si la `Reservation` n'a pas été confirmée, elle est annulée et la 
-    | `Place` est de nouveau disponible à l'achat
+    | création d'un nouveau `Ticket` associé à cette `Place` est à nouveau possible.
 
 Ticket
-    | Achat d'une `Place` pour une `Representation`
-    | Un `Ticket` fait parti d'un `Dossier Achat`
+    | Preuve d'achat donnant accès à une `Place` pour une `Representation`.
+	| La création d'un `Ticket` est impossible si la `Place` associée est contenue dans une `Zone` non autorisée par le `Spectacle`.
+	| Pour une `Representation` donnée, la création d'un `Ticket` est impossible s'il existe un autre `Ticket` associé à la même `Place`.
+    | Un `Ticket` fait parti d'un `Dossier`.
 
-Dossier Achat
-    | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps
-    | Il permet de connaitre le prix global
+Dossier
+    | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps.
+    | Il permet de connaitre le prix global.
 
 Reduction
-    | Promotion associee a une `Representation` ou a un `Statut`
-    | Une `Reduction` réduit le prix des `Place`s d'un certain taux
-    | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent
+    | Avantage permettant à un `Spectateur` de diminuer le prix d'un `Ticket` d'un certain taux.
+	| La `Reduction` dépend du `Statut` du `Spectateur` et de la `Representation`.
+    | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent.
     
 Spectateur
-    | Personne achetant des `Place`s pour regarder un `Spectacle`
-    | Une `Spectateur` peut avoir un, plusieurs ou aucun `Statut`
-    | Elle peut avoir le `Statut` `Adherent` ou être un spectateur ordinaire (pas de `Statut` associé)
-    | Elle peut aussi être étudiante, scolaires, militaires et/ou séniors
+    | Personne achetant un ou plusieurs `Ticket` donnant accès à une ou plusieurs `Representation`.
+    | Un `Spectateur` peut avoir un, plusieurs ou aucun `Statut`.
+    | Il peut avoir le `Statut` adherent ou être un spectateur ordinaire.
+    | Il peut aussi être étudiant, scolaire, militaire et/ou sénior.
     
 Statut
-    | Statut caractérisant un `Spectateur` et lui permettant de profiter de `Reduction`s   
-    
-Adherent
-    | `Statut` d'une `Personne` faisant partie des adhérents du théatre
-    | Une `Personne` peut être soit un `Adherent soit un spectateur ordinaire
+    | Caractéristique d'un `Spectateur` lui permettant de profiter ou non de `Reduction`s.
     
 Gerant
-		| Personne responsable du théâtre `MyTheatre` et qui gère la `Programmation`
+	| Personne responsable du `Theatre` et qui gère la `Programmation`.

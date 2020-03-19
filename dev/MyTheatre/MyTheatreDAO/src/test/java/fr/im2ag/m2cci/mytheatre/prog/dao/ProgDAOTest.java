@@ -33,7 +33,11 @@ import org.junit.jupiter.api.Test;
  */
 public class ProgDAOTest {
 
+<<<<<<< HEAD
     static DataSource ds = new MockDataSource("org.sqlite.JDBC", "jdbc:sqlite:C:/MSys64/home/celia/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3", null, null);
+=======
+    static DataSource ds = new MockDataSource();
+>>>>>>> bce177421a5468b2a52c202c5d0faa910868603e
 
     public ProgDAOTest() {
     }
@@ -42,8 +46,7 @@ public class ProgDAOTest {
         File input = new File(path);
         Scanner sc = new Scanner(input);
         sc.useDelimiter("^\n$|;(( *\n)|( *--.*\n))|--.*\n");
-        try (Connection conn = ds.getConnection();
-                Statement stmt = conn.createStatement()) {
+        try ( Connection conn = ds.getConnection();  Statement stmt = conn.createStatement()) {
             //conn.setAutoCommit(false);
             while (sc.hasNext()) {
                 String sqlQuery = sc.next().trim();
@@ -65,9 +68,9 @@ public class ProgDAOTest {
         File input = new File("bd/dataTest.sql");
         Scanner sc = new Scanner(input);
         sc.useDelimiter("^\n$|;(( *\n)|( *--.*\n))|--.*\n");
-        try (Connection conn = ds.getConnection()) {
+        try ( Connection conn = ds.getConnection()) {
             conn.setAutoCommit(false);
-            try (Statement stmt = conn.createStatement()) {
+            try ( Statement stmt = conn.createStatement()) {
                 conn.setAutoCommit(false);
                 while (sc.hasNext()) {
                     String sqlQuery = sc.next().trim();
@@ -93,9 +96,9 @@ public class ProgDAOTest {
         File input = new File("bd/dataTest.sql");
         Scanner sc = new Scanner(input);
         sc.useDelimiter("^\n$|;(( *\n)|( *--.*\n))|--.*\n");
-        try (Connection conn = ds.getConnection()) {
+        try ( Connection conn = ds.getConnection()) {
             conn.setAutoCommit(false);
-            try (Statement stmt = conn.createStatement()) {
+            try ( Statement stmt = conn.createStatement()) {
                 conn.setAutoCommit(false);
                 while (sc.hasNext()) {
                     String sqlQuery = sc.next().trim();
@@ -374,6 +377,7 @@ public class ProgDAOTest {
 
     }
 
+<<<<<<< HEAD
     @Test
     public void testAjoutSpectale() throws Exception {
         System.out.println("AjoutSpectacle");
@@ -416,6 +420,56 @@ public class ProgDAOTest {
         Spectacle spec = new Spectacle(46, "Les Animaux", 8.0, "cirque", "unCinqAns");
         Representation rep = new Representation(dateRep, spec);
         assertEquals(rep, result.get(0));
+=======
+    /**
+     * Test of representationsFiltrees method, of class ProgDAO.
+     */
+    @Test
+    public void testNbTotaltoutSpectacles() throws Exception {
+        System.out.println("toutSpectacles");
+        List<Spectacle> result = ProgDAO.toutSpectacles(ds);
+        assertEquals(6, result.size());
+    }
+
+    /**
+     * Test of representationsFiltrees method, of class ProgDAO.
+     */
+    
+    @Test
+    public void testToutSpectaclesPremierResultat() throws Exception {
+        System.out.println("representationsFiltreesPremierResultat");
+        List<Spectacle> result = ProgDAO.toutSpectacles(ds);
+        Spectacle spec = new Spectacle(17, "Andromaque", 15.0, "drame","adulte");
+        assertEquals(spec, result.get(0));
+    }
+    /**
+     * Test of representationsFiltrees method, of class ProgDAO.
+     */
+    
+    @Test
+    public void testToutSpectaclesDernierResultat() throws Exception {
+        System.out.println("representationsFiltreesPremierResultat");
+        List<Spectacle> result = ProgDAO.toutSpectacles(ds);
+        Spectacle spec = new Spectacle(47, "Sonorites Etranges", 10.0, "musical","jeunePublic");
+        assertEquals(spec, result.get(5));
+    }
+    
+    
+    /**
+     * Test of representationsFiltrees method, of class ProgDAO.
+     */
+    
+    @Test
+    public void testajoutSpectacleComedie() throws Exception {
+        System.out.println("representationsFiltreesPremierResultat");
+        Spectacle spec = new Spectacle(100, "Z", 10.0, "drame", "jeunePublic");
+        ProgDAO.ajoutSpectacle(ds, 100, "Z", 10.0, "jeunePublic", "drame", false, false);
+        List<Spectacle> result = ProgDAO.toutSpectacles(ds);
+        assertEquals(spec, result.get(7));
+    }
+
+    
+>>>>>>> bce177421a5468b2a52c202c5d0faa910868603e
 }
 
      public void testDecrement() {
