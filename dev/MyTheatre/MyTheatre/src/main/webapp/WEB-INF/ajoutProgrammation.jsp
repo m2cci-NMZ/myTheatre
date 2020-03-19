@@ -44,7 +44,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-brand" href="#">
-                        <img src="img/logo" alt="logo" style="width:40px;">
+                        <img src="img/logo.jpg" alt="logo" style="width:40px;">
                     </a>
                 </li>
                 <li class="nav-item">
