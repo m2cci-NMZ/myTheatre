@@ -64,26 +64,16 @@
                                 Date dateFin = (Date) request.getAttribute("dateFin");
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
-                                String dateDebutForm;
-                                if (dateDebut == null) {
-                                    dateDebutForm = "2020-03-01";
-                                } else {
-                                    dateDebutForm = navigateurJourFormatter.format(dateDebut);
-                                }
-                                String dateFinForm;
-                                if (dateFin == null) {
-                                    dateFinForm = "2020-03-31";
-                                } else {
-                                    dateFinForm = navigateurJourFormatter.format(dateFin);
-                                }
+                                String dateDebutForm = navigateurJourFormatter.format(dateDebut);
+                                String dateFinForm = navigateurJourFormatter.format(dateFin);
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%>>
+                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%> required>
                                 </div>
                                 <label class="col-form-label">au</label>
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%>>
+                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%> required>
                                 </div>
                             </div>
                             <br>
@@ -137,23 +127,23 @@
                             </div>
                             <h4>Type de spectacles</h4>
                             <%  // Conserve le bouton check pour le type de spectacle
-                                String[] typesCheck = request.getParameterValues("type");
+                                List<String> typesCheck = (List<String>) request.getAttribute("listTypes");
                                 String checkOpera = "";
                                 String checkHumor = "";
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
                                 if (typesCheck != null) {
-                                    for (int i = 0; i < typesCheck.length; i++) {
-                                        if (typesCheck[i].equals("opera")) {
+                                    for (int i = 0; i < typesCheck.size(); i++) {
+                                        if (typesCheck.get(i).equals("opera")) {
                                             checkOpera = " checked";
-                                        } else if (typesCheck[i].equals("humoristique")) {
+                                        } else if (typesCheck.get(i).equals("humoristique")) {
                                             checkHumor = " checked";
-                                        } else if (typesCheck[i].equals("drame")) {
+                                        } else if (typesCheck.get(i).equals("drame")) {
                                             checkDrame = " checked";
-                                        } else if (typesCheck[i].equals("musical")) {
+                                        } else if (typesCheck.get(i).equals("musical")) {
                                             checkMusic = " checked";
-                                        } else if (typesCheck[i].equals("cirque")) {
+                                        } else if (typesCheck.get(i).equals("cirque")) {
                                             checkCirqu = " checked";
                                         }
                                     }
@@ -200,7 +190,9 @@
                     <div class="col-md-9">
                         <br>
                         <%
-                            if (dateDebut != null && dateFin != null) {
+                            boolean premierChargement = (boolean) request.getAttribute("premierChargement");
+                            if (!premierChargement) {   
+                                // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
                                 if (dateDebut.equals(dateFin)){     
                                     // Affichage de la date une seule fois si le début et la fin correspondent au même jour
