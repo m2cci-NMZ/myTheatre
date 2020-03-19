@@ -386,7 +386,6 @@ public class ProgDAOTest {
     /**
      * Test of representationsFiltrees method, of class ProgDAO.
      */
-    
     @Test
     public void testToutSpectaclesPremierResultat() throws Exception {
         System.out.println("representationsFiltreesPremierResultat");
