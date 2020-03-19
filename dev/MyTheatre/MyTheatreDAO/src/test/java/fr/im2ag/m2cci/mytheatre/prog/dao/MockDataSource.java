@@ -49,7 +49,7 @@ public class MockDataSource implements DataSource {
         String jdbcDriver = null;
         try {
             Properties options = new Properties();
-            options.load(new FileInputStream(new File("/home/nico/tmp/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/jdbc.properties")));
+            options.load(new FileInputStream(new File("C:/MSys64/home/m/miquelr/m2cci-1920-pi-GP02/dev/MyTheatre/MyTheatreDAO/bd/jdbc.properties")));
             jdbcDriver = options.getProperty("jdbcDriver");
             this.dbURL = options.getProperty("dataBaseUrl");
             this.user = null;

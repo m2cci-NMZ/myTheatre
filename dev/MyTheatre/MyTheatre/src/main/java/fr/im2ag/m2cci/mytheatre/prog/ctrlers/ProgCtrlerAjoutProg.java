@@ -46,11 +46,11 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         // Récupération des valeurs des dates du formulaire
         String debut = request.getParameter("dateDebut");
         String fin = request.getParameter("dateFin");
+        
         if (debut == null) {         // Si il n'y a pas de dates spécifiées, on les force à des dates par défaut
             debut = "2020-03-01";
         }

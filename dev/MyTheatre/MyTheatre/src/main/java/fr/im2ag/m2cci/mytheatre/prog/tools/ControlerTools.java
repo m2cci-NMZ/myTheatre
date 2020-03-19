@@ -5,15 +5,11 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.tools;
 
-import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
