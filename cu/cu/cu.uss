@@ -18,7 +18,7 @@ usecase ConsulterTouteLaProgrammation
       
 usecase ConsulterUnePartieDeLaProgrammation
       actor Spectateur
-      | Le `Spectateur` souhaite consulter une partie de la `Programmation` de `MyTheatre` selon
+      | Le `Spectateur` souhaite consulter une partie de la `Programmation` du `Theatre` selon
       | plusieurs critères correspondant à des contraintes personnelles
       | Il va définir ses critères puis il verra les résultats
       
