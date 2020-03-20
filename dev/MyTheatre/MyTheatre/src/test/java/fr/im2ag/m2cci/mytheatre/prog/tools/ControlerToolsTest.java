@@ -5,10 +5,8 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.tools;
 
-import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,7 +42,7 @@ public class ControlerToolsTest {
     }
  @Test
     public void testNbSemaineEntreDifferentesSemaines() throws Exception {
-        System.out.println("nbSemaineEntreE");
+        System.out.println("nbSemaineEntre");
         Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-08");
         Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-09");
         int expResult = 2;

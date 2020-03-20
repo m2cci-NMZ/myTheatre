@@ -3,7 +3,7 @@ Status actuel
 
 Fait
 ----
-CU pour les scénario 1
+CU pour les scénario 1 et 3
 
 
 A compléter/améliorer
