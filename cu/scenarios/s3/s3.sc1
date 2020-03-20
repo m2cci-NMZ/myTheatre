@@ -2,10 +2,10 @@
 -- ----------
 -- Gerant:Planification
 
--- (C1) Bernard est le gérant de `MyTheatre`.
+-- (C1) Bernard est le `Gerant` du `Theatre`.
 -- Parmis les tâches qu’il accomplit, c’est lui qui gère le planning des `Representation`s.
--- (C2) Pour la saison Hiver 2018-2019, il a reçu cette semaine 3 demandes de réservation de la salle.
--- (C3) Cela correspond à 3 groupes d’artistes qui souhaitent se produire à `MyTheatre`.
+-- (C2) Pour la `Saison` Hiver 2018-2019, il a reçu cette semaine 3 demandes de réservation de la salle.
+-- (C3) Cela correspond à 3 groupes d’artistes qui souhaitent se produire au `Theatre`.
 -- (C4) Il se connecte à son mail pour voir les propositions.
 
 -- (C5) Deux des trois artistes proposent des `Drame`s.
@@ -15,7 +15,7 @@
 -- (C9) Il ajoute à la `Programmation` "La musique et moi" sur les deux premières semaines d’avril.
 -- (C10) Ce sera les jeudis, vendredis et samedis soirs (21h) et le dimanche après midi (18h).
 -- (C11) Pour et "Perdu" ce sera début mai pour des `Representation`s 3 samedis soirs successifs.
--- (C12) Le troisième `Spectacle` est proposé par une association locale qui se produit chaque année dans à `MyTheatre`.
+-- (C12) Le troisième `Spectacle` est proposé par une association locale qui se produit chaque année dans le `Theatre`.
 -- (C13) Le tarif demandé est le même que celui de l’année passé.
 -- (C14) Bernard le considère satisfaisant.
 -- (C15) Il regarde des propositions faites par Gérald - le président de l’association - comme le troisième samedi de mai Perdu est dans la `Programmation`.
@@ -25,5 +25,5 @@
 -- (C19) Bernard choisit donc de retenir ces propositions.
 -- (C20) Ils joueront le vendredi 29 et le samedi 30 mai.
 -- (C21) Il constate qu'à l'`Horaire` du dimanche 31 mai à 15h aucun `Spectacle` n’est prévu.
--- (C22) Il va proposer à Gérald cette `Horaire` supplémentaire au même tarif que pour les deux autres `Representation`s.
--- (C23) Il envoie des mails aux trois organismes pour les informer des `Horaire`s retenues.
+-- (C22) Il va proposer à Gérald cet `Horaire` supplémentaire au même tarif que pour les deux autres `Representation`s.
+-- (C23) Il envoie des mails aux trois organismes pour les informer des `Horaire`s retenus.

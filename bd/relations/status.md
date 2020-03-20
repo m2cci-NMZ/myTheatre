@@ -3,7 +3,7 @@ Status actuel
 
 Fait
 ----
-Scénario 1
+Incrément 1
 
 
 A compléter/améliorer
