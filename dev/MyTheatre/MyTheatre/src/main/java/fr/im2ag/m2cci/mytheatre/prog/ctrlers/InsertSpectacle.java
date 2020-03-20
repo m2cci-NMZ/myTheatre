@@ -9,6 +9,7 @@ import fr.im2ag.m2cci.mytheatre.prog.dao.ProgDAO;
 import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -65,7 +66,9 @@ public class InsertSpectacle extends HttpServlet {
                 
                 if(clePrimaireViolee){
                     // On signale au controleur qu'il y a un pb lié à la clé primaire
-                    request.setAttribute("erreurSQL", "PK_SPE");
+                    List<String> erreursSQL = new ArrayList<>();
+                    erreursSQL.add("PK_SPE");
+                    request.setAttribute("erreursSQL", erreursSQL);
                     
                     request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
                 } else {
