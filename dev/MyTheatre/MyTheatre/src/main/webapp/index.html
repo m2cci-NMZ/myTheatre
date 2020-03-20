@@ -12,6 +12,12 @@
             width: 100%;
             color: white;
             font-size: 100px;
+
+            .img-fluid {
+                width: 100%;
+                background-repeat:no-repeat;
+                background-size:100% 500px; 
+            }
         }
         h2 { color: #FF0000; }
     </style>
@@ -23,7 +29,7 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
     </head>
-    <body>
+    <body background="img/theatre.jpg" class="img-fluid">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
             <!-- Links -->
@@ -45,7 +51,6 @@
             </ul>
         </nav>
         <div class="thumbnail text-center">
-            <img src="img/theatre.jpg" class="img-fluid" alt="theatre" >
             <div class="caption" >
                 <p>Bienvenue sur MyTheatre</p>
             </div>
