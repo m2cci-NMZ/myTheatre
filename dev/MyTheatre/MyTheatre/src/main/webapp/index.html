@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html>
     <style>
-        .thumbnail {
-            position: relative;
-        }
-
-        .caption {
-            position: absolute;
-            top: 30%;
-            left: 0;
-            width: 100%;
-            color: white;
+        div > p{
             font-size: 100px;
-        }
+            text-align: center;
+            margin-top: 300px;
 
-        .img-fluid {
-            width: 100%;
-            background-repeat:no-repeat;
-            background-size:100%; 
         }
-
+        div > div{
+            background-color: #c0c0c0;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
 
     </style>
     <head>
@@ -30,7 +22,7 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
     </head>
-    <body background="img/theatre.jpg" class="img-fluid">
+    <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
             <!-- Links -->
@@ -51,8 +43,8 @@
                 </li>
             </ul>
         </nav>
-        <div class="thumbnail text-center">
-            <div class="caption" >
+        <div class="container-fluid">
+            <div >
                 <p>Bienvenue sur MyTheatre</p>
             </div>
         </div>
