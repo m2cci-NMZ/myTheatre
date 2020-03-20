@@ -44,7 +44,7 @@ public class ControlerToolsTest {
     }
  @Test
     public void testNbSemaineEntreDifferentesSemaines() throws Exception {
-        System.out.println("nbSemaineEntreE");
+        System.out.println("nbSemaineEntre");
         Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-08");
         Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-09");
         int expResult = 2;
