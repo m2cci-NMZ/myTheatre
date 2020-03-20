@@ -19,6 +19,9 @@ MyTheatre
 Programmation
     | Ensemble des `Representation`s proposées par le `Theatre`.
 
+Saison
+    | Période de temps à la fin de laquelle l'ensemble des `Programmation`s sont archivées
+
 Representation
     | Créneau `Horaire` durant lequel une exhibition d'un `Spectacle` peut avoir lieu dans la salle du `Theatre`.
     
@@ -79,7 +82,7 @@ Ticket
 Dossier
     | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps.
     | Il permet de connaitre le prix global.
-    synonyms: Dossier d'achat
+    synonyms: DossierAchat
 
 Reduction
     | Avantage permettant à un `Spectateur` de diminuer le prix d'un `Ticket` d'un certain taux.
@@ -99,4 +102,4 @@ Statut
     
 Gerant
     | Personne responsable du `Theatre` et qui gère la `Programmation`.
-    synonyms: Administrateur
+    synonyms: Directeur, Administrateur
