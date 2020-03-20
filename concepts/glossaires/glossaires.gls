@@ -13,13 +13,14 @@ Theatre
 MyTheatre
     | Logiciel de gestion d'un `Theatre`.
     | Il permet à un potentiel `Spectateur` de visualiser la `Programmation` du `Theatre` et de réserver des `Ticket`s pour les `Spectacle`s.
-	| Il permet également au `Gerant` d'avoir accès à la `Programmation` du `Theatre` et d'ajouter des `Spectacle`s et/ou des `Representation`.
+    | Il permet également au `Gerant` d'avoir accès à la `Programmation` du `Theatre` et d'ajouter des `Spectacle`s et/ou des `Representation`.
+    synonymes: SiteWebMyTheatre
 
 Programmation
     | Ensemble des `Representation`s proposées par le `Theatre`.
 
 Representation
-	| Créneau `Horaire` durant lequel une exhibition d'un `Spectacle` peut avoir lieu dans la salle du `Theatre`.
+    | Créneau `Horaire` durant lequel une exhibition d'un `Spectacle` peut avoir lieu dans la salle du `Theatre`.
     
 Spectacle
     | Spectacle se déroulant au `Theatre`.
@@ -42,7 +43,8 @@ Musical
     
 Horaire
     | Date et heure à laquelle a lieu une `Representation`.
-    
+    synonyms: CreneauHoraire
+ 
 Place
     | Une `Place` correspond à un siège d'une `Zone` dans la salle du `Theatre`.
     synonyms: Siege
@@ -55,37 +57,46 @@ Categorie
     | Categorie associée a une ou plusieurs `Zone`.
     | Peut être orchestre, balcon, poulailler, ...
     | En fonction de la `Categorie`, un taux est appliqué au prix des `Ticket`s.
+    synonyms: CategorieTarifaire
 
 Reservation
-    | Option empêchant la création d'un `Ticket` associé à une `Place` pour une `Representation`.
+    | Option empêchant la création d'un `Ticket` associé à une `PlaceDisponible`.
     | Cette option a une durée limitée de 24 heures et n'est pas forcément disponible pour toutes les `Representation`s.
     | Dès que la `Reservation` est confirmée, le `Ticket` est créé.
     | Au bout de 24h, si la `Reservation` n'a pas été confirmée, elle est annulée et la 
-    | création d'un nouveau `Ticket` associé à cette `Place` est à nouveau possible.
+    | création d'un nouveau `Ticket` associé à cette `PlaceDisponible` est à nouveau possible.
+
+PLaceDisponible
+    | Pour chaque `Representation`, un certain nombre de `Place`s est disponible,
+    | c'est à dire qu'elle peut être achetée par un `Spectateur` et faire l'objet d'un `Ticket`.
+    | Le fait qu'une `Place` associée à un `Representation` soit une `PlaceDisponible` dépend de la `Zone` dans laquelle elle se trouve,
+    | car certains `Spectacles` n'autorisent pas la vente de `Places` dans certaines `Zone`s.
 
 Ticket
-    | Preuve d'achat donnant accès à une `Place` pour une `Representation`.
-	| La création d'un `Ticket` est impossible si la `Place` associée est contenue dans une `Zone` non autorisée par le `Spectacle`.
-	| Pour une `Representation` donnée, la création d'un `Ticket` est impossible s'il existe un autre `Ticket` associé à la même `Place`.
+    | Preuve d'achat donnant accès à une `PlaceDisponible`.
     | Un `Ticket` fait parti d'un `Dossier`.
 
 Dossier
     | Regroupement d'un ou plusieurs `Ticket`s achetés en même temps.
     | Il permet de connaitre le prix global.
+    synonyms: Dossier d'achat
 
 Reduction
     | Avantage permettant à un `Spectateur` de diminuer le prix d'un `Ticket` d'un certain taux.
-	| La `Reduction` dépend du `Statut` du `Spectateur` et de la `Representation`.
+    | La `Reduction` dépend du `Statut` du `Spectateur` et de la `Representation`.
     | Si pour un `Ticket`, plusieurs `Reduction`s sont possibles, elles se cumulent.
+    synonyms: Promotion
     
 Spectateur
     | Personne achetant un ou plusieurs `Ticket` donnant accès à une ou plusieurs `Representation`.
     | Un `Spectateur` peut avoir un, plusieurs ou aucun `Statut`.
     | Il peut avoir le `Statut` adherent ou être un spectateur ordinaire.
     | Il peut aussi être étudiant, scolaire, militaire et/ou sénior.
-    
+    synonyms: Client  
+
 Statut
     | Caractéristique d'un `Spectateur` lui permettant de profiter ou non de `Reduction`s.
     
 Gerant
-	| Personne responsable du `Theatre` et qui gère la `Programmation`.
+    | Personne responsable du `Theatre` et qui gère la `Programmation`.
+    synonyms: Administrateur
