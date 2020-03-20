@@ -5,10 +5,8 @@
  */
 package fr.im2ag.m2cci.mytheatre.prog.tools;
 
-import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
