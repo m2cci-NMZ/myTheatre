@@ -8,6 +8,7 @@ package fr.im2ag.m2cci.mytheatre.prog.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import javax.sql.DataSource;
 
 public class Representation {
     private final Date horaire;
@@ -18,6 +19,7 @@ public class Representation {
         this.spe = spe;
     }
 
+   
     /**
      * Renvoie la date du spectacle
      *
