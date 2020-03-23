@@ -13,14 +13,14 @@ import glossary model from "../../concepts/glossaires/glossaires.gls"
 usecase ConsulterTouteLaProgrammation
       actor Spectateur
       | Le `Spectateur` souhaite consulter toute la `Programmation` de `MyTheatre` pour choisir 
-      | un `Spectacle` à aller voir
-      | Il ne définira pas de critère sur les `Spectacle`
+      | un `Spectacle` à aller voir.
+      | Il ne définira pas de critère sur les `Spectacle`.
       
 usecase ConsulterUnePartieDeLaProgrammation
       actor Spectateur
       | Le `Spectateur` souhaite consulter une partie de la `Programmation` du `Theatre` selon
-      | plusieurs critères correspondant à des contraintes personnelles
-      | Il va définir ses critères puis il verra les résultats
+      | plusieurs critères correspondant à des contraintes personnelles.
+      | Il va définir ses critères puis il verra les résultats.
       
 interactions
     a Spectateur can ConsulterTouteLaProgrammation
@@ -37,18 +37,37 @@ usecase AjouterUnSpectacle
 usecase AjouterUneRepresentation
 			actor Gerant 
       | Le `Gerant` peut ajouter à la `Programmation` une `Representation` selon les 
-      | `Horaire` disponible
+      | `Horaire` disponible.
       
 usecase VisualiserLaProgrammationGlobalement
 			actor Gerant 
       | Le `Gerant` peut visualiser la `Programmation` de manière plus globale qu'un
       | `Spectateur. Les informations sont plus compactées et lui offrent une vision 
-      | d'ensemble      
+      | d'ensemble.   
 
 interactions
     a Gerant can AjouterUnSpectacle
     a Gerant can AjouterUneRepresentation 
     a Gerant can VisualiserLaProgrammationGlobalement 
 
-   
+//-------Scenario 1bis ----------------------------------------------------- 
     
+usecase PayerUnePlace
+      actor Spectateur
+      | Le `Spectateur` souhaite acheter une `Place` pour une `Representation` proposée
+	  | dans la `Programmation`.
+
+usecase FaireUneReservation
+      actor Spectateur
+      | Le `Spectateur` souhaite réserver une `Place` pour une `Representation` proposée
+	  | dans la `Programmation`.
+	  | Une `Reservation` doit être confirmée avant 24 heures sinon elle est annulée.
+	  
+usecase ConfirmerUneReservation
+      actor Spectateur
+      | Le `Spectateur` peut confirmer une `Reservation` effectuée moins de 24 heures avant.
+	  
+interactions
+    a Spectateur can PayerUnePlace
+    a Spectateur can FaireUneReservation
+    a Spectateur can ConfirmerUneReservation
