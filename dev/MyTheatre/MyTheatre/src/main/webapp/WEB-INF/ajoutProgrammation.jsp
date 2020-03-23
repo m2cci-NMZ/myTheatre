@@ -37,7 +37,7 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="init()">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
             <!-- Links -->
@@ -128,7 +128,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row" style="margin-bottom: 0px;">
                                         <label class="col-sm-3 col-form-label">Type</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="typeSpeInput" name="typeSpe">
@@ -140,12 +140,13 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div> 
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Test</label>
-                                            <div class="col-sm-9">
-                                                <input type="checkbox" id="testCheck" class="form-control" name="bool" checked>
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-auto">
+                                            <input type="checkbox" id="orchestreOu1WShow" class="form-control" name="orchestreOu1WShow">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label class="col-form-label" id="labelOrchOu1WShow"></label>
                                         </div>
                                     </div>
                                     <div> 
@@ -366,6 +367,6 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                 crossorigin="anonymous">
         </script>
-        <script src="../script/ajoutProgrammation.js"></script>
+        <script src="js/ajoutProgrammation.js"></script>
     </body>
 </html>

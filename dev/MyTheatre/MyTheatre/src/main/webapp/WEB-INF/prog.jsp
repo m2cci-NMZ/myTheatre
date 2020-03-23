@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <br>
-                            <h4>Catégorie de spectateurs</h4>
+                            <h4>Spectateurs cibles</h4>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -226,7 +226,7 @@
                                         <th>Nom</th>
                                         <th style="width:10%">Prix</th>                    
                                         <th style="width:21%">Type de spectacle</th>
-                                        <th style="width:23.5%">Catégorie de spectateurs</th>   
+                                        <th style="width:18%">Spectateurs cibles</th>   
                                     </tr>
                                 </thead>
                                 <tbody>        

@@ -365,7 +365,7 @@ public class ProgDAOTest {
         String cible = "toutPublic";
         String type = "drame";
         Spectacle spe = new Spectacle(numero, nom, prixDeBase, type, cible);
-        ProgDAO.ajoutSpectacle(ds, numero, nom, prixDeBase, cible, type, false, false);
+        ProgDAO.ajoutSpectacle(ds, numero, nom, prixDeBase, cible, type, false);
         List<Spectacle> spectacles = ProgDAO.toutSpectacles(ds);
         int i = spectacles.indexOf(spe);
         assertEquals(spectacles.get(i), spe);

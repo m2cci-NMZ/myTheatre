@@ -256,12 +256,12 @@ public class ProgDAO {
      * @param prixDeBase : double pour le prix du base du Spectacle
      * @param cible : String pour le public cible du Spectacle
      * @param type : String pour le type de Spectacle
-     * @param aUnOrchestreOpe : boolean pour les Spectacle de type 'musical', permet de signaler qu'il y a un orchestre
-     * @param estUnOneWomanManShow : boolean pour les Spectacle de type 'humoristique', permet de signaler que c'est un OneWoman(Max)Show
+     * @param aOrchestreOuEstOneWomanManShow : boolean pour les Spectacle de type 'opera' ou 'humoristique', 
+     * permet de signaler qu'il y a un orchestre ou respectivement que c'est un OneWomanManShow
      * @throws SQLException 
      */
     public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
-            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException {
+            boolean aOrchestreOuEstOneWomanManShow) throws SQLException {
         // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
 
@@ -274,6 +274,26 @@ public class ProgDAO {
             stmt.setString(5, type);
 
             stmt.executeUpdate();
+            
+            // Si c'est un opera ou un humoristique, il faut un second insert 
+            // dans les tables LesOperas ou LesHumoritstique
+            if (type.equals("opera") || type.equals("humoristique")){
+                if (type.equals("opera")){
+                    queryInsert = "INSERT INTO LesOperas VALUES (?, ?); ";
+                } else {
+                    queryInsert = "INSERT INTO LesHumoristiques VALUES (?, ?); ";
+                }
+                
+                stmt = conn.prepareStatement(queryInsert);
+                stmt.setInt(1, numero);
+                if (aOrchestreOuEstOneWomanManShow){
+                    stmt.setInt(2, 1);
+                } else {
+                    stmt.setInt(2, 0);
+                }
+                
+                stmt.executeUpdate();
+            }
         }
     }
 
