@@ -79,6 +79,7 @@ public class PlacesDAO {
      *   ]
      * }
      * </pre> * @param ds la source de données pour les connexions JDBC
+     *
      * @param spectacleId l'identifiant du spectacle
      * @return la chaîne JSON
      * @throws SQLException si problème avec JDBC
@@ -94,6 +95,7 @@ public class PlacesDAO {
                         .writeStartArray("placesVendues");
                 while (rs.next()) {
                     gen.writeStartObject()
+                            .write("placeId", rs.getInt("numP"))
                             .write("rang", rs.getInt("numR"))
                             .write("colonne", rs.getInt("numP"))
                             .writeEnd();

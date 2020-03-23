@@ -67,7 +67,7 @@ public class AcheterPlacesCtrler extends HttpServlet {
             
             // récupère dans la session le spectacle précédemment sélectionné
             HttpSession session = request.getSession();
-            Representation rep = (Representation) session.getAttribute("Representation");
+            Representation rep = (Representation) session.getAttribute("representation");
             // demande à la DAO d'enregistrer les places dans la BD
             PlacesDAO.acheterPlaces(ds, rep.getHoraire(), placesIds, rangsIds);
 

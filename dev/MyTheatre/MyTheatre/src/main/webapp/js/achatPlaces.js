@@ -204,6 +204,7 @@ function acheter(sc) {
             params = params + "&place=";
         }
         params = params + this.node().attr('id');
+        let test = this.node();
         rangs = rangs + this.node().attr('id');// this est un objet de type Seat
         // this.node() donne l'objet JQuery correspondant à l'élément HTML matérialisant le siège
         // .attr('id') donne la valeur de la propriété 'id" de cet élément

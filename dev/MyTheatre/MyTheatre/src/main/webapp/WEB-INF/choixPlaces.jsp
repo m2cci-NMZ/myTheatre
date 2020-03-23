@@ -8,12 +8,17 @@
 
     Author     : Philippe GENOUD - Université Grenoble Alpes - Lab LIG-Steamer
 --%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Representation"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSC Demo</title>
+        <title>Achat de places</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+              crossorigin="anonymous">
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <link href="js/jQuery-Seat-Charts/jquery.seat-charts.css" rel="stylesheet" type="text/css"/>
         <link href="css/stylesTheatre.css" rel="stylesheet" type="text/css"/>
@@ -32,7 +37,7 @@
                     <a class="nav-link" href="./index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programmation</a>
+                    <a class="nav-link" href="./progCtrler">Programmation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./progCtrlerAjoutProg">Administration</a>
@@ -41,7 +46,12 @@
         </nav>
         <div class="wrapper">
             <h1>
-                Spectacle ${representation.getSpectacle().getNom()}
+                <%
+                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
+                Representation rep = (Representation) session.getAttribute("representation");
+                %>
+                Veuillez choisir vos places pour <%=rep.getSpectacle().getNom()%><br>
+                <%=horaireFormatter.format(rep.getHoraire())%>
             </h1>
             <div id="map-container">
                 <!-- Le div qui contient le plan de la salle -->
@@ -64,7 +74,7 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="js/jQuery-Seat-Charts/jquery.seat-charts.min.js" type="text/javascript"></script>
         <script src="js/achatPlaces.js" type="text/javascript"></script>
-        
+
     </body>
 </html>
 
