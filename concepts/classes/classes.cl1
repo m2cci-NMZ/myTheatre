@@ -34,7 +34,14 @@ enum Type {
     cirque
 }
 
-
+enum Categorie {
+    orchestre,
+    balcon,
+    poulailler
+}
+enum typeSta {
+   
+}
 ---------------------------------------------------------------------------
 -- classes
 ---------------------------------------------------------------------------
@@ -64,10 +71,64 @@ end
 class Representation
 attributes
     horaire_ : String
---|placesDispo_d : Integer
---|tauxReduc : Real  : C'est pour un scénario ultérieur
+    placesDispo_d : Integer
+    tauxReduc : Real 
 end
 
+class Rang
+attributes
+    numero_ : Integer
+end
+
+class Place
+attributes
+  numero_ : Integer 
+end
+
+class Zone
+attributes
+   numero_ : Integer    
+end
+
+class Categorie
+attributes
+  Categorie_: Categorie
+  rapportPrix : Real  
+end
+
+class Ticket
+attributes
+  numero_: Integer
+  dateEmin :String  
+  prixTicket_d : Real
+end
+
+class DossierAchat
+attributes
+  numero_: Integer
+  prixGlobal_d : Real
+   
+end
+
+class Personne
+attributes
+   id_: Integer
+end
+
+class Status
+attributes
+   typeStatu_: typeSta
+   taux : Real
+end
+
+class Utilisateur < Personne
+attributes
+   login_: String
+   nom : String
+   prenom : String
+   mail : String
+   mdp : String 
+end
 ---------------------------------------------------------------------------
 -- associations
 ---------------------------------------------------------------------------
@@ -75,4 +136,55 @@ end
 association APourRepresentation between
     Spectacle [1] role spectacle
     Representation [*] role representations
+end
+
+
+association EstDisponible between
+    Spectacle [*] role spectacles
+    Zone [1..*] role Zones
+end
+
+association EstDansLaZone between
+    Rang [1..*] role Rangs 
+    Zone [1] role Zone
+end
+
+association EstDansLaCategorie between
+    Categorie [1] role Categorie 
+    Zone [1..*] role Zones
+end
+
+association EstDansLaCategorie between
+    Categorie [1] role Categorie 
+    Zone [1..*] role Zones
+end
+
+composition Contient between
+    Rang [1] role Rang 
+    Place [1..*] role places
+end 
+
+associationclass Ticket between
+        Place[*] role palces
+        Representation[*] role representations
+    attributes
+        numero_: Integer
+        dateEmin : Date 
+        prixTicket_d : Double
+end
+
+association AAchete between
+    Ticket [*] role Tickets
+     Personne [0..1] role Personne
+end
+
+association EstBeneficier between
+    Status  [*] role Status
+    Personne [*] role Personnes
+end
+
+
+association AReserve between
+    Utilisateur  [0..1] role Utilisateur
+    Ticket [*] role Tickets
 end
