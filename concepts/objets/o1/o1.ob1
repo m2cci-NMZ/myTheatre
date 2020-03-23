@@ -13,6 +13,10 @@
 --@ import glossary model from "../../glossaires/glossaires.gls"
 --@ import class model from "../../classes/classes.cl1"
 
+---------------------------------------------------------------------------
+-- objets
+---------------------------------------------------------------------------
+
 --| (1) Le spectacle de numero 45 et de nom Cyrano avec un prix de base de 20 euros destiné a tout public et de type drame
     ! create cyrano : Spectacle
     ! cyrano.numero_ := 45
@@ -97,6 +101,129 @@
     ! representationDu150320h.horaire_ := '15/03/2020 20h'
 --|representationDu150320h.placesDispo_d := 10
 
+
+
+--| (19) Le rang de numéro 1
+    ! create rang1 : Rang
+	! rang1.numero_ := 1
+--| (19) Le rang de numéro 30
+    ! create rang30 : Rang
+	! rang30.numero_ := 30
+--| (19) Le rang de numéro 60
+    ! create rang60 : Rang
+	! rang60.numero_ := 60
+--| (19) Le rang de numéro 90
+    ! create rang90 : Rang
+	! rang90.numero_ := 90
+	
+--| (19) La place de numero 5
+    ! create place5 : Place
+	! place5.numero_ := 5
+--| (19) La place de numero 10
+    ! create place10 : Place
+	! place10.numero_ := 10
+--| (19) La place de numero 40
+    ! create place40 : Place
+	! place40.numero_ := 40
+--| (19) La place de numero 80
+    ! create place80 : Place
+	! place80.numero_ := 80
+	
+--| (19) La zone de numero 1
+    ! create zone1 : Zone
+	! zone1.numero_ := 1
+--| (19) La zone de numero 2
+    ! create zone2 : Zone
+	! zone2.numero_ := 2
+--| (19) La zone de numero 3
+    ! create zone3 : Zone
+	! zone3.numero_ := 3
+	
+	
+
+--| (12) La categorie balcon a un taux de 1.5 par rapport au prix de base
+    ! create balcon : Representation
+    ! balcon.categorie_ := Categorie :: balcon
+	! balcon.rapportPrix := 1.5
+	
+	--| (12) La categorie poulailler a un taux de 1.0 par rapport au prix de base
+    ! create poulailler : Representation
+    ! poulailler.categorie_ := Categorie :: poulailler
+	! poulailler.rapportPrix := 1.0
+	
+	--| (12) La categorie orchestre a un taux de 1.2 par rapport au prix de base
+    ! create orchestre : Representation
+    ! orchestre.categorie_ := Categorie :: orchestre
+	! orchestre.rapportPrix := 1.2
+	
+--| (12) Le ticket de numero 001, avec une date d'émission du 10/03/2020 et un prix de 10.0
+    ! create ticket001 : Ticket
+    ! ticket001.numero_ := 001
+	! ticket001.dateEmin := '10/03/2020'
+	! ticket001.prixTicket_d := 10.0
+	
+--| (12) Le ticket de numero 002, avec une date d'émission du 20/03/2020 et un prix de 8.0
+    ! create ticket002 : Ticket
+    ! ticket002.numero_ := 002
+	! ticket002.dateEmin := '20/03/2020'
+	! ticket002.prixTicket_d := 8.0
+	
+--| (12) Le ticket de numero 003, avec une date d'émission du 30/03/2020 et un prix de 10.0
+    ! create ticket003 : Ticket
+    ! ticket003.numero_ := 003
+	! ticket003.dateEmin := '30/03/2020'
+	! ticket003.prixTicket_d := 10.0
+	
+	--| (12) Le dossier d'achat de numéro 1 et de prix global 20.0
+    ! create dossierAchat1 : DossierAchat
+    ! dossierAchat1.numero_ := 1
+	! dossierAchat1.prixGlobal_d := 20.0
+	
+	--| (12) Le dossier d'achat de numéro 5 et de prix global 20.0
+    ! create dossierAchat5 : DossierAchat
+    ! dossierAchat5.numero_ := 5
+	! dossierAchat5.prixGlobal_d := 20.0
+	
+	--| (12) Le dossier d'achat de numéro 25 et de prix global 15.0
+    ! create dossierAchat25 : DossierAchat
+    ! dossierAchat25.numero_ := 25
+	! dossierAchat25.prixGlobal_d := 15.0
+	
+	--| (12) L'utilisateur de login nico58, de nom Martinez, de prénom Nicolas, avec l'adresse mail : nico58@gmail.com et le mot de passe : admin
+    ! create utilisateurNico58 : Utilisateur
+    ! utilisateurNico58.login_ := 'nico58'
+	! utilisateurNico58.nom := 'Martinez'
+	! utilisateurNico58.prenom := 'Nicolas'
+	! utilisateurNico58.mail := 'nico58@gmail'
+	! utilisateurNico58.mdp := 'admin'
+	
+	--| (12) L'utilisateur de login celia18, de nom Kezmane, de prénom Celia, avec l'adresse mail : celia18@gmail.com et le mot de passe : admin
+    ! create utilisateurCelia18 : Utilisateur
+    ! utilisateurCelia18.login_ := 'celia18'
+	! utilisateurCelia18.nom := 'Kezmane'
+	! utilisateurCelia18.prenom := 'Celia'
+	! utilisateurCelia18.mail := 'celia18@gmail'
+	! utilisateurCelia18.mdp := 'admin'
+	
+	--| (12) L'utilisateur de login robin32, de nom Miquel, de prénom Robin, avec l'adresse mail : robin32@gmail.com et le mot de passe : azerty
+    ! create utilisateurRobin32 : Utilisateur
+    ! utilisateurRobin32.login_ := 'robin32'
+	! utilisateurRobin32.nom := 'Miquel'
+	! utilisateurRobin32.prenom := 'Robin'
+	! utilisateurRobin32.mail := 'robin32@gmail'
+	! utilisateurRobin32.mdp := 'azerty'
+	
+	--| (12) L'utilisateur de login matt44, de nom Lehugeur, de prénom Matthieu, avec l'adresse mail : matt44@gmail.com et le mot de passe : 123456
+    ! create utilisateurMatt44 : Utilisateur
+    ! utilisateurMatt44.login_ := 'matt44'
+	! utilisateurMatt44.nom := 'Lehugeur'
+	! utilisateurMatt44.prenom := 'Matthieu'
+	! utilisateurMatt44.mail := 'matt44@gmail'
+	! utilisateurMatt44.mdp := '123456'
+	
+---------------------------------------------------------------------------
+-- insertions
+---------------------------------------------------------------------------
 --| (13) Le 13/03 a 18h, Les Animaux est à l'affiche
     ! insert(lesAnimaux, representationDu130318h) into APourRepresentation
 
@@ -114,4 +241,53 @@
     
 --| (18) Le 15/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu150320h) into APourRepresentation
+	
+	
+--(18) La zone 1 est disponible pour le spectacle l'Avare
+-- insert(zone1, avare) into EstDisponible
+	
+--(18) La zone 2 est disponible pour le spectacle Don Juan
+-- insert(zone2, donJuan) into EstDisponible
+	
+--(18) La zone 3 est disponible pour le spectacle Don Juan
+-- insert(zone3, donJuan) into EstDisponible
+	
+--(18) La zone 3 est disponible pour le spectacle Les Animaux
+-- insert(zone3, lesAnimaux) into EstDisponible
+	
+	
+--(18) Le rang 1 est dans la zone 1  
+-- insert(rang1, zone1) into EstDansLaZone
+	
+-- (18) Le rang 30 est dans la zone 2  
+-- insert(rang30, zone2) into EstDansLaZone
+	
+--(18) Le rang 60 est dans la zone 3 
+-- insert(rang60, zone3) into EstDansLaZone
+	
+	
+-- COMPOSITION
+--(18) Le rang 60 contient la place 5
+-- insert(rang60, place5) into Contient
 
+
+--CLASSE ASSOCIATIVES
+
+--stockChampoAllIs1 := new Stock between (champollionFigeac, allIs1)
+--stockChampoAllIs1.exemplaire := 12
+ --stockChampoAllIs1.dispo := 12
+
+	
+--| (18) Le ticket 001 correspond au dossier d'achat 1
+    ! insert(ticket001, dossierAchat1) into AUn
+	
+	
+--| (18) nico58 a acheté le ticket 001
+    ! insert(Nico58, ticket002) into AAchete
+	
+
+--| (18) celia18 a réserve le ticket 002
+    ! insert(celia18, ticket002) into APourRepresentation
+	
+	
+	
