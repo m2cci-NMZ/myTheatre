@@ -225,8 +225,8 @@
                                         <th style="width:14%">Horaire</th>
                                         <th>Nom</th>
                                         <th style="width:10%">Prix</th>                    
-                                        <th style="width:20%">Type de spectacle</th>
-                                        <th style="width:23%">Catégorie de spectateurs</th>   
+                                        <th style="width:21%">Type de spectacle</th>
+                                        <th style="width:23.5%">Catégorie de spectateurs</th>   
                                     </tr>
                                 </thead>
                                 <tbody>        
