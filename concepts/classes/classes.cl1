@@ -34,14 +34,18 @@ enum Type {
     cirque
 }
 
-enum Categorie {
-    orchestre,
-    balcon,
-    poulailler
-}
-enum typeSta {
-   
-}
+--enum categorie {
+--    orchestre,
+--    balcon,
+--    poulailler
+--}
+--enum typeSta {
+--    adherents,
+--    etudiants,
+--    scolaires,
+--   militaires,
+--    seniors
+--}
 ---------------------------------------------------------------------------
 -- classes
 ---------------------------------------------------------------------------
@@ -61,12 +65,10 @@ attributes
     aUnOrchestre : Boolean
 end
 
-
 class Humoristique < Spectacle
 attributes
     estUnOneWomanManShow : Boolean
 end
-
 
 class Representation
 attributes
@@ -85,50 +87,42 @@ attributes
   numero_ : Integer 
 end
 
-class Zone
-attributes
-   numero_ : Integer    
-end
-
-class Categorie
-attributes
-  Categorie_: Categorie
-  rapportPrix : Real  
-end
-
-class Ticket
-attributes
-  numero_: Integer
-  dateEmin :String  
-  prixTicket_d : Real
-end
+--class Zone
+--attributes
+ --  numero_ : Integer    
+--end
 
 class DossierAchat
 attributes
   numero_: Integer
   prixGlobal_d : Real
-   
 end
 
-class Personne
-attributes
-   id_: Integer
-end
+--class Personne
+--attributes
+--  id_: Integer
+--end
 
-class Status
-attributes
-   typeStatu_: typeSta
-   taux : Real
-end
+--class Status
+--attributes
+--  typeStatu_: typeSta
+--  taux : Real
+--end
 
-class Utilisateur < Personne
+class Utilisateur --< Personne
 attributes
    login_: String
    nom : String
    prenom : String
-   mail : String
-   mdp : String 
+   --mail : String
+   --mdp : String 
 end
+
+--class Categorie
+--attributes
+--  categorie_: categorie
+--  rapportPrix : Real  
+--end
 ---------------------------------------------------------------------------
 -- associations
 ---------------------------------------------------------------------------
@@ -138,53 +132,51 @@ association APourRepresentation between
     Representation [*] role representations
 end
 
+--association EstDisponible between
+--    Zone [1..*] role zones
+--    Spectacle [*] role spectacles
+--end
 
-association EstDisponible between
-    Spectacle [*] role spectacles
-    Zone [1..*] role Zones
-end
+--association EstDansLaZone between
+ --   Rang [1..*] role rangs 
+ --   Zone [1] role zone
+--end
 
-association EstDansLaZone between
-    Rang [1..*] role Rangs 
-    Zone [1] role Zone
-end
-
-association EstDansLaCategorie between
-    Categorie [1] role Categorie 
-    Zone [1..*] role Zones
-end
-
-association EstDansLaCategorie between
-    Categorie [1] role Categorie 
-    Zone [1..*] role Zones
-end
+--association EstDansLaCategorie between
+--   Zone [1..*] role zones
+--  Categorie [1] role categorie 
+--end
 
 composition Contient between
-    Rang [1] role Rang 
+    Rang [1] role rang 
     Place [1..*] role places
 end 
 
 associationclass Ticket between
-        Place[*] role palces
+        Place[*] role places
         Representation[*] role representations
     attributes
         numero_: Integer
-        dateEmin : Date 
-        prixTicket_d : Double
+        dateEmin : String --@ {Date}
+        prixTicket_d : Real
+end
+
+association AUn between
+     Ticket [1..*] role tickets
+     DossierAchat [1] role dossierAchat
 end
 
 association AAchete between
-    Ticket [*] role Tickets
-     Personne [0..1] role Personne
+    Utilisateur [0..1] role personne
+     Ticket [*] role ticketsAchetes
 end
 
-association EstBeneficier between
-    Status  [*] role Status
-    Personne [*] role Personnes
-end
-
+--association EstBeneficier between
+--    Status  [*] role status
+--    Personne [*] role personnes
+--end
 
 association AReserve between
-    Utilisateur  [0..1] role Utilisateur
-    Ticket [*] role Tickets
+    Utilisateur  [0..1] role utilisateur
+    Ticket [*] role ticketsReserves
 end
