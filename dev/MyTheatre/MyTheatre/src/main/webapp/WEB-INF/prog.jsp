@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Opera"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Humoristique"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -260,12 +262,20 @@
                                         switch (type) {
                                             case "opera":
                                                 type = "Opéra";
+                                                Opera o = (Opera) r.getSpectacle();
+                                                if (o.getAUnOrchestre()){
+                                                    type += " (avec orchestre)";
+                                                }
                                                 break;
                                             case "drame":
                                                 type = "Drame";
                                                 break;
                                             case "humoristique":
-                                                type = "Humoristique";
+                                                type = "Humour";
+                                                Humoristique h = (Humoristique) r.getSpectacle();
+                                                if (h.getEstUnOneWomanManShow()){
+                                                    type += " (Stand-up)";
+                                                }
                                                 break;
                                             case "musical":
                                                 type = "Musical";
