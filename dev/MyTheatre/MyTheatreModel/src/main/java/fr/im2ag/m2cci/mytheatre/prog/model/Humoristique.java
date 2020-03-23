@@ -18,7 +18,7 @@ public class Humoristique extends Spectacle {
      *
      * @return
     */
-    public boolean getestUnOneWomanManShow (){
+    public boolean getEstUnOneWomanManShow (){
         return this.estUnOneWomanManShow;
     }
     

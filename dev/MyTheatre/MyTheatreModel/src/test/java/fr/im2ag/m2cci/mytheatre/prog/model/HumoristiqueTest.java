@@ -27,7 +27,7 @@ public class HumoristiqueTest {
         System.out.println("getestUnOneWomanManShow");
         Humoristique instance = new Humoristique(0, null , 0, null, null, false);
         boolean expResult = false;
-        boolean result = instance.getestUnOneWomanManShow();
+        boolean result = instance.getEstUnOneWomanManShow();
         assertEquals(expResult, result);
     }
 
