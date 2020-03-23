@@ -185,37 +185,38 @@
                             <div> 
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </div>
-
+                        </form>
                     </div>
                     <div class="col-md-9">
                         <br>
                         <%
                             boolean premierChargement = (boolean) request.getAttribute("premierChargement");
-                            if (!premierChargement) {   
+                            if (!premierChargement) {
                                 // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                                if (dateDebut.equals(dateFin)){     
+                                if (dateDebut.equals(dateFin)) {
                                     // Affichage de la date une seule fois si le début et la fin correspondent au même jour
                         %>
-                            <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
-                        <%              
-                                } else {
-                        %>
-                            <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
+                        <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
                         <%
-                                }
+                        } else {
+                        %>
+                        <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
+                        <%
+                            }
                         %>    
-                        
-                            <%
-                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
-                                List<Representation> prog = (List<Representation>) request.getAttribute("progList");
-                                if (prog.isEmpty()){
-                            %>  
-                            <br>    
-                            Aucune représentation ne correspond à vos critères
-                            <%
-                                } else {
-                            %>
+
+                        <%
+                            SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
+                            SimpleDateFormat horaireFormatterServlet = new SimpleDateFormat("yyyy:dd:MM_HH:mm");
+                            List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                            if (prog.isEmpty()) {
+                        %>  
+                        <br>    
+                        Aucune représentation ne correspond à vos critères
+                        <%
+                        } else {
+                        %>
                         <div style="height:85vh; overflow: auto;">
                             <table class="table table-striped">
                                 <thead>
@@ -228,63 +229,65 @@
                                     </tr>
                                 </thead>
                                 <tbody>        
-                            <%
-                                    for (Representation r : prog) {
-                                        Date date = r.getHoraire();
-                                        String nom = r.getSpectacle().getNom();
+                                    <%
+                                        for (Representation r : prog) {
+                                            Date date = r.getHoraire();
+                                            String nom = r.getSpectacle().getNom();
 
-                                        // Formatage du prix à la française
-                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
-                                        NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
-                                        prix.setMinimumFractionDigits(2);
-                                        prix.setMaximumFractionDigits(2);
-                                        String prixBase = prix.format(prixDeBase);
+                                            // Formatage du prix à la française
+                                            Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                            NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
+                                            prix.setMinimumFractionDigits(2);
+                                            prix.setMaximumFractionDigits(2);
+                                            String prixBase = prix.format(prixDeBase);
 
-                                        // Mise en forme des cibles et des types
-                                        String cible = r.getSpectacle().getCible();
-                                        String type = r.getSpectacle().getType();
-                                        switch (cible) {
-                                            case "toutPublic":
-                                                cible = "Tout Public";
-                                                break;
-                                            case "unCinqAns":
-                                                cible = "1-5 Ans";
-                                                break;
-                                            case "jeunePublic":
-                                                cible = "Jeune Public";
-                                                break;
-                                            case "adulte":
-                                                cible = "Adulte";
-                                                break;
-                                        }
-                                        switch (type) {
-                                            case "opera":
-                                                type = "Opéra";
-                                                break;
-                                            case "drame":
-                                                type = "Drame";
-                                                break;
-                                            case "humoristique":
-                                                type = "Humoristique";
-                                                break;
-                                            case "musical":
-                                                type = "Musical";
-                                                break;
-                                            case "cirque":
-                                                type = "Cirque";
-                                                break;
-                                        }
-                                %>
+                                            // Mise en forme des cibles et des types
+                                            String cible = r.getSpectacle().getCible();
+                                            String type = r.getSpectacle().getType();
+                                            switch (cible) {
+                                                case "toutPublic":
+                                                    cible = "Tout Public";
+                                                    break;
+                                                case "unCinqAns":
+                                                    cible = "1-5 Ans";
+                                                    break;
+                                                case "jeunePublic":
+                                                    cible = "Jeune Public";
+                                                    break;
+                                                case "adulte":
+                                                    cible = "Adulte";
+                                                    break;
+                                            }
+                                            switch (type) {
+                                                case "opera":
+                                                    type = "Opéra";
+                                                    break;
+                                                case "drame":
+                                                    type = "Drame";
+                                                    break;
+                                                case "humoristique":
+                                                    type = "Humoristique";
+                                                    break;
+                                                case "musical":
+                                                    type = "Musical";
+                                                    break;
+                                                case "cirque":
+                                                    type = "Cirque";
+                                                    break;
+                                            }
+                                    %>
+
                                     <tr>
                                         <td><%=horaireFormatter.format(date)%></td>
                                         <td><%=nom%></td>
                                         <td><%=prixBase%> €</td>
                                         <td><%=type%></td>
                                         <td><%=cible%></td>
+                                        <td><form action="RepresentationCtrler" ><button name = "date" type="submit" class="btn btn-primary" value = <%=horaireFormatterServlet.format(date)%>>Acheter</button></form></td>
                                     </tr>
-                                <%
-                                    }
-                                %>
+                                    <%
+                                        }
+                                    %>
                                 </tbody>
                             </table>
                         </div>
