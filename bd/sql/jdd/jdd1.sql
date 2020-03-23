@@ -37,7 +37,7 @@ INSERT INTO LesSpectacles VALUES (24, 'Romeo et Juliette', 20, 'toutPublic', 'dr
 INSERT INTO LesSpectacles VALUES (26, 'Symphony', 25.0, 'adulte', 'opera');
 INSERT INTO LesOperas VALUES (26, 1);
 INSERT INTO LesSpectacles VALUES (27, 'Tous Petits', 5.5, 'unCinqAns', 'musical');
-INSERT INTO LesSpectacles VALUES (28, 'The OneWomanShow', 20.0, 'toutPublic', 'humoristique');
+INSERT INTO LesSpectacles VALUES (28, 'TwoWomanShow', 20.0, 'toutPublic', 'humoristique');
 INSERT INTO LesHumoristiques VALUES (28, 1);
 
 
