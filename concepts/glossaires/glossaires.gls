@@ -40,6 +40,7 @@ Cirque
     
 Humoristique
     | Type de `Spectacle` pouvant être ou non un OneWomen(Men)Show.
+    | Si le `Spectacle` `Humoristique` est un OneWomen(Men)Show on dira que c'est du Stand-up
     
 Musical
     | Type de `Spectacle`.
