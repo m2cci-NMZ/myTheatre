@@ -50,7 +50,7 @@ public class InsertSpectacle extends HttpServlet {
 
         try {
             // Requete à la BD pour l'insertion
-            ProgDAO.ajoutSpectacle(dataSource, numero, nom, prixDeBase, cible, type, orchOu1WMS);
+            ProgDAO.insertSpectacle(dataSource, numero, nom, prixDeBase, cible, type, orchOu1WMS);
 
             request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
         } catch (SQLException ex1) {
