@@ -59,10 +59,7 @@ public class ProgCtrler extends HttpServlet {
         String[] paramTypes = request.getParameterValues("type");
 
         // Traitement du cas où on charge la page pour la première fois
-        boolean premierChargement = false;
         if (debut == null && fin == null && cible == null && paramTypes == null) {
-            premierChargement = true;
-
             // Date début par défaut
             debut = dateFormatter.format(dateCourante);
 
@@ -82,10 +79,7 @@ public class ProgCtrler extends HttpServlet {
             paramTypes[2] = "drame";
             paramTypes[3] = "musical";
             paramTypes[4] = "cirque";
-
         }
-        // Ajout de l'attribut à la requete
-        request.setAttribute("premierChargement", premierChargement);
 
         try {
             // ###############################
@@ -93,8 +87,8 @@ public class ProgCtrler extends HttpServlet {
             // ###############################
 
             // Conversion en date
-            Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
-            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+            Date dateDebut = dateFormatter.parse(debut);
+            Date dateFin = dateFormatter.parse(fin);
 
             // Si l'utilisateur inverse la date de début et de fin on le met dans le bon ordre
             if (dateDebut.after(dateFin)) {

@@ -47,15 +47,25 @@ public class ProgCtrlerAjoutProg extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Formatteur pour les dates en jour
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateCourante = new Date();
+        
         // Récupération des valeurs des dates du formulaire
         String debut = request.getParameter("dateDebut");
         String fin = request.getParameter("dateFin");
         
-        if (debut == null) {         // Si il n'y a pas de dates spécifiées, on les force à des dates par défaut
-            debut = "2020-03-01";
+        Calendar cBornes = Calendar.getInstance();
+        if (debut == null) {
+            // Si il n'y a pas de dates spécifiées, on la force à la semaine précédente
+            cBornes.setTime(dateCourante);
+            cBornes.add(Calendar.DATE, -7);
+            debut = dateFormatter.format(cBornes.getTime());
         }
         if (fin == null) {
-            fin = "2020-03-31";
+            cBornes.setTime(dateCourante);
+            cBornes.add(Calendar.MONTH, 1);
+            fin = dateFormatter.format(cBornes.getTime());
         }
 
         try {
