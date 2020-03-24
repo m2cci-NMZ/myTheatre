@@ -121,6 +121,7 @@ public class PlacesDAO {
      */
     public static void acheterPlaces(DataSource ds, Date horaireRepresentation, int[] placesIds, int[] rangsIds) throws SQLException, AchatConcurrentException {
         try (Connection conn = ds.getConnection()) {
+            System.out.println("coucou");
             try (PreparedStatement pstmt = conn.prepareStatement(ACHETER_PLACE)) {
                 conn.setAutoCommit(false);  // début d'une transaction
                 for (int i = 0; i < rangsIds.length; i++) {
@@ -131,25 +132,26 @@ public class PlacesDAO {
                 }
                 pstmt.executeBatch();  // exécute les requêtes d'insertion
                 conn.commit();   // valide la transaction
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
+                ex.printStackTrace();
                 conn.rollback();   // annule la transaction 
                 // vérifie si l'erreur est liée à la contrainte PK_PlacesVendues
                 // dans ce cas une exception AchatConcurrentException est relancée
-                switch (conn.getMetaData().getDatabaseProductName()) {
-                    case "SQLite":
-                        if (ex.getMessage().contains("PRIMARY KEY constraint failed")) {
-                            throw new AchatConcurrentException("places déjà achetées ", ex);
-                        }
-                        break;
-                    default:  // testé pour Oracle et PostgreSQL
-                        ex = ex.getNextException();  // on prend la cause
-                        if (ex instanceof SQLIntegrityConstraintViolationException
-                                || ex.getMessage().contains("pk_placesvendues")) {
-                            // certains drivers ne supportent pas encore le type SQLIntegrityConstraintViolationException
-                            throw new AchatConcurrentException("places déjà achetées ", ex);
-                        }
-
-                }
+//                switch (conn.getMetaData().getDatabaseProductName()) {
+//                    case "SQLite":
+//                        if (ex.getMessage().contains("PRIMARY KEY constraint failed")) {
+//                            throw new AchatConcurrentException("places déjà achetées ", ex);
+//                        }
+//                        break;
+//                    default:  // testé pour Oracle et PostgreSQL
+//                        ex = ex.getNextException();  // on prend la cause
+//                        if (ex instanceof SQLIntegrityConstraintViolationException
+//                                || ex.getMessage().contains("pk_placesvendues")) {
+//                            // certains drivers ne supportent pas encore le type SQLIntegrityConstraintViolationException
+//                            throw new AchatConcurrentException("places déjà achetées ", ex);
+//                        }
+//
+//                }
                 // l'exception ne concerne pas la contrainte PK_PlacesVendues  
                 // elle est relancée telle quelle
                 throw ex;
