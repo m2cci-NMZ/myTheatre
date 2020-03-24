@@ -48,63 +48,84 @@ public class ProgCtrler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // Formatteur pour les dates en jour
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateCourante = new Date();
+
         // Récupération des valeurs des champs du formulaire
         String debut = request.getParameter("dateDebut");
         String fin = request.getParameter("dateFin");
         String cible = request.getParameter("cible");
         String[] paramTypes = request.getParameterValues("type");
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateCourante = new Date();
+
         // Traitement du cas où on charge la page pour la première fois
         boolean premierChargement = false;
-        if(debut == null && fin == null && cible == null && paramTypes == null){
+        if (debut == null && fin == null && cible == null && paramTypes == null) {
             premierChargement = true;
+
+            // Date début par défaut
+            debut = dateFormatter.format(dateCourante);
+
+            // Date fin par défaut
+            Calendar c = Calendar.getInstance();
+            c.setTime(dateCourante);
+            c.add(Calendar.MONTH, 1);
+            fin = dateFormatter.format(c.getTime());
+
+            // Cible par défaut
+            cible = "null";
+
+            // Type par défaut
+            paramTypes = new String[5];
+            paramTypes[0] = "opera";
+            paramTypes[1] = "humoristique";
+            paramTypes[2] = "drame";
+            paramTypes[3] = "musical";
+            paramTypes[4] = "cirque";
+
         }
         // Ajout de l'attribut à la requete
         request.setAttribute("premierChargement", premierChargement);
-        // Dates par défaut
-        if (debut == null) { 
-            debut = dateFormatter.format(dateCourante);
-        }
-        if (fin == null) {
-            Calendar c = Calendar.getInstance();
-            c.setTime(dateCourante);
-            c.add(Calendar.DATE, 1);
-            fin = dateFormatter.format(c.getTime());
-        }
-        
+
         try {
+            // ###############################
+            // ##### Préparation de la requete
+            // ###############################
+
             // Conversion en date
             Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(debut);
             Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+
             // Si l'utilisateur inverse la date de début et de fin on le met dans le bon ordre
             if (dateDebut.after(dateFin)) {
                 Date tmp = dateFin;
                 dateFin = dateDebut;
                 dateDebut = tmp;
             }
-            // Ajout des attributs à la requete
+
+            // Ajout des attributs des dates à la requete
             request.setAttribute("dateDebut", dateDebut);
             request.setAttribute("dateFin", dateFin);
-            
-            if (!premierChargement) {  // Si ce n'est pas la page par défaut on doit faire des requetes
-                // Gestion des types de spectacles
-                List<String> types = new ArrayList<>();
-                if (paramTypes != null) {
-                    // On traite paramType différemment des autres paramètres car il peut être vide à la demande de l'utilisateur (si il décoche tout)
-                    for (String paramType : paramTypes) {
-                        types.add(paramType);
-                    }
-                }
-                request.setAttribute("listTypes", types);
+            request.setAttribute("dateCourante", dateCourante);
 
-                // Requete à la BD
-                List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
-                request.setAttribute("progList", listRepresentations);
+            // Spectateurs cible
+            request.setAttribute("cible", cible);
+
+            // Types de spectacles
+            List<String> types = new ArrayList<>();
+            if (paramTypes != null) {
+                // On traite paramType différemment des autres paramètres car il peut être vide à la demande de l'utilisateur (si il décoche tout)
+                for (String paramType : paramTypes) {
+                    types.add(paramType);
+                }
             }
+            request.setAttribute("listTypes", types);
+
+            // Requete à la BD
+            List<Representation> listRepresentations = ProgDAO.representationsFiltrees(dataSource, dateDebut, dateFin, cible, types);
+            request.setAttribute("progList", listRepresentations);
 
             request.getRequestDispatcher("/WEB-INF/prog.jsp").forward(request, response);
-
         } catch (SQLException ex) {
             throw new ServletException("Problème avec la BD : " + ex.getMessage(), ex);
         } catch (ParseException ex) {
