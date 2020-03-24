@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Opera"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Humoristique"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -79,7 +81,7 @@
                                 </div>
                             </div>
                             <br>
-                            <h4>Catégorie de spectateurs</h4>
+                            <h4>Spectateurs cibles</h4>
                             <%  // Conserve le bouton check pour la cible
                                 String whichRadio = request.getParameter("cible");
                                 String checkIndif = "";
@@ -225,8 +227,8 @@
                                         <th style="width:14%">Horaire</th>
                                         <th>Nom</th>
                                         <th style="width:10%">Prix</th>                    
-                                        <th style="width:20%">Type de spectacle</th>
-                                        <th style="width:23%">Catégorie de spectateurs</th>   
+                                        <th style="width:21%">Type de spectacle</th>
+                                        <th style="width:18%">Spectateurs cibles</th>   
                                     </tr>
                                 </thead>
                                 <tbody>        
@@ -262,12 +264,20 @@
                                         switch (type) {
                                             case "opera":
                                                 type = "Opéra";
+                                                Opera o = (Opera) r.getSpectacle();
+                                                if (o.getAUnOrchestre()){
+                                                    type += " (avec orchestre)";
+                                                }
                                                 break;
                                             case "drame":
                                                 type = "Drame";
                                                 break;
                                             case "humoristique":
-                                                type = "Humoristique";
+                                                type = "Humour";
+                                                Humoristique h = (Humoristique) r.getSpectacle();
+                                                if (h.getEstUnOneWomanManShow()){
+                                                    type += " (Stand-up)";
+                                                }
                                                 break;
                                             case "musical":
                                                 type = "Musical";
