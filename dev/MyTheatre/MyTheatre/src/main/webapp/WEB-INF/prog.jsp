@@ -62,14 +62,16 @@
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
                                 Date dateFin = (Date) request.getAttribute("dateFin");
+                                Date dateCourante = new Date();
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
                                 String dateDebutForm = navigateurJourFormatter.format(dateDebut);
                                 String dateFinForm = navigateurJourFormatter.format(dateFin);
+                                String dateCouranteForm = navigateurJourFormatter.format(dateCourante);
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%> required>
+                                    <input type="date" class="form-control" name="dateDebut" min=<%=dateCouranteForm%> value=<%=dateDebutForm%> required>
                                 </div>
                                 <label class="col-form-label">au</label>
                                 <div class=col-auto">
