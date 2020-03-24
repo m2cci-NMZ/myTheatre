@@ -64,7 +64,7 @@
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
                                 Date dateFin = (Date) request.getAttribute("dateFin");
-                                Date dateCourante = new Date();
+                                Date dateCourante = (Date) request.getAttribute("dateCourante");
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
                                 String dateDebutForm = navigateurJourFormatter.format(dateDebut);
@@ -77,21 +77,19 @@
                                 </div>
                                 <label class="col-form-label">au</label>
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%> required>
+                                    <input type="date" class="form-control" name="dateFin" min=<%=dateCouranteForm%> value=<%=dateFinForm%> required>
                                 </div>
                             </div>
                             <br>
                             <h4>Spectateurs cibles</h4>
                             <%  // Conserve le bouton check pour la cible
-                                String whichRadio = request.getParameter("cible");
+                                String whichRadio = (String) request.getAttribute("cible");
                                 String checkIndif = "";
                                 String check1Cinq = "";
                                 String checkJeune = "";
                                 String checkToutP = "";
                                 String checkAdult = "";
-                                if (whichRadio == null)
-                                    checkIndif = " checked";
-                                else if (whichRadio.equals("unCinqAns"))
+                                if (whichRadio.equals("unCinqAns"))
                                     check1Cinq = " checked";
                                 else if (whichRadio.equals("jeunePublic"))
                                     checkJeune = " checked";
@@ -137,26 +135,18 @@
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (typesCheck != null) {
-                                    for (int i = 0; i < typesCheck.size(); i++) {
-                                        if (typesCheck.get(i).equals("opera")) {
-                                            checkOpera = " checked";
-                                        } else if (typesCheck.get(i).equals("humoristique")) {
-                                            checkHumor = " checked";
-                                        } else if (typesCheck.get(i).equals("drame")) {
-                                            checkDrame = " checked";
-                                        } else if (typesCheck.get(i).equals("musical")) {
-                                            checkMusic = " checked";
-                                        } else if (typesCheck.get(i).equals("cirque")) {
-                                            checkCirqu = " checked";
-                                        }
+                                for (int i = 0; i < typesCheck.size(); i++) {
+                                    if (typesCheck.get(i).equals("opera")) {
+                                        checkOpera = " checked";
+                                    } else if (typesCheck.get(i).equals("humoristique")) {
+                                        checkHumor = " checked";
+                                    } else if (typesCheck.get(i).equals("drame")) {
+                                        checkDrame = " checked";
+                                    } else if (typesCheck.get(i).equals("musical")) {
+                                        checkMusic = " checked";
+                                    } else if (typesCheck.get(i).equals("cirque")) {
+                                        checkCirqu = " checked";
                                     }
-                                } else {
-                                    checkOpera = " checked";
-                                    checkHumor = " checked";
-                                    checkDrame = " checked";
-                                    checkMusic = " checked";
-                                    checkCirqu = " checked";
                                 }
                             %>
                             <div class="form-group">        
@@ -193,33 +183,31 @@
                     </div>
                     <div class="col-md-9">
                         <br>
-                        <%
-                            boolean premierChargement = (boolean) request.getAttribute("premierChargement");
-                            if (!premierChargement) {   
-                                // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
-                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                                if (dateDebut.equals(dateFin)){     
-                                    // Affichage de la date une seule fois si le début et la fin correspondent au même jour
+                        <% 
+                            // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
+                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                            if (dateDebut.equals(dateFin)){     
+                                // Affichage de la date une seule fois si le début et la fin correspondent au même jour
                         %>
                             <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
                         <%              
-                                } else {
+                            } else {
                         %>
                             <h2>Programmation du <%=jourFormatter.format(dateDebut)%> au <%=jourFormatter.format(dateFin)%></h2>
                         <%
-                                }
+                            }
                         %>    
                         
-                            <%
-                                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
-                                List<Representation> prog = (List<Representation>) request.getAttribute("progList");
-                                if (prog.isEmpty()){
-                            %>  
+                        <%
+                            SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
+                            List<Representation> prog = (List<Representation>) request.getAttribute("progList");
+                            if (prog.isEmpty()){
+                        %>  
                             <br>    
                             Aucune représentation ne correspond à vos critères
-                            <%
-                                } else {
-                            %>
+                        <%
+                            } else {
+                        %>
                         <div style="height:85vh; overflow: auto;">
                             <table class="table table-striped">
                                 <thead>
@@ -233,60 +221,60 @@
                                 </thead>
                                 <tbody>        
                             <%
-                                    for (Representation r : prog) {
-                                        Date date = r.getHoraire();
-                                        String nom = r.getSpectacle().getNom();
+                                for (Representation r : prog) {
+                                    Date date = r.getHoraire();
+                                    String nom = r.getSpectacle().getNom();
 
-                                        // Formatage du prix à la française
-                                        Double prixDeBase = r.getSpectacle().getPrixDeBase();
-                                        NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
-                                        prix.setMinimumFractionDigits(2);
-                                        prix.setMaximumFractionDigits(2);
-                                        String prixBase = prix.format(prixDeBase);
+                                    // Formatage du prix à la française
+                                    Double prixDeBase = r.getSpectacle().getPrixDeBase();
+                                    NumberFormat prix = NumberFormat.getInstance(Locale.FRENCH);
+                                    prix.setMinimumFractionDigits(2);
+                                    prix.setMaximumFractionDigits(2);
+                                    String prixBase = prix.format(prixDeBase);
 
-                                        // Mise en forme des cibles et des types
-                                        String cible = r.getSpectacle().getCible();
-                                        String type = r.getSpectacle().getType();
-                                        switch (cible) {
-                                            case "toutPublic":
-                                                cible = "Tout Public";
-                                                break;
-                                            case "unCinqAns":
-                                                cible = "1-5 Ans";
-                                                break;
-                                            case "jeunePublic":
-                                                cible = "Jeune Public";
-                                                break;
-                                            case "adulte":
-                                                cible = "Adulte";
-                                                break;
-                                        }
-                                        switch (type) {
-                                            case "opera":
-                                                type = "Opéra";
-                                                Opera o = (Opera) r.getSpectacle();
-                                                if (o.getAUnOrchestre()){
-                                                    type += " (avec orchestre)";
-                                                }
-                                                break;
-                                            case "drame":
-                                                type = "Drame";
-                                                break;
-                                            case "humoristique":
-                                                type = "Humour";
-                                                Humoristique h = (Humoristique) r.getSpectacle();
-                                                if (h.getEstUnOneWomanManShow()){
-                                                    type += " (Stand-up)";
-                                                }
-                                                break;
-                                            case "musical":
-                                                type = "Musical";
-                                                break;
-                                            case "cirque":
-                                                type = "Cirque";
-                                                break;
-                                        }
-                                %>
+                                    // Mise en forme des cibles et des types
+                                    String cible = r.getSpectacle().getCible();
+                                    String type = r.getSpectacle().getType();
+                                    switch (cible) {
+                                        case "toutPublic":
+                                            cible = "Tout Public";
+                                            break;
+                                        case "unCinqAns":
+                                            cible = "1-5 Ans";
+                                            break;
+                                        case "jeunePublic":
+                                            cible = "Jeune Public";
+                                            break;
+                                        case "adulte":
+                                            cible = "Adulte";
+                                            break;
+                                    }
+                                    switch (type) {
+                                        case "opera":
+                                            type = "Opéra";
+                                            Opera o = (Opera) r.getSpectacle();
+                                            if (o.getAUnOrchestre()){
+                                                type += " (avec orchestre)";
+                                            }
+                                            break;
+                                        case "drame":
+                                            type = "Drame";
+                                            break;
+                                        case "humoristique":
+                                            type = "Humour";
+                                            Humoristique h = (Humoristique) r.getSpectacle();
+                                            if (h.getEstUnOneWomanManShow()){
+                                                type += " (Stand-up)";
+                                            }
+                                            break;
+                                        case "musical":
+                                            type = "Musical";
+                                            break;
+                                        case "cirque":
+                                            type = "Cirque";
+                                            break;
+                                    }
+                            %>
                                     <tr>
                                         <td><%=horaireFormatter.format(date)%></td>
                                         <td><%=nom%></td>
@@ -294,14 +282,13 @@
                                         <td><%=type%></td>
                                         <td><%=cible%></td>
                                     </tr>
-                                <%
-                                    }
-                                %>
+                            <%
+                                }
+                            %>
                                 </tbody>
                             </table>
                         </div>
                         <%
-                                }
                             }
                         %>
                     </div>
