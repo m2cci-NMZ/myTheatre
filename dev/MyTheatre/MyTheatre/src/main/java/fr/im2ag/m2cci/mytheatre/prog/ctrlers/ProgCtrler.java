@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -52,7 +53,8 @@ public class ProgCtrler extends HttpServlet {
         String fin = request.getParameter("dateFin");
         String cible = request.getParameter("cible");
         String[] paramTypes = request.getParameterValues("type");
-        
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateCourante = new Date();
         // Traitement du cas où on charge la page pour la première fois
         boolean premierChargement = false;
         if(debut == null && fin == null && cible == null && paramTypes == null){
@@ -60,13 +62,15 @@ public class ProgCtrler extends HttpServlet {
         }
         // Ajout de l'attribut à la requete
         request.setAttribute("premierChargement", premierChargement);
-        
         // Dates par défaut
         if (debut == null) { 
-            debut = "2020-03-01";
+            debut = dateFormatter.format(dateCourante);
         }
         if (fin == null) {
-            fin = "2020-03-31";
+            Calendar c = Calendar.getInstance();
+            c.setTime(dateCourante);
+            c.add(Calendar.DATE, 1);
+            fin = dateFormatter.format(c.getTime());
         }
         
         try {
