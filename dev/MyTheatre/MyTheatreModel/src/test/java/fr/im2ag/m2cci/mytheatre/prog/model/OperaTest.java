@@ -50,5 +50,41 @@ public class OperaTest {
         System.out.println("toString");
         assertEquals("Spectacle : nom (comedie, toutPublic) à 10.5€, a un Orchestre ", opera.toString());
     }
-
+    
+    
+    /**
+     * Test de la method equals
+     * Vérifie que deux opéras identiques sont égaux 
+     */
+    @Test
+    public void testEquals(){
+        System.out.println("equals");
+        Opera o1 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", false);
+        Opera o2 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", false);
+        assertEquals(o1, o2);
+    }
+    
+    /**
+     * Test de la method equals
+     * Vérifie que deux opéras avec et sans orchestres sont différents
+     */
+    @Test
+    public void testEqualsBoolean(){
+        System.out.println("equals");
+        Opera o1 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", false);
+        Opera o2 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", true);
+        assertFalse(o1.equals(o2));
+    }
+    
+    /**
+     * Test de la methode equals
+     * Vérifie que si la partie spectacle est différente, alors les operas sont differents
+     */
+    @Test
+    public void testEqualsSpectacle(){
+        System.out.println("equals");
+        Opera o1 = new Opera(11, "Opera", 12.0, "opera", "toutPublic", true);
+        Opera o2 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", true);
+        assertFalse(o1.equals(o2));
+    }
 }
