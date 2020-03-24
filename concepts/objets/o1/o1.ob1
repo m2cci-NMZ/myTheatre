@@ -106,15 +106,15 @@
 --| (19) Le rang de numéro 1
     ! create rang1 : Rang
 	! rang1.numero_ := 1
---| (19) Le rang de numéro 30
-    ! create rang30 : Rang
-	! rang30.numero_ := 30
---| (19) Le rang de numéro 60
-    ! create rang60 : Rang
-	! rang60.numero_ := 60
---| (19) Le rang de numéro 90
-    ! create rang90 : Rang
-	! rang90.numero_ := 90
+--| (19) Le rang de numéro 5
+    ! create rang5 : Rang
+	! rang5.numero_ := 5
+--| (19) Le rang de numéro 10
+    ! create rang10 : Rang
+	! rang10.numero_ := 10
+--| (19) Le rang de numéro 20
+    ! create rang20 : Rang
+	! rang20.numero_ := 20
 	
 --| (19) La place de numero 5
     ! create place5 : Place
@@ -267,8 +267,17 @@
 	
 	
 -- COMPOSITION
---(18) Le rang 60 contient la place 5
--- insert(rang60, place5) into Contient
+--| (18) Le rang 1 contient la place 5
+	! insert(rang1, place5) into Contient
+	
+--| (18) Le rang 1 contient la place 10
+	! insert(rang1, place10) into Contient
+	
+--| (18) Le rang 5 contient la place 40
+	! insert(rang5, place40) into Contient
+	
+--| (18) Le rang 10 contient la place 80
+	! insert(rang10, place80) into Contient
 
 
 --CLASSE ASSOCIATIVES
