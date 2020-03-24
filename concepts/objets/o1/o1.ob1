@@ -41,7 +41,6 @@
     ! sonoritesEtranges.cible := Cible::jeunePublic
     ! sonoritesEtranges.type := Type::musical
 
-
 --| (4) Le spectacle de numero 20 et de nom l'avare avec un prix de base de 10 euros destiné a tout public et de type drame
     ! create avare : Humoristique
     ! avare.numero_ := 20
@@ -51,7 +50,6 @@
     ! avare.type := Type::humoristique
     ! avare.estUnOneWomanManShow := false
 
-
 --| (5) Le spectacle de numero 25 et de nom Don Juan avec un prix de base de 10 euros destiné a un public adulte et de type opera
     ! create donJuan : Opera
     ! donJuan.numero_ := 25
@@ -60,7 +58,6 @@
     ! donJuan.cible := Cible::adulte
     ! donJuan.type := Type::opera
     ! donJuan.aUnOrchestre := true
-    
     
 --| (6) Le spectacle de numero 17 et de nom Andromaque avec un prix de base de 15 euros destiné a un public adulte et de type drame
     ! create andromaque : Spectacle
@@ -103,200 +100,223 @@
 
 
 
---| (19) Le rang de numéro 1
+--| (13) Le rang de numéro 1
     ! create rang1 : Rang
 	! rang1.numero_ := 1
---| (19) Le rang de numéro 5
+	
+--| (14) Le rang de numéro 5
     ! create rang5 : Rang
 	! rang5.numero_ := 5
---| (19) Le rang de numéro 10
+	
+--| (15) Le rang de numéro 10
     ! create rang10 : Rang
 	! rang10.numero_ := 10
---| (19) Le rang de numéro 20
+	
+--| (16) Le rang de numéro 20
     ! create rang20 : Rang
 	! rang20.numero_ := 20
 	
---| (19) La place de numero 5
+	
+--| (17) La place de numero 5
     ! create place5 : Place
 	! place5.numero_ := 5
---| (19) La place de numero 10
+	
+--| (18) La place de numero 10
     ! create place10 : Place
 	! place10.numero_ := 10
+	
 --| (19) La place de numero 40
     ! create place40 : Place
 	! place40.numero_ := 40
---| (19) La place de numero 80
+	
+--| (20) La place de numero 80
     ! create place80 : Place
 	! place80.numero_ := 80
 	
---| (19) La zone de numero 1
-    ! create zone1 : Zone
-	! zone1.numero_ := 1
---| (19) La zone de numero 2
-    ! create zone2 : Zone
-	! zone2.numero_ := 2
---| (19) La zone de numero 3
-    ! create zone3 : Zone
-	! zone3.numero_ := 3
 	
-	
-
---| (12) La categorie balcon a un taux de 1.5 par rapport au prix de base
-    ! create balcon : Representation
-    ! balcon.categorie_ := Categorie :: balcon
-	! balcon.rapportPrix := 1.5
-	
-	--| (12) La categorie poulailler a un taux de 1.0 par rapport au prix de base
-    ! create poulailler : Representation
-    ! poulailler.categorie_ := Categorie :: poulailler
-	! poulailler.rapportPrix := 1.0
-	
-	--| (12) La categorie orchestre a un taux de 1.2 par rapport au prix de base
-    ! create orchestre : Representation
-    ! orchestre.categorie_ := Categorie :: orchestre
-	! orchestre.rapportPrix := 1.2
-	
---| (12) Le ticket de numero 001, avec une date d'émission du 10/03/2020 et un prix de 10.0
-    ! create ticket001 : Ticket
+--| (21) Le ticket de numero 001, avec une date d'émission du 10/03/2020 et un prix de 10.0
+    ! ticket001 := new Ticket between (Spectacle, Representation)
     ! ticket001.numero_ := 001
 	! ticket001.dateEmin := '10/03/2020'
 	! ticket001.prixTicket_d := 10.0
 	
---| (12) Le ticket de numero 002, avec une date d'émission du 20/03/2020 et un prix de 8.0
-    ! create ticket002 : Ticket
+--| (22) Le ticket de numero 002, avec une date d'émission du 20/03/2020 et un prix de 8.0
+    ! create ticket002 := new Ticket between (Spectacle, Representation)
     ! ticket002.numero_ := 002
 	! ticket002.dateEmin := '20/03/2020'
 	! ticket002.prixTicket_d := 8.0
 	
---| (12) Le ticket de numero 003, avec une date d'émission du 30/03/2020 et un prix de 10.0
-    ! create ticket003 : Ticket
+--| (23) Le ticket de numero 003, avec une date d'émission du 30/03/2020 et un prix de 10.0
+    ! create ticket003 := new Ticket between (Spectacle, Representation)
     ! ticket003.numero_ := 003
 	! ticket003.dateEmin := '30/03/2020'
 	! ticket003.prixTicket_d := 10.0
 	
-	--| (12) Le dossier d'achat de numéro 1 et de prix global 20.0
+	
+--| (24) Le dossier d'achat de numéro 1 et de prix global 20.0
     ! create dossierAchat1 : DossierAchat
     ! dossierAchat1.numero_ := 1
 	! dossierAchat1.prixGlobal_d := 20.0
 	
-	--| (12) Le dossier d'achat de numéro 5 et de prix global 20.0
+--| (25) Le dossier d'achat de numéro 5 et de prix global 20.0
     ! create dossierAchat5 : DossierAchat
     ! dossierAchat5.numero_ := 5
 	! dossierAchat5.prixGlobal_d := 20.0
 	
-	--| (12) Le dossier d'achat de numéro 25 et de prix global 15.0
+--| (26) Le dossier d'achat de numéro 25 et de prix global 15.0
     ! create dossierAchat25 : DossierAchat
     ! dossierAchat25.numero_ := 25
 	! dossierAchat25.prixGlobal_d := 15.0
 	
-	--| (12) L'utilisateur de login nico58, de nom Martinez, de prénom Nicolas, avec l'adresse mail : nico58@gmail.com et le mot de passe : admin
+	
+--| (27) L'utilisateur de login nico58, de nom Martinez, de prénom Nicolas, avec l'adresse mail : nico58@gmail.com et le mot de passe : admin
     ! create utilisateurNico58 : Utilisateur
     ! utilisateurNico58.login_ := 'nico58'
 	! utilisateurNico58.nom := 'Martinez'
 	! utilisateurNico58.prenom := 'Nicolas'
-	! utilisateurNico58.mail := 'nico58@gmail'
-	! utilisateurNico58.mdp := 'admin'
+--	! utilisateurNico58.mail := 'nico58@gmail'
+--	! utilisateurNico58.mdp := 'admin'
 	
-	--| (12) L'utilisateur de login celia18, de nom Kezmane, de prénom Celia, avec l'adresse mail : celia18@gmail.com et le mot de passe : admin
+--| (28) L'utilisateur de login celia18, de nom Kezmane, de prénom Celia, avec l'adresse mail : celia18@gmail.com et le mot de passe : admin
     ! create utilisateurCelia18 : Utilisateur
     ! utilisateurCelia18.login_ := 'celia18'
 	! utilisateurCelia18.nom := 'Kezmane'
 	! utilisateurCelia18.prenom := 'Celia'
-	! utilisateurCelia18.mail := 'celia18@gmail'
-	! utilisateurCelia18.mdp := 'admin'
+--	! utilisateurCelia18.mail := 'celia18@gmail'
+--	! utilisateurCelia18.mdp := 'admin'
 	
-	--| (12) L'utilisateur de login robin32, de nom Miquel, de prénom Robin, avec l'adresse mail : robin32@gmail.com et le mot de passe : azerty
+--| (29) L'utilisateur de login robin32, de nom Miquel, de prénom Robin, avec l'adresse mail : robin32@gmail.com et le mot de passe : azerty
     ! create utilisateurRobin32 : Utilisateur
     ! utilisateurRobin32.login_ := 'robin32'
 	! utilisateurRobin32.nom := 'Miquel'
 	! utilisateurRobin32.prenom := 'Robin'
-	! utilisateurRobin32.mail := 'robin32@gmail'
-	! utilisateurRobin32.mdp := 'azerty'
-	
-	--| (12) L'utilisateur de login matt44, de nom Lehugeur, de prénom Matthieu, avec l'adresse mail : matt44@gmail.com et le mot de passe : 123456
+--	! utilisateurRobin32.mail := 'robin32@gmail'
+--	! utilisateurRobin32.mdp := 'azerty'
+
+--| (30) L'utilisateur de login matt44, de nom Lehugeur, de prénom Matthieu, avec l'adresse mail : matt44@gmail.com et le mot de passe : 123456
     ! create utilisateurMatt44 : Utilisateur
     ! utilisateurMatt44.login_ := 'matt44'
 	! utilisateurMatt44.nom := 'Lehugeur'
 	! utilisateurMatt44.prenom := 'Matthieu'
-	! utilisateurMatt44.mail := 'matt44@gmail'
-	! utilisateurMatt44.mdp := '123456'
+--	! utilisateurMatt44.mail := 'matt44@gmail'
+--	! utilisateurMatt44.mdp := '123456'
+	
+---------------------------------------------------------------------------
+-- Objets commentés
+---------------------------------------------------------------------------
+	
+--| (31) La zone de numero 1
+--  ! create zone1 : Zone
+--	! zone1.numero_ := 1
+
+--| (32) La zone de numero 2
+--  ! create zone2 : Zone
+--	! zone2.numero_ := 2
+
+--| (33) La zone de numero 3
+--  ! create zone3 : Zone
+--	! zone3.numero_ := 3
+	
+
+--| (34) La categorie balcon a un taux de 1.5 par rapport au prix de base
+--  ! create balcon : Representation
+--  ! balcon.categorie_ := Categorie :: balcon
+--	! balcon.rapportPrix := 1.5
+	
+--| (35) La categorie poulailler a un taux de 1.0 par rapport au prix de base
+--  ! create poulailler : Representation
+--  ! poulailler.categorie_ := Categorie :: poulailler
+--	! poulailler.rapportPrix := 1.0
+	
+--| (36) La categorie orchestre a un taux de 1.2 par rapport au prix de base
+--  ! create orchestre : Representation
+--  ! orchestre.categorie_ := Categorie :: orchestre
+--	! orchestre.rapportPrix := 1.2
 	
 ---------------------------------------------------------------------------
 -- insertions
 ---------------------------------------------------------------------------
---| (13) Le 13/03 a 18h, Les Animaux est à l'affiche
+--| (37) Le 13/03 a 18h, Les Animaux est à l'affiche
     ! insert(lesAnimaux, representationDu130318h) into APourRepresentation
 
---| (14) Le 13/03 a 20h, l'Avare est à l'affiche
+--| (38) Le 13/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu130320h) into APourRepresentation
 
---| (15) Le 14/03 a 18h, Cyrano est à l'affiche
+--| (39) Le 14/03 a 18h, Cyrano est à l'affiche
     ! insert(cyrano, representationDu140318h) into APourRepresentation
 
---| (16) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
+--| (40) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
     ! insert(sonoritesEtranges, representationDu140315h) into APourRepresentation
 
---| (17) Le 15/03 a 18h, Don Juan est à l'affiche
+--| (41) Le 15/03 a 18h, Don Juan est à l'affiche
     ! insert(donJuan, representationDu150318h) into APourRepresentation
     
---| (18) Le 15/03 a 20h, l'Avare est à l'affiche
+--| (42) Le 15/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu150320h) into APourRepresentation
 	
 	
---(18) La zone 1 est disponible pour le spectacle l'Avare
--- insert(zone1, avare) into EstDisponible
-	
---(18) La zone 2 est disponible pour le spectacle Don Juan
--- insert(zone2, donJuan) into EstDisponible
-	
---(18) La zone 3 est disponible pour le spectacle Don Juan
--- insert(zone3, donJuan) into EstDisponible
-	
---(18) La zone 3 est disponible pour le spectacle Les Animaux
--- insert(zone3, lesAnimaux) into EstDisponible
-	
-	
---(18) Le rang 1 est dans la zone 1  
--- insert(rang1, zone1) into EstDansLaZone
-	
--- (18) Le rang 30 est dans la zone 2  
--- insert(rang30, zone2) into EstDansLaZone
-	
---(18) Le rang 60 est dans la zone 3 
--- insert(rang60, zone3) into EstDansLaZone
-	
-	
 -- COMPOSITION
---| (18) Le rang 1 contient la place 5
+--| (43) Le rang 1 contient la place 5
 	! insert(rang1, place5) into Contient
 	
---| (18) Le rang 1 contient la place 10
+--| (44) Le rang 1 contient la place 10
 	! insert(rang1, place10) into Contient
 	
---| (18) Le rang 5 contient la place 40
+--| (45) Le rang 5 contient la place 40
 	! insert(rang5, place40) into Contient
 	
---| (18) Le rang 10 contient la place 80
+--| (46) Le rang 10 contient la place 80
 	! insert(rang10, place80) into Contient
-
-
---CLASSE ASSOCIATIVES
-
---stockChampoAllIs1 := new Stock between (champollionFigeac, allIs1)
---stockChampoAllIs1.exemplaire := 12
- --stockChampoAllIs1.dispo := 12
-
 	
---| (18) Le ticket 001 correspond au dossier d'achat 1
+	
+--| (47) Le ticket 001 correspond au dossier d'achat 1
     ! insert(ticket001, dossierAchat1) into AUn
 	
+--| (48) Le ticket 002 correspond au dossier d'achat 5
+    ! insert(ticket002, dossierAchat5) into AUn
 	
---| (18) nico58 a acheté le ticket 001
+--| (49) Le ticket 003 correspond au dossier d'achat 1
+    ! insert(ticket003, dossierAchat25) into AUn
+	
+	
+--| (50) nico58 a acheté le ticket 001
     ! insert(Nico58, ticket002) into AAchete
 	
+--| (51) nico58 a acheté le ticket 002
+    ! insert(celia18, ticket002) into AAchete
+	
 
---| (18) celia18 a réserve le ticket 002
-    ! insert(celia18, ticket002) into APourRepresentation
+--| (52) celia18 a réserve le ticket 002
+    ! insert(celia18, ticket002) into AReserve
 	
+--| (53) nico58 a réserve le ticket 001
+    ! insert(nico58, ticket001) into AReserve
 	
+--| (54) robin32 a réserve le ticket 003
+    ! insert(robin32, ticket003) into AReserve
+
+
+---------------------------------------------------------------------------
+-- insertions commentees
+---------------------------------------------------------------------------
+--| (55) La zone 1 est disponible pour le spectacle l'Avare
+-- insert(zone1, avare) into EstDisponible
 	
+--| (56) La zone 2 est disponible pour le spectacle Don Juan
+-- insert(zone2, donJuan) into EstDisponible
+	
+--| (57) La zone 3 est disponible pour le spectacle Don Juan
+-- insert(zone3, donJuan) into EstDisponible
+	
+--| (58) La zone 3 est disponible pour le spectacle Les Animaux
+-- insert(zone3, lesAnimaux) into EstDisponible
+	
+
+--| (59) Le rang 1 est dans la zone 1  
+-- insert(rang1, zone1) into EstDansLaZone
+	
+--| (60) Le rang 30 est dans la zone 2  
+-- insert(rang30, zone2) into EstDansLaZone
+	
+--| (61) Le rang 60 est dans la zone 3 
+-- insert(rang60, zone3) into EstDansLaZone
