@@ -60,7 +60,7 @@ public class ListePlacesService extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            Representation rep = (Representation) session.getAttribute("spectacle");
+            Representation rep = (Representation) session.getAttribute("representation");
             String json = PlacesDAO.placesVenduesAsJSON(ds, rep.getHoraire());
             response.setContentType("application/json; charset=UTF-8");
             PrintWriter out = response.getWriter();

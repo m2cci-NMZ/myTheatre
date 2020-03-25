@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
@@ -32,12 +33,24 @@ public class PlacesDAO {
      * donnée
      */
     private static final String PLACES_VENDUES
-            = "SELECT numP, numR FROM LesTickets WHERE horaireRep = ?";
+            = "SELECT numPla, numRan FROM LesTickets WHERE horaireRep = ?";
 
     /**
      * Requête pour insérer les données dans la table LesTickets
      */
-    private static final String ACHETER_PLACE = "INSERT INTO LesTickets (numP, numR, horaireRep) VALUES (?, ?, ?)";
+    private static final String CREER_TICKET
+            = "INSERT INTO LesTickets (numTic, dateTic, horaireRep, prixTic, numPla, numRan, numDA ) VALUES (? ,?, ?, ?, ?, ?, ?); ";
+    /**
+     * Requête pour insérer les données dans la table LesTicketsAchetes
+     */
+    private static final String ACHETER_TICKET
+            = "INSERT INTO LesTicketsAchetes (numTic, loginUti ) VALUES (?, ?); ";
+
+    /**
+     * Requête pour insérer les données dans la table LesTicketsAchetes
+     */
+    private static final String RESERVER_TICKET
+            = "INSERT INTO LesTicketsReserves (numTic, loginUti ) VALUES (?, ?); ";
 
     /**
      * recherche, pour un spectacle donné, la liste des places qui ont déja été
@@ -55,8 +68,8 @@ public class PlacesDAO {
             ResultSet rs = pstmt.executeQuery();
             List<Place> places = new ArrayList<>();
             while (rs.next()) {
-                places.add(new Place(rs.getInt("numP"),
-                        rs.getInt("numR"))
+                places.add(new Place(rs.getInt("numPla"),
+                        rs.getInt("numRan"))
                 );
             }
             return places;
@@ -89,15 +102,15 @@ public class PlacesDAO {
                 PreparedStatement pstmt = conn.prepareStatement(PLACES_VENDUES)) {
             pstmt.setString(1, horaireFormatter.format(horaireRepresentation));
             ResultSet rs = pstmt.executeQuery();
+            System.out.println(rs.getInt("numPla"));
             StringWriter sw = new StringWriter();
             try (JsonGenerator gen = Json.createGenerator(sw)) {
                 gen.writeStartObject()
                         .writeStartArray("placesVendues");
                 while (rs.next()) {
                     gen.writeStartObject()
-                            .write("placeId", rs.getInt("numP"))
+                            .write("placeId", rs.getInt("numPla"))
                             .write("rang", rs.getInt("numR"))
-                            .write("colonne", rs.getInt("numP"))
                             .writeEnd();
                 }
                 gen.writeEnd()
@@ -115,50 +128,89 @@ public class PlacesDAO {
      * @param horaireRepresentation l'horaire de la representation
      * @param placesIds les identifiants du numéro de place acheté
      * @param rangsIds les identifiants du numéro de rang acheté
+     * @param prixTic le prix du ticket
      * @throws SQLException SQLException si problème avec JDBC
      * @throws fr.im2ag.m2cci.mytheatre.prog.dao.AchatConcurrentException si une
      * place a déjà été achetée
      */
-    public static void acheterPlaces(DataSource ds, Date horaireRepresentation, int[] placesIds, int[] rangsIds) throws SQLException, AchatConcurrentException {
+    public static void acheterPlaces(DataSource ds, Date horaireRepresentation, int[] placesIds, int[] rangsIds, double prixTic) throws SQLException, AchatConcurrentException {
+        System.out.println("toto");
+        int numTicket = numeroDernierTicket(ds);
+        Date dateCourante = new Date();
+        String dateTick =  horaireFormatter.format(dateCourante);
         try (Connection conn = ds.getConnection()) {
-            System.out.println("coucou");
-            try (PreparedStatement pstmt = conn.prepareStatement(ACHETER_PLACE)) {
+            try (PreparedStatement pstmt = conn.prepareStatement(CREER_TICKET)) {
                 conn.setAutoCommit(false);  // début d'une transaction
                 for (int i = 0; i < rangsIds.length; i++) {
-                    pstmt.setInt(1, placesIds[i]);
-                    pstmt.setInt(2, rangsIds[i]);
+                    pstmt.setInt(1,numTicket+1);
+                    pstmt.setString(2, dateTick);
                     pstmt.setString(3, horaireFormatter.format(horaireRepresentation));
+                    pstmt.setDouble(4, prixTic);
+                    pstmt.setInt(5, placesIds[i]);
+                    pstmt.setInt(6, placesIds[i]);
+                    pstmt.setInt(7, 1);
                     pstmt.addBatch();  // ajoute la requête d'insertion au batch
                 }
+
                 pstmt.executeBatch();  // exécute les requêtes d'insertion
                 conn.commit();   // valide la transaction
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
-                conn.rollback();   // annule la transaction 
-                // vérifie si l'erreur est liée à la contrainte PK_PlacesVendues
-                // dans ce cas une exception AchatConcurrentException est relancée
-//                switch (conn.getMetaData().getDatabaseProductName()) {
-//                    case "SQLite":
-//                        if (ex.getMessage().contains("PRIMARY KEY constraint failed")) {
-//                            throw new AchatConcurrentException("places déjà achetées ", ex);
-//                        }
-//                        break;
-//                    default:  // testé pour Oracle et PostgreSQL
-//                        ex = ex.getNextException();  // on prend la cause
-//                        if (ex instanceof SQLIntegrityConstraintViolationException
-//                                || ex.getMessage().contains("pk_placesvendues")) {
-//                            // certains drivers ne supportent pas encore le type SQLIntegrityConstraintViolationException
-//                            throw new AchatConcurrentException("places déjà achetées ", ex);
-//                        }
-//
-//                }
+                if (conn.getAutoCommit() == false) {
+                    conn.rollback();   // annule la transaction 
+                    // vérifie si l'erreur est liée à la contrainte PK_PlacesVendues
+                    // dans ce cas une exception AchatConcurrentException est relancée
+                    switch (conn.getMetaData().getDatabaseProductName()) {
+                        case "SQLite":
+                            if (ex.getMessage().contains("PRIMARY KEY constraint failed")) {
+                                throw new AchatConcurrentException("places déjà achetées ", ex);
+                            }
+                            break;
+                        default:  // testé pour Oracle et PostgreSQL
+                            ex = ex.getNextException();  // on prend la cause
+                            if (ex instanceof SQLIntegrityConstraintViolationException
+                                    || ex.getMessage().contains("pk_placesvendues")) {
+                                // certains drivers ne supportent pas encore le type SQLIntegrityConstraintViolationException
+                                throw new AchatConcurrentException("places déjà achetées ", ex);
+                            }
+
+                    }
+                }
                 // l'exception ne concerne pas la contrainte PK_PlacesVendues  
                 // elle est relancée telle quelle
                 throw ex;
 
             } finally {
-                conn.setAutoCommit(true); // remet la connexion en mode autocommit
+                if (conn!= null) {
+                   conn.setAutoCommit(true); // remet la connexion en mode autocommit
+                }
             }
+        }
+    }
+
+    /**
+     * Methode permettant d'avoir acces au dernier numero de ticket disponible
+     *
+     * @param ds
+     * @return
+     * @throws SQLException
+     */
+    public static int numeroDernierTicket(DataSource ds) throws SQLException {
+        String queryRep = "SELECT numTic FROM LesTickets";
+        List<Integer> numTickets = new ArrayList<>();
+        try (Connection conn = ds.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(queryRep);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    numTickets.add(rs.getInt("numTic"));
+                }
+            }
+        }
+        Collections.sort(numTickets);
+        if (numTickets.size() == 0) {
+            return 0;
+        } else {
+            return numTickets.get(numTickets.size() - 1);
         }
     }
 }

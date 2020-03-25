@@ -47,8 +47,8 @@
         <div class="wrapper">
             <h1>
                 <%
-                SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
-                Representation rep = (Representation) session.getAttribute("representation");
+                    SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
+                    Representation rep = (Representation) session.getAttribute("representation");
                 %>
                 Veuillez choisir vos places pour <%=rep.getSpectacle().getNom()%><br>
                 <%=horaireFormatter.format(rep.getHoraire())%>
@@ -69,7 +69,9 @@
                 </div>
             </div>
             <hr>
-
+            <script>
+                let prix =<%=rep.getSpectacle().getPrixDeBase()%>
+            </script>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="js/jQuery-Seat-Charts/jquery.seat-charts.min.js" type="text/javascript"></script>

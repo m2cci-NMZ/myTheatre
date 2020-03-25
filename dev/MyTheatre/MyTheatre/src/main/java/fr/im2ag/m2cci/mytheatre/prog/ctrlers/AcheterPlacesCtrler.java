@@ -69,7 +69,7 @@ public class AcheterPlacesCtrler extends HttpServlet {
             HttpSession session = request.getSession();
             Representation rep = (Representation) session.getAttribute("representation");
             // demande à la DAO d'enregistrer les places dans la BD
-            PlacesDAO.acheterPlaces(ds, rep.getHoraire(), placesIds, rangsIds);
+            PlacesDAO.acheterPlaces(ds, rep.getHoraire(), placesIds, rangsIds, rep.getSpectacle().getPrixDeBase());
 
             // redirection vers la page confirmant l'achat.
             request.getRequestDispatcher("/WEB-INF/confirmationAchat.jsp").forward(request, response);

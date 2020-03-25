@@ -15,15 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 $(document).ready(function () {
 
     let seatNumber = 1; // numéro utilisé pour associer un label aux sièges
     let seatId = 1; // numero utilisé pour associer un id aux sièges
-
+    
     let $detailCategorie = $('#detail-categories');
     let $nbPlaces = $('#nbplaces');
     let $prixTotal = $('#prixtotal');
-
+    
     let sc = $('#seat-map').seatCharts({
         map: [
             '__AAAAAAAAAAAAAA__AAAAAAAAAAAAAA__',
@@ -53,17 +54,17 @@ $(document).ready(function () {
             A: {
                 classes: 'categorieA', // votre classe CSS spécifique
                 category: 'A',
-                price: 100
+                price: prix
             },
             B: {
                 classes: 'categorieB', // votre classe CSS spécifique
                 category: 'B',
-                price: 40
+                price: prix
             },
             C: {
                 classes: 'categorieC', // votre classe CSS spécifique
                 category: 'C',
-                price: 20
+                price: prix
             }
         },
         naming: {
@@ -78,7 +79,7 @@ $(document).ready(function () {
         legend: {
             node: $('#legend'),
             items: [
-                ['A', 'available', 'Catégorie A'],
+                ['A', 'available', 'Catégorie A '+prix],
                 ['B', 'available', 'Catégorie B'],
                 ['C', 'available', 'Catégorie C'],
                 [, 'unavailable', 'Place non disponible']
