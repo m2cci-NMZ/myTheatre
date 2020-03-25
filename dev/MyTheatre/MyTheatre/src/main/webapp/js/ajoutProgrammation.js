@@ -9,8 +9,6 @@ let checkBoxBool = document.getElementById("orchOu1WShowInput");
 let labelCBBool = document.getElementById("labelOrchOu1WShowInput");
 let typeSpeInput = document.getElementById("typeSpeInput");
 
-let indice = 0;
-
 
 function setCheckBoxBool() {
     if (typeSpeInput.value === "opera") {
@@ -37,14 +35,13 @@ function init() {
 
 $(document).ready(function () {
 
-    $('#tableTest').find('tr').click(function () {
+    $('#tableTest').find('.ligneSpectacle').click(function () {
         //alert('You clicked row ' + ($(this).index() + 1));
         document.getElementById("supprSpeBouton").disabled = false;
-        indice = ($(this).index() + 1);
-        //List<Spectacle> spectacles = (List<Spectacle>) request.getAttribute("listeSpectacles");
-        //Spectacle s = spectacles.get(indice);
-        //let num = s.getNumero();
+        let indice = ($(this).index());
+        //$(this).index().backgroundColor = '#FF0000' ;
         document.getElementById("numLigneTabSpe").value = indice;
+        console.log(indice);
     });
 
 });

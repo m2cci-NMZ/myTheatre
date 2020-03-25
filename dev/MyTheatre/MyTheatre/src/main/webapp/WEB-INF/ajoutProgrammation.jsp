@@ -239,7 +239,7 @@
                                                     String nom = s.getNom();
                                             %>
 
-                                            <tr>
+                                            <tr class="ligneSpectacle">
                                                 <td><%=numero%></td>
                                                 <td><%=nom%></td>
                                             </tr>
