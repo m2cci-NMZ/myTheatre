@@ -148,14 +148,14 @@ relation LesTickets
 		
 relation LesTicketsReserves
 	transformation 
-		from R_ManyToMany (AReserve)
+		from R_OneToMany (AReserve)
 
 	columns 
-		loginUti_ : String
 		numeroTic_ : Integer
+		loginUti : String
 		
 	constraints
-		key loginUti_, numeroTic_
+		key numeroTic_
 		LesTicketsReserves [numeroTic] n LesTicketsAchetes [numeroTic] = {}
 		LesTicketsReserves [numeroTic] u LesTicketsAchetes [numeroTic] = LesTickets [numeroTic]
 		LesTicketsReserves[loginUti] C= LesUtilisateurs[loginUti]
@@ -164,11 +164,11 @@ relation LesTicketsReserves
 		
 relation LesTicketsAchetes
 	transformation 
-		from R_ManyToMany (AAchete)
+		from R_OneToMany(AAchete)
 
 	columns 
-		loginUti_ : String
 		numeroTic_ : Integer
+		loginUti : String
 		
 	constraints
 		key loginUti_, numeroTic_
