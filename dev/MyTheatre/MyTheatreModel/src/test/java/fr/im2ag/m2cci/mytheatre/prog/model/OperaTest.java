@@ -87,4 +87,16 @@ public class OperaTest {
         Opera o2 = new Opera(11, "Opera", 10.0, "opera", "toutPublic", true);
         assertFalse(o1.equals(o2));
     }
+    
+    /**
+     * Test de la methode equals
+     * Vérifie qu'un Opera ne peut être égal à un Spectacle identique
+     */
+    @Test
+    public void testEqualsOperaSpectacle(){
+        System.out.println("equals : Opera et Spectacle");
+        Spectacle s1 = new Spectacle(11, "Spectacle", 10.0, "opera", "toutPublic");
+        Opera o2 = new Opera(11, "Spectacle", 10.0, "opera", "toutPublic", true);
+        assertFalse(o2.equals(s1));
+    }
 }

@@ -91,13 +91,13 @@ public class HumoristiqueTest {
     
     /**
      * Test de la methode equals
-     * Vérifie que si on compare un Humoristique et un Spectacle identique, ça marche pas
+     * Vérifie qu'un Humoristique ne peut être égal à un Spectacle identique
      */
     @Test
-    public void testEqualsHumoristique(){
-        System.out.println("equals : Spectacle et Humoristique");
+    public void testEqualsHumoristiqueSpectacle(){
+        System.out.println("equals : Humoristique et Spectacle");
         Spectacle s1 = new Spectacle(11, "Spectacle", 10.0, "humoristique", "toutPublic");
-        Humoristique h2 = new Humoristique(11, "Spectacle", 12.0, "humoristique", "toutPublic", true);
-        assertFalse(s1.equals(h2));
+        Humoristique h2 = new Humoristique(11, "Spectacle", 10.0, "humoristique", "toutPublic", true);
+        assertFalse(h2.equals(s1));
     }
 }

@@ -147,4 +147,28 @@ public class SpectacleTest {
         Spectacle s2 = new Spectacle(11, "Opera", 10.0, "opera", "adulte");
         assertFalse(s1.equals(s2));
     }
+    
+    /**
+     * Test de la methode equals
+     * Vérifie qu'un Spectacle ne peut être égal à un Humoristique identique
+     */
+    @Test
+    public void testEqualsSpectacleHumoristique(){
+        System.out.println("equals : Spectacle et Humoristique");
+        Spectacle s1 = new Spectacle(11, "Spectacle", 10.0, "humoristique", "toutPublic");
+        Humoristique h2 = new Humoristique(11, "Spectacle", 10.0, "humoristique", "toutPublic", true);
+        assertFalse(s1.equals(h2));
+    }
+    
+    /**
+     * Test de la methode equals
+     * Vérifie qu'un Spectacle ne peut être égal à un Opera identique
+     */
+    @Test
+    public void testEqualsSpectacleOpera(){
+        System.out.println("equals : Spectacle et Opera");
+        Spectacle s1 = new Spectacle(11, "Spectacle", 10.0, "opera", "toutPublic");
+        Opera o2 = new Opera(11, "Spectacle", 10.0, "opera", "toutPublic", true);
+        assertFalse(s1.equals(o2));
+    }
 }
