@@ -38,8 +38,8 @@
     <node id="utilisateurNico58" sizeCalculated="true" type="Object">
         <name>utilisateurNico58</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>1258.64604835084</x>
-            <y>251.7552636471579</y>
+            <x>1254.64604835084</x>
+            <y>268.7552636471579</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -166,8 +166,8 @@
     <node id="dossierAchat25" sizeCalculated="true" type="Object">
         <name>dossierAchat25</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>755.7753518830757</x>
-            <y>240.20462902457734</y>
+            <x>756.7753518830757</x>
+            <y>247.20462902457734</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -193,21 +193,6 @@
         <name>FaitPartieDUn</name>
         <properties>
             <edgeproperty
-                id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::rolename"
                 sizeCalculated="true" type="rolename"
                 userDefined="false" visible="true">
@@ -219,6 +204,21 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -307,21 +307,6 @@
         <name>AAchete</name>
         <properties>
             <edgeproperty
-                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::rolename"
                 sizeCalculated="true" type="rolename"
                 userDefined="false" visible="true">
@@ -337,14 +322,14 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
-                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::source::multiplicity"
+                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
-                <name>0..1</name>
+                <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::0</attached>
+                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
@@ -363,6 +348,21 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::source::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="false" visible="true">
+                <name>0..1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket2 [Ticket : (places:place10, representations:representationDu130318h)])]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -450,21 +450,6 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
-                id="[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::source::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>1..*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::source::rolename"
                 sizeCalculated="true" type="rolename"
                 userDefined="false" visible="true">
@@ -480,13 +465,28 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
+                id="[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::source::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="false" visible="true">
+                <name>1..*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[FaitPartieDUn : (dossierAchat:dossierAchat25, tickets:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)])]::AssociationName"
                 sizeCalculated="true" type="associationName"
                 userDefined="true" visible="true">
                 <name>FaitPartieDUn</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>47.0</userOffsetX>
-                    <userOffsetY>7.0</userOffsetY>
+                    <userOffsetX>-40.0</userOffsetX>
+                    <userOffsetY>9.0</userOffsetY>
                     <offsetX>0.0</offsetX>
                     <offsetY>-10.0</offsetY>
                     <related length="2">
@@ -675,20 +675,6 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
-                id="[APourRepresentation : (representations:representationDu150320h, spectacle:avare)]::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>spectacle</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>1.0</userOffsetX>
-                    <userOffsetY>10.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu150320h, spectacle:avare)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="[APourRepresentation : (representations:representationDu150320h, spectacle:avare)]::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -700,6 +686,20 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="[APourRepresentation : (representations:representationDu150320h, spectacle:avare)]::source::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>spectacle</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>1.0</userOffsetX>
+                    <userOffsetY>10.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu150320h, spectacle:avare)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -870,6 +870,21 @@
         <name>Contient</name>
         <properties>
             <edgeproperty
+                id="[Contient : (places:place10, rang:rang1)]::target::rolename"
+                sizeCalculated="true" type="rolename"
+                userDefined="false" visible="true">
+                <name>places</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[Contient : (places:place10, rang:rang1)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[Contient : (places:place10, rang:rang1)]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -885,14 +900,13 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
-                id="[Contient : (places:place10, rang:rang1)]::target::rolename"
-                sizeCalculated="true" type="rolename"
-                userDefined="false" visible="true">
-                <name>places</name>
+                id="[Contient : (places:place10, rang:rang1)]::source::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>rang</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[Contient : (places:place10, rang:rang1)]::WayPoint::1</attached>
+                    <userOffsetX>9.0</userOffsetX>
+                    <userOffsetY>10.0</userOffsetY>
+                    <attached>[Contient : (places:place10, rang:rang1)]::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -911,20 +925,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="[Contient : (places:place10, rang:rang1)]::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>rang</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>9.0</userOffsetX>
-                    <userOffsetY>10.0</userOffsetY>
-                    <attached>[Contient : (places:place10, rang:rang1)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -983,6 +983,20 @@
         <name>AReserve</name>
         <properties>
             <edgeproperty
+                id="[AReserve : (ticketsReserves:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)], utilisateur:utilisateurRobin32)]::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>ticketsReserves</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>4.0</userOffsetX>
+                    <userOffsetY>-28.0</userOffsetY>
+                    <attached>[AReserve : (ticketsReserves:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)], utilisateur:utilisateurRobin32)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[AReserve : (ticketsReserves:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)], utilisateur:utilisateurRobin32)]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -994,20 +1008,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="[AReserve : (ticketsReserves:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)], utilisateur:utilisateurRobin32)]::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>ticketsReserves</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>4.0</userOffsetX>
-                    <userOffsetY>-28.0</userOffsetY>
-                    <attached>[AReserve : (ticketsReserves:Ticket3 [Ticket : (places:place5, representations:representationDu150320h)], utilisateur:utilisateurRobin32)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1095,6 +1095,20 @@
         <name>FaitPartieDUn</name>
         <properties>
             <edgeproperty
+                id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>dossierAchat</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>81.0</userOffsetX>
+                    <userOffsetY>3.0</userOffsetY>
+                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1106,20 +1120,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>dossierAchat</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>81.0</userOffsetX>
-                    <userOffsetY>3.0</userOffsetY>
-                    <attached>[FaitPartieDUn : (dossierAchat:dossierAchat1, tickets:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1237,6 +1237,20 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
+                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::source::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>personne</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-4.0</userOffsetX>
+                    <userOffsetY>9.0</userOffsetY>
+                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1248,20 +1262,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>personne</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-4.0</userOffsetX>
-                    <userOffsetY>9.0</userOffsetY>
-                    <attached>[AAchete : (personne:utilisateurNico58, ticketsAchetes:Ticket1 [Ticket : (places:place5, representations:representationDu130318h)])]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1320,6 +1320,20 @@
         <name>APourRepresentation</name>
         <properties>
             <edgeproperty
+                id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>8.0</userOffsetX>
+                    <userOffsetY>15.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1335,16 +1349,17 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
-                id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
+                id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::source::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="false" visible="true">
+                <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>8.0</userOffsetX>
-                    <userOffsetY>15.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::1</attached>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
-                    <placement>TOP</placement>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1359,21 +1374,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::source::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[APourRepresentation : (representations:representationDu130318h, spectacle:lesAnimaux)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1432,21 +1432,6 @@
         <name>Contient</name>
         <properties>
             <edgeproperty
-                id="[Contient : (places:place40, rang:rang5)]::target::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>1..*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>[Contient : (places:place40, rang:rang5)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="[Contient : (places:place40, rang:rang5)]::target::rolename"
                 sizeCalculated="true" type="rolename"
                 userDefined="false" visible="true">
@@ -1458,6 +1443,21 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="[Contient : (places:place40, rang:rang5)]::target::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="false" visible="true">
+                <name>1..*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>[Contient : (places:place40, rang:rang5)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1546,6 +1546,20 @@
         <name>Ticket</name>
         <properties>
             <edgeproperty
+                id="Ticket1 [Ticket : (places:place5, representations:representationDu130318h)]::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>93.0</userOffsetX>
+                    <userOffsetY>-7.0</userOffsetY>
+                    <attached>Ticket1 [Ticket : (places:place5, representations:representationDu130318h)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="Ticket1 [Ticket : (places:place5, representations:representationDu130318h)]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1557,20 +1571,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="Ticket1 [Ticket : (places:place5, representations:representationDu130318h)]::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>93.0</userOffsetX>
-                    <userOffsetY>-7.0</userOffsetY>
-                    <attached>Ticket1 [Ticket : (places:place5, representations:representationDu130318h)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1697,20 +1697,6 @@
         <name>Ticket</name>
         <properties>
             <edgeproperty
-                id="Ticket3 [Ticket : (places:place5, representations:representationDu150320h)]::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>representations</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-7.0</userOffsetX>
-                    <userOffsetY>-4.0</userOffsetY>
-                    <attached>Ticket3 [Ticket : (places:place5, representations:representationDu150320h)]::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
                 id="Ticket3 [Ticket : (places:place5, representations:representationDu150320h)]::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1722,6 +1708,20 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="Ticket3 [Ticket : (places:place5, representations:representationDu150320h)]::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>representations</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-7.0</userOffsetX>
+                    <userOffsetY>-4.0</userOffsetY>
+                    <attached>Ticket3 [Ticket : (places:place5, representations:representationDu150320h)]::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -1878,6 +1878,20 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty
+                id="Ticket2 [Ticket : (places:place10, representations:representationDu130318h)]::source::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>places</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>14.0</userOffsetX>
+                    <userOffsetY>12.0</userOffsetY>
+                    <attached>Ticket2 [Ticket : (places:place10, representations:representationDu130318h)]::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
                 id="Ticket2 [Ticket : (places:place10, representations:representationDu130318h)]::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -1889,20 +1903,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="Ticket2 [Ticket : (places:place10, representations:representationDu130318h)]::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>places</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>14.0</userOffsetX>
-                    <userOffsetY>12.0</userOffsetY>
-                    <attached>Ticket2 [Ticket : (places:place10, representations:representationDu130318h)]::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
