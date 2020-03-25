@@ -183,3 +183,7 @@ relation LesTicketsAchetes
 		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti_]
 		LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
 		LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]
+		
+		
+view LesRepresentationsV1
+	
