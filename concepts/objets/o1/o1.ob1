@@ -137,20 +137,20 @@
 --| (21) Le ticket de numero 001, avec une date d'émission du 10/03/2020 et un prix de 10.0
     ! ticket001 := new Ticket between (Spectacle, Representation)
     ! ticket001.numero_ := 001
-	! ticket001.dateEmin := '10/03/2020'
-	! ticket001.prixTicket_d := 10.0
+	! ticket001.dateEmission := '10/03/2020'
+	! ticket001.prix_d := 10.0
 	
 --| (22) Le ticket de numero 002, avec une date d'émission du 20/03/2020 et un prix de 8.0
     ! create ticket002 := new Ticket between (Spectacle, Representation)
     ! ticket002.numero_ := 002
-	! ticket002.dateEmin := '20/03/2020'
-	! ticket002.prixTicket_d := 8.0
+	! ticket002.dateEmission := '20/03/2020'
+	! ticket002.prix_d := 8.0
 	
 --| (23) Le ticket de numero 003, avec une date d'émission du 30/03/2020 et un prix de 10.0
     ! create ticket003 := new Ticket between (Spectacle, Representation)
     ! ticket003.numero_ := 003
-	! ticket003.dateEmin := '30/03/2020'
-	! ticket003.prixTicket_d := 10.0
+	! ticket003.dateEmission := '30/03/2020'
+	! ticket003.prix_d := 10.0
 	
 	
 --| (24) Le dossier d'achat de numéro 1 et de prix global 20.0
