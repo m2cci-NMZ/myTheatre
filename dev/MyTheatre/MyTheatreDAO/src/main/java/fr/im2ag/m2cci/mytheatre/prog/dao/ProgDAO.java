@@ -124,6 +124,13 @@ public class ProgDAO {
         return representations;
     }
 
+    /**
+     * Permet de récupérer la liste de tous les Spectacle dans la base
+     *
+     * @param ds : Datasource
+     * @return List de Spectacle
+     * @throws SQLException
+     */
     public static List<Spectacle> toutSpectacles(DataSource ds) throws SQLException {
         String querySpe = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
@@ -262,7 +269,6 @@ public class ProgDAO {
      */
     public static void insertSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
             boolean aOrchestreOuEstOneWomanManShow) throws SQLException {
-        // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
 
         try (Connection conn = ds.getConnection()) {
@@ -296,7 +302,8 @@ public class ProgDAO {
 
                     stmt.executeUpdate();
                     conn.commit();      // On commit toutes les modifications
-                } catch (SQLException e){
+                    conn.setAutoCommit(true);  // On remet en mode auto-commit
+                } catch (SQLException e) {
                     conn.rollback();    // Annule les opérations de la transaction
                     throw e;
                 }
@@ -308,7 +315,7 @@ public class ProgDAO {
 
     /**
      * Permet d'insérer une representation dans la base de données
-     * 
+     *
      * @param ds : Datasource pour la BD
      * @param numeroSpe : int pour le numero du Spectacle
      * @param horaireRep : Date pour l'horaire (précise à la minute) du la
@@ -328,6 +335,35 @@ public class ProgDAO {
             stmt.setInt(2, numeroSpe);
 
             stmt.executeUpdate();
+        }
+    }
+
+    /**
+     * Supprime tous les Spectacles dont les numéros sont données en paramètre
+     *
+     * @param ds : Datasource
+     * @param numerosDeSpe : List d'Integer correspondant au numéro de Spectacle
+     * à supprimer
+     * @throws SQLException
+     */
+    public static void deleteSpectacles(DataSource ds, List<Integer> numerosDeSpe) throws SQLException {
+        // todo : Traiter le cas des opera et des humoristique
+        String queryInsert = "DELETE FROM LesSpectacles WHERE numeroSpe = ?; ";
+
+        try (Connection conn = ds.getConnection()) {
+            // On fait un batch pour tout faire d'un seul coup
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement(queryInsert);
+
+            // Pour chaque numéro, on fait la requete
+            for (Integer numeroSpe : numerosDeSpe) {
+                stmt.setInt(1, numeroSpe);
+                stmt.addBatch();
+            }
+            
+            int[] updateCounts = stmt.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
         }
     }
 }
