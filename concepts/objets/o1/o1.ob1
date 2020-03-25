@@ -18,12 +18,12 @@
 ---------------------------------------------------------------------------
 
 --| (1) Le spectacle de numero 45 et de nom Cyrano avec un prix de base de 20 euros destiné a tout public et de type drame
-    ! create cyrano : Spectacle
-    ! cyrano.numero_ := 45
-    ! cyrano.nom := 'Cyrano de Bergerac'
-    ! cyrano.prixDeBase := 20.0
-    ! cyrano.cible := Cible::toutPublic
-    ! cyrano.type := Type::drame
+--    ! create cyrano : Spectacle
+--    ! cyrano.numero_ := 45
+--    ! cyrano.nom := 'Cyrano de Bergerac'
+--    ! cyrano.prixDeBase := 20.0
+--    ! cyrano.cible := Cible::toutPublic
+--    ! cyrano.type := Type::drame
 
 --| (2) Le spectacle de numero 46 et de nom Les Animaux avec un prix de base de 8 euros destiné a un public 1-5 ans et de type cirque
     ! create lesAnimaux : Spectacle
@@ -34,12 +34,12 @@
     ! lesAnimaux.type := Type::cirque
 
 --| (3) Le spectacle de numero 47 et de nom SonoriteEtranges avec un prix de base de 10 euros destiné a un jeune public et de type musical
-    ! create sonoritesEtranges : Spectacle
-    ! sonoritesEtranges.numero_ := 47
-    ! sonoritesEtranges.nom := 'Sonorites Etranges'
-    ! sonoritesEtranges.prixDeBase := 10.0
-    ! sonoritesEtranges.cible := Cible::jeunePublic
-    ! sonoritesEtranges.type := Type::musical
+--    ! create sonoritesEtranges : Spectacle
+--    ! sonoritesEtranges.numero_ := 47
+--    ! sonoritesEtranges.nom := 'Sonorites Etranges'
+--    ! sonoritesEtranges.prixDeBase := 10.0
+--    ! sonoritesEtranges.cible := Cible::jeunePublic
+--    ! sonoritesEtranges.type := Type::musical
 
 --| (4) Le spectacle de numero 20 et de nom l'avare avec un prix de base de 10 euros destiné a tout public et de type drame
     ! create avare : Humoristique
@@ -51,20 +51,19 @@
     ! avare.estUnOneWomanManShow := false
 
 --| (5) Le spectacle de numero 25 et de nom Don Juan avec un prix de base de 10 euros destiné a un public adulte et de type opera
-    ! create donJuan : Opera
-    ! donJuan.numero_ := 25
-    ! donJuan.nom := 'Don Juan'
-    ! donJuan.prixDeBase := 10.0
-    ! donJuan.cible := Cible::adulte
-    ! donJuan.type := Type::opera
-    ! donJuan.aUnOrchestre := true
+--    ! create donJuan : Opera
+--    ! donJuan.numero_ := 25
+--    ! donJuan.nom := 'Don Juan'
+--    ! donJuan.prixDeBase := 10.0
+--    ! donJuan.cible := Cible::adulte
+--    ! donJuan.type := Type::opera
+--    ! donJuan.aUnOrchestre := true
     
 --| (6) Le spectacle de numero 17 et de nom Andromaque avec un prix de base de 15 euros destiné a un public adulte et de type drame
-    ! create andromaque : Spectacle
-    ! andromaque.numero_ := 17
-    ! andromaque.nom := 'Andromaque'
-    ! andromaque.prixDeBase := 15.0
-    ! andromaque.cible := Cible::adulte
+   ! create andromaque : Spectacle
+   ! andromaque.nom := 'Andromaque'
+   ! andromaque.prixDeBase := 15.0
+   ! andromaque.cible := Cible::adulte
     ! andromaque.type := Type::drame
 
 
@@ -79,18 +78,18 @@
 --|representationDu130320h.placesDispo_d := 10
 
 --| (9) La representation du 14/03 a 18h a 20 places disponibles et donne une reduction de 10%
-    ! create representationDu140318h : Representation
-    ! representationDu140318h.horaire_ := '14/03/2020 18h'
+--    ! create representationDu140318h : Representation
+--    ! representationDu140318h.horaire_ := '14/03/2020 18h'
 --|representationDu140318h.placesDispo_d := 20
 
 --| (10) La representation du 14/03 a 15h a 20 places disponibles et donne une reduction de 10%
-    ! create representationDu140315h : Representation
-    ! representationDu140315h.horaire_ := '14/03/2020 15h'
+--    ! create representationDu140315h : Representation
+--    ! representationDu140315h.horaire_ := '14/03/2020 15h'
 --|representationDu140315h.placesDispo_d := 20
 
 --| (11) La representation du 15/03 a 18h a 30 places disponibles et donne un reduction de 0%
-    ! create representationDu150318h : Representation
-    ! representationDu150318h.horaire_ := '15/03/2020 18h'
+--    ! create representationDu150318h : Representation
+--    ! representationDu150318h.horaire_ := '15/03/2020 18h'
 --|representationDu150318h.placesDispo_d := 30
 
 --| (12) La representation du 15/03 a 20h a 10 places disponibles et donne un reduction de 0%
@@ -109,12 +108,8 @@
 	! rang5.numero_ := 5
 	
 --| (15) Le rang de numéro 10
-    ! create rang10 : Rang
-	! rang10.numero_ := 10
-	
---| (16) Le rang de numéro 20
-    ! create rang20 : Rang
-	! rang20.numero_ := 20
+--    ! create rang10 : Rang
+--	! rang10.numero_ := 10
 	
 	
 --| (17) La place de numero 5
@@ -130,26 +125,26 @@
 	! place40.numero_ := 40
 	
 --| (20) La place de numero 80
-    ! create place80 : Place
-	! place80.numero_ := 80
+--    ! create place80 : Place
+--	  ! place80.numero_ := 80
 	
 	
---| (21) Le ticket de numero 001, avec une date d'émission du 10/03/2020 et un prix de 10.0
-    ! ticket001 := new Ticket between (Spectacle, Representation)
+--| (21) Le ticket de numero 001, avec une date d'émission du 01/03/2020 et un prix de 10.0
+    ! ticket001 := new Ticket between (place5, representationDu130318h)
     ! ticket001.numero_ := 001
-	! ticket001.dateEmission := '10/03/2020'
+	! ticket001.dateEmission := '01/03/2020'
 	! ticket001.prix_d := 10.0
 	
---| (22) Le ticket de numero 002, avec une date d'émission du 20/03/2020 et un prix de 8.0
-    ! create ticket002 := new Ticket between (Spectacle, Representation)
+--| (22) Le ticket de numero 002, avec une date d'émission du 05/03/2020 et un prix de 8.0
+    ! ticket002 := new Ticket between (place10, representationDu130318h)
     ! ticket002.numero_ := 002
-	! ticket002.dateEmission := '20/03/2020'
+	! ticket002.dateEmission := '05/03/2020'
 	! ticket002.prix_d := 8.0
 	
---| (23) Le ticket de numero 003, avec une date d'émission du 30/03/2020 et un prix de 10.0
-    ! create ticket003 := new Ticket between (Spectacle, Representation)
+--| (23) Le ticket de numero 003, avec une date d'émission du 10/03/2020 et un prix de 10.0
+    ! ticket003 := new Ticket between (place5, representationDu150320h)
     ! ticket003.numero_ := 003
-	! ticket003.dateEmission := '30/03/2020'
+	! ticket003.dateEmission := '10/03/2020'
 	! ticket003.prix_d := 10.0
 	
 	
@@ -159,9 +154,9 @@
 	! dossierAchat1.prixGlobal_d := 20.0
 	
 --| (25) Le dossier d'achat de numéro 5 et de prix global 20.0
-    ! create dossierAchat5 : DossierAchat
-    ! dossierAchat5.numero_ := 5
-	! dossierAchat5.prixGlobal_d := 20.0
+--    ! create dossierAchat5 : DossierAchat
+--    ! dossierAchat5.numero_ := 5
+--	! dossierAchat5.prixGlobal_d := 20.0
 	
 --| (26) Le dossier d'achat de numéro 25 et de prix global 15.0
     ! create dossierAchat25 : DossierAchat
@@ -174,30 +169,30 @@
     ! utilisateurNico58.login_ := 'nico58'
 	! utilisateurNico58.nom := 'Martinez'
 	! utilisateurNico58.prenom := 'Nicolas'
---	! utilisateurNico58.mail := 'nico58@gmail'
---	! utilisateurNico58.mdp := 'admin'
+	! utilisateurNico58.mail := 'nico58@gmail'
+	! utilisateurNico58.mdp := 'admin'
 	
 --| (28) L'utilisateur de login celia18, de nom Kezmane, de prénom Celia, avec l'adresse mail : celia18@gmail.com et le mot de passe : admin
-    ! create utilisateurCelia18 : Utilisateur
-    ! utilisateurCelia18.login_ := 'celia18'
+  ! create utilisateurCelia18 : Utilisateur
+   ! utilisateurCelia18.login_ := 'celia18'
 	! utilisateurCelia18.nom := 'Kezmane'
 	! utilisateurCelia18.prenom := 'Celia'
---	! utilisateurCelia18.mail := 'celia18@gmail'
---	! utilisateurCelia18.mdp := 'admin'
+	! utilisateurCelia18.mail := 'celia18@gmail'
+	! utilisateurCelia18.mdp := 'admin'
 	
 --| (29) L'utilisateur de login robin32, de nom Miquel, de prénom Robin, avec l'adresse mail : robin32@gmail.com et le mot de passe : azerty
     ! create utilisateurRobin32 : Utilisateur
-    ! utilisateurRobin32.login_ := 'robin32'
+   ! utilisateurRobin32.login_ := 'robin32'
 	! utilisateurRobin32.nom := 'Miquel'
 	! utilisateurRobin32.prenom := 'Robin'
---	! utilisateurRobin32.mail := 'robin32@gmail'
---	! utilisateurRobin32.mdp := 'azerty'
+	! utilisateurRobin32.mail := 'robin32@gmail'
+	! utilisateurRobin32.mdp := 'azerty'
 
 --| (30) L'utilisateur de login matt44, de nom Lehugeur, de prénom Matthieu, avec l'adresse mail : matt44@gmail.com et le mot de passe : 123456
-    ! create utilisateurMatt44 : Utilisateur
-    ! utilisateurMatt44.login_ := 'matt44'
-	! utilisateurMatt44.nom := 'Lehugeur'
-	! utilisateurMatt44.prenom := 'Matthieu'
+--   ! create utilisateurMatt44 : Utilisateur
+--    ! utilisateurMatt44.login_ := 'matt44'
+--	! utilisateurMatt44.nom := 'Lehugeur'
+--	! utilisateurMatt44.prenom := 'Matthieu'
 --	! utilisateurMatt44.mail := 'matt44@gmail'
 --	! utilisateurMatt44.mdp := '123456'
 	
@@ -243,13 +238,13 @@
     ! insert(avare, representationDu130320h) into APourRepresentation
 
 --| (39) Le 14/03 a 18h, Cyrano est à l'affiche
-    ! insert(cyrano, representationDu140318h) into APourRepresentation
+--    ! insert(cyrano, representationDu140318h) into APourRepresentation
 
 --| (40) Le 14/03 a 15h, Sonorites Etranges est à l'affiche
-    ! insert(sonoritesEtranges, representationDu140315h) into APourRepresentation
+--    ! insert(sonoritesEtranges, representationDu140315h) into APourRepresentation
 
 --| (41) Le 15/03 a 18h, Don Juan est à l'affiche
-    ! insert(donJuan, representationDu150318h) into APourRepresentation
+--    ! insert(donJuan, representationDu150318h) into APourRepresentation
     
 --| (42) Le 15/03 a 20h, l'Avare est à l'affiche
     ! insert(avare, representationDu150320h) into APourRepresentation
@@ -266,34 +261,27 @@
 	! insert(rang5, place40) into Contient
 	
 --| (46) Le rang 10 contient la place 80
-	! insert(rang10, place80) into Contient
+--	! insert(rang10, place80) into Contient
 	
 	
 --| (47) Le ticket 001 correspond au dossier d'achat 1
-    ! insert(ticket001, dossierAchat1) into AUn
+    ! insert(ticket001, dossierAchat1) into FaitPartieDUn
 	
---| (48) Le ticket 002 correspond au dossier d'achat 5
-    ! insert(ticket002, dossierAchat5) into AUn
+--| (48) Le ticket 002 correspond au dossier d'achat 1
+    ! insert(ticket002, dossierAchat1) into FaitPartieDUn
 	
 --| (49) Le ticket 003 correspond au dossier d'achat 1
-    ! insert(ticket003, dossierAchat25) into AUn
+    ! insert(ticket003, dossierAchat25) into FaitPartieDUn
 	
 	
 --| (50) nico58 a acheté le ticket 001
-    ! insert(Nico58, ticket002) into AAchete
+    ! insert(utilisateurNico58, ticket001) into AAchete
 	
 --| (51) nico58 a acheté le ticket 002
-    ! insert(celia18, ticket002) into AAchete
-	
-
---| (52) celia18 a réserve le ticket 002
-    ! insert(celia18, ticket002) into AReserve
-	
---| (53) nico58 a réserve le ticket 001
-    ! insert(nico58, ticket001) into AReserve
+    ! insert(utilisateurNico58, ticket002) into AAchete
 	
 --| (54) robin32 a réserve le ticket 003
-    ! insert(robin32, ticket003) into AReserve
+    ! insert(utilisateurRobin32, ticket003) into AReserve
 
 
 ---------------------------------------------------------------------------
