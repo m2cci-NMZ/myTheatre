@@ -26,7 +26,7 @@ relation LesSpectacles
 	constraints
 		key numeroSpe_
 		numeroSpe_ > 0
-
+		prixDeBaseSpe > 0
 
 
 relation LesOperas
@@ -39,7 +39,8 @@ relation LesOperas
 		
 	constraints
 		key numeroSpe_
-
+		LesOperas[numeroSpe_] C= LesSpectacles[numeroSpe_]
+		LesOperas[numeroSpe] n LesHumoristiques[numeroSpe] = {}
   
 
 relation LesHumoristiques
@@ -52,12 +53,7 @@ relation LesHumoristiques
 		
 	constraints
 		key numeroSpe_
-
-
-constraints
-		LesOperas[numeroSpe_] C= LesSpectacles[numeroSpe_]
 		LesHumoristiques[numeroSpe_] C= LesSpectacles[numeroSpe_]
-
 
 
 relation LesRepresentations
@@ -78,6 +74,103 @@ relation LesRepresentations
 constraints
     LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
 
-    
+
+relation LesRangs
+	transformation 
+		from R_Class (Rang)	
+
+	columns 
+		numeroRan_ : Integer
+		
+	constraints
+		key numeroRan_ 
+		numeroRan >= 0
+		
+		
+relation LesPlaces
+	transformation 
+		from R_Class (Place)
+		from R_Compo (Contient)
+
+	columns 
+		numeroPla_ : Integer
+		numeroRan_ : Integer
+		
+	constraints
+		key numeroPla_ 
+		numeroPla_ >= 0
+		LesPlaces[numeroRan] = LesRangs[numeroRan]
+		
+		
+relation LesDossiersAchats
+	transformation 
+		from R_Class (DossierAchat)
+
+	columns 
+		numeroDos_ : Integer
+		prixGlobalDos_d : Real
+		
+	constraints
+		key numeroDos_ 
+		numeroDos_ > 0
+		prixGlobalDos_d > 0
 
 
+relation LesUtilisateurs
+	transformation 
+		from R_Class (Utilisateur)
+
+	columns 
+		loginUti_ : String
+		nomUti : String
+		prenomUti : String
+		--mailUti : String
+		--mdpUti : String
+		
+	constraints
+		key loginUti_ 
+		
+		
+relation LesTickets
+	transformation 
+		from R_Class (Ticket)
+
+	columns 
+		numeroTic_ : Integer
+		dateEmiTic : String
+		prixTicketTic_d : Real
+		
+	constraints
+		key numeroTic_ 
+		numeroTic_ > 0
+		prixTicketTic_d > 0
+		
+		
+relation LesTicketsReserves
+	transformation 
+		from R_OneToMany (AReserve)
+
+	columns 
+		numeroTic_ : Integer
+		loginUti : String
+		
+	constraints
+		key numeroTic_
+		LesTicketsReserves [numeroTic] n LesTicketsAchetes [numeroTic] = {}
+		LesTicketsReserves [numeroTic] u LesTicketsAchetes [numeroTic] = LesTickets [numeroTic]
+		LesTicketsReserves[loginUti] C= LesUtilisateurs[loginUti]
+		LesTicketsReserves[numeroTic] C= LesTickets[numeroTic]
+		
+		
+relation LesTicketsAchetes
+	transformation 
+		from R_OneToMany(AAchete)
+
+	columns 
+		numeroTic_ : Integer
+		loginUti : String
+		
+	constraints
+		key loginUti_, numeroTic_
+		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti]
+		LesTicketsAchetes[numeroTic] C= LesTickets[numeroTic]		

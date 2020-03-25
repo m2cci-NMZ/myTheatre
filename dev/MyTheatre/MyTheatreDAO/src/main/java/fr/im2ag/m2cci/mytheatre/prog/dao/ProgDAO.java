@@ -168,20 +168,20 @@ public class ProgDAO {
     }
 
     /**
-     * Retourne la liste de toutes les Representations entre les deux Dates passées
-     * en paramètre
-     * Appelle representationsFiltrees en mettant dans cibleSpe et typeSpe les valeurs 
-     * adaptées permettant de récupérer toutes les Spectacles possibles
-     * 
+     * Retourne la liste de toutes les Representations entre les deux Dates
+     * passées en paramètre Appelle representationsFiltrees en mettant dans
+     * cibleSpe et typeSpe les valeurs adaptées permettant de récupérer toutes
+     * les Spectacles possibles
+     *
      * @param ds : DataSource
      * @param horaireDebut : Date
      * @param horaireFin : Date
      * @return : Liste de Representation
      * @throws SQLException
-     * @throws ParseException 
+     * @throws ParseException
      */
     public static List<Representation> toutesRepresentationsDatees(DataSource ds, Date horaireDebut,
-            Date horaireFin) throws SQLException, ParseException{
+            Date horaireFin) throws SQLException, ParseException {
         String cibleSpe = "null";
         List<String> typesSpe = new ArrayList<>();
         typesSpe.add("opera");
@@ -189,28 +189,28 @@ public class ProgDAO {
         typesSpe.add("drame");
         typesSpe.add("musical");
         typesSpe.add("cirque");
-        
+
         return representationsFiltrees(ds, horaireDebut, horaireFin, cibleSpe, typesSpe);
     }
-    
+
     /**
-     * Retourne un Spectacle correspondant au numeroSpe en paramètre
-     * Si la BD ne contient pas ce numeroSpe, alors on retourne null
-     * 
+     * Retourne un Spectacle correspondant au numeroSpe en paramètre Si la BD ne
+     * contient pas ce numeroSpe, alors on retourne null
+     *
      * @param ds : DataSource
      * @param numeroSpe : numero du Spectacle
      * @return Spectacle : null ou correspondant au Spectacle
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static Spectacle spectacleDeNumero(DataSource ds, int numeroSpe) throws SQLException{
+    public static Spectacle spectacleDeNumero(DataSource ds, int numeroSpe) throws SQLException {
         Spectacle s = null;
-        
+
         String querySpe = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
                 + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
                 + "WHERE S.numeroSpe = ? \n"
                 + "ORDER BY nomSpe; \n";
-        
+
         try (Connection conn = ds.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(querySpe);
             stmt.setInt(1, numeroSpe);
@@ -242,26 +242,26 @@ public class ProgDAO {
                 }
             }
         }
-        
+
         return s;
     }
-    
-    
+
     /**
      * Permet d'insérer un spectacle dans la base de données
-     * 
+     *
      * @param ds : Datasource pour la BD
      * @param numero : int pour le numero du Spectacle
      * @param nom : String pour le nom du Spectacle
      * @param prixDeBase : double pour le prix du base du Spectacle
      * @param cible : String pour le public cible du Spectacle
      * @param type : String pour le type de Spectacle
-     * @param aUnOrchestreOpe : boolean pour les Spectacle de type 'musical', permet de signaler qu'il y a un orchestre
-     * @param estUnOneWomanManShow : boolean pour les Spectacle de type 'humoristique', permet de signaler que c'est un OneWoman(Max)Show
-     * @throws SQLException 
+     * @param aOrchestreOuEstOneWomanManShow : boolean pour les Spectacle de
+     * type 'opera' ou 'humoristique', permet de signaler qu'il y a un orchestre
+     * ou respectivement que c'est un OneWomanManShow
+     * @throws SQLException
      */
-    public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
-            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException {
+    public static void insertSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
+            boolean aOrchestreOuEstOneWomanManShow) throws SQLException {
         // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
 
@@ -273,17 +273,47 @@ public class ProgDAO {
             stmt.setString(4, cible);
             stmt.setString(5, type);
 
-            stmt.executeUpdate();
+            if (type.equals("opera") || type.equals("humoristique")) {
+
+                try {
+                    conn.setAutoCommit(false);  // On fait les deux INSERT de manière atomique
+                    stmt.executeUpdate();
+
+                    // Insertion dans les tables LesOperas ou LesHumoristes
+                    if (type.equals("opera")) {
+                        queryInsert = "INSERT INTO LesOperas VALUES (?, ?); ";
+                    } else {
+                        queryInsert = "INSERT INTO LesHumoristiques VALUES (?, ?); ";
+                    }
+                    // Préparation de la requete
+                    stmt = conn.prepareStatement(queryInsert);
+                    stmt.setInt(1, numero);
+                    if (aOrchestreOuEstOneWomanManShow) {
+                        stmt.setInt(2, 1);
+                    } else {
+                        stmt.setInt(2, 0);
+                    }
+
+                    stmt.executeUpdate();
+                    conn.commit();      // On commit toutes les modifications
+                } catch (SQLException e){
+                    conn.rollback();    // Annule les opérations de la transaction
+                    throw e;
+                }
+            } else {
+                stmt.executeUpdate();   // Si il n'y a pas de double INSERT 
+            }
         }
     }
 
-    
     /**
+     * Permet d'insérer une representation dans la base de données
      * 
      * @param ds : Datasource pour la BD
      * @param numeroSpe : int pour le numero du Spectacle
-     * @param horaireRep : Date pour l'horaire (précise à la minute) du la Representation
-     * @throws SQLException 
+     * @param horaireRep : Date pour l'horaire (précise à la minute) du la
+     * Representation
+     * @throws SQLException
      */
     public static void insertRepresentation(DataSource ds, int numeroSpe, Date horaireRep) throws SQLException {
         String queryInsert = "INSERT INTO LesRepresentations VALUES (?, ?);";
@@ -291,7 +321,7 @@ public class ProgDAO {
         try (Connection conn = ds.getConnection()) {
             // Active les foreign key
             conn.createStatement().execute("PRAGMA foreign_keys = ON;");
-            
+
             // Fait l'insertion des données
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
             stmt.setString(1, horaireFormatter.format(horaireRep));
