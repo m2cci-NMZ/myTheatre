@@ -218,7 +218,7 @@
                             <div class="col-md-6">
                                 <br>
                                 <h2>Les Spectacles</h2>
-                                <form action="???">
+                                <form action="deleteSpectacle">
                                     <div>
                                         <input type="text" class="form-control" name="lignesSpeSelected" id="lignesSpeSelected" hidden>
                                     </div>

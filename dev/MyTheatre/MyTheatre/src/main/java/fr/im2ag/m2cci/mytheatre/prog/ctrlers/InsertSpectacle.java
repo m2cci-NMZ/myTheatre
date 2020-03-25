@@ -46,8 +46,8 @@ public class InsertSpectacle extends HttpServlet {
         double prixDeBase = Double.parseDouble(request.getParameter("prixSpe"));
         String cible = request.getParameter("cibleSpe");
         String type = request.getParameter("typeSpe");
-        boolean orchOu1WMS = request.getParameter("orchestreOu1WShow") != null;
-
+        boolean orchOu1WMS = request.getParameter("orchestreOu1WShow") != null;    
+        
         try {
             // Requete à la BD pour l'insertion
             ProgDAO.insertSpectacle(dataSource, numero, nom, prixDeBase, cible, type, orchOu1WMS);

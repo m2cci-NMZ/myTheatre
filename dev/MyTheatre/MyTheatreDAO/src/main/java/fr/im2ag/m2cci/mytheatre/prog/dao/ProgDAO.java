@@ -124,6 +124,13 @@ public class ProgDAO {
         return representations;
     }
 
+    /**
+     * Permet de récupérer la liste de tous les Spectacle dans la base
+     * 
+     * @param ds : Datasource
+     * @return List de Spectacle
+     * @throws SQLException 
+     */
     public static List<Spectacle> toutSpectacles(DataSource ds) throws SQLException {
         String querySpe = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe \n"
                 + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
@@ -296,6 +303,7 @@ public class ProgDAO {
 
                     stmt.executeUpdate();
                     conn.commit();      // On commit toutes les modifications
+                    conn.setAutoCommit(true);  // On remet en mode auto-commit
                 } catch (SQLException e){
                     conn.rollback();    // Annule les opérations de la transaction
                     throw e;
@@ -328,6 +336,32 @@ public class ProgDAO {
             stmt.setInt(2, numeroSpe);
 
             stmt.executeUpdate();
+        }
+    }
+    
+    /**
+     * Supprime tous les Spectacles dont les numéros sont données en paramètre
+     * 
+     * @param ds : Datasource
+     * @param numerosDeSpe : List d'Integer correspondant au numéro de Spectacle à supprimer
+     * @throws SQLException 
+     */
+    public static void deleteSpectacles(DataSource ds, List<Integer> numerosDeSpe) throws SQLException {
+        // todo : Traiter le cas des opera et des humoristique
+        String queryInsert = "DELETE FROM LesSpectacles WHERE numeroSpe = ?; ";
+
+        try (Connection conn = ds.getConnection()) {
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement(queryInsert);
+            
+            for (Integer numeroSpe : numerosDeSpe){
+                stmt.setInt(1, numeroSpe);
+                stmt.addBatch();
+            }
+            
+            int [] updateCounts = stmt.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
         }
     }
 }
