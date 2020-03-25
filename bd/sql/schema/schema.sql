@@ -23,9 +23,9 @@ CREATE TABLE LesSpectacles(
 		CHECK (cibleSpe in ("unCinqAns", "jeunePublic", "toutPublic","adulte")),
 	CONSTRAINT CK_Spe_typeSpe
 		CHECK (typeSpe in ("opera", "drame", "humoristique", "musical", "cirque")),
-	CONSTRAINT CK_Spe_numeroSpe
+	CONSTRAINT DOM_numeroSpe
 		CHECK ( 0 < numeroSpe),
-	CONSTRAINT CK_Spe_prixDeBaseSpe
+	CONSTRAINT DOM_prixDeBaseSpe
 		CHECK ( 0 < prixDeBaseSpe)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE LesHumoristiques(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Hum_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT CK_Hum_estUnOneWomanManShow
+	CONSTRAINT DOM_estUnOneWomanManShow
 		CHECK (estUnOneWomanManShowHum in (0,1))
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE LesOperas(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Ope_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT CK_Ope_aUnOrchestre
+	CONSTRAINT DOM_aUnOrchestre
 		CHECK (aUnOrchestreOpe in (0,1))
 );
 
@@ -59,13 +59,98 @@ CREATE TABLE LesOperas(
 CREATE TABLE LesRepresentations(
 	horaireRep VARCHAR(14),
 	numeroSpe INTEGER,
-	--placesDispo Integer,--
-	--tauxReduc Real,--
+	--placesDispoRep_d Integer,--
+	 tauxReducRep Real,
 
 	CONSTRAINT PK_Rep
 		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
-		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe)
-	--CONSTRAINT DOM_Rep_tauxReducRep
-	--	CHECK ( 0 <= tauxReducRep AND tauxReducRep <= 1 )
+		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
+	CONSTRAINT DOM_Rep_tauxReducRep
+		CHECK ( 0 <= tauxReducRep AND tauxReducRep <= 1 )
+);
+
+CREATE TABLE LesRangs(
+	numeroRan INTEGER,
+	
+	CONSTRAINT PK_Ran
+		PRIMARY KEY (numeroRan),
+	CONSTRAINT DOM_numeroRan
+		CHECK ( 0 <= numeroRan)
+	
+);
+
+CREATE TABLE LesPlaces(
+	numeroPla Integer,
+	numeroRan Integer,
+
+	CONSTRAINT PK_Pla
+		PRIMARY KEY (numeroPla,numeroRan),
+	CONSTRAINT FK_Pla_numeroRan
+		FOREIGN KEY (numeroRan) REFERENCES LesRangs (numeroRan),
+	CONSTRAINT DOM_numeroPla
+		CHECK ( 0 <= numeroPla)
+);
+
+CREATE TABLE LesDossiersAchats(
+	numeroDos Integer,
+	--prixGlobalDos_d Real,
+
+	CONSTRAINT PK_Dos
+		PRIMARY KEY (numeroDos),
+	CONSTRAINT DOM_numeroDos
+		CHECK ( 0 < numeroDos),
+     --CONSTRAINT DOM_prixGlobalDos_d
+	--	CHECK ( 0 < prixGlobalDos_d)
+);
+
+CREATE TABLE LesUtilisateurs(
+	loginUti VARCHAR(50),
+	nomUti VARCHAR(50),
+    prenomUti VARCHAR(50),
+
+	CONSTRAINT PK_Uti
+		PRIMARY KEY (loginUti)
+	
+);
+
+CREATE TABLE LesTickets(
+	numeroTic Integer,
+	dateEmiTic VARCHAR (40),
+   -- prixTicketTic_d  Real,
+
+	CONSTRAINT PK_Tic
+		PRIMARY KEY (numeroTic),
+	CONSTRAINT DOM_numeroTic
+		CHECK ( 0 < numeroTic),
+	--CONSTRAINT DOM_prixTicketTic_d
+	--	CHECK ( 0 < prixTicketTic_d),
+);
+
+CREATE TABLE LesTicketsReserves(
+	numeroTic Integer,
+	loginUti VARCHAR (40),
+	
+
+	CONSTRAINT PK_TicR
+		PRIMARY KEY (numeroTic),
+	CONSTRAINT FK_TicR_numeroTic
+		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic),
+    CONSTRAINT FK_TicR_loginUti
+		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti)
+
+);
+
+CREATE TABLE LesTicketsAchetes(
+	numeroTic Integer ,
+	loginUti VARCHAR (40),
+	
+
+	CONSTRAINT PK_TicA
+		PRIMARY KEY (numeroTic),
+	CONSTRAINT FK_TicA_numeroTic
+		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic),
+    CONSTRAINT FK_TicA_loginUti
+		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti)
+
 );

@@ -58,39 +58,39 @@ relation LesHumoristiques
 
 relation LesRepresentations
 	transformation 
-		from R_Class (Representation)
-		from R_OneToMany (Spectacle)
+		from R_Class(Representation)
+		from R_OneToMany(Spectacle)
 
 	columns 
 		horaireRep_: Date
 		numeroSpe : Integer
-		//placesDispoRep_d : Integer 
-		//tauxReducRep : Real
+		placesDispoRep_d : Integer 
+		tauxReducRep : Real
 		
 	constraints
 		key horaireRep_
-
-
-constraints
-    LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
+		LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
+		placesDispoRep_d >= 0
+		tauxReducRep > 0
+		tauxReducRep <= 1
 
 
 relation LesRangs
 	transformation 
-		from R_Class (Rang)	
+		from R_Class(Rang)	
 
 	columns 
 		numeroRan_ : Integer
 		
 	constraints
 		key numeroRan_ 
-		numeroRan >= 0
+		numeroRan > 0
 		
 		
 relation LesPlaces
 	transformation 
-		from R_Class (Place)
-		from R_Compo (Contient)
+		from R_Class(Place)
+		from R_Compo(Contient)
 
 	columns 
 		numeroPla_ : Integer
@@ -98,13 +98,31 @@ relation LesPlaces
 		
 	constraints
 		key numeroPla_ 
-		numeroPla_ >= 0
+		numeroPla_ > 0
 		LesPlaces[numeroRan] = LesRangs[numeroRan]
 		
+
+relation LesTickets
+	transformation 
+		from R_ManyToManyAC(Ticket)
+
+	columns
+		horaireRep_id1 : Date
+		numeroPla_id1 : Integer
+		numeroTic_id2 : Integer
+		dateEmissionTic : String
+		prixTic_d : Real
+		
+	constraints
+		key numeroTic_ 
+		numeroTic_ > 0
+		prixTicketTic_d > 0
+
+
 		
 relation LesDossiersAchats
 	transformation 
-		from R_Class (DossierAchat)
+		from R_Class(DossierAchat)
 
 	columns 
 		numeroDos_ : Integer
@@ -118,14 +136,14 @@ relation LesDossiersAchats
 
 relation LesUtilisateurs
 	transformation 
-		from R_Class (Utilisateur)
+		from R_Class(Utilisateur)
 
 	columns 
 		loginUti_ : String
 		nomUti : String
 		prenomUti : String
-		--mailUti : String
-		--mdpUti : String
+		mailUti : String
+		mdpUti : String
 		
 	constraints
 		key loginUti_ 
@@ -133,7 +151,7 @@ relation LesUtilisateurs
 		
 relation LesTickets
 	transformation 
-		from R_Class (Ticket)
+		from R_ManyToManyAC(Ticket)
 
 	columns 
 		numeroTic_ : Integer
