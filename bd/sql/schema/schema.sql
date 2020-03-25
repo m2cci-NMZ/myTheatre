@@ -21,11 +21,11 @@ CREATE TABLE LesSpectacles(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT CK_Spe_cibleSpe
 		CHECK (cibleSpe in ("unCinqAns", "jeunePublic", "toutPublic","adulte")),
-	CONSTRAINT CK_Spe_typeSpe
+	CONSTRAINT DOM_Spe_typeSpe
 		CHECK (typeSpe in ("opera", "drame", "humoristique", "musical", "cirque")),
-	CONSTRAINT DOM_numeroSpe
+	CONSTRAINT DOM_Spe_numeroSpe
 		CHECK ( 0 < numeroSpe),
-	CONSTRAINT DOM_prixDeBaseSpe
+	CONSTRAINT DOM_Spe_prixDeBaseSpe
 		CHECK ( 0 < prixDeBaseSpe)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE LesHumoristiques(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Hum_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT DOM_estUnOneWomanManShow
+	CONSTRAINT DOM_Hum_estUnOneWomanManShow
 		CHECK (estUnOneWomanManShowHum in (0,1))
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE LesOperas(
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Ope_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
-	CONSTRAINT DOM_aUnOrchestre
+	CONSTRAINT DOM_Ope_aUnOrchestre
 		CHECK (aUnOrchestreOpe in (0,1))
 );
 
@@ -59,15 +59,17 @@ CREATE TABLE LesOperas(
 CREATE TABLE LesRepresentations(
 	horaireRep VARCHAR(14),
 	numeroSpe INTEGER,
-	--placesDispoRep_d Integer,--
-	 tauxReducRep Real,
+	placesDispoRep_d Integer,
+	tauxReducRep Real,
 
 	CONSTRAINT PK_Rep
 		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
 	CONSTRAINT DOM_Rep_tauxReducRep
-		CHECK ( 0 <= tauxReducRep AND tauxReducRep <= 1 )
+		CHECK ( 0 < tauxReducRep AND tauxReducRep <= 1 ),
+	CONSTRAINT DOM_Rep_placesDispoRep_d
+		CHECK ( 0 <= placesDispoRep_d)
 );
 
 CREATE TABLE LesRangs(
@@ -75,8 +77,8 @@ CREATE TABLE LesRangs(
 	
 	CONSTRAINT PK_Ran
 		PRIMARY KEY (numeroRan),
-	CONSTRAINT DOM_numeroRan
-		CHECK ( 0 <= numeroRan)
+	CONSTRAINT DOM_Ran_numeroRan
+		CHECK ( 0 < numeroRan)
 	
 );
 
@@ -88,26 +90,28 @@ CREATE TABLE LesPlaces(
 		PRIMARY KEY (numeroPla,numeroRan),
 	CONSTRAINT FK_Pla_numeroRan
 		FOREIGN KEY (numeroRan) REFERENCES LesRangs (numeroRan),
-	CONSTRAINT DOM_numeroPla
-		CHECK ( 0 <= numeroPla)
+	CONSTRAINT DOM_Pla_numeroPla
+		CHECK ( 0 < numeroPla)
 );
 
 CREATE TABLE LesDossiersAchats(
 	numeroDos Integer,
-	--prixGlobalDos_d Real,
+	prixGlobalDos_d Real,
 
 	CONSTRAINT PK_Dos
 		PRIMARY KEY (numeroDos),
-	CONSTRAINT DOM_numeroDos
+	CONSTRAINT DOM_Dos_numeroDos
 		CHECK ( 0 < numeroDos),
-     --CONSTRAINT DOM_prixGlobalDos_d
-	--	CHECK ( 0 < prixGlobalDos_d)
+     CONSTRAINT DOM_Dos_prixGlobalDos_d
+	   CHECK ( 0 < prixGlobalDos_d)
 );
 
 CREATE TABLE LesUtilisateurs(
-	loginUti VARCHAR(50),
+	loginUti VARCHAR(40),
 	nomUti VARCHAR(50),
     prenomUti VARCHAR(50),
+	mailUti VARCHAR (30),
+	mdpUti VARCHAR (30),
 
 	CONSTRAINT PK_Uti
 		PRIMARY KEY (loginUti)
@@ -115,16 +119,26 @@ CREATE TABLE LesUtilisateurs(
 );
 
 CREATE TABLE LesTickets(
+	horaireRep VARCHAR(30),
+	numeroRan INTEGER,
+	numeroPla INTEGER,
 	numeroTic Integer,
-	dateEmiTic VARCHAR (40),
-   -- prixTicketTic_d  Real,
+	dateEmissionTic VARCHAR (30),
+	prixTic_d Real,
+    prixTicketTic_d  Real,
 
 	CONSTRAINT PK_Tic
+		PRIMARY KEY (horaireRep,numeroRan,numeroPla),
+	CONSTRAINT PK_Tic
 		PRIMARY KEY (numeroTic),
-	CONSTRAINT DOM_numeroTic
+	CONSTRAINT FK_Pla_horaireRep
+		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations(horaireRep),
+	CONSTRAINT FK_Pla_numeroRan_numeroPla
+		FOREIGN KEY (numeroRan,numeroPla) REFERENCES LesPlaces(numeroRan,numeroPla),
+	CONSTRAINT DOM_Tic_numeroTic
 		CHECK ( 0 < numeroTic),
-	--CONSTRAINT DOM_prixTicketTic_d
-	--	CHECK ( 0 < prixTicketTic_d),
+	CONSTRAINT DOM_Tic_prixTic_d
+	    CHECK ( 0 < prixTicketTic_d),
 );
 
 CREATE TABLE LesTicketsReserves(
