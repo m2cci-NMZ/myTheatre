@@ -35,6 +35,10 @@
             .multiple-input-feedback{   
                 padding-left: 5px;
             }
+            
+            .caseLigneSelect{
+                color : blue;
+            }
         </style>
     </head>
     <body onload="init()">
@@ -224,7 +228,7 @@
                                 </form>
                                 <br>
                                 <div style="height:78.5vh; overflow: auto;">
-                                    <table class="table table-striped" id="tableTest">
+                                    <table class="table table-striped" id="tableSpectacle">
                                         <thead>
                                             <tr>
                                                 <th>N°</th> 

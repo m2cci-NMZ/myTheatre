@@ -33,15 +33,26 @@ function init() {
 }
 
 
+function selectRow(indiceRow){
+    document.getElementById("numLigneTabSpe").value = indiceRow;
+    console.log(indiceRow);
+    
+    let table = document.getElementById("tableSpectacle");   
+    let rowsSpectacle = table.getElementsByClassName("ligneSpectacle");
+    rowsSpectacle[indiceRow].classList.toggle("caseLigneSelect");
+    console.log(rowsSpectacle[indiceRow].classList);
+    
+    // A enlevé quand y a plus rien
+    document.getElementById("supprSpeBouton").disabled = false;
+}
+
+
 $(document).ready(function () {
 
-    $('#tableTest').find('.ligneSpectacle').click(function () {
+    $('#tableSpectacle').find('.ligneSpectacle').click(function () {
         //alert('You clicked row ' + ($(this).index() + 1));
-        document.getElementById("supprSpeBouton").disabled = false;
         let indice = ($(this).index());
-        //$(this).index().backgroundColor = '#FF0000' ;
-        document.getElementById("numLigneTabSpe").value = indice;
-        console.log(indice);
+        selectRow(indice);
     });
 
 });
