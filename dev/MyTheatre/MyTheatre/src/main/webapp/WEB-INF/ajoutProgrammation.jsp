@@ -143,10 +143,10 @@
                                     <div class="form-row">
                                         <div class="col-sm-4"></div>
                                         <div class="col-auto">
-                                            <input type="checkbox" id="orchestreOu1WShow" class="form-control" name="orchestreOu1WShow">
+                                            <input type="checkbox" id="orchOu1WShowInput" class="form-control" name="orchestreOu1WShow">
                                         </div>
                                         <div class="col-auto">
-                                            <label class="col-form-label" id="labelOrchOu1WShow"></label>
+                                            <label class="col-form-label" id="labelOrchOu1WShowInput"></label>
                                         </div>
                                     </div>
                                     <div> 
@@ -214,8 +214,17 @@
                             <div class="col-md-6">
                                 <br>
                                 <h2>Les Spectacles</h2>
-                                <div style="height:85vh; overflow: auto;">
-                                    <table class="table table-striped">
+                                <form action="???">
+                                    <div>
+                                        <input type="number" class="form-control" name="numLigneTabSpe" id="numLigneTabSpe" min="1" step="1" hidden>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary" id="supprSpeBouton" disabled>Supprimer</button>
+                                    </div>
+                                </form>
+                                <br>
+                                <div style="height:78.5vh; overflow: auto;">
+                                    <table class="table table-striped" id="tableTest">
                                         <thead>
                                             <tr>
                                                 <th>N°</th> 
