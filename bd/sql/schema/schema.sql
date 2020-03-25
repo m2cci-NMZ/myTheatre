@@ -37,7 +37,7 @@ CREATE TABLE LesHumoristiques(
 	CONSTRAINT PK_Hum
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Hum_numeroSpe 
-		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
+		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
 	CONSTRAINT CK_Hum_estUnOneWomanManShow
 		CHECK (estUnOneWomanManShowHum in (0,1))
 );
@@ -50,7 +50,7 @@ CREATE TABLE LesOperas(
 	CONSTRAINT PK_Ope
 		PRIMARY KEY (numeroSpe),
 	CONSTRAINT FK_Ope_numeroSpe 
-		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe),
+		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
 	CONSTRAINT CK_Ope_aUnOrchestre
 		CHECK (aUnOrchestreOpe in (0,1))
 );
@@ -65,7 +65,7 @@ CREATE TABLE LesRepresentations(
 	CONSTRAINT PK_Rep
 		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
-		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe)
+		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE
 	--CONSTRAINT DOM_Rep_tauxReducRep
 	--	CHECK ( 0 <= tauxReducRep AND tauxReducRep <= 1 )
 );
