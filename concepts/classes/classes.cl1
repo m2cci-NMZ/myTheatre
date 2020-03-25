@@ -157,8 +157,8 @@ associationclass Ticket between
         Representation[*] role representations
     attributes
         numero_: Integer
-        dateEmin : String --@ {Date}
-        prixTicket_d : Real
+        dateEmission : String --@ {Date}
+        prix_d : Real
 end
 
 association AUn between
