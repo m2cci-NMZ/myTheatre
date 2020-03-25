@@ -40,7 +40,6 @@ relation LesOperas
 	constraints
 		key numeroSpe_
 		LesOperas[numeroSpe_] C= LesSpectacles[numeroSpe_]
-		LesOperas[numeroSpe] n LesHumoristiques[numeroSpe] = {}
   
 
 relation LesHumoristiques
@@ -54,12 +53,13 @@ relation LesHumoristiques
 	constraints
 		key numeroSpe_
 		LesHumoristiques[numeroSpe_] C= LesSpectacles[numeroSpe_]
+		LesOperas[numeroSpe_] n LesHumoristiques[numeroSpe_] = {}
 
 
 relation LesRepresentations
 	transformation 
 		from R_Class(Representation)
-		from R_OneToMany(Spectacle)
+		from R_OneToMany(APourRepresentation)
 
 	columns 
 		horaireRep_: Date
@@ -93,33 +93,15 @@ relation LesPlaces
 		from R_Compo(Contient)
 
 	columns 
-		numeroPla_ : Integer
 		numeroRan_ : Integer
+		numeroPla_ : Integer	
 		
 	constraints
-		key numeroPla_ 
+		key numeroRan_, numeroPla_
 		numeroPla_ > 0
-		LesPlaces[numeroRan] = LesRangs[numeroRan]
-		
-
-relation LesTickets
-	transformation 
-		from R_ManyToManyAC(Ticket)
-
-	columns
-		horaireRep_id1 : Date
-		numeroPla_id1 : Integer
-		numeroTic_id2 : Integer
-		dateEmissionTic : String
-		prixTic_d : Real
-		
-	constraints
-		key numeroTic_ 
-		numeroTic_ > 0
-		prixTicketTic_d > 0
+		LesPlaces[numeroRan_] = LesRangs[numeroRan_]
 
 
-		
 relation LesDossiersAchats
 	transformation 
 		from R_Class(DossierAchat)
@@ -134,6 +116,30 @@ relation LesDossiersAchats
 		prixGlobalDos_d > 0
 
 
+relation LesTickets
+	transformation 
+		from R_ManyToManyAC(Ticket)
+		from R_OneToMany(FaitPartieDUn)
+
+	columns
+		horaireRep_id1 : Date
+		numeroRan_id1 : Integer
+		numeroPla_id1 : Integer
+		numeroTic_id2 : Integer
+		dateEmissionTic : Date
+		prixTic_d : Real
+		numeroDos : Integer
+		
+	constraints
+		key horaireRep_id1, numeroRan_id1, numeroPla_id1
+		key numeroTic_id2
+		LesTickets[horaireRep_id1] C= LesRepresentations[horaireRep_]
+		LesTickets[numeroRan_id1, numeroPla_id1] C= LesPlaces[numeroRan_, numeroPla_]
+		LesTickets[numeroDos] = LesDossiersAchats[numeroDos_]
+		numeroTic_ > 0
+		prixTicketTic_d > 0
+
+
 relation LesUtilisateurs
 	transformation 
 		from R_Class(Utilisateur)
@@ -146,24 +152,9 @@ relation LesUtilisateurs
 		mdpUti : String
 		
 	constraints
-		key loginUti_ 
-		
-		
-relation LesTickets
-	transformation 
-		from R_ManyToManyAC(Ticket)
+		key loginUti_
 
-	columns 
-		numeroTic_ : Integer
-		dateEmiTic : String
-		prixTicketTic_d : Real
-		
-	constraints
-		key numeroTic_ 
-		numeroTic_ > 0
-		prixTicketTic_d > 0
-		
-		
+
 relation LesTicketsReserves
 	transformation 
 		from R_OneToMany (AReserve)
@@ -174,10 +165,8 @@ relation LesTicketsReserves
 		
 	constraints
 		key numeroTic_
-		LesTicketsReserves [numeroTic] n LesTicketsAchetes [numeroTic] = {}
-		LesTicketsReserves [numeroTic] u LesTicketsAchetes [numeroTic] = LesTickets [numeroTic]
-		LesTicketsReserves[loginUti] C= LesUtilisateurs[loginUti]
-		LesTicketsReserves[numeroTic] C= LesTickets[numeroTic]
+		LesTicketsReserves[numeroTic_] C= LesTickets[numeroTic_id2]
+		LesTicketsReserves[loginUti] C= LesUtilisateurs[loginUti_]
 		
 		
 relation LesTicketsAchetes
@@ -189,6 +178,8 @@ relation LesTicketsAchetes
 		loginUti : String
 		
 	constraints
-		key loginUti_, numeroTic_
-		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti]
-		LesTicketsAchetes[numeroTic] C= LesTickets[numeroTic]		
+		key numeroTic_
+		LesTicketsAchetes[numeroTic_] C= LesTickets[numeroTic_id2]
+		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti_]
+		LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
+		LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]
