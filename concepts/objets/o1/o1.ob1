@@ -148,20 +148,20 @@
 	! ticket003.prix_d := 10.0
 	
 	
---| (24) Le dossier d'achat de numéro 1 et de prix global 20.0
+--| (24) Le dossier d'achat de numéro 1 et de prix global 18.0
     ! create dossierAchat1 : DossierAchat
     ! dossierAchat1.numero_ := 1
-	! dossierAchat1.prixGlobal_d := 20.0
+	! dossierAchat1.prixGlobal_d := 18.0
 	
 --| (25) Le dossier d'achat de numéro 5 et de prix global 20.0
 --    ! create dossierAchat5 : DossierAchat
 --    ! dossierAchat5.numero_ := 5
 --	! dossierAchat5.prixGlobal_d := 20.0
 	
---| (26) Le dossier d'achat de numéro 25 et de prix global 15.0
+--| (26) Le dossier d'achat de numéro 25 et de prix global 10.0
     ! create dossierAchat25 : DossierAchat
     ! dossierAchat25.numero_ := 25
-	! dossierAchat25.prixGlobal_d := 15.0
+	! dossierAchat25.prixGlobal_d := 10.0
 	
 	
 --| (27) L'utilisateur de login nico58, de nom Martinez, de prénom Nicolas, avec l'adresse mail : nico58@gmail.com et le mot de passe : admin
