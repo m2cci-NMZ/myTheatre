@@ -9,8 +9,21 @@ let checkBoxBool = document.getElementById("orchOu1WShowInput");
 let labelCBBool = document.getElementById("labelOrchOu1WShowInput");
 let typeSpeInput = document.getElementById("typeSpeInput");
 
+// Table de spectacle
+let tableSpectacle = document.getElementById("tableSpectacle");
+
+
+function init() {
+    setCheckBoxBool();
+
+    // Associe une fonction de gestion à l'événement onclick du bouton 'dessiner'
+    document.getElementById("typeSpeInput").addEventListener("change", setCheckBoxBool);
+}
+
 
 function setCheckBoxBool() {
+    // Permet de controler le checkbox sous le type de Spectacle
+    // En fonction du type, il s'affiche ou pas et le champ change
     if (typeSpeInput.value === "opera") {
         checkBoxBool.style.visibility = 'visible';
         labelCBBool.innerHTML = "Orchestre";
@@ -22,37 +35,42 @@ function setCheckBoxBool() {
         labelCBBool.innerHTML = "";
     }
 }
-;
-
-
-function init() {
-    setCheckBoxBool();
-
-    // Associe une fonction de gestion à l'événement onclick du bouton 'dessiner'
-    document.getElementById("typeSpeInput").addEventListener("change", setCheckBoxBool);
-}
 
 
 function selectRow(indiceRow){
-    document.getElementById("numLigneTabSpe").value = indiceRow;
-    console.log(indiceRow);
+    // Appelé quand on clique sur des cases du tableau de spectacle
+    // Affiche le fait qu'on a cliqué, prépare le formulaire et active ou pas le bouton supprimé
     
-    let table = document.getElementById("tableSpectacle");   
-    let rowsSpectacle = table.getElementsByClassName("ligneSpectacle");
-    rowsSpectacle[indiceRow].classList.toggle("caseLigneSelect");
-    console.log(rowsSpectacle[indiceRow].classList);
+    // Permet d'afficher la sélection
+    let rowsSpectacle = tableSpectacle.getElementsByClassName("ligneSpectacle");
+    rowsSpectacle[indiceRow].classList.toggle("ligneSelected");
     
-    // A enlevé quand y a plus rien
-    document.getElementById("supprSpeBouton").disabled = false;
+    // Rempli le formulaire avec les indices sélectionnées
+    let indicesSelected = [];
+    let stringIndices = "";
+    for (let i = 0; i < rowsSpectacle.length; i++){
+        if (rowsSpectacle[i].classList.contains("ligneSelected")){
+            indicesSelected.push(i);
+            stringIndices += i + " ";
+        }
+    }
+    // On met dans l'input
+    document.getElementById("lignesSpeSelected").value = stringIndices;
+    
+    // Regarde si il reste des lignes sélectionnées pour savoir si on active le bouton
+    if(indicesSelected.length > 0){
+        document.getElementById("supprSpeBouton").disabled = false;
+    } else {
+        document.getElementById("supprSpeBouton").disabled = true;
+    }
 }
 
 
+// Permet d'avoir une action quand on clique sur le tableau
 $(document).ready(function () {
-
+    // Pour les lignes du tableau des Spectacles
     $('#tableSpectacle').find('.ligneSpectacle').click(function () {
-        //alert('You clicked row ' + ($(this).index() + 1));
-        let indice = ($(this).index());
+        let indice = ($(this).index());     // Indice cliqué
         selectRow(indice);
     });
-
 });

@@ -36,7 +36,7 @@
                 padding-left: 5px;
             }
             
-            .caseLigneSelect{
+            .ligneSelected{
                 color : blue;
             }
         </style>
@@ -220,7 +220,7 @@
                                 <h2>Les Spectacles</h2>
                                 <form action="???">
                                     <div>
-                                        <input type="number" class="form-control" name="numLigneTabSpe" id="numLigneTabSpe" min="1" step="1" hidden>
+                                        <input type="text" class="form-control" name="lignesSpeSelected" id="lignesSpeSelected" hidden>
                                     </div>
                                     <div>
                                         <button type="submit" class="btn btn-primary" id="supprSpeBouton" disabled>Supprimer</button>
