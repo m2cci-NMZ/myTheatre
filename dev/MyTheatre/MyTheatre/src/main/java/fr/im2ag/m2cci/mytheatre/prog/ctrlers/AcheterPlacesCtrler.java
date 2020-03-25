@@ -60,7 +60,6 @@ public class AcheterPlacesCtrler extends HttpServlet {
             int[] placesIds = new int[places.length];
             String[] rangs = request.getParameterValues("rang");
             int[] rangsIds = new int[places.length];
-            String reservation = request.getParameter("reservation");
             for (int i = 0; i < places.length; i++) {
                 placesIds[i] = Integer.parseInt(places[i]);
                 rangsIds[i] = Integer.parseInt(rangs[i]);
@@ -70,11 +69,8 @@ public class AcheterPlacesCtrler extends HttpServlet {
             HttpSession session = request.getSession();
             Representation rep = (Representation) session.getAttribute("representation");
             // demande à la DAO d'enregistrer les places dans la BD
-            if (reservation =="0"){
             PlacesDAO.acheterPlaces(ds, rep.getHoraire(), placesIds, rangsIds, rep.getSpectacle().getPrixDeBase());
-            }else{
-                PlacesDAO.reserverPlaces(ds, rep.getHoraire(), placesIds, rangsIds, rep.getSpectacle().getPrixDeBase());
-            }
+
             // redirection vers la page confirmant l'achat.
             request.getRequestDispatcher("/WEB-INF/confirmationAchat.jsp").forward(request, response);
         } catch (SQLException ex) {

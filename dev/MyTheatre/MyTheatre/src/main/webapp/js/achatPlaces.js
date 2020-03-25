@@ -20,11 +20,11 @@ $(document).ready(function () {
 
     let seatNumber = 1; // numéro utilisé pour associer un label aux sièges
     let seatId = 1; // numero utilisé pour associer un id aux sièges
-
+    
     let $detailCategorie = $('#detail-categories');
     let $nbPlaces = $('#nbplaces');
     let $prixTotal = $('#prixtotal');
-
+    
     let sc = $('#seat-map').seatCharts({
         map: [
             '__AAAAAAAAAAAAAA__AAAAAAAAAAAAAA__',
@@ -79,9 +79,9 @@ $(document).ready(function () {
         legend: {
             node: $('#legend'),
             items: [
-                ['A', 'available', 'Catégorie A\n' + prix + " €"],
-                ['B', 'available', 'Catégorie B\n' + prix + " €"],
-                ['C', 'available', 'Catégorie C\n' + prix + " €"],
+                ['A', 'available', 'Catégorie A\n'+prix+" €"],
+                ['B', 'available', 'Catégorie B\n'+prix+" €"],
+                ['C', 'available', 'Catégorie C\n'+prix+" €"],
                 [, 'unavailable', 'Place non disponible']
             ]
         },
@@ -100,7 +100,6 @@ $(document).ready(function () {
                 $nbPlaces.text(sc.find('selected').length + 1);
                 $prixTotal.text(calculerPrixTotal(sc) + this.data().price);
                 $("#achatBtn").prop("disabled", false);
-                $("#reserverBtn").prop("disabled", false);
                 return 'selected';
             } else if (this.status() === 'selected') {
                 // la place est désélectionnée
@@ -108,7 +107,6 @@ $(document).ready(function () {
                 $nbPlaces.text(nbPlaceSelectees);
                 if (nbPlaceSelectees === 0) {
                     $("#achatBtn").prop("disabled", true);
-                    $("#reserverBtn").prop("disabled", true);
                     $prixTotal.text(0);
                 } else {
                     $prixTotal.text(calculerPrixTotal(sc) - this.data().price);
@@ -127,9 +125,6 @@ $(document).ready(function () {
 
     $("#achatBtn").click(function () {
         acheter(sc);
-    });
-    $("#reservertBtn").click(function () {
-        reserver(sc);
     });
 
     majPlanSalle();
@@ -151,7 +146,7 @@ $(document).ready(function () {
                 // de l'objet reponse
                 $.each(reponse.placesVendues, function (index, placeVendue) {
                     //mettre à jour le status de l'objet Seat correspondant à la place vendue
-                    sc.status(placeVendue.rang + '_' + placeVendue.placeId, 'unavailable');  // le premier paramètre 
+                    sc.status(placeVendue.rang+'_' + placeVendue.placeId, 'unavailable');  // le premier paramètre 
                     // de status est l'identifiant de la place (siège) pour laquelle on souhaite
                     // modifier le status. Ce paramètre est un chaîne, placeVendue.placeID est 
                     // de type number (entier), ''+ placeVendue.placeId permet de le convertir
@@ -163,12 +158,10 @@ $(document).ready(function () {
                 if (nbPlaceSelectees === 0) {
                     // le bouton achatBtn est désactivé
                     $("#achatBtn").prop("disabled", true);
-                    $("#reserverBtn").prop("disabled", true);
                     $prixTotal.text(0);
                 } else {
                     // le bouton achatBtn est activé
                     $("#achatBtn").prop("disabled", false);
-                    $("#reserverBtn").prop("disabled", false);
                     $prixTotal.text(calculerPrixTotal(sc));
                 }
             }
@@ -181,11 +174,9 @@ function majPanier(sc) {
     $('#nbplaces').text(nbPlaceSelectees);
     if (nbPlaceSelectees === 0) {
         $("#achatBtn").prop("disabled", true);
-        $("#reserverBtn").prop("disabled", true);
         $prixTotal.text(0);
     } else {
         $("#achatBtn").prop("disabled", false);
-        $("#reserverBtn").prop("disabled", false);
         $prixTotal.text(calculerPrixTotal(sc));
     }
 }
@@ -220,29 +211,5 @@ function acheter(sc) {
         // this.node() donne l'objet JQuery correspondant à l'élément HTML matérialisant le siège
         // .attr('id') donne la valeur de la propriété 'id" de cet élément
     });
-    location.replace("acheterPlaces?" + params + "&" + rangs + "&reservation=0");
+    location.replace("acheterPlaces?" + params + "&" + rangs);
 }
-function reserver(sc) {
-    let params = "";
-    let rangs = "";
-    let premier = true;
-    sc.find('selected').each(function () {
-        if (premier) {
-            rangs = rangs + "rang=";
-            params = params + "place=";
-            premier = false;
-        } else {
-            rangs = rangs + "&rang=";
-            params = params + "&place=";
-        }
-        let rang = this.node().attr('id').split('_')[0];
-        let place = this.node().attr('id').split('_')[1];
-        params = params + place;
-        rangs = rangs + rang;// this est un objet de type Seat
-        // this.node() donne l'objet JQuery correspondant à l'élément HTML matérialisant le siège
-        // .attr('id') donne la valeur de la propriété 'id" de cet élément
-    });
-    location.replace("acheterPlaces?" + params + "&" + rangs + "&reservation=1");
-}
-
-

@@ -65,8 +65,7 @@
                     <h3>Votre sélection</h3>
                     <p>Nbre de places: <strong><span id="nbplaces">0</span></strong></p>
                     <p>Prix Total: <strong><span id="prixtotal">0</span> €</strong></p>
-                    <button id="achatBtn" disabled>Acheter</button><br>
-                    <button id="reserverBtn" disabled>Acheter</button>
+                    <button id="achatBtn" disabled>Reserver</button><br>
                 </div>
             </div>
             <hr>
