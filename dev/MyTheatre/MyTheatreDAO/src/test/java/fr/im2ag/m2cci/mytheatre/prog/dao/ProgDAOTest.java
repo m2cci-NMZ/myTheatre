@@ -608,7 +608,7 @@ public class ProgDAOTest {
      * Test de la méthode deleteSpectacles pour un Spectacle ayant des Representations
      */
     @Test
-    public void testDeleteOpera() throws Exception {
+    public void testDeleteSpectacleAvecRepresentation() throws Exception {
         System.out.println("deleteSpectacles pour un spectacle ayant des representations");
         // Ajout du Spectacle
         ProgDAO.insertSpectacle(ds, 704, "Spectacle 5", 10, "toutPublic", "drame", false);

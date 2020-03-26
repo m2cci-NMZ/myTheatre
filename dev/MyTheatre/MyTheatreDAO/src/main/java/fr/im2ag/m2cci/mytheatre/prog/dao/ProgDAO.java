@@ -351,6 +351,9 @@ public class ProgDAO {
         String queryInsert = "DELETE FROM LesSpectacles WHERE numeroSpe = ?; ";
 
         try (Connection conn = ds.getConnection()) {
+            // Pour que le ON DELETE CASCADE fonctionne
+            conn.createStatement().execute("PRAGMA foreign_keys = ON;");
+            
             // On fait un batch pour tout faire d'un seul coup
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
