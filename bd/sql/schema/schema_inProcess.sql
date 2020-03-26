@@ -180,13 +180,3 @@ CREATE VIEW LesDossiersAchats(numeroDos, prixGlobalDos) AS
 	SELECT DA.numeroDos, SUM(T.prixTic)
 	FROM LesDossiersAchats_base DA JOIN LesTickets T ON (DA.numeroDos = T.numeroDos)
 	GROUP BY DA.numeroDos ;
-	
-
-
-
-
-
-
-	
-	
-	
