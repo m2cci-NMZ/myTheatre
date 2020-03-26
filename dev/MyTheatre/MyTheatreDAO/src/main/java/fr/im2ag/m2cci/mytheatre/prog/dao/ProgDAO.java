@@ -54,7 +54,7 @@ public class ProgDAO {
             String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
                     + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
                     + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
-                    + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe \n"
+                    + "JOIN LesRepresentations_base R ON R.numeroSpe = S.numeroSpe \n"
                     + "WHERE horaireRep>=? AND horaireRep<=?";
 
             try (Connection conn = ds.getConnection()) {
@@ -323,7 +323,7 @@ public class ProgDAO {
      * @throws SQLException
      */
     public static void insertRepresentation(DataSource ds, int numeroSpe, Date horaireRep) throws SQLException {
-        String queryInsert = "INSERT INTO LesRepresentations VALUES (?, ?);";
+        String queryInsert = "INSERT INTO LesRepresentations_base VALUES (?, ?, ?);";
 
         try (Connection conn = ds.getConnection()) {
             // Active les foreign key
@@ -333,6 +333,7 @@ public class ProgDAO {
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
             stmt.setString(1, horaireFormatter.format(horaireRep));
             stmt.setInt(2, numeroSpe);
+            stmt.setDouble(3, 0.0);
 
             stmt.executeUpdate();
         }

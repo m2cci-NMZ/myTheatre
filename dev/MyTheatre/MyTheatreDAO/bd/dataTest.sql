@@ -1,4 +1,4 @@
-DROP TABLE LesRepresentations;
+DROP TABLE LesRepresentations_base;
 DROP TABLE LesOperas;
 DROP TABLE LesHumoristiques;
 DROP TABLE LesSpectacles;
@@ -49,15 +49,17 @@ CREATE TABLE LesOperas(
 );
 
 
-CREATE TABLE LesRepresentations(
+CREATE TABLE LesRepresentations_base(
 	horaireRep VARCHAR(14),
 	numeroSpe INTEGER,
-
+	tauxReducRep REAL,
 
 	CONSTRAINT PK_Rep
 		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE
+	CONSTRAINT DOM_Rep_tauxReducRep
+		CHECK (0 <= tauxReducRep AND tauxReducRep < 1)
 );
 
 INSERT INTO LesSpectacles VALUES (45, 'Cyrano de Bergerac', 20.0, 'toutPublic', 'drame');
@@ -74,9 +76,9 @@ INSERT INTO LesSpectacles VALUES (17, 'Andromaque', 15.0, 'adulte', 'drame');
 -- LesRepresentations
 ---------------------------------------------------------------------------
 
-INSERT INTO LesRepresentations VALUES ('2020-03-14 18:00', 45);
-INSERT INTO LesRepresentations VALUES ('2020-03-13 18:00', 46);
-INSERT INTO LesRepresentations VALUES ('2020-03-14 15:00', 47);
-INSERT INTO LesRepresentations VALUES ('2020-03-13 20:00', 20);
-INSERT INTO LesRepresentations VALUES ('2020-03-15 20:00', 20);
-INSERT INTO LesRepresentations VALUES ('2020-03-15 18:00', 25);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-14 18:00', 45, 0.0);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-13 18:00', 46, 0.0);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-14 15:00', 47, 0.0);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-13 20:00', 20, 0.0);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-15 20:00', 20, 0.0);
+INSERT INTO LesRepresentations_base VALUES ('2020-03-15 18:00', 25, 0.0);
