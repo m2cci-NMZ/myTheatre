@@ -50,8 +50,11 @@ Horaire
     synonyms: CreneauHoraire
  
 Place
-    | Une `Place` correspond à un siège d'une `Zone` dans la salle du `Theatre`.
+    | Une `Place` correspond à un siège d'un `Rang` dans une `Zone` de la salle du `Theatre`.
     synonyms: Siege
+ 
+Rang
+    | Un `Rang` correspond à un rang de `Place` de la salle du `Theatre`.
 
 Zone
     | Regroupement d'un ensemble de `Place` dans la salle de théatre.
@@ -64,13 +67,13 @@ Categorie
     synonyms: CategorieTarifaire
 
 Reservation
-    | Option empêchant la création d'un `Ticket` associé à une `PlaceDisponible`.
+    | Option permettant de réserver une `PlaceDisponible`.
     | Cette option a une durée limitée de 24 heures et n'est pas forcément disponible pour toutes les `Representation`s.
     | Dès que la `Reservation` est confirmée, le `Ticket` est créé.
     | Au bout de 24h, si la `Reservation` n'a pas été confirmée, elle est annulée et la 
-    | création d'un nouveau `Ticket` associé à cette `PlaceDisponible` est à nouveau possible.
+    | `Place` redevient une `PlaceDisponible`.
 
-PLaceDisponible
+PlaceDisponible
     | Pour chaque `Representation`, un certain nombre de `Place`s est disponible,
     | c'est à dire qu'elle peut être achetée par un `Spectateur` et faire l'objet d'un `Ticket`.
     | Le fait qu'une `Place` associée à un `Representation` soit une `PlaceDisponible` dépend de la `Zone` dans laquelle elle se trouve,
@@ -96,7 +99,10 @@ Spectateur
     | Un `Spectateur` peut avoir un, plusieurs ou aucun `Statut`.
     | Il peut avoir le `Statut` adherent ou être un spectateur ordinaire.
     | Il peut aussi être étudiant, scolaire, militaire et/ou sénior.
-    synonyms: Client  
+    synonyms: Client
+
+Utilisateur
+    | Personne étant enregistrée dans le système de `MyTheatre` et pouvant faire des `Reservation`s
 
 Statut
     | Caractéristique d'un `Spectateur` lui permettant de profiter ou non de `Reduction`s.
