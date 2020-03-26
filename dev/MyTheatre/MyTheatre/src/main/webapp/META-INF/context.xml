@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/MyTheatre">
-  <Resource auth="Container" driverClassName="org.sqlite.JDBC" maxIdle="3" maxTotal="10" maxWaitMillis="10000" name="jdbc/db" type="javax.sql.DataSource" url="jdbc:sqlite:D:/msys64/home/Hydro/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3"/>
+    <Resource 
+        auth="Container" 
+        driverClassName="org.sqlite.JDBC" 
+        maxIdle="3" 
+        maxTotal="10" 
+        maxWaitMillis="10000" 
+        name="jdbc/db" 
+        type="javax.sql.DataSource" 
+        url="jdbc:sqlite:C:/MSys64/home/m/miquelr/m2cci-1920-pi-GP02/bd/sql/bd.sqlite3"/>
 </Context>
