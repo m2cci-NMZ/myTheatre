@@ -185,7 +185,7 @@ end
 
 
 association AAchete between
-     Utilisateur [0..1] role personne
+     Utilisateur [0..1] role acheteur
      Ticket [*] role ticketsAchetes
 end
 
@@ -197,6 +197,6 @@ end
 
 
 association AReserve between
-    Utilisateur  [0..1] role utilisateur
+    Utilisateur  [0..1] role reserveur
     Ticket [*] role ticketsReserves
 end
