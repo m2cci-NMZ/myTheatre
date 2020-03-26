@@ -37,9 +37,9 @@ public class TicketsDAO {
      * représentation donnée
      */
     private static final String PLACES_RESERVEES
-            = "SELECT T.numPla, T.numRan, T.horaireRep"
-            + " FROM LesTickets T "
-            + "JOIN LesTicketsAchetes A ON (T.numTic=A.numTic) "
+            = "SELECT T.numeroPla, T.numeroRan, T.horaireRep"
+            + " FROM LesTickets_base T "
+            + "JOIN LesTicketsAchetes A ON (T.numeroTic=A.numeroTic) "
             + "JOIN LesRepresentations R ON (R.horaireRep = T.horaireRep) "
             + "JOIN LesSpectacles S ON (S.numeroSpe = R.numeroSpe) "
             + " WHERE loginUti = ?";
@@ -54,24 +54,24 @@ public class TicketsDAO {
      * représentation donnée
      */
     private static final String PLACES_VENDUES
-            = "SELECT numPla, numRan FROM LesTickets WHERE horaireRep = ?";
+            = "SELECT numPla, numRan FROM LesTickets_base WHERE horaireRep = ?";
 
     /**
      * Requête pour insérer les données dans la table LesTickets
      */
     private static final String CREER_TICKET
-            = "INSERT INTO LesTickets (numTic, dateTic, horaireRep, prixTic, numPla, numRan, numDA ) VALUES (? ,?, ?, ?, ?, ?, ?); ";
+            = "INSERT INTO LesTickets_base ( horaireRep, numeroRan,  numeroPla,  numeroTic, dateEmissionTic, numeroDos ) VALUES (? ,?, ?, ?, ?, ?); ";
     /**
      * Requête pour insérer les données dans la table LesTicketsAchetes
      */
     private static final String ACHETER_TICKET
-            = "INSERT INTO LesTicketsAchetes (numTic, loginUti ) VALUES (?, ?); ";
+            = "INSERT INTO LesTicketsAchetes (numeroTic, loginUti ) VALUES (?, ?); ";
 
     /**
      * Requête pour insérer les données dans la table LesTicketsReserves
      */
     private static final String RESERVER_TICKET
-            = "INSERT INTO LesTicketsReserves (numTic, loginUti ) VALUES (?, ?); ";
+            = "INSERT INTO LesTicketsReserves (numeroTic, loginUti ) VALUES (?, ?); ";
 
     /**
      * recherche, pour un client donné, la liste des places qui ont été achetées
@@ -188,8 +188,8 @@ public class TicketsDAO {
                         .writeStartArray("placesVendues");
                 while (rs.next()) {
                     gen.writeStartObject()
-                            .write("placeId", rs.getInt("numPla"))
-                            .write("rang", rs.getInt("numRan"))
+                            .write("placeId", rs.getInt("numeroPla"))
+                            .write("rang", rs.getInt("numeroRan"))
                             .writeEnd();
                 }
                 gen.writeEnd()
@@ -212,7 +212,7 @@ public class TicketsDAO {
      * @throws fr.im2ag.m2cci.mytheatre.prog.dao.AchatConcurrentException si une
      * place a déjà été achetée
      */
-    public static void reserverPlaces(DataSource ds, Date horaireRepresentation, int[] placesIds, int[] rangsIds, double prixTic) throws SQLException, AchatConcurrentException {
+    public static void reserverPlaces(DataSource ds, Date horaireRepresentation, int[] placesIds, int[] rangsIds) throws SQLException, AchatConcurrentException {
 
         Date dateCourante = new Date();
         String dateTick = horaireFormatter.format(dateCourante);//recupère la date courante pour avoir la pk des tickets reservés
@@ -224,15 +224,14 @@ public class TicketsDAO {
             try (PreparedStatement pstmt = conn.prepareStatement(CREER_TICKET); PreparedStatement pstmt2 = conn.prepareStatement(RESERVER_TICKET)) {
                 conn.setAutoCommit(false);  // début d'une transaction
                 for (int i = 0; i < rangsIds.length; i++) {
-                    pstmt.setInt(1, numTicket + 1 + i);
-                    pstmt.setString(2, dateTick);
-                    pstmt.setString(3, horaireFormatter.format(horaireRepresentation));
-                    pstmt.setDouble(4, prixTic);
-                    pstmt.setInt(5, placesIds[i]);
-                    pstmt.setInt(6, rangsIds[i]);
-                    pstmt.setInt(7, 1);
-                    pstmt2.setInt(1, numTicket + 1 + i);
-                    pstmt2.setInt(2, 1);
+                    pstmt.setInt(4, numTicket + i);
+                    pstmt.setString(5, dateTick);
+                    pstmt.setString(1, horaireFormatter.format(horaireRepresentation));
+                    pstmt.setInt(3, placesIds[i]);
+                    pstmt.setInt(2, rangsIds[i]);
+                    pstmt.setInt(6, 1);
+                    pstmt2.setInt(1, numTicket + i);
+                    pstmt2.setString(2, "UserDefault");
                     pstmt2.addBatch();
                     pstmt.addBatch();  // ajoute la requête d'insertion au batch
                 }
@@ -285,7 +284,7 @@ public class TicketsDAO {
         cal.add(Calendar.DATE, -1);
         Date dateLimite = cal.getTime();
 
-        String queryRep = "DELETE FROM LesTickets WHERE dateTic <= ? AND numTic IN (SELECT numTic FROM LesTicketsReserves)";
+        String queryRep = "DELETE FROM LesTickets_base WHERE dateEmissionTic <= ? AND numeroTic IN (SELECT numeroTic FROM LesTicketsReserves)";
 
         try (Connection conn = ds.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(queryRep);

@@ -18,7 +18,7 @@ public class Humoristique extends Spectacle {
      *
      * @return
     */
-    public boolean getestUnOneWomanManShow (){
+    public boolean getEstUnOneWomanManShow (){
         return this.estUnOneWomanManShow;
     }
     
@@ -28,7 +28,34 @@ public class Humoristique extends Spectacle {
              return super.toString () + ", est un OneWomanManShow";
          else
             return  super.toString ();   
-        
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + super.hashCode();
+        hash = 71 * hash + (this.estUnOneWomanManShow ? 1 : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)){
+            return false;
+        }
+        final Humoristique other = (Humoristique) obj;
+        if (this.estUnOneWomanManShow != other.estUnOneWomanManShow) {
+            return false;
+        }
+        return true;
     }
 }

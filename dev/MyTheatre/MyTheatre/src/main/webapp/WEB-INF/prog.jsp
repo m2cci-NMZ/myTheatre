@@ -4,6 +4,8 @@
     Author     : marti236
 --%>
 
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Opera"%>
+<%@page import="fr.im2ag.m2cci.mytheatre.prog.model.Humoristique"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -40,9 +42,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">
@@ -62,32 +61,32 @@
                                 SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                                 Date dateDebut = (Date) request.getAttribute("dateDebut");
                                 Date dateFin = (Date) request.getAttribute("dateFin");
+                                Date dateCourante = (Date) request.getAttribute("dateCourante");
 
                                 // Affichage des dates sélectionnés dans la nouvelle page
                                 String dateDebutForm = navigateurJourFormatter.format(dateDebut);
                                 String dateFinForm = navigateurJourFormatter.format(dateFin);
+                                String dateCouranteForm = navigateurJourFormatter.format(dateCourante);
                             %>
                             <div class="form-row">
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateDebut" value=<%=dateDebutForm%> required>
+                                    <input type="date" class="form-control" name="dateDebut" min=<%=dateCouranteForm%> value=<%=dateDebutForm%> required>
                                 </div>
                                 <label class="col-form-label">au</label>
                                 <div class=col-auto">
-                                    <input type="date" class="form-control" name="dateFin" value=<%=dateFinForm%> required>
+                                    <input type="date" class="form-control" name="dateFin" min=<%=dateCouranteForm%> value=<%=dateFinForm%> required>
                                 </div>
                             </div>
                             <br>
-                            <h4>Catégorie de spectateurs</h4>
+                            <h4>Spectateurs cibles</h4>
                             <%  // Conserve le bouton check pour la cible
-                                String whichRadio = request.getParameter("cible");
+                                String whichRadio = (String) request.getAttribute("cible");
                                 String checkIndif = "";
                                 String check1Cinq = "";
                                 String checkJeune = "";
                                 String checkToutP = "";
                                 String checkAdult = "";
-                                if (whichRadio == null)
-                                    checkIndif = " checked";
-                                else if (whichRadio.equals("unCinqAns"))
+                                if (whichRadio.equals("unCinqAns"))
                                     check1Cinq = " checked";
                                 else if (whichRadio.equals("jeunePublic"))
                                     checkJeune = " checked";
@@ -133,26 +132,18 @@
                                 String checkDrame = "";
                                 String checkMusic = "";
                                 String checkCirqu = "";
-                                if (typesCheck != null) {
-                                    for (int i = 0; i < typesCheck.size(); i++) {
-                                        if (typesCheck.get(i).equals("opera")) {
-                                            checkOpera = " checked";
-                                        } else if (typesCheck.get(i).equals("humoristique")) {
-                                            checkHumor = " checked";
-                                        } else if (typesCheck.get(i).equals("drame")) {
-                                            checkDrame = " checked";
-                                        } else if (typesCheck.get(i).equals("musical")) {
-                                            checkMusic = " checked";
-                                        } else if (typesCheck.get(i).equals("cirque")) {
-                                            checkCirqu = " checked";
-                                        }
+                                for (int i = 0; i < typesCheck.size(); i++) {
+                                    if (typesCheck.get(i).equals("opera")) {
+                                        checkOpera = " checked";
+                                    } else if (typesCheck.get(i).equals("humoristique")) {
+                                        checkHumor = " checked";
+                                    } else if (typesCheck.get(i).equals("drame")) {
+                                        checkDrame = " checked";
+                                    } else if (typesCheck.get(i).equals("musical")) {
+                                        checkMusic = " checked";
+                                    } else if (typesCheck.get(i).equals("cirque")) {
+                                        checkCirqu = " checked";
                                     }
-                                } else {
-                                    checkOpera = " checked";
-                                    checkHumor = " checked";
-                                    checkDrame = " checked";
-                                    checkMusic = " checked";
-                                    checkCirqu = " checked";
                                 }
                             %>
                             <div class="form-group">        
@@ -190,13 +181,12 @@
                     <div class="col-md-9">
                         <br>
                         <%
-                            boolean premierChargement = (boolean) request.getAttribute("premierChargement");
-                            if (!premierChargement) {
-                                // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
-                                SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                                if (dateDebut.equals(dateFin)) {
-                                    // Affichage de la date une seule fois si le début et la fin correspondent au même jour
-                        %>
+                            // Si ce n'est pas le premier chargement de la page, on doit afficher la requete
+                            SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                            SimpleDateFormat horaireFormatterServlet = new SimpleDateFormat("yyyy:dd:MM_HH:mm");
+                            if (dateDebut.equals(dateFin)) {
+                                // Affichage de la date une seule fois si le début et la fin correspondent au même jour
+%>
                         <h2>Programmation du <%=jourFormatter.format(dateDebut)%></h2>
                         <%
                         } else {
@@ -208,7 +198,6 @@
 
                         <%
                             SimpleDateFormat horaireFormatter = new SimpleDateFormat("dd/MM à HH'h'mm");
-                            SimpleDateFormat horaireFormatterServlet = new SimpleDateFormat("yyyy:dd:MM_HH:mm");
                             List<Representation> prog = (List<Representation>) request.getAttribute("progList");
                             if (prog.isEmpty()) {
                         %>  
@@ -224,9 +213,8 @@
                                         <th style="width:14%">Horaire</th>
                                         <th>Nom</th>
                                         <th style="width:10%">Prix</th>                    
-                                        <th style="width:20%">Type de spectacle</th>
-                                        <th style="width:23%">Catégorie de spectateurs</th>
-                                        <th></th>
+                                        <th style="width:21%">Type de spectacle</th>
+                                        <th style="width:18%">Spectateurs cibles</th>   
                                     </tr>
                                 </thead>
                                 <tbody>        
@@ -262,12 +250,20 @@
                                             switch (type) {
                                                 case "opera":
                                                     type = "Opéra";
+                                                    Opera o = (Opera) r.getSpectacle();
+                                                    if (o.getAUnOrchestre()) {
+                                                        type += " (avec orchestre)";
+                                                    }
                                                     break;
                                                 case "drame":
                                                     type = "Drame";
                                                     break;
                                                 case "humoristique":
-                                                    type = "Humoristique";
+                                                    type = "Humour";
+                                                    Humoristique h = (Humoristique) r.getSpectacle();
+                                                    if (h.getEstUnOneWomanManShow()) {
+                                                        type += " (Stand-up)";
+                                                    }
                                                     break;
                                                 case "musical":
                                                     type = "Musical";
@@ -277,7 +273,6 @@
                                                     break;
                                             }
                                     %>
-
                                     <tr>
                                         <td><%=horaireFormatter.format(date)%></td>
                                         <td><%=nom%></td>
@@ -285,6 +280,7 @@
                                         <td><%=type%></td>
                                         <td><%=cible%></td>
                                         <td><form action="RepresentationCtrler" ><button name = "date" type="submit" class="btn btn-primary" value = <%=horaireFormatterServlet.format(date)%>>Reserver</button></form></td>
+
                                     </tr>
                                     <%
                                         }
@@ -293,7 +289,6 @@
                             </table>
                         </div>
                         <%
-                                }
                             }
                         %>
                     </div>

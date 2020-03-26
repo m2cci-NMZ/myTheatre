@@ -259,10 +259,13 @@ public class ProgDAO {
      * permet de signaler qu'il y a un orchestre
      * @param estUnOneWomanManShow : boolean pour les Spectacle de type
      * 'humoristique', permet de signaler que c'est un OneWoman(Max)Show
+     * @param aOrchestreOuEstOneWomanManShow : boolean pour les Spectacle de
+     * type 'opera' ou 'humoristique', permet de signaler qu'il y a un orchestre
+     * ou respectivement que c'est un OneWomanManShow
      * @throws SQLException
      */
-    public static void ajoutSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
-            boolean aUnOrchestreOpe, boolean estUnOneWomanManShow) throws SQLException {
+    public static void insertSpectacle(DataSource ds, int numero, String nom, double prixDeBase, String cible, String type,
+            boolean aOrchestreOuEstOneWomanManShow) throws SQLException {
         // todo : Traiter le cas des opera et des humoristique
         String queryInsert = "INSERT INTO LesSpectacles VALUES (?, ?, ?, ?, ?); ";
 
@@ -274,12 +277,42 @@ public class ProgDAO {
             stmt.setString(4, cible);
             stmt.setString(5, type);
 
-            stmt.executeUpdate();
+            if (type.equals("opera") || type.equals("humoristique")) {
+
+                try {
+                    conn.setAutoCommit(false);  // On fait les deux INSERT de manière atomique
+                    stmt.executeUpdate();
+
+                    // Insertion dans les tables LesOperas ou LesHumoristes
+                    if (type.equals("opera")) {
+                        queryInsert = "INSERT INTO LesOperas VALUES (?, ?); ";
+                    } else {
+                        queryInsert = "INSERT INTO LesHumoristiques VALUES (?, ?); ";
+                    }
+                    // Préparation de la requete
+                    stmt = conn.prepareStatement(queryInsert);
+                    stmt.setInt(1, numero);
+                    if (aOrchestreOuEstOneWomanManShow) {
+                        stmt.setInt(2, 1);
+                    } else {
+                        stmt.setInt(2, 0);
+                    }
+
+                    stmt.executeUpdate();
+                    conn.commit();      // On commit toutes les modifications
+                } catch (SQLException e){
+                    conn.rollback();    // Annule les opérations de la transaction
+                    throw e;
+                }
+            } else {
+                stmt.executeUpdate();   // Si il n'y a pas de double INSERT 
+            }
         }
     }
 
     /**
-     *
+     * Permet d'insérer une representation dans la base de données
+     * 
      * @param ds : Datasource pour la BD
      * @param numeroSpe : int pour le numero du Spectacle
      * @param horaireRep : Date pour l'horaire (précise à la minute) du la
