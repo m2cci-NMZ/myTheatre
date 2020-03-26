@@ -23,8 +23,8 @@ import javax.sql.DataSource;
  *
  * @author miquelr
  */
-@WebServlet(name = "insertSpectacle", urlPatterns = {"/insertSpectacle"})
-public class InsertSpectacle extends HttpServlet {
+@WebServlet(name = "deleteSpectacle", urlPatterns = {"/deleteSpectacle"})
+public class DeleteSpectacle extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     private DataSource dataSource;
@@ -41,46 +41,34 @@ public class InsertSpectacle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int numero = Integer.parseInt(request.getParameter("numeroSpe"));
-        String nom = request.getParameter("nomSpe");
-        double prixDeBase = Double.parseDouble(request.getParameter("prixSpe"));
-        String cible = request.getParameter("cibleSpe");
-        String type = request.getParameter("typeSpe");
-        boolean orchOu1WMS = request.getParameter("orchestreOu1WShow") != null;    
+        // Récupération des indices du tableau des Spectacle à supprimer
+        String indicesSelectionnees = request.getParameter("lignesSpeSelected");
+        String[] indicesString = indicesSelectionnees.split(" ");
+        
+        // Conversion en une liste d'Integer
+        List<Integer> indicesASuppr = new ArrayList<>();
+        for (String indice : indicesString){
+            indicesASuppr.add(Integer.parseInt(indice));
+        }
         
         try {
-            // Requete à la BD pour l'insertion
-            ProgDAO.insertSpectacle(dataSource, numero, nom, prixDeBase, cible, type, orchOu1WMS);
-
-            request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
-        } catch (SQLException ex1) {
-            try {
-                List<Spectacle> spectacles = ProgDAO.toutSpectacles(dataSource);
-                
-                // On vérifie si le problème vient de la clé primaire
-                boolean clePrimaireViolee = false;
-                for (Spectacle s : spectacles) {
-                    if (s.getNumero() == numero) {
-                        clePrimaireViolee = true;
-                    }
-                }
-                
-                if(clePrimaireViolee){
-                    // On signale au controleur qu'il y a un pb lié à la clé primaire
-                    List<String> erreursSQL = new ArrayList<>();
-                    erreursSQL.add("PK_SPE");
-                    request.setAttribute("erreursSQL", erreursSQL);
-                    
-                    request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
-                } else {
-                    // Si ça vient pas de la clé primaire, on renvoie l'exception
-                    throw new ServletException("Problème à l'insertion du Spectacle: " + ex1.getMessage(), ex1);
-                }
-                
-            } catch (SQLException ex2) {
-                throw new ServletException("Problème avec la BD : " + ex2.getMessage(), ex2);
+            // On récupère la liste des Spectacles
+            List<Spectacle> spectacles = ProgDAO.toutSpectacles(dataSource);
+            
+            // On convertit la liste des indices à la liste des numeroSpe correspondante
+            List<Integer> numeroSpeASuppr = new ArrayList<>();
+            for (int indice : indicesASuppr){
+                numeroSpeASuppr.add(spectacles.get(indice).getNumero());
             }
+            
+            // On appelle la DAo pour supprimer les Spectacles
+            ProgDAO.deleteSpectacles(dataSource, numeroSpeASuppr);
+            
+        } catch (SQLException ex) {
+            throw new ServletException("Problème à la suppression des Spectacles : " + ex.getMessage(), ex);  
         }
+        
+        request.getRequestDispatcher("progCtrlerAjoutProg").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

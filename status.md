@@ -3,11 +3,16 @@ Status actuel
 
 Fait
 ----
-Issue #44 :Finalisation du glossaire pour tous les scénarios
-Issue #29 :Planning agile pour le sprint 1
-Issue #28 :Planning gantt pour la totalité du projet
-Issue #30 :Ajout des classes nécessaire au scénario 1
-Issue #
+concepts/. est complété :
+	- le diagramme de classe est dans une version un peu allégée
+	- diagramme d'objet correspond au diagramme de classe
+	- le glossaire et les scénario ont été réécrit
+
+bd/. est complété :
+	- schéma de la BD à jour
+	- jdd1 de la BD à jour avec le diagramme d'objet
+	- absence de certaines vérifications sur l'intégrité de la BD
+
 
 A compléter/améliorer
 ---------------------

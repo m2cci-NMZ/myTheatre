@@ -32,3 +32,5 @@ actor Gerant
       | Pour realiser cette tâche, le `Gerant` utilise une application web.
       | Il peut visualiser la `Programmation` de manière globale et il peut ajouter des `Spectacle`s
       | et des `Representation`s
+	  
+//-------Scenario 1bis -----------------------------------------------------

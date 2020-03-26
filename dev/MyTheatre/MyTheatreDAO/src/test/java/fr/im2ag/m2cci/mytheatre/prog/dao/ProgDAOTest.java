@@ -6,6 +6,7 @@
 package fr.im2ag.m2cci.mytheatre.prog.dao;
 
 import fr.im2ag.m2cci.mytheatre.prog.model.Humoristique;
+import fr.im2ag.m2cci.mytheatre.prog.model.Opera;
 import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import fr.im2ag.m2cci.mytheatre.prog.model.Spectacle;
 import java.io.File;
@@ -355,21 +356,135 @@ public class ProgDAOTest {
         }
     }
 
+    /**
+     * Tests pour insertSpectacle pour un drame
+     * @throws Exception 
+     */
     @Test
-
-    public void testAjoutSpectale() throws Exception {
-        System.out.println("AjoutSpectacle");
+    public void testInsertSpectale() throws Exception {
+        System.out.println("insertSpectacle");
         int numero = 1000;
-        String nom = "A";
+        String nom = "Un Spectacle";
         Double prixDeBase = 10.0;
         String cible = "toutPublic";
         String type = "drame";
-        Spectacle spe = new Spectacle(numero, nom, prixDeBase, type, cible);
-        ProgDAO.ajoutSpectacle(ds, numero, nom, prixDeBase, cible, type, false, false);
-        List<Spectacle> spectacles = ProgDAO.toutSpectacles(ds);
-        int i = spectacles.indexOf(spe);
-        assertEquals(spectacles.get(i), spe);
-
+        Spectacle s1 = new Spectacle(numero, nom, prixDeBase, type, cible);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, false);
+        Spectacle s2 = ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(s1, s2);
+    }
+    
+    /**
+     * Tests pour insertSpectacle pour un drame avec le boolean a vrai (alors qu'on s'en fou)
+     * On regarde le comportement si le booléen est à vrai
+     * On check si ça devient un Opera ou un Humoristique
+     * @throws Exception 
+     */
+    @Test
+    public void testInsertSpectaleBoolVrai() throws Exception {
+        System.out.println("insertSpectacle");
+        int numero = 999;
+        String nom = "Un Spectacle";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "drame";
+        Spectacle s1 = new Spectacle(numero, nom, prixDeBase, type, cible);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, true);
+        
+        // Test du downcast vers un Opera
+        try {
+            Opera o = (Opera) ProgDAO.spectacleDeNumero(ds, numero);
+            Assertions.fail("Ce n'est pas un Opera");
+        } catch (ClassCastException e){
+            // Normal
+        }
+        
+        // Test du downcast vers un Humoristique
+        try {
+            Humoristique h = (Humoristique) ProgDAO.spectacleDeNumero(ds, numero);
+            Assertions.fail("Ce n'est pas un Humoristique");
+        } catch (ClassCastException e){
+            // Normal
+        }
+        
+        Spectacle s2 = ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(s1, s2);
+    }
+    
+    /**
+     * Tests pour insertSpectacle pour un Opera
+     * @throws Exception
+     */
+    @Test
+    public void testInsertOpera() throws Exception {
+        System.out.println("insertSpectacle pour Opera sans Orchestre");
+        int numero = 1001;
+        String nom = "Un Opera";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "opera";
+        boolean aUnOrchestre = false;
+        Opera o1 = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, aUnOrchestre);
+        Opera o2 = (Opera) ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(o1, o2);
+    }
+    
+    /**
+     * Tests pour insertSpectacle pour un Opera avec orchestre
+     * @throws Exception 
+     */
+    @Test
+    public void testInsertOperaOrchestre() throws Exception {
+        System.out.println("insertSpectacle pour Opera avec Orchestre");
+        int numero = 1002;
+        String nom = "Un Opera Avec Orchestre";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "opera";
+        boolean aUnOrchestre = true;
+        Opera o1 = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, aUnOrchestre);
+        Opera o2 = (Opera) ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(o1, o2);
+    }
+    
+    /**
+     * Tests pour insertSpectacle pour un Humoristique
+     * @throws Exception 
+     */
+    @Test
+    public void testInsertHumoristique() throws Exception {
+        System.out.println("insertSpectacle pour Humoristique pas OneWomanShow");
+        int numero = 1003;
+        String nom = "Humour";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "humoristique";
+        boolean aUnOrchestre = false;
+        Humoristique h1 = new Humoristique(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, aUnOrchestre);
+        Humoristique h2 = (Humoristique) ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(h1, h2);
+    }
+    
+    /**
+     * Tests pour insertSpectacle pour un Humoristique OneWomanShow
+     * @throws Exception 
+     */
+    @Test
+    public void testInsertHumoristiqueStandUp() throws Exception {
+        System.out.println("insertSpectacle pour Humoristique OneWomanShow");
+        int numero = 1004;
+        String nom = "Humour Stand-Up";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "humoristique";
+        boolean aUnOrchestre = true;
+        Humoristique h1 = new Humoristique(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, aUnOrchestre);
+        Humoristique h2 = (Humoristique) ProgDAO.spectacleDeNumero(ds, numero);
+        assertEquals(h1, h2);
     }
 
     @Test
@@ -409,39 +524,106 @@ public class ProgDAOTest {
 
     /**
      * Test of representationsFiltrees method, of class ProgDAO.
+     * @throws java.lang.Exception
      */
     @Test
     public void testToutSpectaclesDernierResultat() throws Exception {
-        System.out.println("representationsFiltreesPremierResultat");
+        System.out.println("representationsFiltreesDernierResultat");
+        int numero = 3000;
+        String nom = "Zzzzzzzzzzzzz";
+        Double prixDeBase = 10.0;
+        String cible = "toutPublic";
+        String type = "humoristique";
+        boolean estUnOneWomanShow = true;
+        ProgDAO.insertSpectacle(ds, numero, nom, prixDeBase, cible, type, estUnOneWomanShow);
         List<Spectacle> result = ProgDAO.toutSpectacles(ds);
-        Spectacle spec = new Spectacle(47, "Sonorites Etranges", 10.0, "musical", "jeunePublic");
-        assertEquals(spec, result.get(5));
+        Humoristique h1 = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanShow);
+        Humoristique h2 = (Humoristique) result.get(result.size()-1);
+        assertEquals(h1, h2);
     }
 
     /**
      * Test of representationsFiltrees method, of class ProgDAO.
      */
     @Test
-    public void testNbTotaltoutSpectacles() throws Exception {
+    public void testNbTotalToutSpectacles() throws Exception {
         System.out.println("toutSpectacles");
-        List<Spectacle> result = ProgDAO.toutSpectacles(ds);
-        assertEquals(6, result.size());
+        List<Spectacle> resultInit = ProgDAO.toutSpectacles(ds);
+        ProgDAO.insertSpectacle(ds, 2000, "Opera Orchestre", 10, "adulte", "opera", true);
+        ProgDAO.insertSpectacle(ds, 2001, "Opera sans Orchestre", 10, "jeunePublic", "opera", false);
+        ProgDAO.insertSpectacle(ds, 2002, "Humour Stand-Up", 10, "toutPublic", "humoristique", true);
+        ProgDAO.insertSpectacle(ds, 2003, "Humour Enfant", 10, "unCinqAns", "humoristique", false);
+        ProgDAO.insertSpectacle(ds, 2004, "Cirque", 10, "toutPublic", "cirque", false);
+        ProgDAO.insertSpectacle(ds, 2005, "Drame Adulte", 10, "adulte", "drame", true);
+        List<Spectacle> resultEnd = ProgDAO.toutSpectacles(ds);
+        assertEquals(resultEnd.size(), resultInit.size()+6);
     }
-    //@Test
-    //public void testajoutSpectacleComedie() throws Exception {
-    //  System.out.println("representationsFiltreesPremierResultat");
-    //Spectacle spec = new Spectacle(100, "Z", 10.0, "drame", "jeunePublic");
-    //ProgDAO.ajoutSpectacle(ds, 100, "Z", 10.0, "jeunePublic", "drame", false, false);
-    //List<Spectacle> result = ProgDAO.toutSpectacles(ds);
-    //assertEquals(spec, result.get(7));
-    //}
     
     
-    //@Test
-    //public void testToutSpectaclesPremierResultat() throws Exception {
-    //  System.out.println("representationsFiltreesPremierResultat");
-    //List<Spectacle> result = ProgDAO.toutSpectacles(ds);
-    //Spectacle spec = new Spectacle(17, "Andromaque", 15.0, "drame", "adulte");
-    //assertEquals(spec, result.get(0));
-    //}
+    /**
+     * Test de la méthode deleteSpectacles pour un seul Spectacle
+     */
+    @Test
+    public void testDelete1Spectacle() throws Exception {
+        System.out.println("deleteSpectacles pour un spectacle");
+       
+        ProgDAO.insertSpectacle(ds, 700, "Spectacle 1", 10, "adulte", "drame", false);
+        List<Spectacle> spectaclesDebut = ProgDAO.toutSpectacles(ds);
+        
+        List<Integer> speASuppr = new ArrayList<>();
+        speASuppr.add(700);
+        ProgDAO.deleteSpectacles(ds, speASuppr);
+        
+        List<Spectacle> spectaclesFin = ProgDAO.toutSpectacles(ds);
+        
+        assertEquals(spectaclesFin.size(), spectaclesDebut.size()-1);
+    }
+    
+    
+    /**
+     * Test de la méthode deleteSpectacles pour plusieurs Spectacle
+     */
+    @Test
+    public void testDeletePlusieursSpectacles() throws Exception {
+        System.out.println("deleteSpectacles pour plusieurs spectacles");
+       
+        ProgDAO.insertSpectacle(ds, 701, "Spectacle 5", 10, "toutPublic", "drame", false);
+        ProgDAO.insertSpectacle(ds, 702, "Spectacle 28", 10, "adulte", "opera", false);
+        ProgDAO.insertSpectacle(ds, 703, "Spectacle 12", 10, "unCinqAns", "musical", false);
+        List<Spectacle> spectaclesDebut = ProgDAO.toutSpectacles(ds);
+        
+        List<Integer> speASuppr = new ArrayList<>();
+        speASuppr.add(701);
+        speASuppr.add(702);
+        speASuppr.add(703);
+        ProgDAO.deleteSpectacles(ds, speASuppr);
+        
+        List<Spectacle> spectaclesFin = ProgDAO.toutSpectacles(ds);
+        
+        assertEquals(spectaclesFin.size(), spectaclesDebut.size()-3);
+    }
+    
+    
+    /**
+     * Test de la méthode deleteSpectacles pour un Spectacle ayant des Representations
+     */
+    @Test
+    public void testDeleteSpectacleAvecRepresentation() throws Exception {
+        System.out.println("deleteSpectacles pour un spectacle ayant des representations");
+        // Ajout du Spectacle
+        ProgDAO.insertSpectacle(ds, 704, "Spectacle 5", 10, "toutPublic", "drame", false);
+        // Ajout de la Representation
+        Date horaireRep = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2020-03-16 19:35");
+        ProgDAO.insertRepresentation(ds, 704, horaireRep);
+        // On récupère les Representations de ce jour
+        List<Representation> representationsDebut = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
+        // On supprime le Spectacle
+        List<Integer> speASuppr = new ArrayList<>();
+        speASuppr.add(704);
+        ProgDAO.deleteSpectacles(ds, speASuppr);
+        // On récupère les Representations de ce jour après la suppresion
+        List<Representation> representationsFin = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
+        // On compare si il y a bien une Representation en moins
+        assertEquals(representationsFin.size(), representationsDebut.size()-1);
+    }
 }

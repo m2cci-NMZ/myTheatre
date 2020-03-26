@@ -23,7 +23,6 @@ enum Cible {
     jeunePublic,
     toutPublic,
     adulte
-  
 }
 
 enum Type {
@@ -34,6 +33,18 @@ enum Type {
     cirque
 }
 
+--enum categorie {
+--    orchestre,
+--    balcon,
+--    poulailler
+--}
+--enum typeSta {
+--    adherents,
+--    etudiants,
+--    scolaires,
+--   militaires,
+--    seniors
+--}
 
 ---------------------------------------------------------------------------
 -- classes
@@ -64,9 +75,64 @@ end
 class Representation
 attributes
     horaire_ : String
---|placesDispo_d : Integer
---|tauxReduc : Real  : C'est pour un scénario ultérieur
+    placesDispo_d : Integer
+    tauxReduc : Real 
 end
+
+
+class Rang
+attributes
+    numero_ : Integer
+end
+
+
+class Place
+attributes
+  numero_ : Integer 
+end
+
+
+--class Zone
+--attributes
+ --  numero_ : Integer    
+--end
+
+
+class DossierAchat
+attributes
+  numero_: Integer
+  prixGlobal_d : Real
+end
+
+
+--class Personne
+--attributes
+--  id_: Integer
+--end
+
+
+--class Status
+--attributes
+--  typeStatu_: typeSta
+--  taux : Real
+--end
+
+
+class Utilisateur --< Personne
+attributes
+   login_: String
+   nom : String
+   prenom : String
+   mail : String
+   mdp : String 
+end
+
+
+--class Categorie
+--attributes
+--  categorie_: categorie
+--  rapportPrix : Real  
+--end
 
 ---------------------------------------------------------------------------
 -- associations
@@ -75,4 +141,62 @@ end
 association APourRepresentation between
     Spectacle [1] role spectacle
     Representation [*] role representations
+end
+
+
+--association EstDisponible between
+--    Zone [1..*] role zones
+--    Spectacle [*] role spectacles
+--end
+
+
+--association EstDansLaZone between
+ --   Rang [1..*] role rangs 
+ --   Zone [1] role zone
+--end
+
+
+--association EstDansLaCategorie between
+--   Zone [1..*] role zones
+--  Categorie [1] role categorie 
+--end
+
+
+composition Contient between
+    Rang [1] role rang 
+    Place [1..*] role places
+end 
+
+
+associationclass Ticket between
+        Place[*] role places
+        Representation[*] role representations
+    attributes
+        numero_: Integer
+        dateEmission : String --@ {Date}
+        prix_d : Real
+end
+
+
+association FaitPartieDUn between
+     Ticket [1..*] role tickets
+     DossierAchat [1] role dossierAchat
+end
+
+
+association AAchete between
+     Utilisateur [0..1] role acheteur
+     Ticket [*] role ticketsAchetes
+end
+
+
+--association EstBeneficier between
+--    Status  [*] role status
+--    Personne [*] role personnes
+--end
+
+
+association AReserve between
+    Utilisateur  [0..1] role reserveur
+    Ticket [*] role ticketsReserves
 end
