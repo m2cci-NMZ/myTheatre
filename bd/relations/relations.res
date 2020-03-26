@@ -22,7 +22,7 @@ relation LesSpectacles
 		prixDeBaseSpe : Real
 		cibleSpe : Cible
 		typeSpe : Type
-		
+
 	constraints
 		key numeroSpe_
 		numeroSpe_ > 0
@@ -53,10 +53,12 @@ relation LesHumoristiques
 	constraints
 		key numeroSpe_
 		LesHumoristiques[numeroSpe_] C= LesSpectacles[numeroSpe_]
-		LesOperas[numeroSpe_] n LesHumoristiques[numeroSpe_] = {}
+		
+constraints
+	LesOperas[numeroSpe_] n LesHumoristiques[numeroSpe_] = {}
 
 
-relation LesRepresentations
+relation LesRepresentations_base
 	transformation 
 		from R_Class(Representation)
 		from R_OneToMany(APourRepresentation)
@@ -64,15 +66,15 @@ relation LesRepresentations
 	columns 
 		horaireRep_: Date
 		numeroSpe : Integer
-		placesDispoRep_d : Integer 
-		tauxReducRep : Real
+		tauxReducRep : Real	
+//		placesDispoRep_d : Integer 
 		
 	constraints
 		key horaireRep_
 		LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
-		placesDispoRep_d >= 0
-		tauxReducRep > 0
-		tauxReducRep <= 1
+		tauxReducRep >= 0
+		tauxReducRep < 1
+//		placesDispoRep_d >= 0
 
 
 relation LesRangs
@@ -84,7 +86,7 @@ relation LesRangs
 		
 	constraints
 		key numeroRan_ 
-		numeroRan > 0
+		numeroRan_ > 0
 		
 		
 relation LesPlaces
@@ -102,21 +104,21 @@ relation LesPlaces
 		LesPlaces[numeroRan_] = LesRangs[numeroRan_]
 
 
-relation LesDossiersAchats
+relation LesDossiersAchats_base
 	transformation 
 		from R_Class(DossierAchat)
 
 	columns 
 		numeroDos_ : Integer
-		prixGlobalDos_d : Real
+//		prixGlobalDos_d : Real
 		
 	constraints
 		key numeroDos_ 
 		numeroDos_ > 0
-		prixGlobalDos_d > 0
+//		prixGlobalDos_d > 0
 
 
-relation LesTickets
+relation LesTickets_base
 	transformation 
 		from R_ManyToManyAC(Ticket)
 		from R_OneToMany(FaitPartieDUn)
@@ -127,7 +129,7 @@ relation LesTickets
 		numeroPla_id1 : Integer
 		numeroTic_id2 : Integer
 		dateEmissionTic : Date
-		prixTic_d : Real
+//		prixTic_d : Real
 		numeroDos : Integer
 		
 	constraints
@@ -137,7 +139,7 @@ relation LesTickets
 		LesTickets[numeroRan_id1, numeroPla_id1] C= LesPlaces[numeroRan_, numeroPla_]
 		LesTickets[numeroDos] = LesDossiersAchats[numeroDos_]
 		numeroTic_ > 0
-		prixTicketTic_d > 0
+//  	prixTic_d > 0
 
 
 relation LesUtilisateurs
@@ -157,7 +159,7 @@ relation LesUtilisateurs
 
 relation LesTicketsReserves
 	transformation 
-		from R_OneToMany (AReserve)
+		from R_OneToMany(AReserve)
 
 	columns 
 		numeroTic_ : Integer
@@ -181,9 +183,7 @@ relation LesTicketsAchetes
 		key numeroTic_
 		LesTicketsAchetes[numeroTic_] C= LesTickets[numeroTic_id2]
 		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti_]
-		LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
-		LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]
 		
-		
-view LesRepresentationsV1
-	
+constraints
+	LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
+	LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]

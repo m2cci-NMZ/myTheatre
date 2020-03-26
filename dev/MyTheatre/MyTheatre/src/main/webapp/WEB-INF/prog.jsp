@@ -42,9 +42,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Programmation</a>
                 </li>
                 <li class="nav-item">

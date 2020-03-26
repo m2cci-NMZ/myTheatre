@@ -61,41 +61,47 @@
     
 --| (6) Le spectacle de numero 17 et de nom Andromaque avec un prix de base de 15 euros destiné a un public adulte et de type drame
    ! create andromaque : Spectacle
+   ! andromaque.numero_ := 17
    ! andromaque.nom := 'Andromaque'
    ! andromaque.prixDeBase := 15.0
    ! andromaque.cible := Cible::adulte
     ! andromaque.type := Type::drame
 
 
---| (7) La representation du 13/03 a 18h a 50 places disponibles et donne une reduction de 10%
+--| (7) La representation du 13/03 a 18h a 1 places disponibles et donne une reduction de 0%
     ! create representationDu130318h : Representation
-    ! representationDu130318h.horaire_ := '13/03/2020 18h'
---|representationDu130318h.placesDispo_d := 50
+    ! representationDu130318h.horaire_ := '2020-03-13 18:00'
+	! representationDu130318h.placesDispo_d := 1
+	! representationDu130318h.tauxReduc := 0.0
 
---| (8) La representation du 13/03 a 20h a 10 places disponibles et donne une reduction de 10%
+--| (8) La representation du 13/03 a 20h a 3 places disponibles et donne une reduction de 0%
     ! create representationDu130320h : Representation
-    ! representationDu130320h.horaire_ := '13/03/2020 20h'
---|representationDu130320h.placesDispo_d := 10
+    ! representationDu130320h.horaire_ := '2020-03-13 20:00'
+	! representationDu130320h.placesDispo_d := 3
+	! representationDu130320h.tauxReduc := 0.0
 
 --| (9) La representation du 14/03 a 18h a 20 places disponibles et donne une reduction de 10%
 --    ! create representationDu140318h : Representation
---    ! representationDu140318h.horaire_ := '14/03/2020 18h'
+--    ! representationDu140318h.horaire_ := '2020-14-03 18:00'
 --|representationDu140318h.placesDispo_d := 20
 
 --| (10) La representation du 14/03 a 15h a 20 places disponibles et donne une reduction de 10%
 --    ! create representationDu140315h : Representation
---    ! representationDu140315h.horaire_ := '14/03/2020 15h'
---|representationDu140315h.placesDispo_d := 20
+--    ! representationDu140315h.horaire_ := '2020-03-14 15:00'
+--	  ! representationDu140315h.placesDispo_d := 3
+--	  ! representationDu130320h.tauxReduc := 0.0
 
 --| (11) La representation du 15/03 a 18h a 30 places disponibles et donne un reduction de 0%
 --    ! create representationDu150318h : Representation
---    ! representationDu150318h.horaire_ := '15/03/2020 18h'
---|representationDu150318h.placesDispo_d := 30
+--    ! representationDu150318h.horaire_ := '2020-03-15 18:00'
+--	  ! representationDu150318h.placesDispo_d := 3
+--	  ! representationDu130320h.tauxReduc := 0.0
 
---| (12) La representation du 15/03 a 20h a 10 places disponibles et donne un reduction de 0%
+--| (12) La representation du 15/03 a 20h a 10 places disponibles et donne un reduction de 20%
     ! create representationDu150320h : Representation
-    ! representationDu150320h.horaire_ := '15/03/2020 20h'
---|representationDu150320h.placesDispo_d := 10
+    ! representationDu150320h.horaire_ := '2020-03-15 20:00'
+	! representationDu150320h.placesDispo_d := 2
+	! representationDu150320h.tauxReduc := 0.2
 
 
 
@@ -129,29 +135,29 @@
 --	  ! place80.numero_ := 80
 	
 	
---| (21) Le ticket de numero 001, avec une date d'émission du 01/03/2020 et un prix de 10.0
+--| (21) Le ticket de numero 001, avec une date d'émission du 01/03/2020 et un prix de 9.5
     ! ticket001 := new Ticket between (place5, representationDu130318h)
     ! ticket001.numero_ := 001
-	! ticket001.dateEmission := '01/03/2020'
-	! ticket001.prix_d := 10.0
+	! ticket001.dateEmission := '2020-03-01 17:45:25'
+	! ticket001.prix_d := 9.5
 	
---| (22) Le ticket de numero 002, avec une date d'émission du 05/03/2020 et un prix de 8.0
+--| (22) Le ticket de numero 002, avec une date d'émission du 05/03/2020 et un prix de 9.5
     ! ticket002 := new Ticket between (place10, representationDu130318h)
     ! ticket002.numero_ := 002
-	! ticket002.dateEmission := '05/03/2020'
-	! ticket002.prix_d := 8.0
+	! ticket002.dateEmission := '2020-03-05 14:45:35'
+	! ticket002.prix_d := 9.5
 	
---| (23) Le ticket de numero 003, avec une date d'émission du 10/03/2020 et un prix de 10.0
+--| (23) Le ticket de numero 003, avec une date d'émission du 10/03/2020 et un prix de 8.0
     ! ticket003 := new Ticket between (place5, representationDu150320h)
     ! ticket003.numero_ := 003
-	! ticket003.dateEmission := '10/03/2020'
-	! ticket003.prix_d := 10.0
+	! ticket003.dateEmission := '2020-03-10 18:20:10'
+	! ticket003.prix_d := 8.0
 	
 	
---| (24) Le dossier d'achat de numéro 1 et de prix global 18.0
+--| (24) Le dossier d'achat de numéro 1 et de prix global 19.0
     ! create dossierAchat1 : DossierAchat
     ! dossierAchat1.numero_ := 1
-	! dossierAchat1.prixGlobal_d := 18.0
+	! dossierAchat1.prixGlobal_d := 19.0
 	
 --| (25) Le dossier d'achat de numéro 5 et de prix global 20.0
 --    ! create dossierAchat5 : DossierAchat
@@ -161,7 +167,7 @@
 --| (26) Le dossier d'achat de numéro 25 et de prix global 10.0
     ! create dossierAchat25 : DossierAchat
     ! dossierAchat25.numero_ := 25
-	! dossierAchat25.prixGlobal_d := 10.0
+	! dossierAchat25.prixGlobal_d := 8.0
 	
 	
 --| (27) L'utilisateur de login nico58, de nom Martinez, de prénom Nicolas, avec l'adresse mail : nico58@gmail.com et le mot de passe : admin
