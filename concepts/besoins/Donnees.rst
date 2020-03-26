@@ -12,7 +12,7 @@
 
 (X7) Sur les `Spectacle` du type `Humoristique` on indique s’il s’agit d’un OneWomen(Men)Show.
 
-(X8) Un `Spectacle` fait généralement l’objet de plusieurs `Représentation`s proposées à des `Horaire`s différentes.
+(X8) Un `Spectacle` fait généralement l’objet de plusieurs `Representation`s proposées à des `Horaire`s différentes.
 
 (X9) Il y a au plus une `Representation` par `Spectacle` et par jour.
 
@@ -20,7 +20,7 @@
 
 (X11) I2_LesPlaces. La seule salle du `Theatre` est partitionnée en `Zone`s numérotées, regroupant chacune un ensemble de `Place`s.
 
-(X12) Une `Place` est identifiée par un numéro de rang (unique par salle), et un numéro de `Place` dans le rang.
+(X12) Une `Place` est identifiée par un numéro de `Rang` (unique par salle), et un numéro de `Place` dans le rang.
 
 (X13) Une `Zone` est associée à une seule `Categorie` (orchestre, balcon, poulailler, etc).
 
@@ -51,4 +51,4 @@ de la seconde).
 
 (X26) Un taux de `Reduction` est associé a chacun de ces `Statut`s (1 pour le tarif sans réduction, 0.8 pour le tarif réduit de 20%, etc.).
 
-(X27) Le cas échéant, la `Reduction` vient s’ajouter à la `Reduction` associée à la `Représentation` et événtuellement à d’autres `Reduction`s (ex. un `Adherent` avec 20% qui est aussi étudiant avec 10% de réduction, il aura 30% de reduction).
+(X27) Le cas échéant, la `Reduction` vient s’ajouter à la `Reduction` associée à la `Representation` et événtuellement à d’autres `Reduction`s (ex. un `Adherent` avec 20% qui est aussi étudiant avec 10% de reduction, il aura 30% de reduction).

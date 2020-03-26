@@ -5,7 +5,7 @@
 -- (D1) Avant de mettre en ligne la `Programmation` du mois d’avril, Bernard doit définir le nombre de `Place` en vente pour chaque `Spectacle`.
 -- (D2) Pour cela, pour chaque `Representation`, il regarde la configuration de la salle.
 -- (D3) Il identifie aussi les `Place`s qui ne peuvent être vendus.
--- (D4) Pour "Perdu" les trois premiers rangs sont ainsi invendables.
+-- (D4) Pour "Perdu" les trois premiers `Rang`s sont ainsi invendables.
 -- (D5) Automatiquement le nombre de `Place` en vente pour chaque `Representation` et chaque `Categorie Tarifaire` de `Place` est mis à jour.
 -- (D6) Il précise également la possibilité et la durée de l’option `Reservation` sans payer.
 -- (D7) Au début de la saison, aucune `Reduction` “exceptionnelle” (en dehors des tarifs étudiants, famille nombreuse, `Adherent`) n’est appliquée.
@@ -13,5 +13,5 @@
 
 -- Extension
 ---------
--- Les clients souhaitent que les spectateurs puissent gérer leurs commandes via l’interface.
+-- Les clients souhaitent que les `Spectateur`s puissent gérer leurs commandes via l’interface.
 -- Ils souhaitent que vous leur fassiez des propositions dans ce sens (avec scénarios pour montrer comment la gestion serait proposée)

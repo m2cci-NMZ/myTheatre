@@ -24,8 +24,8 @@
 
 -- (A20) Paul préfère le `Spectacle` Le malade imaginaire de Molière.
 -- (A21) Il ne reste plus beaucoup de `Place`s.
--- (A22) L’”option `Reservation` sans payer pendant 24h” est possible pour cette `Representation`.
--- (A23) Il donc choisit de faire la `Reservation` 4 `Place`s au centre du second rang.
+-- (A22) L'option `Reservation` sans payer pendant 24h” est possible pour cette `Representation`.
+-- (A23) Il donc choisit de faire la `Reservation` 4 `Place`s au centre du second `Rang`.
 -- (A24) Il reçoit par email la confirmation de la pré-`Reservation`.
 -- (A25) Le lendemain, sa soeur lui indique que sa préférence va au Malade imaginaire.
 -- (A26) Il confirme donc sa `Reservation` et paie ses `Place`s.
