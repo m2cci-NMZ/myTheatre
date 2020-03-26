@@ -16,27 +16,66 @@ PRAGMA foreign_keys = ON;
 -- LesSpectacles
 ---------------------------------------------------------------------------
 
-INSERT INTO LesSpectacles VALUES (45, 'Cyrano de Bergerac', 20.0, 'toutPublic', 'drame');
-INSERT INTO LesSpectacles VALUES (46, 'Les Animaux', 8.0, 'unCinqAns', 'cirque');
-INSERT INTO LesSpectacles VALUES (47, 'Sonorites Etranges', 10.0, 'jeunePublic', 'musical');
+
+INSERT INTO LesSpectacles VALUES (46, 'Les Animaux', 9.5, 'unCinqAns', 'cirque');
 INSERT INTO LesSpectacles VALUES (20, 'L''avare', 10.0, 'toutPublic', 'humoristique');
 INSERT INTO LesHumoristiques VALUES (20, 0);
-INSERT INTO LesSpectacles VALUES (25, 'Don Juan', 10.0, 'adulte', 'opera');
-INSERT INTO LesOperas VALUES (25, 1);
 INSERT INTO LesSpectacles VALUES (17, 'Andromaque', 15.0, 'adulte', 'drame');
 
 
 --------------------------------------------------------------------------
--- LesRepresentations
+-- LesRepresentations_base
 ---------------------------------------------------------------------------
 
-INSERT INTO LesRepresentations VALUES ('2020-03-14 18:00', 45);
-INSERT INTO LesRepresentations VALUES ('2020-03-13 18:00', 46);
-INSERT INTO LesRepresentations VALUES ('2020-03-14 15:00', 47);
-INSERT INTO LesRepresentations VALUES ('2020-03-13 20:00', 20);
-INSERT INTO LesRepresentations VALUES ('2020-03-15 20:00', 20);
-INSERT INTO LesRepresentations VALUES ('2020-03-15 18:00', 25);
+INSERT INTO LesRepresentations_base VALUES('2020-03-13 18:00', 46,0.0);
+INSERT INTO LesRepresentations_base VALUES('2020-03-15 20:00', 20,0.2);
+INSERT INTO LesRepresentations_base VALUES('2020-03-13 20:00', 20,0.0);
 
 
+--------------------------------------------------------------------------
+-- LesUtilisateurs
+---------------------------------------------------------------------------
+INSERT INTO LesUtilisateurs VALUES ('robin32','Miquel','Robin','robin32@gmail','azerty');
+INSERT INTO LesUtilisateurs VALUES ('nico58','Martinez','Nicolas','nico58@gmail','admin');
+INSERT INTO LesUtilisateurs VALUES ('celia18','kezmane','celia','celia18@gmail','admin');
 
 
+--------------------------------------------------------------------------
+-- LesTickets_base
+---------------------------------------------------------------------------
+INSERT INTO LesTickets_base VALUES ('2020-03-15 20:00',1,5,3,'2020-03-10  18:20:10',25);
+INSERT INTO LesTickets_base VALUES ('2020-03-13 18:00',1,5,1,'2020-03-01  17:45:25',1);
+INSERT INTO LesTickets_base VALUES ('2020-03-13 18:00',1,10,2,'2020-03-05  14:45:35',1);
+
+--------------------------------------------------------------------------
+-- LesDossierAchats_base
+----------------------------------------------------------------------
+INSERT INTO LesDossierAchats_base VALUES (1);
+INSERT INTO LesDossierAchats_base VALUES (25);
+
+
+--------------------------------------------------------------------------
+-- LesPlaces
+----------------------------------------------------------------------
+INSERT INTO LesPlaces VALUES (5,1);
+INSERT INTO LesPlaces VALUES (10,1);
+INSERT INTO LesPlaces VALUES (40,5);
+
+--------------------------------------------------------------------------
+-- LesRang
+----------------------------------------------------------------------
+INSERT INTO LesRangs VALUES (1);
+INSERT INTO LesRangs VALUES (5);
+
+
+--------------------------------------------------------------------------
+-- LesTicketsReserves
+----------------------------------------------------------------------
+INSERT INTO LesTicketsReserves VALUES (3,'robin32');
+
+
+--------------------------------------------------------------------------
+-- LesTicketsAchetes
+----------------------------------------------------------------------
+INSERT INTO LesTicketsReserves VALUES (1,'nico58');
+INSERT INTO LesTicketsReserves VALUES (2,'nico58');
