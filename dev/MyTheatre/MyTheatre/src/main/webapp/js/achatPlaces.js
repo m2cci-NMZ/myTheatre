@@ -70,7 +70,7 @@ $(document).ready(function () {
         naming: {
             top: false,
             getLabel: function (character, row, column) {
-                return seatNumber++;
+                return String.fromCharCode(64 + row)+(column-1);
             },
             getId: function (character, row, column) {
                 return row + '_' + column;
@@ -79,9 +79,9 @@ $(document).ready(function () {
         legend: {
             node: $('#legend'),
             items: [
-                ['A', 'available', 'Catégorie A\n'+prix+" €"],
-                ['B', 'available', 'Catégorie B\n'+prix+" €"],
-                ['C', 'available', 'Catégorie C\n'+prix+" €"],
+                ['A', 'available', 'Balcon: '+prix.toFixed(2).toString().replace('.',',')+"€"],
+                ['B', 'available', 'Poulailler: '+prix.toFixed(2).toString().replace('.',',')+"€"],
+                ['C', 'available', 'Orchestre: '+prix.toFixed(2).toString().replace('.',',')+"€"],
                 [, 'unavailable', 'Place non disponible']
             ]
         },
@@ -158,7 +158,7 @@ $(document).ready(function () {
                 if (nbPlaceSelectees === 0) {
                     // le bouton achatBtn est désactivé
                     $("#achatBtn").prop("disabled", true);
-                    $prixTotal.text(0);
+                    $prixTotal.text(0.00);
                 } else {
                     // le bouton achatBtn est activé
                     $("#achatBtn").prop("disabled", false);
@@ -211,5 +211,5 @@ function acheter(sc) {
         // this.node() donne l'objet JQuery correspondant à l'élément HTML matérialisant le siège
         // .attr('id') donne la valeur de la propriété 'id" de cet élément
     });
-    location.replace("acheterPlaces?" + params + "&" + rangs);
+    location.replace("reserverPlaces?" + params + "&" + rangs);
 }

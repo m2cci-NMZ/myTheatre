@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Confirmation Achat</title>
+        <title>Confirmation Reservation</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -45,27 +45,27 @@
                     String[] places = request.getParameterValues("place");
                     String[] rangs = request.getParameterValues("rang");
                 %>
-                Merci de votre achat du spectacle <%=rep.getSpectacle().getNom()%> du <%=horaireFormatter.format(rep.getHoraire())%><br>
-                Vous avez acheté les places suivantes:<br>
+                Merci de votre reservation pour <%=rep.getSpectacle().getNom()%>, le <%=horaireFormatter.format(rep.getHoraire())%><br>
+                Vous avez reservé les places suivantes:<br>
                 </h2>
                 <div style="height:85vh; overflow: auto;">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Numero de place</th>
-                                <th>Numero de rang</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
-                                for (int i = 0; i < places.length - 1; i++) {
-                                    Integer place = Integer.parseInt(places[i]);
-                                    Integer rang = Integer.parseInt(rangs[i]);
+                                for (int i = 0; i < places.length; i++) {
+                                    int place = Integer.parseInt(places[i]);
+                                    int rang = Integer.parseInt(rangs[i])-1;
+                                    char lettreRang = (char) (rang+'a');
+
+                                    
                             %>
                             <tr>
-                                <td><%=place%></td>
-                                <td><%=rang%></td>
+                                <td><%=Character.toUpperCase(lettreRang)%><%=place-1%></td>
                             </tr>
                             <%
                                 }

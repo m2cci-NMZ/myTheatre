@@ -284,7 +284,7 @@
                                         <td><%=prixBase%> €</td>
                                         <td><%=type%></td>
                                         <td><%=cible%></td>
-                                        <td><form action="RepresentationCtrler" ><button name = "date" type="submit" class="btn btn-primary" value = <%=horaireFormatterServlet.format(date)%>>Acheter</button></form></td>
+                                        <td><form action="RepresentationCtrler" ><button name = "date" type="submit" class="btn btn-primary" value = <%=horaireFormatterServlet.format(date)%>>Reserver</button></form></td>
                                     </tr>
                                     <%
                                         }

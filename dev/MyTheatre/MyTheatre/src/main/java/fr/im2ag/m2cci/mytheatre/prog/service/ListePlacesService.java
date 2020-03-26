@@ -17,7 +17,7 @@
 package fr.im2ag.m2cci.mytheatre.prog.service;
 
 
-import fr.im2ag.m2cci.mytheatre.prog.dao.PlacesDAO;
+import fr.im2ag.m2cci.mytheatre.prog.dao.TicketsDAO;
 import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,7 +61,7 @@ public class ListePlacesService extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Representation rep = (Representation) session.getAttribute("representation");
-            String json = PlacesDAO.placesVenduesAsJSON(ds, rep.getHoraire());
+            String json = TicketsDAO.placesVenduesAsJSON(ds, rep.getHoraire());
             response.setContentType("application/json; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.print(json);

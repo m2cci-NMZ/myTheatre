@@ -18,7 +18,7 @@ package fr.im2ag.m2cci.mytheatre.prog.ctrlers;
 
 
 import fr.im2ag.m2cci.mytheatre.prog.dao.AchatConcurrentException;
-import fr.im2ag.m2cci.mytheatre.prog.dao.PlacesDAO;
+import fr.im2ag.m2cci.mytheatre.prog.dao.TicketsDAO;
 import fr.im2ag.m2cci.mytheatre.prog.model.Representation;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -37,8 +37,8 @@ import javax.sql.DataSource;
  * 
  * @author Philippe GENOUD - Université Grenoble Alpes - Lab LIG-Steamer
  */
-@WebServlet(name = "AcheterPlacesCtrler", urlPatterns = {"/acheterPlaces"})
-public class AcheterPlacesCtrler extends HttpServlet {
+@WebServlet(name = "ReserverPlacesCtrler", urlPatterns = {"/reserverPlaces"})
+public class ReserverPlacesCtrler extends HttpServlet {
 
     @Resource(name = "jdbc/db")
     DataSource ds;
@@ -69,10 +69,10 @@ public class AcheterPlacesCtrler extends HttpServlet {
             HttpSession session = request.getSession();
             Representation rep = (Representation) session.getAttribute("representation");
             // demande à la DAO d'enregistrer les places dans la BD
-            PlacesDAO.acheterPlaces(ds, rep.getHoraire(), placesIds, rangsIds, rep.getSpectacle().getPrixDeBase());
+            TicketsDAO.reserverPlaces(ds, rep.getHoraire(), placesIds, rangsIds, rep.getSpectacle().getPrixDeBase());
 
             // redirection vers la page confirmant l'achat.
-            request.getRequestDispatcher("/WEB-INF/confirmationAchat.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/confirmationReservation.jsp").forward(request, response);
         } catch (SQLException ex) {
             throw new ServletException(ex.getMessage(), ex);
         } catch (AchatConcurrentException ex) {

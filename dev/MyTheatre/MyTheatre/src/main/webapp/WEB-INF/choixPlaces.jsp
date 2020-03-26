@@ -69,8 +69,9 @@
                 </div>
             </div>
             <hr>
+
             <script>
-                let prix =<%=rep.getSpectacle().getPrixDeBase()%>
+                let prix =<%=rep.getSpectacle().getPrixDeBase()%>;
             </script>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
