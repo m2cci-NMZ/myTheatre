@@ -30,19 +30,6 @@ CREATE TABLE LesSpectacles(
 );
 
 
-CREATE TABLE LesHumoristiques(
-	numeroSpe INTEGER,
-	estUnOneWomanManShowHum INTEGER,
-
-	CONSTRAINT PK_Hum
-		PRIMARY KEY (numeroSpe),
-	CONSTRAINT FK_Hum_numeroSpe 
-		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
-	CONSTRAINT DOM_Hum_estUnOneWomanManShow
-		CHECK (estUnOneWomanManShowHum in (0,1))
-);
-
-
 CREATE TABLE LesOperas(
 	numeroSpe INTEGER,
 	aUnOrchestreOpe INTEGER,
@@ -53,6 +40,19 @@ CREATE TABLE LesOperas(
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
 	CONSTRAINT DOM_Ope_aUnOrchestre
 		CHECK (aUnOrchestreOpe in (0,1))
+);
+
+
+CREATE TABLE LesHumoristiques(
+	numeroSpe INTEGER,
+	estUnOneWomanManShowHum INTEGER,
+
+	CONSTRAINT PK_Hum
+		PRIMARY KEY (numeroSpe),
+	CONSTRAINT FK_Hum_numeroSpe 
+		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
+	CONSTRAINT DOM_Hum_estUnOneWomanManShow
+		CHECK (estUnOneWomanManShowHum in (0,1))
 );
 
 
@@ -81,8 +81,8 @@ CREATE TABLE LesRangs(
 
 
 CREATE TABLE LesPlaces(
-	numeroPla INTEGER,
 	numeroRan INTEGER,
+	numeroPla INTEGER,
 
 	CONSTRAINT PK_Pla
 		PRIMARY KEY (numeroPla, numeroRan),
