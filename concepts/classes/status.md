@@ -27,3 +27,4 @@ Synthèse
 Diagramme partiel vis à vis des tous les scénarios
 Il compile avec USE
 Il est autosuffisant (il est fonctionnel en l'état)
+Prêt pour le rendu

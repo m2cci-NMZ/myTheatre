@@ -18,5 +18,5 @@ A faire
 Synthèse
 --------
 Glossaire considéré comme terminé
-
+Prêt pour le rendu
 

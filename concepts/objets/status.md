@@ -20,5 +20,6 @@ Synthèse
 --------
 Diagramme complet (en comparaison du diagramme de classe)
 Pas d'objets négatifs dans la liste des issues GitHub donc pas fait
+Prêt pour le rendu
 
 
