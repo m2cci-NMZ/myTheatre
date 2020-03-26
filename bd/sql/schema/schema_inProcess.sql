@@ -24,9 +24,9 @@ CREATE TABLE LesSpectacles(
 	CONSTRAINT DOM_Spe_typeSpe
 		CHECK (typeSpe in ("opera", "drame", "humoristique", "musical", "cirque")),
 	CONSTRAINT DOM_Spe_numeroSpe
-		CHECK ( 0 < numeroSpe),
+		CHECK (0 < numeroSpe),
 	CONSTRAINT DOM_Spe_prixDeBaseSpe
-		CHECK ( 0 < prixDeBaseSpe)
+		CHECK (0 < prixDeBaseSpe)
 );
 
 
@@ -44,8 +44,8 @@ CREATE TABLE LesHumoristiques(
 
 
 CREATE TABLE LesOperas(
-	numeroSpe Integer,
-	aUnOrchestreOpe Integer,
+	numeroSpe INTEGER,
+	aUnOrchestreOpe INTEGER,
 
 	CONSTRAINT PK_Ope
 		PRIMARY KEY (numeroSpe),
@@ -56,21 +56,19 @@ CREATE TABLE LesOperas(
 );
 
 
-CREATE TABLE LesRepresentations(
-	horaireRep VARCHAR(14),
+CREATE TABLE LesRepresentations_base(
+	horaireRep VARCHAR(16),
 	numeroSpe INTEGER,
-	placesDispoRep_d Integer,
-	tauxReducRep Real,
+	tauxReducRep REAL,
 
 	CONSTRAINT PK_Rep
 		PRIMARY KEY (horaireRep),
 	CONSTRAINT FK_Rep_numeroSpe 
 		FOREIGN KEY (numeroSpe) REFERENCES LesSpectacles(numeroSpe) ON DELETE CASCADE,
 	CONSTRAINT DOM_Rep_tauxReducRep
-		CHECK ( 0 < tauxReducRep AND tauxReducRep <= 1 ),
-	CONSTRAINT DOM_Rep_placesDispoRep_d
-		CHECK ( 0 <= placesDispoRep_d)
+		CHECK (0 <= tauxReducRep AND tauxReducRep < 1)
 );
+
 
 CREATE TABLE LesRangs(
 	numeroRan INTEGER,
@@ -78,93 +76,94 @@ CREATE TABLE LesRangs(
 	CONSTRAINT PK_Ran
 		PRIMARY KEY (numeroRan),
 	CONSTRAINT DOM_Ran_numeroRan
-		CHECK ( 0 < numeroRan)
-	
+		CHECK (0 < numeroRan)
 );
+
 
 CREATE TABLE LesPlaces(
-	numeroPla Integer,
-	numeroRan Integer,
+	numeroPla INTEGER,
+	numeroRan INTEGER,
 
 	CONSTRAINT PK_Pla
-		PRIMARY KEY (numeroPla,numeroRan),
+		PRIMARY KEY (numeroPla, numeroRan),
 	CONSTRAINT FK_Pla_numeroRan
-		FOREIGN KEY (numeroRan) REFERENCES LesRangs (numeroRan),
+		FOREIGN KEY (numeroRan) REFERENCES LesRangs(numeroRan) ON DELETE CASCADE,
 	CONSTRAINT DOM_Pla_numeroPla
-		CHECK ( 0 < numeroPla)
+		CHECK (0 < numeroPla)
 );
 
-CREATE TABLE LesDossiersAchats(
-	numeroDos Integer,
-	prixGlobalDos_d Real,
+
+CREATE TABLE LesDossiersAchats_base(
+	numeroDos INTEGER,
 
 	CONSTRAINT PK_Dos
 		PRIMARY KEY (numeroDos),
 	CONSTRAINT DOM_Dos_numeroDos
-		CHECK ( 0 < numeroDos),
-     CONSTRAINT DOM_Dos_prixGlobalDos_d
-	   CHECK ( 0 < prixGlobalDos_d)
+		CHECK (0 < numeroDos)
 );
 
+
+CREATE TABLE LesTickets_base(
+	horaireRep VARCHAR(16),
+	numeroRan INTEGER,
+	numeroPla INTEGER,
+	numeroTic INTEGER,
+	dateEmissionTic VARCHAR (16),
+	numeroDos INTEGER,
+
+	CONSTRAINT PK_Tic
+		PRIMARY KEY (horaireRep, numeroRan, numeroPla),
+	CONSTRAINT UN_Tic_numeroTic
+		UNIQUE (numeroTic),
+	CONSTRAINT FK_Tic_horaireRep
+		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations(horaireRep) ON DELETE CASCADE,
+	CONSTRAINT FK_Tic_numeroRan_numeroPla
+		FOREIGN KEY (numeroRan, numeroPla) REFERENCES LesPlaces(numeroRan, numeroPla) ON DELETE CASCADE,
+	CONSTRAINT DOM_Tic_numeroTic
+		CHECK (0 < numeroTic)
+);
+
+
 CREATE TABLE LesUtilisateurs(
-	loginUti VARCHAR(40),
+	loginUti VARCHAR(30),
 	nomUti VARCHAR(50),
     prenomUti VARCHAR(50),
-	mailUti VARCHAR (30),
-	mdpUti VARCHAR (30),
+	mailUti VARCHAR (50),
+	mdpUti VARCHAR (20),
 
 	CONSTRAINT PK_Uti
 		PRIMARY KEY (loginUti)
-	
 );
 
-CREATE TABLE LesTickets(
-	horaireRep VARCHAR(30),
-	numeroRan INTEGER,
-	numeroPla INTEGER,
-	numeroTic Integer,
-	dateEmissionTic VARCHAR (30),
-	prixTic_d Real,
-    prixTicketTic_d  Real,
-
-	CONSTRAINT PK_Tic
-		PRIMARY KEY (horaireRep,numeroRan,numeroPla),
-	CONSTRAINT PK_Tic
-		PRIMARY KEY (numeroTic),
-	CONSTRAINT FK_Pla_horaireRep
-		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations(horaireRep),
-	CONSTRAINT FK_Pla_numeroRan_numeroPla
-		FOREIGN KEY (numeroRan,numeroPla) REFERENCES LesPlaces(numeroRan,numeroPla),
-	CONSTRAINT DOM_Tic_numeroTic
-		CHECK ( 0 < numeroTic),
-	CONSTRAINT DOM_Tic_prixTic_d
-	    CHECK ( 0 < prixTicketTic_d),
-);
 
 CREATE TABLE LesTicketsReserves(
 	numeroTic Integer,
-	loginUti VARCHAR (40),
+	loginUti VARCHAR (30),
 	
-
 	CONSTRAINT PK_TicR
 		PRIMARY KEY (numeroTic),
 	CONSTRAINT FK_TicR_numeroTic
-		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic),
+		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic) ON DELETE CASCADE,
     CONSTRAINT FK_TicR_loginUti
-		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti)
+		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti) ON DELETE CASCADE
 
 );
+
 
 CREATE TABLE LesTicketsAchetes(
 	numeroTic Integer ,
 	loginUti VARCHAR (40),
-	
 
 	CONSTRAINT PK_TicA
 		PRIMARY KEY (numeroTic),
 	CONSTRAINT FK_TicA_numeroTic
-		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic),
+		FOREIGN KEY (numeroTic) REFERENCES LesTickets(numeroTic) ON DELETE CASCADE,
     CONSTRAINT FK_TicA_loginUti
-		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti)
-
+		FOREIGN KEY (loginUti) REFERENCES LesUtilisateurs(loginUti) ON DELETE CASCADE
 );
+
+
+CREATE VIEW LesRepresentations(horaireRep, numeroSpe, tauxReducRep, placesDispoRep) AS
+	SELECT horaireRep, numeroSpe, tauxReducRep, 
+	
+	
