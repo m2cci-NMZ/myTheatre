@@ -56,7 +56,7 @@ relation LesHumoristiques
 		LesOperas[numeroSpe_] n LesHumoristiques[numeroSpe_] = {}
 
 
-relation LesRepresentations
+relation LesRepresentations_base
 	transformation 
 		from R_Class(Representation)
 		from R_OneToMany(APourRepresentation)
@@ -64,13 +64,13 @@ relation LesRepresentations
 	columns 
 		horaireRep_: Date
 		numeroSpe : Integer
-		placesDispoRep_d : Integer 
+//		placesDispoRep_d : Integer 
 		tauxReducRep : Real
 		
 	constraints
 		key horaireRep_
 		LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
-		placesDispoRep_d >= 0
+//		placesDispoRep_d >= 0
 		tauxReducRep > 0
 		tauxReducRep <= 1
 
@@ -102,24 +102,26 @@ relation LesPlaces
 		LesPlaces[numeroRan_] = LesRangs[numeroRan_]
 
 
-relation LesDossiersAchats
+relation LesDossiersAchats_base
 	transformation 
 		from R_Class(DossierAchat)
 
 	columns 
 		numeroDos_ : Integer
-		prixGlobalDos_d : Real
+//		prixGlobalDos_d : Real
 		
 	constraints
 		key numeroDos_ 
 		numeroDos_ > 0
-		prixGlobalDos_d > 0
+//		prixGlobalDos_d > 0
 
 
-relation LesTickets
+relation LesTickets_base
 	transformation 
 		from R_ManyToManyAC(Ticket)
 		from R_OneToMany(FaitPartieDUn)
+		from R_OneToMany(AAchete)
+		from R_OneToMany(AReserve)
 
 	columns
 		horaireRep_id1 : Date
@@ -127,7 +129,8 @@ relation LesTickets
 		numeroPla_id1 : Integer
 		numeroTic_id2 : Integer
 		dateEmissionTic : Date
-		prixTic_d : Real
+//		prixTic_d : Real
+		loginUti  : String
 		numeroDos : Integer
 		
 	constraints
@@ -136,8 +139,9 @@ relation LesTickets
 		LesTickets[horaireRep_id1] C= LesRepresentations[horaireRep_]
 		LesTickets[numeroRan_id1, numeroPla_id1] C= LesPlaces[numeroRan_, numeroPla_]
 		LesTickets[numeroDos] = LesDossiersAchats[numeroDos_]
+		LesTickets[loginUti] C= LesUtilisateurs[loginUti_]
 		numeroTic_ > 0
-		prixTicketTic_d > 0
+//  	prixTic_d > 0
 
 
 relation LesUtilisateurs
@@ -184,6 +188,15 @@ relation LesTicketsAchetes
 		LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
 		LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]
 		
-		
-view LesRepresentationsV1
+
+view LesRepresentations (horaireRep : d, numeroSpe : i, placesDispoRep : i, tauxReducRep : r)
+	| Le nombre de places disponibles restantes pour une représentation.
+	LesRepresentations_base[horaireRep_, numeroSpe, tauxReducRep]
 	
+view LesDossiersAchats (numeroDos : i, prixGlobalDos : r)
+	| Le prix total de la somme des tickets enregistrés dans un dossier d'achat.
+	LesDossiersAchats_base[numeroDos]
+	
+view LesTickets (horaireRepid1 : d, numeroRanid1 : i, numeroPlaid1 : i, numeroTicid2 : i, dateEmissionTic : d, prixTic : r, loginUti : s, numeroDos : i)
+	| Le prix d'un ticket correspondant à un numéro de rang, à un numéro de place pour une représentation donnée.
+	LesTickets_base[horaireRep_id1, numeroRan_id1, numeroPla_id1, numeroTic_id2, dateEmissionTic, loginUti, numeroDos]
