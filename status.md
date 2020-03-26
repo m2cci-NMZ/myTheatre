@@ -8,6 +8,12 @@ concepts/. est complété :
 	- diagramme d'objet correspond au diagramme de classe
 	- le glossaire et les scénario ont été réécrit
 
+bd/. est complété :
+	- schéma de la BD à jour
+	- jdd1 de la BD à jour avec le diagramme d'objet
+	- absence de certaines vérifications sur l'intégrité de la BD
+
+
 A compléter/améliorer
 ---------------------
 
