@@ -108,7 +108,7 @@ CREATE TABLE LesTickets_base(
 	numeroRan INTEGER,
 	numeroPla INTEGER,
 	numeroTic INTEGER,
-	dateEmissionTic VARCHAR (16),
+	dateEmissionTic VARCHAR (19),
 	numeroDos INTEGER,
 
 	CONSTRAINT PK_Tic
@@ -137,7 +137,7 @@ CREATE TABLE LesUtilisateurs(
 
 
 CREATE TABLE LesTicketsReserves(
-	numeroTic Integer,
+	numeroTic INTEGER,
 	loginUti VARCHAR (30),
 	
 	CONSTRAINT PK_TicR
@@ -151,8 +151,8 @@ CREATE TABLE LesTicketsReserves(
 
 
 CREATE TABLE LesTicketsAchetes(
-	numeroTic Integer ,
-	loginUti VARCHAR (40),
+	numeroTic INTEGER,
+	loginUti VARCHAR (30),
 
 	CONSTRAINT PK_TicA
 		PRIMARY KEY (numeroTic),
@@ -164,6 +164,29 @@ CREATE TABLE LesTicketsAchetes(
 
 
 CREATE VIEW LesRepresentations(horaireRep, numeroSpe, tauxReducRep, placesDispoRep) AS
-	SELECT horaireRep, numeroSpe, tauxReducRep, 
+	SELECT R.horaireRep, numeroSpe, tauxReducRep, 
+		((SELECT COUNT(numeroPla) FROM LesPlaces) - COUNT(numeroTic)) AS placesDispoRep
+	FROM LesRepresentations_base R JOIN LesTickets_base R ON (R.horaireRep = T.horaireRep)
+	GROUP BY R.horaireRep, numeroSpe, tauxReducSpe ;
+
+
+CREATE VIEW LesTickets(horaireRep, numeroRan, numeroPla, numeroTic,	dateEmissionTic, numeroDos, prixTic) AS
+	SELECT R.horaireRep, T.numeroRan, T.numeroPla, T.numeroTic, T.dateEmissionTic, (1 - R.tauxReducRep)*S.prixDeBaseSpe AS prixTic
+	FROM LesTickets_base T JOIN LesRepresentations_base R ON (T.horaireRep = R.horaireRep)
+							JOIN LesSpectacles S ON (R.numeroSpe = S.numeroSpe) ;
+
+
+CREATE VIEW LesDossiersAchats(numeroDos, prixGlobalDos) AS 
+	SELECT DA.numeroDos, SUM(T.prixTic)
+	FROM LesDossiersAchats_base DA JOIN LesTickets T ON (DA.numeroDos = T.numeroDos)
+	GROUP BY DA.numeroDos ;
+	
+
+
+
+
+
+
+	
 	
 	

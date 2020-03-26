@@ -65,9 +65,9 @@ relation LesRepresentations_base
 
 	columns 
 		horaireRep_: Date
-		tauxReducRep : Real
-//		placesDispoRep_d : Integer 
 		numeroSpe : Integer
+		tauxReducRep : Real	
+//		placesDispoRep_d : Integer 
 		
 	constraints
 		key horaireRep_
