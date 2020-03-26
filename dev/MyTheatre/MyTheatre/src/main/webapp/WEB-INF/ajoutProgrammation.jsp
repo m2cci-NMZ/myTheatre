@@ -36,8 +36,12 @@
                 padding-left: 5px;
             }
             
-            .ligneSelected{
+            .ligneOuCaseSelected{
                 color : blue;
+            }
+            
+            .caseRepsOfSpeSelected{
+                color : red;
             }
         </style>
     </head>
@@ -322,7 +326,7 @@
                                         <th class="colRepAdmin">Lundi</th>
                                         <th class="colRepAdmin">Mardi</th>
                                         <th class="colRepAdmin">Mercredi</th>                    
-                                        <th class="colRepAdmin"> Jeudi</th>
+                                        <th class="colRepAdmin">Jeudi</th>
                                         <th class="colRepAdmin">Vendredi</th>   
                                         <th class="colRepAdmin">Samedi</th>
                                         <th class="colRepAdmin">Dimanche</th>   
@@ -340,8 +344,8 @@
                                                     Date horaireRep = rep.getHoraire();
                                                     String nomSpe = rep.getSpectacle().getNom();
                                         %>
-                                        <td><b style="color:grey"><%=heureFormatter.format(horaireRep)%></b>
-                                            <br><%=nomSpe%></td>
+                                        <td class="caseRep"><b style="color:grey"><%=heureFormatter.format(horaireRep)%></b>
+                                            <br><span id="nomSpeRep"><%=nomSpe%></span></td>
                                             <%
                                             } else {
                                             %>
