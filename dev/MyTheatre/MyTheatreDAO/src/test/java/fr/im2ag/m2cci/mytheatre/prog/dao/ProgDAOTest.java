@@ -580,50 +580,50 @@ public class ProgDAOTest {
     }
     
     
-//    /**
-//     * Test de la méthode deleteSpectacles pour plusieurs Spectacle
-//     */
-//    @Test
-//    public void testDeletePlusieursSpectacles() throws Exception {
-//        System.out.println("deleteSpectacles pour plusieurs spectacles");
-//       
-//        ProgDAO.insertSpectacle(ds, 701, "Spectacle 5", 10, "toutPublic", "drame", false);
-//        ProgDAO.insertSpectacle(ds, 702, "Spectacle 28", 10, "adulte", "opera", false);
-//        ProgDAO.insertSpectacle(ds, 703, "Spectacle 12", 10, "unCinqAns", "musical", false);
-//        List<Spectacle> spectaclesDebut = ProgDAO.toutSpectacles(ds);
-//        
-//        List<Integer> speASuppr = new ArrayList<>();
-//        speASuppr.add(701);
-//        speASuppr.add(702);
-//        speASuppr.add(703);
-//        ProgDAO.deleteSpectacles(ds, speASuppr);
-//        
-//        List<Spectacle> spectaclesFin = ProgDAO.toutSpectacles(ds);
-//        
-//        assertEquals(spectaclesFin.size(), spectaclesDebut.size()-3);
-//    }
-//    
-//    
-//    /**
-//     * Test de la méthode deleteSpectacles pour un Spectacle ayant des Representations
-//     */
-//    @Test
-//    public void testDeleteSpectacleAvecRepresentation() throws Exception {
-//        System.out.println("deleteSpectacles pour un spectacle ayant des representations");
-//        // Ajout du Spectacle
-//        ProgDAO.insertSpectacle(ds, 704, "Spectacle 5", 10, "toutPublic", "drame", false);
-//        // Ajout de la Representation
-//        Date horaireRep = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2020-03-16 19:35");
-//        ProgDAO.insertRepresentation(ds, 704, horaireRep);
-//        // On récupère les Representations de ce jour
-//        List<Representation> representationsDebut = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
-//        // On supprime le Spectacle
-//        List<Integer> speASuppr = new ArrayList<>();
-//        speASuppr.add(704);
-//        ProgDAO.deleteSpectacles(ds, speASuppr);
-//        // On récupère les Representations de ce jour après la suppresion
-//        List<Representation> representationsFin = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
-//        // On compare si il y a bien une Representation en moins
-//        assertEquals(representationsFin.size(), representationsDebut.size()-1);
-//    }
+    /**
+     * Test de la méthode deleteSpectacles pour plusieurs Spectacle
+     */
+    @Test
+    public void testDeletePlusieursSpectacles() throws Exception {
+        System.out.println("deleteSpectacles pour plusieurs spectacles");
+       
+        ProgDAO.insertSpectacle(ds, 701, "Spectacle 5", 10, "toutPublic", "drame", false);
+        ProgDAO.insertSpectacle(ds, 702, "Spectacle 28", 10, "adulte", "opera", false);
+        ProgDAO.insertSpectacle(ds, 703, "Spectacle 12", 10, "unCinqAns", "musical", false);
+        List<Spectacle> spectaclesDebut = ProgDAO.toutSpectacles(ds);
+        
+        List<Integer> speASuppr = new ArrayList<>();
+        speASuppr.add(701);
+        speASuppr.add(702);
+        speASuppr.add(703);
+        ProgDAO.deleteSpectacles(ds, speASuppr);
+        
+        List<Spectacle> spectaclesFin = ProgDAO.toutSpectacles(ds);
+        
+        assertEquals(spectaclesFin.size(), spectaclesDebut.size()-3);
+    }
+    
+    
+    /**
+     * Test de la méthode deleteSpectacles pour un Spectacle ayant des Representations
+     */
+    @Test
+    public void testDeleteSpectacleAvecRepresentation() throws Exception {
+        System.out.println("deleteSpectacles pour un spectacle ayant des representations");
+        // Ajout du Spectacle
+        ProgDAO.insertSpectacle(ds, 704, "Spectacle 5", 10, "toutPublic", "drame", false);
+        // Ajout de la Representation
+        Date horaireRep = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2020-03-16 19:35");
+        ProgDAO.insertRepresentation(ds, 704, horaireRep);
+        // On récupère les Representations de ce jour
+        List<Representation> representationsDebut = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
+        // On supprime le Spectacle
+        List<Integer> speASuppr = new ArrayList<>();
+        speASuppr.add(704);
+        ProgDAO.deleteSpectacles(ds, speASuppr);
+        // On récupère les Representations de ce jour après la suppresion
+        List<Representation> representationsFin = ProgDAO.toutesRepresentationsDatees(ds, horaireRep, horaireRep);
+        // On compare si il y a bien une Representation en moins
+        assertEquals(representationsFin.size(), representationsDebut.size()-1);
+    }
 }
