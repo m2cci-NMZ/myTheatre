@@ -19,7 +19,7 @@ CREATE TABLE LesSpectacles(
 
 	CONSTRAINT PK_Spe
 		PRIMARY KEY (numeroSpe),
-	CONSTRAINT CK_Spe_cibleSpe
+	CONSTRAINT DOM_Spe_cibleSpe
 		CHECK (cibleSpe in ("unCinqAns", "jeunePublic", "toutPublic","adulte")),
 	CONSTRAINT DOM_Spe_typeSpe
 		CHECK (typeSpe in ("opera", "drame", "humoristique", "musical", "cirque")),
