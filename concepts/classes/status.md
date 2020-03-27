@@ -8,8 +8,8 @@ Diagramme de classe terminé pour le scénario 1 et 3 :
 
 Pour les scénarios suivants, nous avons pris une version allégée du diagramme :
 - On a gardé `Rang`, `Place` mais pas `Zone` et `Categorie` -> Pas de variation des prix des places liée à la catégorie tarifaire de la Zone
-- On a gardé `Utilisateur` mais pas Personne -> En l'état, pour acheter un `Ticket` il faut être un `Utilisateur`
-- On n'a pas gardé `Statut` (d'une Personne) -> Pas de `Reduction`s liées à un statut particulier
+- On a gardé `Utilisateur` mais pas `Spectateur` -> En l'état, pour acheter un `Ticket` il faut être un `Utilisateur`
+- On n'a pas gardé `Statut` (d'un `Spectateur`) -> Pas de `Reduction`s liées à un statut particulier
 - On a gardé `Ticket` et `DossierAchat`
 
 
