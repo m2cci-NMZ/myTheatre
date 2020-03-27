@@ -43,7 +43,7 @@ Auteurs
 
 Remerciements
 ---------------------
-Jean-Marie Favre
-Sybille Caffiau
-Philippe Genoud
-Mario Cortes-Cornax
+* Jean-Marie Favre
+* Sybille Caffiau
+* Philippe Genoud
+* Mario Cortes-Cornax
