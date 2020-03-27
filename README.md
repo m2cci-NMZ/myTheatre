@@ -18,3 +18,19 @@ Contenu du répertoire
 La structure du répertoire est conforme à la [structure ModelScript](https://modelscript.readthedocs.io/en/latest/artefacts/index.html).
 
 
+Auteurs
+---------------------
+
+*[Robin Miquel](https://github.com/m2cci-RML)
+*[Celia Kezmane](https://github.com/m2cci-CKE)
+*[Matthieu Lehugeur](https://github.com/m2cci-MLR)
+*[Nicolas Martinez](https://github.com/m2cci-NMZ)
+
+Remerciements
+---------------------
+
+Jean-Marie Favre
+Sybille Caffiau
+Philippe Genoud
+Mario Cortes-Cornax
+
