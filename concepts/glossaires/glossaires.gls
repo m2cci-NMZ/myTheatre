@@ -102,7 +102,7 @@ Spectateur
     synonyms: Client
 
 Utilisateur
-    | Personne étant enregistrée dans le système de `MyTheatre` et pouvant faire des `Reservation`s
+    | `Spectateur` étant enregistrée dans le système de `MyTheatre` et pouvant faire des `Reservation`s
 
 Statut
     | Caractéristique d'un `Spectateur` lui permettant de profiter ou non de `Reduction`s.
