@@ -47,7 +47,8 @@
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
-            <task-descriptioniteration>@</task-descriptioniteration>
+            <task-descriptioniteration>@
+</task-descriptioniteration>
             <point classkmad="tache.Point" idkmad="K9">
                 <point-x>777</point-x>
                 <point-y>191</point-y>
