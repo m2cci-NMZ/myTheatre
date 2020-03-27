@@ -19,7 +19,7 @@ CREATE TABLE LesSpectacles(
 
 	CONSTRAINT PK_Spe
 		PRIMARY KEY (numeroSpe),
-	CONSTRAINT CK_Spe_cibleSpe
+	CONSTRAINT DOM_Spe_cibleSpe
 		CHECK (cibleSpe in ("unCinqAns", "jeunePublic", "toutPublic","adulte")),
 	CONSTRAINT DOM_Spe_typeSpe
 		CHECK (typeSpe in ("opera", "drame", "humoristique", "musical", "cirque")),
@@ -119,6 +119,8 @@ CREATE TABLE LesTickets_base(
 		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations_base(horaireRep) ON DELETE CASCADE,
 	CONSTRAINT FK_Tic_numeroRan_numeroPla
 		FOREIGN KEY (numeroRan, numeroPla) REFERENCES LesPlaces(numeroRan, numeroPla) ON DELETE CASCADE,
+	CONSTRAINT FK_Tic_numeroDos
+		FOREIGN KEY (numeroDos) REFERENCES LesDossiersAchats_base(numeroDos) ON DELETE CASCADE,
 	CONSTRAINT DOM_Tic_numeroTic
 		CHECK (0 < numeroTic)
 );

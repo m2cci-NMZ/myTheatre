@@ -71,7 +71,7 @@ relation LesRepresentations_base
 		
 	constraints
 		key horaireRep_
-		LesRepresentations[numeroSpe] C= LesSpectacles[numeroSpe_]
+		LesRepresentations_base[numeroSpe] C= LesSpectacles[numeroSpe_]
 		tauxReducRep >= 0
 		tauxReducRep < 1
 //		placesDispoRep_d >= 0
@@ -135,9 +135,9 @@ relation LesTickets_base
 	constraints
 		key horaireRep_id1, numeroRan_id1, numeroPla_id1
 		key numeroTic_id2
-		LesTickets[horaireRep_id1] C= LesRepresentations[horaireRep_]
-		LesTickets[numeroRan_id1, numeroPla_id1] C= LesPlaces[numeroRan_, numeroPla_]
-		LesTickets[numeroDos] = LesDossiersAchats[numeroDos_]
+		LesTickets_base[horaireRep_id1] C= LesRepresentations_base[horaireRep_]
+		LesTickets_base[numeroRan_id1, numeroPla_id1] C= LesPlaces[numeroRan_, numeroPla_]
+		LesTickets_base[numeroDos] = LesDossiersAchats_base[numeroDos_]
 		numeroTic_ > 0
 //  	prixTic_d > 0
 
@@ -167,7 +167,7 @@ relation LesTicketsReserves
 		
 	constraints
 		key numeroTic_
-		LesTicketsReserves[numeroTic_] C= LesTickets[numeroTic_id2]
+		LesTicketsReserves[numeroTic_] C= LesTickets_base[numeroTic_id2]
 		LesTicketsReserves[loginUti] C= LesUtilisateurs[loginUti_]
 		
 		
@@ -181,9 +181,9 @@ relation LesTicketsAchetes
 		
 	constraints
 		key numeroTic_
-		LesTicketsAchetes[numeroTic_] C= LesTickets[numeroTic_id2]
+		LesTicketsAchetes[numeroTic_] C= LesTickets_base[numeroTic_id2]
 		LesTicketsAchetes[loginUti] C= LesUtilisateurs[loginUti_]
 		
 constraints
 	LesTicketsReserves[numeroTic_] n LesTicketsAchetes[numeroTic_] = {}
-	LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets[numeroTic_id2]
+	LesTicketsReserves[numeroTic_] u LesTicketsAchetes[numeroTic_] = LesTickets_base[numeroTic_id2]
