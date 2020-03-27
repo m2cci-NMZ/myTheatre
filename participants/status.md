@@ -5,6 +5,7 @@ Fait
 ----
 Participants pour le scénario S1 et S3 : Spectateur et Gérant
 Participants pour le scénario S1bis : Ajout d'un rôle au Spectateur et ajout de l'acteur Utilisateur
+Participants et consultants pour le projet
 
 
 A compléter/améliorer
@@ -21,6 +22,7 @@ A faire
 Synthèse
 --------
 Participants pour les scénario S1, S3 et S1bis
+Participants et consultants pour le projet
 Pret pour rendu
 
 
