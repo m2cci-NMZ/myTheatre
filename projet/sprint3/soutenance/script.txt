@@ -1,0 +1,65 @@
+Prendre jdd2 pour la dernière version V3.xx
+
+-------------------
+-- Programmation
+-------------------
+Changer de spectateur cible : Jeune Public
+Décocher le type "Musical" 
+	(Montre le message d'absence de résultat)
+Recocher tout et remettre "Indifferent"
+Mettre les deux dates au 10/04/2020
+	(Montre le titre qui change)
+Mettre le début au 12/04/2020 et la fin au 08/04/2020
+	(Montre la remise en ordre des dates)
+
+Cliquer sur l'onglet Administration
+-------------------
+-- Administration
+-------------------
+Entrer un spectacle de n° 0
+	(Montre l'erreur de champ)
+Entrer un spectacle de de prix "Test"
+	(Montre l'erreur de champ)
+Ajouter un spectacle de n°17
+	(Montre l'erreur d'insertion)
+	(Montre aussi que les champs ne se conservent pas)
+Ajouter un spectacle (100, Un Opera, 10, Tout Public, Opera, true)
+	(Montre l'ajout du spectacle)
+Changer la valeur du type : Humoristique puis Drame
+	(Montre le changement du texte pour le chockbox en dessous)
+
+Cliquer sur Programmation
+Cocher uniquement Humoristique et Opera
+	(Montre la representation avec la précision sur l'orchestre)
+Cliquer sur Administration
+
+Ajouter une representation (99, 06/04/2020 20:00)
+	(Montre l'erreur sur le numero et sur l'horraire)
+	(Montre aussi que les champs ne se conservent pas)
+Ajouter une representation (100, 23/03/2020 20:00)
+	(Montre la nouvelle representation)
+Ajouter une representation (100, 23/03/2020 22:00)
+Ajouter une representation (100, 24/03/2020 15:30)
+	(Montre les nouvelles representations)
+
+Clique sur le spectacle 100
+	(Montre l'affichage en bleu et en rouge et l'apparition du bouton)
+Clique de nouveau
+	(Montre que tout redevient normal)
+Clique de nouveau
+Clique sur supprimer
+	(Montre la suppression du spectacle et des representations)
+Clique sur les spectacle n°45, 25, 20
+	(Montre les spectacles en bleu et les representations en rouge)
+Clique sur supprimer
+	(Montre les suppressions)
+Rajouter un spectacle (20, Nouvel Avare, 15, humoristique, jeunePublic, false)
+Rajouter une representation (20, 10/04/2020 à 20:00)
+
+Cliquer sur Programmation
+Cocher uniquement Humoristique et Opera
+	(Montre la representation avec la précision sur l'orchestre)
+	
+
+
+
