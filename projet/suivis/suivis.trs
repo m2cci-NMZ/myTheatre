@@ -33,8 +33,13 @@ impediment I3: Panne de réseau
     date: 2020-03-10
     who: RML CKE MLR NMZ
 
-hypothesis H1: Affichage des `Spectacle`s `Opera` et `Humoristique`  
-    | L'affichage de la `Programmation` de `MyTheatre` pour les `Spectateur`s ne montre
-    | pas si un `Opera` ou un `Humoristique` a un orchestre ou si il est un OneWomen(Men)Show
-    priority: low
-    status: open
+impediment I4: Organisation Coronavirus
+    | Perte d'une demi journée pour se réorganiser
+    date: 2020-03-16
+    who: RML CKE MLR NMZ
+
+impediment I5: Periode d'essai logiciel IHM Capian
+    | Nous n'avons pas pu modifier les analyses heuristiques car le logiciel n'était plus en période d'essai
+    | Correction faite sur un document à part
+    date: 2020-03-27
+    who: RML CKE MLR NMZ

@@ -1,0 +1,19 @@
+1 - Visibilité de l'état du système
+Quand l'utilisateur sélectionne un spectacle pour le supprimer, il s'affiche en bleu
+De plus, toutes les representations associées à ce spectacle (et qui vont être supprimée) s'affichent elles aussi en 
+rouge pour prévenir l'utilisateur de leur suppression
+Le bouton Supprimer n'est cliquable que quand un ou plusieurs spectacles sont sélectionnés
+
+
+3 - Liberté, contrôle de l'utilisateur
+L'utilisateur peut supprimer un spectacle en cliquant dessus puis en cliquant sur le bouton Supprimer
+Il ne peut par contre pas le faire pour les representations (manque de temps)
+
+
+5 - Prévention des erreurs
+L'utilisateur est prévenu en bleu et en rouge des spectacle et des representations qu'il est sur le point de supprimer
+Ca lui permet de faire la suppression en connaissance de cause
+
+
+7 - Flexibilité dans l'utilisation
+L'utilisateur peu supprimer plusieurs spectacle d'un coup, il ne doit pas le faire un par un comme pour l'ajout
