@@ -119,8 +119,11 @@ CREATE TABLE LesTickets_base(
 		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations_base(horaireRep) ON DELETE CASCADE,
 	CONSTRAINT FK_Tic_numeroRan_numeroPla
 		FOREIGN KEY (numeroRan, numeroPla) REFERENCES LesPlaces(numeroRan, numeroPla) ON DELETE CASCADE,
+<<<<<<< HEAD
 	CONSTRAINT FK_Tic_numeroDos
 		FOREIGN KEY (numeroDos) REFERENCES LesDossiersAchats_base(numeroDos) ON DELETE CASCADE,
+=======
+>>>>>>> achatPlaces
 	CONSTRAINT DOM_Tic_numeroTic
 		CHECK (0 < numeroTic)
 );
@@ -182,3 +185,4 @@ CREATE VIEW LesDossiersAchats(numeroDos, prixGlobalDos) AS
 	SELECT DA.numeroDos, SUM(T.prixTic)
 	FROM LesDossiersAchats_base DA JOIN LesTickets T ON (DA.numeroDos = T.numeroDos)
 	GROUP BY DA.numeroDos ;
+

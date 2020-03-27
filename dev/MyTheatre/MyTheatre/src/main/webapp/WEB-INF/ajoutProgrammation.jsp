@@ -25,13 +25,11 @@
             .colRepAdmin{
                 width: 14.28%;
             }
-
             .erreurMsg{
                 margin-top: -13px;
                 color : #FF0000;
                 text-align: justify;
             }
-
             .multiple-input-feedback{   
                 padding-left: 5px;
             }
@@ -264,7 +262,6 @@
                             SimpleDateFormat navigateurJourFormatter = new SimpleDateFormat("yyyy-MM-dd");      // Pour fixer la valeur dans le formulaire
                             Date dateDebut = (Date) request.getAttribute("dateDebut");
                             Date dateFin = (Date) request.getAttribute("dateFin");
-
                             // Affichage des dates sélectionnés dans la nouvelle page
                             String dateDebutForm = navigateurJourFormatter.format(dateDebut);
                             String dateFinForm = navigateurJourFormatter.format(dateFin);
@@ -293,13 +290,10 @@
                             <%
                                 int nbSem = (int) request.getAttribute("nbSemaines");   // Récupère le nombre de semaines entre les deux dates du formulaire
                                 List<List<List<Representation>>> representationsParSemaine = (List<List<List<Representation>>>) request.getAttribute("repParSemaine");
-
                                 Date[] datesLundi = (Date[]) request.getAttribute("datesLundi");
                                 Date[] datesDimanche = (Date[]) request.getAttribute("datesDimanche");
-
                                 SimpleDateFormat jourFormatter = new SimpleDateFormat("dd/MM/yyyy");    // Formatte l'affichage des jours
                                 SimpleDateFormat heureFormatter = new SimpleDateFormat("HH'h'mm");      // Formatte l'affichage des heures
-
                                 for (int iSem = 0; iSem < nbSem; iSem++) {
                             %>
                             <h4>Semaine du <%=jourFormatter.format(datesLundi[iSem])%> au <%=jourFormatter.format(datesDimanche[iSem])%></h4>

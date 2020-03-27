@@ -262,6 +262,10 @@ public class ProgDAO {
      * @param prixDeBase : double pour le prix du base du Spectacle
      * @param cible : String pour le public cible du Spectacle
      * @param type : String pour le type de Spectacle
+     * @param aUnOrchestreOpe : boolean pour les Spectacle de type 'musical',
+     * permet de signaler qu'il y a un orchestre
+     * @param estUnOneWomanManShow : boolean pour les Spectacle de type
+     * 'humoristique', permet de signaler que c'est un OneWoman(Max)Show
      * @param aOrchestreOuEstOneWomanManShow : boolean pour les Spectacle de
      * type 'opera' ou 'humoristique', permet de signaler qu'il y a un orchestre
      * ou respectivement que c'est un OneWomanManShow
@@ -354,7 +358,7 @@ public class ProgDAO {
         try (Connection conn = ds.getConnection()) {
             // Pour que le ON DELETE CASCADE fonctionne
             conn.createStatement().execute("PRAGMA foreign_keys = ON;");
-            
+
             // On fait un batch pour tout faire d'un seul coup
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement(queryInsert);
@@ -364,10 +368,63 @@ public class ProgDAO {
                 stmt.setInt(1, numeroSpe);
                 stmt.addBatch();
             }
-            
+
             int[] updateCounts = stmt.executeBatch();
             conn.commit();
             conn.setAutoCommit(true);
         }
+    }
+
+    public static List<Representation> toutesRepresentations(DataSource ds) throws SQLException, ParseException {
+        List<Representation> representations = new ArrayList<>();
+        String queryRep = "SELECT S.numeroSpe, nomSpe, prixDeBaseSpe, cibleSpe, typeSpe, estUnOneWomanManShowHum, aUnOrchestreOpe, horaireRep \n"
+                + "FROM LesSpectacles S LEFT OUTER JOIN LesOperas O ON S.numeroSpe = O.numeroSpe \n"
+                + "LEFT OUTER JOIN LesHumoristiques H ON S.numeroSpe = H.numeroSpe \n"
+                + "JOIN LesRepresentations R ON R.numeroSpe = S.numeroSpe;";
+        try (Connection conn = ds.getConnection()) {
+            // Construction de la requête en fonction des filtres
+            // Cible
+
+            queryRep += ")\n";
+
+            // Ajout d'un ordre
+            queryRep += " ORDER BY horaireRep; \n";
+
+            PreparedStatement stmt = conn.prepareStatement(queryRep);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Récupération des attributs
+                    int numero = rs.getInt("numeroSpe");
+                    String nom = rs.getString("nomSpe");
+                    double prixDeBase = rs.getDouble("prixDeBaseSpe");
+                    String cible = rs.getString("cibleSpe");
+                    String type = rs.getString("typeSpe");
+                    String horaireRep = rs.getString("horaireRep");
+
+                    // Création des objets
+                    Date horaire = horaireFormatter.parse(horaireRep);
+                    Spectacle s;
+                    switch (type) {
+                        case "opera":
+                            int aUnOrchestreOpe = rs.getInt("aUnOrchestreOpe");
+                            boolean aUnOrchestre = (aUnOrchestreOpe == 1);
+                            s = new Opera(numero, nom, prixDeBase, type, cible, aUnOrchestre);
+                            break;
+                        case "humoristique":
+                            int estUnOneWomanManShowHum = rs.getInt("estUnOneWomanManShowHum");
+                            boolean estUnOneWomanManShow = (estUnOneWomanManShowHum == 1);
+                            s = new Humoristique(numero, nom, prixDeBase, type, cible, estUnOneWomanManShow);
+                            break;
+                        default:
+                            s = new Spectacle(numero, nom, prixDeBase, type, cible);
+                    }
+                    Representation rep = new Representation(horaire, s);
+                    representations.add(rep);
+                }
+            }
+        }
+        return representations;
+
     }
 }
