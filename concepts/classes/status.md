@@ -12,6 +12,8 @@ Pour les scénarios suivants, nous avons pris une version allégée du diagramme
 - On n'a pas gardé `Statut` (d'un `Spectateur`) -> Pas de `Reduction`s liées à un statut particulier
 - On a gardé `Ticket` et `DossierAchat`
 
+Contraintes faites pour S1, S3 et S1bis (allégé)
+
 
 A compléter/améliorer
 ---------------------
@@ -24,7 +26,8 @@ Prendre en compte les classes qui ont été mises de côté pour le moment
 
 Synthèse
 --------
-Diagramme partiel vis à vis des tous les scénarios
+Diagramme complet pour S1 et S3 mais partiel vis à vis du scénario S1bis
 Il compile avec USE
 Il est autosuffisant (il est fonctionnel en l'état)
+Contraintes spécifiées
 Prêt pour le rendu
