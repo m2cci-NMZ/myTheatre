@@ -119,6 +119,8 @@ CREATE TABLE LesTickets_base(
 		FOREIGN KEY (horaireRep) REFERENCES LesRepresentations_base(horaireRep) ON DELETE CASCADE,
 	CONSTRAINT FK_Tic_numeroRan_numeroPla
 		FOREIGN KEY (numeroRan, numeroPla) REFERENCES LesPlaces(numeroRan, numeroPla) ON DELETE CASCADE,
+	CONSTRAINT FK_Tic_numeroDos
+		FOREIGN KEY (numeroDos) REFERENCES LesDossiersAchats_base(numeroDos),
 	CONSTRAINT DOM_Tic_numeroTic
 		CHECK (0 < numeroTic)
 );
