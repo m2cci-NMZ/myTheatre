@@ -54,7 +54,7 @@ public class TicketsDAO {
      * représentation donnée
      */
     private static final String PLACES_VENDUES
-            = "SELECT numPla, numRan FROM LesTickets_base WHERE horaireRep = ?";
+            = "SELECT numeroPla, numeroRan FROM LesTickets_base WHERE horaireRep = ?";
 
     /**
      * Requête pour insérer les données dans la table LesTickets
@@ -233,7 +233,7 @@ public class TicketsDAO {
                     pstmt.setInt(2, rangsIds[i]);
                     pstmt.setInt(6, 1);
                     pstmt2.setInt(1, numTicket + i);
-                    pstmt2.setString(2, "UserDefault");
+                    pstmt2.setString(2, "nico58");
                     pstmt2.addBatch();
                     pstmt.addBatch();  // ajoute la requête d'insertion au batch
                 }
