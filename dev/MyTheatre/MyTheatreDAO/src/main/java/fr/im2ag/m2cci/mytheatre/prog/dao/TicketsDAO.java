@@ -110,6 +110,7 @@ public class TicketsDAO {
  */
     public static void acheterPlacesReservees(DataSource ds, List<Ticket> places) throws SQLException, AchatConcurrentException {
         try (Connection conn = ds.getConnection()) {
+            conn.createStatement().execute("PRAGMA foreign_keys = ON;");
             try (PreparedStatement pstmt = conn.prepareStatement(SUPPRIMER_RESERVATION); PreparedStatement pstmt2 = conn.prepareStatement(ACHETER_TICKET)) {
                 for (Ticket place : places) {
                     pstmt.setInt(1, place.getNumeroTicket());
@@ -221,6 +222,7 @@ public class TicketsDAO {
 
         //fait 2 insertions: une dans la table LesTickets et une dans LesTicketsReserves
         try (Connection conn = ds.getConnection()) {
+            conn.createStatement().execute("PRAGMA foreign_keys = ON;");
             try (PreparedStatement pstmt = conn.prepareStatement(CREER_TICKET); PreparedStatement pstmt2 = conn.prepareStatement(RESERVER_TICKET)) {
                 conn.setAutoCommit(false);  // début d'une transaction
                 for (int i = 0; i < rangsIds.length; i++) {
@@ -287,6 +289,7 @@ public class TicketsDAO {
         String queryRep = "DELETE FROM LesTickets_base WHERE dateEmissionTic <= ? AND numeroTic IN (SELECT numeroTic FROM LesTicketsReserves)";
 
         try (Connection conn = ds.getConnection()) {
+            conn.createStatement().execute("PRAGMA foreign_keys = ON;");
             PreparedStatement stmt = conn.prepareStatement(queryRep);
             stmt.setString(1, horaireFormatter.format(dateLimite));
             stmt.executeUpdate();
