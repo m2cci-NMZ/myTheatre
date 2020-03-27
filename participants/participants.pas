@@ -23,14 +23,24 @@ actor Spectateur
       | `Spectateur` est une personne. Le role du `Spectateur` est de consulter la 
       | `Programmation` de `MyTheatre`.
       | Pour realiser cette tâche, `Spectateur` possède une application web.
+      
+      | Le role du `Spectateur` est aussi d'acheter des `Place`s pour des `Representation`s
+      | Pour réaliser cette tâche, `Spectateur` possède une application web.
 
 
 //-------Scenario 3 -----------------------------------------------------
 
 actor Gerant 
       | `Gerant` est une personne. Le role du `Gerant` est de gèrer la `Programmation`s de `MyTheatre`.
-      | Pour realiser cette tâche, le `Gerant` utilise une application web.
+      | Pour realiser cette tâche, `Gerant` utilise une application web.
       | Il peut visualiser la `Programmation` de manière globale et il peut ajouter des `Spectacle`s
       | et des `Representation`s
-	  
+	
+
+  
 //-------Scenario 1bis -----------------------------------------------------
+
+actor Utilisateur
+      | `Utilisateur` est un `Spectateur` enregistré dans le système de `MyTheatre`. 
+      | Le role de `Utilisateur` est de faire des `Reservation`.
+      | Pour realiser cette tâche, le `Utilisateur` utilise une application web.

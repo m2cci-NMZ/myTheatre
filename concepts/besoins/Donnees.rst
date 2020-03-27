@@ -49,6 +49,6 @@ de la seconde).
 
 (X25) Ainsi le prix d’une `Place` fait éventuellement l’objet d’une `Reduction` qui dépend de son `Statut` (adhérent, sénior, étudiant et militaire).
 
-(X26) Un taux de `Reduction` est associé a chacun de ces `Statut`s (1 pour le tarif sans réduction, 0.8 pour le tarif réduit de 20%, etc.).
+(X26) Un taux de `Reduction` est associé a chacun de ces `Statut`s (1 pour le tarif sans `Reduction`, 0.8 pour le tarif réduit de 20%, etc.).
 
-(X27) Le cas échéant, la `Reduction` vient s’ajouter à la `Reduction` associée à la `Representation` et événtuellement à d’autres `Reduction`s (ex. un `Adherent` avec 20% qui est aussi étudiant avec 10% de reduction, il aura 30% de reduction).
+(X27) Le cas échéant, la `Reduction` vient s’ajouter à la `Reduction` associée à la `Representation` et événtuellement à d’autres `Reduction`s (ex. un `Adherent` avec 20% qui est aussi étudiant avec 10% de `Reduction`, il aura 30% de `Reduction`).

@@ -200,3 +200,51 @@ association AReserve between
     Utilisateur  [0..1] role reserveur
     Ticket [*] role ticketsReserves
 end
+
+
+---------------------------------------------------------------------------
+-- constraints
+---------------------------------------------------------------------------
+
+--@ constraint EstUnOpera
+--@     scope
+--@         Spectacle.type
+--@         Opera
+--@     | Si un Spectacle <s> est un est de type "opera" alors c'est
+--@     | un Opera (et inversement, si c'est un Opera, il est de type "opera")
+
+
+--@ constraint EstUnHumoristique
+--@     scope
+--@         Spectacle.type
+--@         Humoristique
+--@     | Si un Spectacle <s> est un est de type "humoristique" alors c'est
+--@     | un Humoristique (et inversement)
+
+
+--@ constraint PlaceReserveeEtAchetee
+--@     scope
+--@         AAchete
+--@         AReserve
+--@         Ticket
+--@         Utilisateur
+--@     | Un Ticket <t> ne peut pas être lié à un Utilisateur (pas forcément le même) <u> 
+--@     | par AAchete et AReserve. <t> est soit réservé, soit acheté, mais pas les deux
+
+
+--@ constraint PlacePasReserveeOuAchetee
+--@     scope
+--@         AAchete
+--@         AReserve
+--@         Ticket
+--@         Utilisateur
+--@     | Un Ticket <t> doit forcément être lié à un Utilisateur par AAchete ou AReserve
+--@     | <t> n'existe pas tant qu'il n'y a pas eu d'achat ou de réservation
+
+
+--@ constraint DateTicket
+--@     scope
+--@         Ticket.dateEmission
+--@         Representation.horaire_
+--@     | Un Ticket <t> ne peut pas être émis après la Representation
+--@     | La date d'émission est donc antérieur à l'horaire de la représentation
